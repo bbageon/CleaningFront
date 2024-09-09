@@ -1,0 +1,2 @@
+import ServiceHistoryDetailContainer from './ServiceHistoryDetailContainer';
+export default ServiceHistoryDetailContainer;

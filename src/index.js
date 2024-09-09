@@ -1,12 +1,12 @@
-/* 리액트 실행에 필요한 기본 라이브러리 */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
-/* URL설정을 위한 라이브러리 */
 import { BrowserRouter as Router } from 'react-router-dom';
-
-/* 모든 페이지의 최상위 페이지를 불러온다. */
 import App from './App';
+
+// Styles
+import './index.css';
+import './styles/colors.css';
+import './styles/font.css';
 
 import reportWebVitals from './reportWebVitals';
 

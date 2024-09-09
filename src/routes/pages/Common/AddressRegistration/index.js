@@ -1,0 +1,2 @@
+import AddressRegistrationContainer from "./AddressRegistrationContainer";
+export default AddressRegistrationContainer;
