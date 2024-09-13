@@ -55,9 +55,9 @@ body {
 	margin: 0 auto;
 
 	/* SAFE AREA */
-	padding-top: 54px;
-	/* - safe area + 푸터 크기 */
-	padding-bottom: calc(34px + 80px);
+	padding-top: env(safe-area-inset-top);
+	padding-bottom: env(safe-area-inset-bottom);
+	/* padding-top: 54px; */
+	/* padding-bottom: calc(34px + 80px); */
 }
 /* ***************************************** */
-

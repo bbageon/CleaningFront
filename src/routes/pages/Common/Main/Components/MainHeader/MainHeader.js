@@ -12,7 +12,7 @@ const MainHeader = ({
     /* ===== HOOK ===== */
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 54) {
+            if (window.scrollY > 60) {
                 setIsSticky(true);
             } else {
                 setIsSticky(false);
@@ -25,8 +25,6 @@ const MainHeader = ({
         }
 
     }, []);
-
-    console.log(isSticky)
 
     return (
         <div className={`main-header-container ${isSticky ? 'sticky' : ''}`}>

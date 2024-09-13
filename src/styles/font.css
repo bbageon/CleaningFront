@@ -1,25 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
-
-.nanum-gothic-regular {
-    font-family: "Nanum Gothic", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+/* CUSTOM FONT CLASS */
+.title {
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+.sub-title {
+	font-size: 1.25rem;
+	font-weight: 600;
+}
+.info-title {
+    color: var(--info-title-color);
 }
 
-.nanum-gothic-bold {
-    font-family: "Nanum Gothic", sans-serif;
-    font-weight: 700;
-    font-style: normal;
+
+
+.flagship-service-wrap {
+    display: flex;
+    align-items: center;
+}
+.flagship-service {
+    color: var(--info-title-color);
+    position: relative;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+.flagship-service::after {
+    content: '';
+    height: 12px;
+    width: 1px;
+    background-color: var(--info-title-color);
+    transform: translateY(-50%);
+    position: absolute;
+    top: 50%;
+    right: -8px;
+}
+.flagship-service:last-child {
+    margin-left: 8px;
+}
+.flagship-service:last-child::after {
+    display: none;
 }
 
-.nanum-gothic-extrabold {
-    font-family: "Nanum Gothic", sans-serif;
-    font-weight: 800;
-    font-style: normal;
-}
 
-:root {
-    --primary-bold: 400;
-    --primary-bold2: 500;
-    --primary-bold3: 600;
+
+.rating {
+    font-weight: 600;
 }

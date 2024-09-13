@@ -1,0 +1,25 @@
+.top-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-top: 20px;
+}
+
+.top-container .top-back {
+    padding-left: 16px;
+}
+
+.top-container .top-title {
+    position: absolute;
+    left: 45%;
+    font-size: 1.25rem;
+}
+
+.top-container .top-icons {
+    padding-right: 16px;
+}
+.top-container .top-icons svg:first-child {
+    margin-right: 16px;
+}

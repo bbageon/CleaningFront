@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes, useFetcher } from 'react-router-dom';
 
+/**
+ * 페이지
+ * --
+ */
 import { AddressRegistration, CompanyDetail, Companies, Main, Payment, ServiceHistories, ServiceHistoryDetail, WriteReview } from "./pages";
 
 const Router = () => {

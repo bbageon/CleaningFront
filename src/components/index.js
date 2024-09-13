@@ -7,6 +7,8 @@ export {
     Footer,
     Content,
     Slide,
+    Top,
+    Tab,
 } from './Layouts';
 
 /**

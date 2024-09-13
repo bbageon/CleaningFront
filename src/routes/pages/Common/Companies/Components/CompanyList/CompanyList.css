@@ -1,0 +1,19 @@
+.company-card-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 16px;
+    gap: 1rem;
+}
+
+.company-card-container .company-card-logo {
+    width: 75px;
+    height: 75px;
+    background-color: var(--primary-color);
+}
+
+.company-card-container .company-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}

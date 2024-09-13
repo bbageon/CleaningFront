@@ -8,7 +8,7 @@ const cleaningServicesList = [
     {
         serviceId: 1,
         serviceName: '가사도우미/생활청소',
-        url: '1',
+        url: '/companydetail',
         icon: 'icon1'
     },
     {
@@ -47,9 +47,13 @@ const cleaningServicesList = [
  * 업체 리스트 바로가기 컴포넌트
  * --
  */
-const ListNavigationButton = () => {
+const ListNavigationButton = ({
+    navigate
+}) => {
     return (
-        <div className='list-navigation-container'>
+        <div className='list-navigation-container'
+            onClick={() => {navigate('/companies')}}
+        >
             <div className='list-navigation-button'>
                 <span>
                     업체 둘러보기
@@ -70,11 +74,14 @@ const ListNavigationButton = () => {
  * --
  */
 const CleaningServiceItem = ({
-    item
+    item,
+    navigate,
 }) => {
     return (
         <div className='cleaning-service-item-container'>
-            <div className='cleaning-service-item-icon'>
+            <div className='cleaning-service-item-icon'
+                onClick={() => {navigate(item.url)}}
+            >
                 {item.icon}
             </div>
             <div className='cleaning-service-item-text'>
@@ -83,15 +90,18 @@ const CleaningServiceItem = ({
                 </span>
             </div>
         </div>
-    )
-}
+    );
+};
 
 const MainServiceList = ({
+    navigate,
 
 }) => {
     return (
         <div className='main-service-list-container'>
-            <ListNavigationButton />
+            <ListNavigationButton
+                navigate={navigate}
+            />
             <div className='main-service-list'>
                 {
                     cleaningServicesList.map((item, index) => {
@@ -99,6 +109,7 @@ const MainServiceList = ({
                             <CleaningServiceItem
                                 key={index}
                                 item={item}
+                                navigate={navigate}
                             />
                         )
                     })

@@ -1,10 +1,16 @@
+import { Content, MainLayout, Tab, Top } from '../../../../components';
 import './Companies.css';
+import CompanyList from './Components/CompanyList/CompanyList';
 
-const CompaniesPresenter = () => {
+const CompaniesPresenter = ({
+
+}) => {
     return (
-        <div>
-
-        </div>
+        <MainLayout>
+            <Top />
+            <Tab />
+            <CompanyList />
+        </MainLayout>
     );
 };
 

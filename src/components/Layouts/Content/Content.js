@@ -4,17 +4,23 @@ const Content = ({
     children,
     paddingLeft,
     paddingRight,
+    paddingTop,
+    paddingBottom,
     gap,
     border,
+    row,
 }) => {
     return (
         <div
             className='content-container'
             style={{
+                flexDirection: row ? 'row' : 'column',
                 paddingLeft: `${paddingLeft}px`,
                 paddingRight: `${paddingRight}px`,
+                paddingTop: `${paddingTop}px`,
+                paddingBottom: `${paddingBottom}px`,
                 gap: `${gap}px`,
-                borderBottom: border ? '1px solid #E3E3E3' : 'none'
+                borderBottom: border ? border : 'none'
             }}
         >
             {children}
