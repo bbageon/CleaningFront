@@ -1,0 +1,18 @@
+.find-address-top {
+    width: 100%;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    padding: 20px;
+    font-size: 16pt;
+}
+
+.find-address-top .top-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-weight: bold;
+}

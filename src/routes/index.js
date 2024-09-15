@@ -5,7 +5,7 @@ import { Route, Routes, useFetcher } from 'react-router-dom';
  * 페이지
  * --
  */
-import { AddressRegistration, CompanyDetail, Companies, Main, Payment, ServiceHistories, ServiceHistoryDetail, WriteReview } from "./pages";
+import { AddressRegistration, CompanyDetail, Companies, Main, Payment, ServiceHistories, ServiceHistoryDetail, WriteReview, FindAddressInMap, DetailAddress } from "./pages";
 
 const Router = () => {
 
@@ -36,6 +36,14 @@ const Router = () => {
                 <Route
                     path='/addressregistration'
                     element={<AddressRegistration />}
+                />
+                <Route
+                    path='/findaddressinmap'
+                    element={<FindAddressInMap />}
+                />
+                <Route
+                    path='/detailaddress'
+                    element={<DetailAddress />}
                 />
                 {/* 서비스 내역 목록 화면 */}
                 <Route

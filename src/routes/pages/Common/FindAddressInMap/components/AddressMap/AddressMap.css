@@ -1,0 +1,37 @@
+.address-map-wrap {
+    width: 100%;
+    height: 100%;
+}
+
+.address-map-wrap .address-map {
+    width: 100%;
+    height: 100%;
+}
+
+.address-map-wrap .marker-info {
+    position: relative;
+    width: 120%;
+    transform: translate(-8%);
+
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    word-break: keep-all;
+
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.address-map-wrap .marker-info::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 50%) rotate(45deg);
+
+    width: 10px;
+    height: 10px;
+
+    background-color: black;
+}

@@ -12,6 +12,8 @@ export { default as Payment } from './Common/Payment';
 
 // 주소 등록 화면
 export { default as AddressRegistration } from './Common/AddressRegistration';
+export { default as FindAddressInMap } from './Common/FindAddressInMap';
+export { default as DetailAddress } from './Common/DetailAddress';
 
 // 서비스 내역 화면
 export { default as ServiceHistories } from './Common/ServiceHistories';

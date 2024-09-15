@@ -1,0 +1,20 @@
+.search-input-wrap {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+
+    width: 100%;
+    background-color: #D9D9D9;
+    padding: 10px 20px;
+    border-radius: 3px;
+}
+
+.search-input {
+    border: none;
+    background-color: #D9D9D9;
+    width: 100%;
+}
+
+.search-input:focus {
+    outline: none;
+}
