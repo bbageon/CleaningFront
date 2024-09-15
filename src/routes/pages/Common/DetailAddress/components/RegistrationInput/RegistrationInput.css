@@ -1,0 +1,19 @@
+.registration-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.registration-input .input-title {
+    font-weight: 12pt;
+}
+
+.registration-input input {
+    padding: 10px;
+    border: 1px solid #d9d9d9;
+    border-radius: 3px;
+}
+
+.registration-input input:focus { 
+    outline: none;
+}

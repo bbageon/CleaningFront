@@ -1,0 +1,13 @@
+.find-location-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    gap: 11px;
+
+    border: 1px solid #D9D9D9;
+    border-radius: 3px;
+
+    padding: 7px 0;
+}
