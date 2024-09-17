@@ -42,7 +42,10 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+/* ***************************************** */
 
+
+/* 전역 스타일 */
 *,
 *::before,
 *::after {
@@ -60,4 +63,34 @@ body {
 	/* padding-top: 54px; */
 	/* padding-bottom: calc(34px + 80px); */
 }
-/* ***************************************** */
+
+/* 폰트 초기화 */
+@font-face {
+	font-family: 'NanumGothic';
+	src: url('./Fonts/NanumGothic.ttf');
+}
+*, body {
+	font-family: 'NanumGothic';
+}
+
+/* Ant Design - Tabs */
+.ant-tabs {
+	font-family: 'NanumGothic';
+	font-size: 16px;
+}
+.ant-tabs >.ant-tabs-nav {
+	margin: 0;
+}
+.ant-tabs .ant-tabs-tab {
+	font-size: 16px;
+	color: var(--info-title-color)
+}
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+	color: #000000;
+}
+.ant-tabs .ant-tabs-ink-bar {
+	background: #000000;
+}
+.ant-tabs-top >.ant-tabs-nav .ant-tabs-ink-bar {
+	height: 3px;
+}

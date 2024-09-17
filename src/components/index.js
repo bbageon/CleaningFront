@@ -9,6 +9,8 @@ export {
     Slide,
     Top,
     Tab,
+    TabCenter,
+    ServiceList,
 } from './Layouts';
 
 /**

@@ -8,13 +8,13 @@ const Content = ({
     paddingBottom,
     gap,
     border,
-    row,
+    flexDirection,
 }) => {
     return (
         <div
             className='content-container'
             style={{
-                flexDirection: row ? 'row' : 'column',
+                flexDirection: flexDirection == 'row' ? 'row' : 'column',
                 paddingLeft: `${paddingLeft}px`,
                 paddingRight: `${paddingRight}px`,
                 paddingTop: `${paddingTop}px`,

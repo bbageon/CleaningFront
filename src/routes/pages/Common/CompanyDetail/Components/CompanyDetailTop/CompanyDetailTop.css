@@ -1,9 +1,11 @@
 .company-detail-top-images {
     width: 100%;
+    height: 300px;
 }
 
 .company-detail-top-images img {
     width: 100%;
+    height: 100%;
 }
 
 .company-detail-top-box1 {
@@ -14,5 +16,26 @@
     justify-content: center;
     gap: 0.5rem;
     padding: 1.25rem 0;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 2px solid var(--divider-color);
+}
+.company-detail-top-box1 .company-detail-top-info1 {
+    display: flex;
+    align-items: center;
+}
+.company-detail-top-box1 .company-detail-top-info1 svg {
+    margin-bottom: 2.5px;
+}
+.company-detail-top-box1 .company-detail-top-info1 span:last-child {
+    padding-left: 0.25rem;
+}
+
+.company-detail-top-box2 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 16px 20px;
+}
+.company-detail-top-box2 .company-detail-top-info3 span:first-child{
+    padding-right: 0.5rem;
 }

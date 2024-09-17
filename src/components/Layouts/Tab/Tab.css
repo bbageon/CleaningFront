@@ -1,8 +1,12 @@
-.tabs-container {
+.tab-container {
     width: 100%;
 }
 
 /* Ant Design */
-.ant-tabs-nav-list {
-    align-items: flex-start;
+.tab-container .ant-tabs-nav-wrap {
+    width: 100%;
+}
+
+.tab-container .ant-tabs .ant-tabs-nav-list {
+    align-items: center;
 }

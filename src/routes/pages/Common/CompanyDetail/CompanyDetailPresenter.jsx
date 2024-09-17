@@ -1,13 +1,19 @@
 import './CompanyDetail.css';
-import { Content, MainLayout } from '../../../../components';
+import { MainLayout } from '../../../../components';
 import CompanyDetailTop from './Components/CompanyDetailTop';
+import CompanyDetailBottom from './Components/CompanyDetailBottom';
 
 const CompanyDetailPresenter = ({
-
+    data,
 }) => {
     return (
         <MainLayout>
-            <CompanyDetailTop />
+            <CompanyDetailTop
+            
+            />
+            <CompanyDetailBottom
+                data={data}
+            />
         </MainLayout>
     );
 };

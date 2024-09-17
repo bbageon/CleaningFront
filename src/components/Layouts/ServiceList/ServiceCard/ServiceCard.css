@@ -1,0 +1,10 @@
+.service-card-img-box {
+    width: 125px;
+    height: 125px;
+}
+
+.service-card-img-box img {
+    width: 125px;
+    height: 125px;
+    border-radius: 10px;
+}

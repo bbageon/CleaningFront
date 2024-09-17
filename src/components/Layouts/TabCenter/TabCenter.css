@@ -1,0 +1,20 @@
+.tab-center-container {
+    width: 100%;
+    overflow: hidden
+}
+
+.tab-center-container .ant-tabs-nav-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.tab-center-container .ant-tabs-nav-list {
+    width: 100%;
+}
+.tab-center-container .ant-tabs-tab {
+    justify-content: center;
+    flex: 1;
+}
+.tab-center-container .ant-tabs-tab+.ant-tabs-tab {
+    margin: 0;
+}
