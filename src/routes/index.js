@@ -5,7 +5,7 @@ import { Route, Routes, useFetcher } from 'react-router-dom';
  * 페이지
  * --
  */
-import { AddressRegistration, CompanyDetail, Companies, Main, Payment, ServiceHistories, ServiceHistoryDetail, WriteReview, FindAddressInMap, DetailAddress } from "./pages";
+import { AddressRegistration, CompanyDetail, Companies, Main, Payment, ServiceHistories, ServiceHistoryDetail, WriteReview, FindAddressInMap, DetailAddress, ChatRoomList, ChatRoom } from "./pages";
 
 const Router = () => {
 
@@ -59,6 +59,15 @@ const Router = () => {
                 <Route
                     path='writereview'
                     element={<WriteReview />}
+                />
+                {/* 대화방 화면 */}
+                <Route
+                    path="chatroomlist"
+                    element={<ChatRoomList />}
+                />
+                <Route
+                    path="chatroom"
+                    element={<ChatRoom />}
                 />
             </Routes>
         </div>

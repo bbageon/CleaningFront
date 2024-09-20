@@ -23,3 +23,7 @@ export { default as ServiceHistoryDetail } from './Common/ServiceHistoryDetail';
 
 // 리뷰 작성 화면
 export { default as WriteReview } from './Common/WriteReview';
+
+// 대화방 화면
+export { default as ChatRoomList } from './Common/ChatRoomList';
+export { default as ChatRoom } from './Common/ChatRoom';
