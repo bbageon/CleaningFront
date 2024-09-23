@@ -27,3 +27,4 @@ export { default as WriteReview } from './Common/WriteReview';
 // 대화방 화면
 export { default as ChatRoomList } from './Common/ChatRoomList';
 export { default as ChatRoom } from './Common/ChatRoom';
+export { default as ChatBot } from './Common/ChatBot';
