@@ -1,5 +1,5 @@
 import './ChatRoomBody.css';
-import Chat from '../Chat/Chat';
+import ChatBallon from '../ChatBallon/ChatBallon';
 
 const ChatRoomBody = ({
     clientId,
@@ -9,7 +9,7 @@ const ChatRoomBody = ({
         <div className="chat-room-body">
             {
                 chatList?.map(chat => (
-                    <Chat
+                    <ChatBallon
                         clientId={clientId}
                         chatInfo={chat}
                     />

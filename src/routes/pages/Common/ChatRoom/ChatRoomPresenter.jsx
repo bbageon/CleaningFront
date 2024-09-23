@@ -1,8 +1,9 @@
 import './ChatRoom.css';
 import { MainLayout } from '../../../../components';
-import ChatRoomTop from './components/ChatRoomTop';
-import ChatRoomBody from './components/ChatRoomBody';
-import ChatRoomFooter from './components/ChatRoomFooter';
+import ChatRoomTop from './components/Chat/ChatRoomTop/ChatRoomTop';
+import ChatRoomBody from './components/Chat/ChatRoomBody';
+import ChatRoomFooter from './components/Chat/ChatRoomFooter/ChatRoomFooter';
+import SelectPicture from './components/Picture/SelectPictureBox/SelectPictureBox';
 
 const ChatRoomPresenter = ({
     clientId,
@@ -10,6 +11,14 @@ const ChatRoomPresenter = ({
     chatInfo,
     chatMessage,
     setChatMessage,
+
+    isShowSelectPicture,
+    toggleShowSelectPicture,
+    sendSelectPicture,
+
+    canSelectPictures,
+    selectedPictures,
+    addSelectPicture,
 
     searchChat,
 
@@ -29,7 +38,18 @@ const ChatRoomPresenter = ({
                 inputChatRef={inputChatRef}
                 chatMessage={chatMessage}
                 setChatMessage={setChatMessage}
+                toggleShowSelectPicture={toggleShowSelectPicture}
             />
+            {
+                isShowSelectPicture &&
+                <SelectPicture
+                    toggleShowSelectPicture={toggleShowSelectPicture}
+                    sendSelectPicture={sendSelectPicture}
+                    canSelectPictures={canSelectPictures}
+                    selectedPictures={selectedPictures}
+                    addSelectPicture={addSelectPicture}
+                />
+            }
         </div>
     );
 };

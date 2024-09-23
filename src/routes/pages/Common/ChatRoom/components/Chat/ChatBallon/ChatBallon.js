@@ -1,6 +1,6 @@
-import './Chat.css';
+import './ChatBallon.css';
 
-const Chat = ({
+const ChatBallon = ({
     clientId,
     chatInfo,
 }) => {
@@ -8,11 +8,11 @@ const Chat = ({
 
     return (
         <div
-            className={`chat ${clientId === sender ? 'self' : 'other'}`}
+            className={`chat-ballon ${clientId === sender ? 'self' : 'other'}`}
         >
             {content}
         </div>
     )
 }
 
-export default Chat;
+export default ChatBallon;

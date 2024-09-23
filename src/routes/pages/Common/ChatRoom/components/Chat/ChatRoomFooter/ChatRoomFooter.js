@@ -1,12 +1,15 @@
 import './ChatRoomFooter.css';
 import { useNavigate } from "react-router-dom";
-import { ReactComponent as Camera } from '../../../../../../assets/icons/camera.svg';
+import { ReactComponent as Camera } from '../../../../../../../assets/icons/camera.svg';
 
 const ChatRoomFooter = ({
+    inputChatRef,
+
+    sendChat,
+
     chatMessage,
     setChatMessage,
-    sendChat,
-    inputChatRef,
+    toggleShowSelectPicture,
 }) => {
 
     return (
@@ -25,6 +28,7 @@ const ChatRoomFooter = ({
                 />
                 <Camera
                     className='chat-input-camera'
+                    onClick={() => { toggleShowSelectPicture() }}
                 />
             </div>
             <button

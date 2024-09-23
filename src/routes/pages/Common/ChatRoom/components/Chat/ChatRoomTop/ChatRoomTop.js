@@ -1,7 +1,7 @@
 import './ChatRoomTop.css';
 import { useNavigate } from "react-router-dom";
-import { ReactComponent as Back } from '../../../../../../assets/icons/back.svg';
-import { ReactComponent as Search } from '../../../../../../assets/icons/search.svg';
+import { ReactComponent as Back } from '../../../../../../../assets/icons/back.svg';
+import { ReactComponent as Search } from '../../../../../../../assets/icons/search.svg';
 
 const ChatRoomTop = ({
     searchChat,
