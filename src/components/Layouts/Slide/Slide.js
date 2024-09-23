@@ -1,4 +1,5 @@
 import './Slide.css';
+import { ReactComponent as Star } from '../../../assets/icons/Star.svg';
 
 const dummyData = [
     {
@@ -51,13 +52,14 @@ const Slide = ({
                                     </img>
                                 </div>
                                 <div className='slide-content-info-box'>
-                                    <span className='slide-content-date'>
+                                    <span className='slide-content-date small'>
                                         2024. 08. 21. (수)
                                     </span>
                                     <div className='slide-content-info'>
                                         <span>
                                             작성자: {data.userName}
                                         </span>
+                                        <Star width={16} />
                                         <span>
                                             {data.rating}
                                         </span>

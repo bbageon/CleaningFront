@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Top = ({
     title,
+    notShowIcon,
     background,
     iconColor,
     absolute,
@@ -26,28 +27,38 @@ const Top = ({
         >
             <div className='top-back'>
                 <Back
-                    fill={ iconColor ? iconColor : '#000000' }
+                    fill={iconColor ? iconColor : '#000000'}
                     onClick={() => { navigate(-1) }}
                 />
             </div>
             {
                 title ? (
-                    <span className='top-title'>
-                        {title}
-                    </span>
+                    <div className='top-title-wrap'>
+                        <span className='top-title'>
+                            {title}
+                        </span>
+                    </div>
 
                 ) : (
                     <></>
                 )
             }
             <div className='top-icons'>
-                <Home
-                    fill={ iconColor ? iconColor : '#005abd'}
-                    onClick={() => { navigate('/') }}
-                />
-                <Cart
-                    fill={ iconColor ? iconColor : '#005abd'}
-                />
+                {
+                    notShowIcon ? (
+                        <></>
+                    ) : (
+                        <>
+                            <Home
+                                fill={iconColor ? iconColor : '#005abd'}
+                                onClick={() => { navigate('/') }}
+                            />
+                            <Cart
+                                fill={iconColor ? iconColor : '#005abd'}
+                            />
+                        </>
+                    )
+                }
             </div>
         </div>
     );

@@ -14,7 +14,7 @@ const cleaningServicesList = [
     {
         serviceId: 2,
         serviceName: '이사/입주청소',
-        url: '2',
+        url: '/servicehistories',
         icon: 'icon2'
     },
     {

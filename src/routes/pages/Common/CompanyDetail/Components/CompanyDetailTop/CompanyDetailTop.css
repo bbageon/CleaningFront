@@ -15,7 +15,7 @@
     flex-direction: column;
     justify-content: center;
     gap: 0.5rem;
-    padding: 1.25rem 0;
+    padding: 2rem 0;
     border-bottom: 2px solid var(--divider-color);
 }
 .company-detail-top-box1 .company-detail-top-info1 {

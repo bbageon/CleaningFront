@@ -7,6 +7,9 @@ export { default as Companies } from './Common/Companies';
 // 청소 업체 상세 화면
 export { default as CompanyDetail } from './Common/CompanyDetail';
 
+// 청소 업체 메뉴 상세 화면
+export { default as CompanyMenu } from './Common/CompanyMenu';
+
 // 결제 화면
 export { default as Payment } from './Common/Payment';
 

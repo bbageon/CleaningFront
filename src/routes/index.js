@@ -5,27 +5,34 @@ import { Route, Routes, useFetcher } from 'react-router-dom';
  * 페이지
  * --
  */
-import { AddressRegistration, CompanyDetail, Companies, Main, Payment, ServiceHistories, ServiceHistoryDetail, WriteReview } from "./pages";
+import { AddressRegistration, CompanyDetail, Companies, Main, Payment, ServiceHistories, ServiceHistoryDetail, WriteReview, CompanyMenu } from "./pages";
 
 const Router = () => {
 
     return (
         <div className="app">
             <Routes>
-                {/* 메인 화면 */}
+                {/* ===== 메인 화면 ===== */}
                 <Route
                     path="/"
                     element={<Main />}
                 />
-                {/* 청소 업체 목록 화면 */}
+                {/* ===== 청소 업체 목록 화면 ===== */}
                 <Route
                     path='/companies'
                     element={<Companies />}
                 />
-                {/* 청소 업체 상세 화면 */}
+                {/* ===== 청소 업체 상세 화면 ===== */}
+                {/* company_id */}
                 <Route
                     path='/companydetail'
                     element={<CompanyDetail />}
+                />
+                {/* ===== 청소 업체 메뉴 상세 화면 ===== */}
+                {/* company_id, menu_id */}
+                <Route
+                    path='/companymenu'
+                    element={<CompanyMenu />}
                 />
                 {/* 결제 화면 */}
                 <Route
@@ -33,6 +40,7 @@ const Router = () => {
                     element={<Payment />}
                 />
                 {/* 주소 등록 화면 */}
+                {/* user_id */}
                 <Route
                     path='/addressregistration'
                     element={<AddressRegistration />}

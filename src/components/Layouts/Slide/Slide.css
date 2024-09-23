@@ -43,7 +43,9 @@
 .slide-content .slide-content-info-box {
     display: flex;
     flex-direction: column;
+    align-items: baseline;
 }
-.slide-content .slide-content-info-box span {
-    vertical-align: baseline;
+.slide-content .slide-content-info-box svg {
+    margin-bottom: 1px;
+    vertical-align: bottom;
 }

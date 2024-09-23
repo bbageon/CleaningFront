@@ -1,4 +1,4 @@
-import { Content, ServiceList, TabCenter } from '../../../../../../components';
+import { Content, ReviewList, ServiceList, TabCenter } from '../../../../../../components';
 import './CompanyDetailBottom.css';
 
 const CompanyDetailBottom = ({
@@ -17,7 +17,10 @@ const CompanyDetailBottom = ({
         {
             label: '리뷰',
             key: '2',
-            children: '리뷰'
+            children:
+                <ReviewList
+                
+                />
         },
     ]
 

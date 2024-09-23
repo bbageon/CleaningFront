@@ -8,7 +8,9 @@ const MainPresenter = ({
 }) => {
     return (
         <>
-            <MainHeader />
+            <MainHeader
+            
+            />
             <MainLayout>
                 <Content
                     paddingLeft={16}

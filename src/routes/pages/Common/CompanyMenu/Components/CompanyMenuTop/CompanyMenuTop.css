@@ -1,0 +1,16 @@
+.company-menu-top-wrap {
+    width: 100%;
+}
+
+.company-menu-top-wrap .company-menu-top {
+    width: 100%;
+    height: 300px;
+}
+.company-menu-top-wrap .company-menu-top img {
+    width: 100%;
+    height: 100%;
+}
+
+.company-menu-top-wrap .company-menu-top-content {
+    width: 100%;
+}

@@ -1,12 +1,11 @@
 import Content from '../Content';
-import ServiceCard from './ServiceCard';
+import ServiceCard from '../ServiceCard';
 import './ServiceList.css';
 
 const ServiceList = ({
     data
 }) => {
-
-    console.log(data)
+    
     return (
         <Content
             paddingRight={0}

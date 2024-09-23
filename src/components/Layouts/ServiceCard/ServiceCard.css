@@ -1,0 +1,18 @@
+.service-card-wrap, 
+.service-card-wrap .service-card-info-wrap {
+    width: 100%;
+}
+
+.service-card-wrap .service-card-info-box {
+    margin-bottom: 8px;
+}
+
+.service-card-wrap .service-card-img-box {
+    width: 125px;
+    height: 125px;
+}
+.service-card-wrap .service-card-img-box img {
+    width: 125px;
+    height: 125px;
+    border-radius: 10px;
+}
