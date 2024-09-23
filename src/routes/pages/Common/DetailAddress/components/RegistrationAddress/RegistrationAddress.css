@@ -1,0 +1,49 @@
+.registration-address {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    width: 100%;
+    padding: 20px;
+}
+
+.registration-address .registration-address-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.registration-address .registration-address-info span:first-child {
+    font-size: 15pt;
+    font-weight: bold;
+}
+
+.registration-address .registration-address-input,
+.registration-address .registration-address-input>div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.registration-address .registration-address-input .registration-location-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.registration-address .registration-address-input .common:first-child::after {
+    content: '';
+    width: calc(100% + 40px);
+    margin-left: -20px;
+    border-bottom: 2px solid #F5F5F5;
+}
+
+.registration-address .registration-address-button {
+    background-color: #1E90FF;
+    padding: 20px;
+    margin-top: 10px;
+    text-align: center;
+    color: white;
+    font-size: 16pt;
+}

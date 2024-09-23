@@ -1,0 +1,14 @@
+.registration-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 16pt;
+}
+
+.registration-top div:last-child {
+    width: 50px;
+}

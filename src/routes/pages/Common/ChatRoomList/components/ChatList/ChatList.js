@@ -1,0 +1,41 @@
+import { useNavigate } from 'react-router-dom';
+import './ChatList.css';
+
+const ChatList = ({
+    chatList
+}) => {
+    const navigate = useNavigate();
+
+    return (
+        <div className='chat-list-container'>
+            <div className='chat-list-wrap'>
+                {
+                    chatList?.map(chat => (
+                        <div
+                            className='chat-list'
+                            onClick={() => navigate('/chatroom')}
+                        >
+                            <div className='chat-image'></div>
+                            <div className='chat-info'>
+                                <div className='chat-info-line'>
+                                    <span className='chat-title'>{chat.title}</span>
+                                    <span className='chat-time'>{chat.chat_time}</span>
+                                </div>
+                                <div className='chat-info-line'>
+                                    <span className='chat-subtitle'>{chat.subtitle}</span>
+                                    <span className='chat-alert-count'>{chat.alert_count}</span>
+                                </div>
+                                <div className='chat-info-line'>
+                                    <span className='chat-status-circle'></span>
+                                    <span className='chat-status'>{chat.chat_status}</span>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    )
+};
+
+export default ChatList;

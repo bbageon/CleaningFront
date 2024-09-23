@@ -1,0 +1,20 @@
+.registration-location-button {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px 5px;
+    border-radius: 5px;
+
+    word-break: keep-all;
+
+    border: 1px solid #d9d9d9;
+}
+
+.registration-location-button.active {
+    border-color: #1E90FF;
+    font-weight: bold;
+}

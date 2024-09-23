@@ -15,6 +15,8 @@ export { default as Payment } from './Common/Payment';
 
 // 주소 등록 화면
 export { default as AddressRegistration } from './Common/AddressRegistration';
+export { default as FindAddressInMap } from './Common/FindAddressInMap';
+export { default as DetailAddress } from './Common/DetailAddress';
 
 // 서비스 내역 화면
 export { default as ServiceHistories } from './Common/ServiceHistories';
@@ -24,3 +26,8 @@ export { default as ServiceHistoryDetail } from './Common/ServiceHistoryDetail';
 
 // 리뷰 작성 화면
 export { default as WriteReview } from './Common/WriteReview';
+
+// 대화방 화면
+export { default as ChatRoomList } from './Common/ChatRoomList';
+export { default as ChatRoom } from './Common/ChatRoom';
+export { default as ChatBot } from './Common/ChatBot';

@@ -1,0 +1,85 @@
+.select-picture-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100vh;
+}
+
+.select-picture-background {
+    width: 100%;
+    height: 100%;
+
+    background-color: #00000032;
+}
+
+.select-picture-container .select-picture-wrap {
+    position: absolute;
+    bottom: 0;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    width: 100%;
+
+    padding: 25px 25px 34px 25px;
+    
+    background-color: white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+    animation: moveUp 0.5s ease-in-out;
+}
+
+@keyframes moveUp {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* select picture info */
+.select-picture-container .select-picture-wrap .select-picture-info {
+    color: #969696;
+    font-size: 13pt;
+    margin-top: 0.5rem;
+}
+
+/* select picture */
+.select-picture-container .select-picture-wrap .select-picture-info:first-child {
+    overflow-y: scroll;
+}
+
+/* select picture button */
+.select-picture-container .select-picture-wrap .select-picture-button {
+    width: 100%;
+    text-align: center;
+
+    margin-top: 1rem;
+    padding: 10px 0;
+
+    border-radius: 5px;
+    font-size: 14pt;
+}
+
+.select-picture-container .select-picture-wrap .select-picture-button:focus {
+    outline: none;
+}
+
+.select-picture-container .select-picture-wrap .select-picture-button.activate {
+    border: 1px solid #1E90FF;
+    background-color: #1E90FF;
+    color: white;
+    cursor: pointer;
+}
+
+.select-picture-container .select-picture-wrap .select-picture-button.deactivate {
+    border: 1px solid #969696;
+    background-color: white;
+    color: #969696;
+    cursor: not-allowed;
+}

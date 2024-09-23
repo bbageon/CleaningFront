@@ -1,0 +1,33 @@
+.select-picture-list-container {
+    width: 100%;
+}
+
+.select-picture-list-container .select-picture-list-grid {
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    overflow-y: scroll;
+    max-height: 348px;
+}
+
+.select-picture-list-container .select-picture-list-grid .select-picture-element {
+    position: relative;
+}
+
+.select-picture-list-container .select-picture-list-grid .select-picture-element .selected-picture-circle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    width: 25px;
+    height: 25px;
+
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 50%;
+
+    background-color: #005A8D;
+    color: white;
+    text-align: center;
+    padding: 5px;
+}

@@ -1,0 +1,22 @@
+.chat {
+    padding: 15px;
+    font-size: 16pt;
+    border-radius: 10px;
+
+    width: fit-content;
+    max-width: 300px;
+    line-height: 2rem;
+
+    word-break: keep-all;
+}
+
+.chat.self {
+    background-color: #1E90FF;
+    align-self: flex-end;
+    color: white;
+}
+
+.chat.other {
+    background-color: white;
+    color: black;
+}
