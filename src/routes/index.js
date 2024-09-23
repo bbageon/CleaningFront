@@ -5,7 +5,7 @@ import { Route, Routes, useFetcher } from 'react-router-dom';
  * 페이지
  * --
  */
-import { AddressRegistration, CompanyDetail, Companies, Main, Payment, ServiceHistories, ServiceHistoryDetail, WriteReview, FindAddressInMap, DetailAddress, ChatRoomList, ChatRoom, ChatBot, FindAddressInMap, DetailAddress, ChatRoomList, ChatRoom } from "./pages";
+import { AddressRegistration, CompanyDetail, Companies, Main, Payment, ServiceHistories, ServiceHistoryDetail, WriteReview, FindAddressInMap, DetailAddress, ChatRoomList, ChatRoom, ChatBot, } from "./pages";
 
 const Router = () => {
 
