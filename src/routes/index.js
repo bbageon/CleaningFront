@@ -5,7 +5,7 @@ import { Route, Routes, useFetcher } from 'react-router-dom';
  * 페이지
  * --
  */
-import { AddressRegistration, CompanyDetail, Companies, Main, Payment, ServiceHistories, ServiceHistoryDetail, WriteReview, FindAddressInMap, DetailAddress, ChatRoomList, ChatRoom, ChatBot, } from "./pages";
+import { AddressRegistration, CompanyDetail, Companies, Main, Payment, ServiceHistories, ServiceHistoryDetail, WriteReview, FindAddressInMap, DetailAddress, ChatRoomList, ChatRoom, ChatBot, ShoppingCart, } from "./pages";
 
 const Router = () => {
 
@@ -72,6 +72,11 @@ const Router = () => {
                 <Route
                     path="chatbot"
                     element={<ChatBot />}
+                />
+                {/* 장바구니 화면 */}
+                <Route
+                    path="Shoppingcart"
+                    element={<ShoppingCart/>}
                 />
             </Routes>
         </div>
