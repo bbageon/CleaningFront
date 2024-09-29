@@ -17,6 +17,7 @@ const ShoppingCartPresenter = () => {
             <Button
                 flexDirection={'row'}
                 gap={'20'}
+                Link={'/'}
             />
         </MainLayout>
     );
