@@ -19,7 +19,8 @@ import {
     ChatRoomList,
     ChatRoom,
     ChatBot,
-    CompanyMenu
+    CompanyMenu,
+    ShoppingCart,
 } from "./pages";
 
 const Router = () => {
@@ -95,6 +96,11 @@ const Router = () => {
                 <Route
                     path="chatbot"
                     element={<ChatBot />}
+                />
+                {/* 장바구니 화면 */}
+                <Route
+                    path="Shoppingcart"
+                    element={<ShoppingCart/>}
                 />
             </Routes>
         </div>

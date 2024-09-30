@@ -20,7 +20,7 @@ const Content = ({
                 paddingTop: `${paddingTop}px`,
                 paddingBottom: `${paddingBottom}px`,
                 gap: `${gap}px`,
-                borderBottom: border ? border : 'none'
+                borderBottom: border ? border : 'none',
             }}
         >
             {children}

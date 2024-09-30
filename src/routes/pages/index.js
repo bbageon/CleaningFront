@@ -31,3 +31,6 @@ export { default as WriteReview } from './Common/WriteReview';
 export { default as ChatRoomList } from './Common/ChatRoomList';
 export { default as ChatRoom } from './Common/ChatRoom';
 export { default as ChatBot } from './Common/ChatBot';
+
+// 장바구니 화면
+export { default as ShoppingCart} from './Common/ShoppingCart';
