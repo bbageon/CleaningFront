@@ -1,0 +1,42 @@
+.service-history-detail-card-wrap {
+    width: 100%;
+    border-bottom: 7px solid var(--divider-color);
+}
+
+.service-history-detail-card-wrap .service-history-detail-card-title {
+    width: 100%;
+    padding-bottom: 1.75rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.service-history-detail-card-wrap .service-history-detail-card-sub-title {
+    width: 100%;
+    font-size: 1.125rem;
+    padding-bottom: 1.5rem;
+}
+
+.service-history-detail-card-wrap .service-history-detail-card-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.service-history-detail-card-wrap .service-history-detail-card-between {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.service-history-detail-card-wrap .service-history-detail-card-address {
+    text-align: end;
+}
+
+/* PaymentInfo CSS */
+.service-history-detail-card-wrap .service-history-detail-card-payment {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.5rem;
+    gap: 1rem;
+}

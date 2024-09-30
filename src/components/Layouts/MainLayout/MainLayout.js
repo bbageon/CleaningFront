@@ -1,11 +1,21 @@
+import Footer from '../Footer/Footer';
 import './MainLayout.css';
 
 const MainLayout = ({
-    children
+    children,
+    padding,
+    footer,
 }) => {
     return (
-        <div className="main-layout">
+        <div className='main-layout' style={{padding: padding}}>
             {children}
+            {
+                footer ? (
+                    <Footer />
+                ) : (
+                    <></>
+                )
+            }
         </div>
     );
 };

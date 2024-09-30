@@ -1,16 +1,7 @@
 import './CompanyDetailTop.css';
 import { Content, Top } from "../../../../../../components";
-import { ReactComponent as Star } from '../../../../../../assets/icons/Star.svg';
+import { ReactComponent as Star } from '../../../../../../assets/icons/star.svg';
 import test from './test.png';
-
-const CompanyImages = () => {
-    return (
-        <div>
-
-        </div>
-    );
-};
-
 
 const CompanyDetailTop = ({
 
@@ -35,8 +26,8 @@ const CompanyDetailTop = ({
                 <span className='title'>김재모의 클린 카피바라</span>
                 <div className='company-detail-top-info1'>
                     <Star
-                        width={18}
-                        height={18}
+                        width={16}
+                        height={16}
                     />
                     <span className='rating'>5.0</span>
                     <span className='review-count'>(100+)</span>

@@ -23,7 +23,7 @@
     align-items: center;
 }
 .company-detail-top-box1 .company-detail-top-info1 svg {
-    margin-bottom: 2.5px;
+    vertical-align: text-bottom;
 }
 .company-detail-top-box1 .company-detail-top-info1 span:last-child {
     padding-left: 0.25rem;

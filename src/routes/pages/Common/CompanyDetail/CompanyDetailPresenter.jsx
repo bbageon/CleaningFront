@@ -1,5 +1,5 @@
 import './CompanyDetail.css';
-import { MainLayout } from '../../../../components';
+import { BottomButton, MainLayout } from '../../../../components';
 import CompanyDetailTop from './Components/CompanyDetailTop';
 import CompanyDetailBottom from './Components/CompanyDetailBottom';
 
@@ -13,6 +13,9 @@ const CompanyDetailPresenter = ({
             />
             <CompanyDetailBottom
                 data={data}
+            />
+            <BottomButton
+                title={'00,000원 장바구니 보기'}
             />
         </MainLayout>
     );

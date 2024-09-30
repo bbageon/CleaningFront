@@ -32,4 +32,8 @@ export {
     Banner,
     Button,
     RadioButton,
+    Textarea,
+    InputStar,
+    ImageUpload,
+    BottomButton,
 } from './Form';

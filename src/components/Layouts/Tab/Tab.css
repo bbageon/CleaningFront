@@ -4,7 +4,13 @@
 
 /* Ant Design */
 .tab-container .ant-tabs-nav-wrap {
+    margin-top: 2rem;
     width: 100%;
+}
+
+.tab-container .ant-tabs .ant-tabs-tab {
+    padding-bottom: 6px;
+    min-height: fit-content;
 }
 
 .tab-container .ant-tabs .ant-tabs-nav-list {

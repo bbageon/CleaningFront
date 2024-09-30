@@ -1,0 +1,31 @@
+.image-upload-container {
+    width: 100%;
+}
+
+.image-upload-container .image-upload-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+}
+
+.image-upload-container .image-upload-wrap {
+    width: 100%;
+}
+
+.image-upload-container .image-upload-button-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: start;
+    gap: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+.image-upload-container .image-upload-button-wrap button {
+    flex: 1;
+    aspect-ratio: 1;
+    background: none;
+    outline: none;
+    border: 1px solid var(--gray4-color);
+    border-radius: 5px;
+}

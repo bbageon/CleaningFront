@@ -1,0 +1,22 @@
+.write-review-warning-wrap {
+    width: 100%;
+}
+.write-review-warning-wrap .write-review-warning-title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.write-review-warning-wrap .write-review-warning-info {
+    width: 100%;
+    margin-top: 1rem;
+}
+.write-review-warning-wrap .write-review-warning-info ol {
+    list-style-type: decimal;
+    padding-left: 20px;
+    line-height: 1.25rem;
+}
+.write-review-warning-wrap .write-review-warning-info li {
+    margin-bottom: 0.5rem;
+}

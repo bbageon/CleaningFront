@@ -5,7 +5,7 @@ import './ServiceList.css';
 const ServiceList = ({
     data
 }) => {
-    
+
     return (
         <Content
             paddingRight={0}

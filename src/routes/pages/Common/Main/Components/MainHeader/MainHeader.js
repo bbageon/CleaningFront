@@ -1,40 +1,25 @@
-import { useEffect, useState } from 'react';
 import './MainHeader.css';
+import { ReactComponent as Bell } from '../../../../../../assets/icons/bell.svg';
+import { ReactComponent as Cart } from '../../../../../../assets/icons/cart.svg';
 
 const MainHeader = ({
 
 }) => {
 
     /* ===== STATE ===== */
-    const [isSticky, setIsSticky] = useState(false);
-    const [isTitleHidden, setIsTitleHidden] = useState(false);
 
-    /* ===== HOOK ===== */
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 60) {
-                setIsSticky(true);
-            } else {
-                setIsSticky(false);
-            }
-        };
+    /* ===== HOOKS ===== */
 
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        }
-
-    }, []);
-
+    /* ===== RENDER ====== */
     return (
-        <div className={`main-header-container ${isSticky ? 'sticky' : ''}`}>
+        <div className='main-header-container'>
             <div className='main-header-top'>
                 <span className='main-header-top-address'>
                     주소를 등록해 주세요 !
                 </span>
                 <div className='main-header-top-icons'>
-                    알림
-                    장바구니
+                    <Bell fill='#FFFFFF' width={20} height={20} />
+                    <Cart fill='#FFFFFF' width={20} height={20} />
                 </div>
             </div>
             <div className='main-header-title'>

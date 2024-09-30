@@ -19,7 +19,7 @@ export { default as FindAddressInMap } from './Common/FindAddressInMap';
 export { default as DetailAddress } from './Common/DetailAddress';
 
 // 서비스 내역 화면
-export { default as ServiceHistories } from './Common/ServiceHistories';
+export { default as ServiceHistory } from './Common/ServiceHistory';
 
 // 서비스 상세 내역 화면
 export { default as ServiceHistoryDetail } from './Common/ServiceHistoryDetail';

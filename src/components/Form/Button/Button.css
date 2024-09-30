@@ -1,0 +1,22 @@
+.button-wrap {
+    width: 100%;
+    height: 100%;
+}
+
+.button-wrap button,
+.button-wrap button:disabled {
+    width: 100%;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    font-size: 1rem;
+    padding: 0.7rem;
+}
+
+.button-wrap button {
+    background-color: var(--primary-color);
+}
+.button-wrap button:disabled {
+    background-color: var(--gray3-color);
+}

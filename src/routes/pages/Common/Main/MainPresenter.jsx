@@ -11,7 +11,10 @@ const MainPresenter = ({
             <MainHeader
             
             />
-            <MainLayout>
+            <MainLayout
+                footer={true}
+            >
+                
                 <Content
                     paddingLeft={16}
                     paddingRight={16}
@@ -25,6 +28,7 @@ const MainPresenter = ({
                     
                     />
                 </Content>
+
                 <Content>
                     <Slide
                         title={'리뷰'}

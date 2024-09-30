@@ -1,4 +1,4 @@
-import { ReactComponent as Star } from '../../../assets/icons/Star.svg'
+import { ReactComponent as Star } from '../../../assets/icons/star.svg'
 
 const Rating = ({
     width=16,

@@ -23,6 +23,7 @@
     z-index: 10;
     display: flex;
     justify-content: center;
+    align-items: center;
     text-align: center;
     padding: 15px 0;
 }
@@ -33,6 +34,10 @@
 
 .main-header-top .main-header-top-icons {
     position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-right: 1rem;
     right: 0;
 }
 
