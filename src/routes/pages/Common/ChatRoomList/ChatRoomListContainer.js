@@ -1,58 +1,76 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ChatRoomListPresenter from "./ChatRoomListPresenter"
+import API from "../../../../api/API";
 
 const ChatRoomListContainer = () => {
-    const [chatList, setChatList] = useState([
-        {
-            title: '김재모의 카피바라 청소',
-            subtitle: '무엇을 도와드릴까요?',
-            chat_time: '오전 9: 45',
-            alert_count: '1',
-            chat_status: '청소 완료',
-        },
-        {
-            title: '김재모의 카피바라 청소',
-            subtitle: '무엇을 도와드릴까요?',
-            chat_time: '오전 9: 45',
-            alert_count: '1',
-            chat_status: '청소 완료',
-        },
-        {
-            title: '김재모의 카피바라 청소',
-            subtitle: '무엇을 도와드릴까요?',
-            chat_time: '오전 9: 45',
-            alert_count: '1',
-            chat_status: '청소 완료',
-        },
-        {
-            title: '김재모의 카피바라 청소',
-            subtitle: '무엇을 도와드릴까요?',
-            chat_time: '오전 9: 45',
-            alert_count: '1',
-            chat_status: '청소 완료',
-        },
-        {
-            title: '김재모의 카피바라 청소',
-            subtitle: '무엇을 도와드릴까요?',
-            chat_time: '오전 9: 45',
-            alert_count: '1',
-            chat_status: '청소 완료',
-        },
-        {
-            title: '김재모의 카피바라 청소',
-            subtitle: '무엇을 도와드릴까요?',
-            chat_time: '오전 9: 45',
-            alert_count: '1',
-            chat_status: '청소 완료',
-        },
-        {
-            title: '김재모의 카피바라 청소',
-            subtitle: '무엇을 도와드릴까요?',
-            chat_time: '오전 9: 45',
-            alert_count: '1',
-            chat_status: '청소 완료',
-        },
-    ])
+    // const [chatList, setChatList] = useState([
+    //     {
+    //         title: '김재모의 카피바라 청소',
+    //         subtitle: '무엇을 도와드릴까요?',
+    //         chat_time: '오전 9: 45',
+    //         alert_count: '1',
+    //         chat_status: '청소 완료',
+    //     },
+    //     {
+    //         title: '김재모의 카피바라 청소',
+    //         subtitle: '무엇을 도와드릴까요?',
+    //         chat_time: '오전 9: 45',
+    //         alert_count: '1',
+    //         chat_status: '청소 완료',
+    //     },
+    //     {
+    //         title: '김재모의 카피바라 청소',
+    //         subtitle: '무엇을 도와드릴까요?',
+    //         chat_time: '오전 9: 45',
+    //         alert_count: '1',
+    //         chat_status: '청소 완료',
+    //     },
+    //     {
+    //         title: '김재모의 카피바라 청소',
+    //         subtitle: '무엇을 도와드릴까요?',
+    //         chat_time: '오전 9: 45',
+    //         alert_count: '1',
+    //         chat_status: '청소 완료',
+    //     },
+    //     {
+    //         title: '김재모의 카피바라 청소',
+    //         subtitle: '무엇을 도와드릴까요?',
+    //         chat_time: '오전 9: 45',
+    //         alert_count: '1',
+    //         chat_status: '청소 완료',
+    //     },
+    //     {
+    //         title: '김재모의 카피바라 청소',
+    //         subtitle: '무엇을 도와드릴까요?',
+    //         chat_time: '오전 9: 45',
+    //         alert_count: '1',
+    //         chat_status: '청소 완료',
+    //     },
+    //     {
+    //         title: '김재모의 카피바라 청소',
+    //         subtitle: '무엇을 도와드릴까요?',
+    //         chat_time: '오전 9: 45',
+    //         alert_count: '1',
+    //         chat_status: '청소 완료',
+    //     },
+    // ]);
+    const [chatList, setChatList] = useState([]);
+
+    useEffect(() => {
+        (
+            async () => {
+                try {
+                    const result = await API.getChatRoom();
+                    if (result.status !== 200) throw new Error(`[ChatRoomListContainer] [useEffect] Error`);
+                    console.log(result.data);
+                    setChatList(result.data);
+
+                } catch (e) {
+                    console.log(e.message);
+                }
+            }
+        )()
+    }, []);
 
     return (
         <ChatRoomListPresenter

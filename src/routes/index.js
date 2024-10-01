@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes, useFetcher } from 'react-router-dom';
+import { io } from 'socket.io-client';
 
 /**
  * 페이지
@@ -8,6 +9,28 @@ import { Route, Routes, useFetcher } from 'react-router-dom';
 import { AddressRegistration, CompanyDetail, Companies, Main, Payment, ServiceHistories, ServiceHistoryDetail, WriteReview, FindAddressInMap, DetailAddress, ChatRoomList, ChatRoom, ChatBot, ShoppingCart, } from "./pages";
 
 const Router = () => {
+    const socketRef = useState(null);
+
+    useEffect(() => {
+        socketRef.current = io('ws://localhost:4200/cleaning_chat', {
+            transports: ['websocket'],
+            reconnectionAttempts: 3,
+        });
+
+        const socket = socketRef.current;
+
+        socket.on('connect', () => {
+            console.log('Connected to WebSocket server');
+        });
+
+        socket.on('disconnect', () => {
+            console.log('Disconnected from WebSocket server');
+        });
+
+        return () => {
+            socket.disconnect();
+        }
+    }, []);
 
     return (
         <div className="app">
@@ -66,8 +89,8 @@ const Router = () => {
                     element={<ChatRoomList />}
                 />
                 <Route
-                    path="chatroom"
-                    element={<ChatRoom />}
+                    path="chatroom/:room_id"
+                    element={<ChatRoom socketRef={socketRef} />}
                 />
                 <Route
                     path="chatbot"
@@ -76,7 +99,7 @@ const Router = () => {
                 {/* 장바구니 화면 */}
                 <Route
                     path="Shoppingcart"
-                    element={<ShoppingCart/>}
+                    element={<ShoppingCart />}
                 />
             </Routes>
         </div>

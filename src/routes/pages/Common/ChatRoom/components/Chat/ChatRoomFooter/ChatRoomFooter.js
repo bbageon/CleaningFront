@@ -24,6 +24,7 @@ const ChatRoomFooter = ({
                         textarea.style.height = 'auto'; // 높이 초기화
                         textarea.style.height = `${textarea.scrollHeight}px`; // 스크롤 높이만큼 높이 설정
                     }}
+                    value={chatMessage}
                     onChange={(e) => setChatMessage(e.target.value)}
                 />
                 <Camera
