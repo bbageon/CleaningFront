@@ -636,7 +636,7 @@ const API = {
   /**
    * 서비스 옵션 수정
    */
-  putServiceOption: (body) => $http.put(parameterToPath('/service_option/:service_option_id', { service_option_id }), body),
+  putServiceOption: (service_option_id, body) => $http.put(parameterToPath('/service_option/:service_option_id', { service_option_id }), body),
 
   /**
    * 서비스 옵션 삭제

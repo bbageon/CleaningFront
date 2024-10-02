@@ -1,6 +1,6 @@
 import './CompanyDetailTop.css';
 import { Content, Top } from "../../../../../../components";
-import { ReactComponent as Star } from '../../../../../../assets/icons/star.svg';
+import { ReactComponent as Star } from '../../../../../../assets/icons/Star.svg';
 import test from './test.png';
 
 const CompanyDetailTop = ({

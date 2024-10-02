@@ -1,6 +1,6 @@
 import { Content } from '../../../../../../components';
 import './CompanyCard.css';
-import { ReactComponent as Star } from '../../../../../../assets/icons/star.svg';
+import { ReactComponent as Star } from '../../../../../../assets/icons/Star.svg';
 import { ReactComponent as Clock } from '../../../../../../assets/icons/clock.svg';
 import test1 from './test1.jpg';
 import test2 from './test2.png';

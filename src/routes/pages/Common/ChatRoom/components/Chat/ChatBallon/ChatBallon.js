@@ -4,13 +4,13 @@ const ChatBallon = ({
     clientId,
     chatInfo,
 }) => {
-    const { sender, content } = chatInfo;
+    const { sender, message } = chatInfo;
 
     return (
         <div
             className={`chat-ballon ${clientId === sender ? 'self' : 'other'}`}
         >
-            {content}
+            {message}
         </div>
     )
 }

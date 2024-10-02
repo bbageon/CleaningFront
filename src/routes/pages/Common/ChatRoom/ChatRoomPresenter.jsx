@@ -26,6 +26,9 @@ const ChatRoomPresenter = ({
     sendChat,
 
     inputChatRef,
+
+    setClientHong,
+    setClientGo,
 }) => {
     return (
         <div className='chat-room-container'>
@@ -55,6 +58,12 @@ const ChatRoomPresenter = ({
                     addSelectPicture={addSelectPicture}
                 />
             }
+            <button onClick={() => setClientHong()}>
+                홍길동
+            </button>
+            <button onClick={() => setClientGo()}>
+                고길동
+            </button>
         </div>
     );
 };

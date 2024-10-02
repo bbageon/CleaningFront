@@ -1,5 +1,5 @@
 import './Slide.css';
-import { ReactComponent as Star } from '../../../assets/icons/star.svg';
+import { ReactComponent as Star } from '../../../assets/icons/Star.svg';
 
 const dummyData = [
     {

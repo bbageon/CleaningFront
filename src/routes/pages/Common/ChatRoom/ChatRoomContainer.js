@@ -28,50 +28,16 @@ const ChatRoomContainer = ({
     const { room_id } = useParams();
 
     // Chat State
-    const [sender, setSender] = useState('');
+    const [sender, setSender] = useState('홍길동');
+    const [receiver, setReceiver] = useState('테스트');
     const [clientId, setClientId] = useState('홍길동');
     const [chatMessage, setChatMessage] = useState('');
     const [chatTitle, setChatTitle] = useState('김재모의 카피바라 청소');
     const [chatList, setChatList] = useState([
         // {
         //     sender: '안김재모',
-        //     content: `안녕하세요 김재모 입니다. 무엇을 도와드릴까요 ?`,
-        // },
-        // {
-        //     sender: '김재모',
-        //     content: `평당 평균 가격이 어느정도 되나요? 시간당 평균 가격이 어떻게 되나요?`,
-        // },
-        // {
-        //     sender: '안김재모',
-        //     content: `저도 몰라요`,
-        // },
-        // {
-        //     sender: '김재모',
-        //     content: `아는게 뭐예요?`,
-        // },
-        // {
-        //     sender: '안김재모',
-        //     content: `차단하겠습니다.`,
-        // },
-        // {
-        //     sender: '안김재모',
-        //     content: `123123 김재모 입니다. 무엇을 도와드릴까요 ?`,
-        // },
-        // {
-        //     sender: '김재모',
-        //     content: `평당 평균 가격이 어느정도 되나요? 시간당 평균 가격이 어떻게 되나요?`,
-        // },
-        // {
-        //     sender: '안김재모',
-        //     content: `저도 몰라요`,
-        // },
-        // {
-        //     sender: '김재모',
-        //     content: `아는게 뭐예요?`,
-        // },
-        // {
-        //     sender: '안김재모',
-        //     content: `차단하겠습니다.`,
+        //     receiver: '받는사람',
+        //     message: `안녕하세요 김재모 입니다. 무엇을 도와드릴까요 ?`,
         // },
     ])
 
@@ -97,9 +63,11 @@ const ChatRoomContainer = ({
                         // chatInfo.
                         console.log(chatInfo);
                         setSender(chatInfo.data.user.name);
+                        setReceiver(chatInfo.data.company.name);
 
                         const chatMessageInfo = await API.getOneChatMessage(room_id);
                         if (chatMessageInfo.status !== 200) throw new Error(`[ChatRoomContainer][getOneChatMessage] Error`);
+                        setChatList(chatMessageInfo.data);
                         setChatList(chatMessageInfo.data);
                     } catch (e) {
                         console.log(e.message);
@@ -116,7 +84,8 @@ const ChatRoomContainer = ({
                         ...prev,
                         {
                             sender: messageInfo.sender,
-                            content: messageInfo.message,
+                            receiver: messageInfo.receiver,
+                            message: messageInfo.message,
                         }
                     ]
                 });
@@ -140,7 +109,13 @@ const ChatRoomContainer = ({
 
         // const chatText = inputChatRef.current.value;
         // console.log(chat_room_id);
-        socketRef.current.emit('chatMessage', { message: chatMessage, chat_room_id: state.chat_room_id, sender });
+        socketRef.current.emit('chatMessage', {
+            room_id,
+            chat_room_id: state.chat_room_id,
+            message: chatMessage,
+            sender,
+            receiver,
+        });
         inputChatRef.current.focus();
         setChatMessage('');
     }
@@ -173,6 +148,18 @@ const ChatRoomContainer = ({
         })
     }
 
+    const setClientHong = () => {
+        setClientId('홍길동');
+        setSender('홍길동');
+        setReceiver('고길동')
+    }
+
+    const setClientGo = () => {
+        setClientId('고길동');
+        setSender('고길동');
+        setReceiver('홍길동')
+    }
+
     return (
         <ChatRoomPresenter
             clientId={clientId}
@@ -195,6 +182,9 @@ const ChatRoomContainer = ({
             sendChat={sendChat}
 
             inputChatRef={inputChatRef}
+
+            setClientHong={setClientHong}
+            setClientGo={setClientGo}
         />
     );
 };
