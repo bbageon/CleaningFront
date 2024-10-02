@@ -7,8 +7,10 @@ import SelectPicture from './components/Picture/SelectPictureBox/SelectPictureBo
 
 const ChatRoomPresenter = ({
     clientId,
+    chatRef,
 
-    chatInfo,
+    chatTitle,
+    chatList,
     chatMessage,
     setChatMessage,
 
@@ -21,6 +23,7 @@ const ChatRoomPresenter = ({
     addSelectPicture,
 
     searchChat,
+    sendChat,
 
     inputChatRef,
 }) => {
@@ -28,17 +31,19 @@ const ChatRoomPresenter = ({
         <div className='chat-room-container'>
             <ChatRoomTop
                 searchChat={searchChat}
-                chatTitle={chatInfo.title}
+                chatTitle={chatTitle}
             />
             <ChatRoomBody
                 clientId={clientId}
-                chatList={chatInfo.chatList}
+                chatList={chatList}
+                chatRef={chatRef}
             />
             <ChatRoomFooter
                 inputChatRef={inputChatRef}
                 chatMessage={chatMessage}
                 setChatMessage={setChatMessage}
                 toggleShowSelectPicture={toggleShowSelectPicture}
+                sendChat={sendChat}
             />
             {
                 isShowSelectPicture &&

@@ -13,12 +13,18 @@ const ChatList = ({
                     chatList?.map(chat => (
                         <div
                             className='chat-list'
-                            onClick={() => navigate('/chatroom')}
+                            onClick={() => {
+                                console.log(chat.chat_room_id)
+                                navigate(`/chatroom/${chat.room_id}`, {
+                                    state: { chat_room_id: chat.chat_room_id }
+                                })
+                            }
+                            }
                         >
                             <div className='chat-image'></div>
                             <div className='chat-info'>
                                 <div className='chat-info-line'>
-                                    <span className='chat-title'>{chat.title}</span>
+                                    <span className='chat-title'>{chat.chat_room_name}</span>
                                     <span className='chat-time'>{chat.chat_time}</span>
                                 </div>
                                 <div className='chat-info-line'>

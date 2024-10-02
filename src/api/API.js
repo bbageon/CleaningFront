@@ -383,44 +383,44 @@ const API = {
 
 
   /**
-   * ============================
-   *       견 적 서 요 청 목 록
-   * ============================
+   * =================
+   *       견 적 서 
+   * =================
    */
   /**
-   * 견적서 요청 목록 생성
+   * 견적서 생성
    */
-  postRequestEstimateList: (body) => $http.post('/request_estimate_list', body),
+  postRequestEstimateList: (body) => $http.post('/estimate', body),
 
   /**
-   * 견적서 요청 목록 전체 조회
+   * 견적서 전체 조회
    */
-  getRequestEstimateList: () => $http.get('/request_estimate_list'),
+  getRequestEstimateList: () => $http.get('/estimate'),
 
   /**
-   * 견적서 요청 목록 단일 조회
+   * 견적서 단일 조회
    */
-  getOneRequestEstimateList: (request_estimate_list_id) => $http.get(parameterToPath('/request_estimate_list/:request_estimate_list_id', { request_estimate_list_id })),
+  getOneRequestEstimateList: (estimate_id) => $http.get(parameterToPath('/estimate/:estimate_id', { estimate_id })),
 
   /**
-   * 청소업체 견적서 요청 목록 조회
+   * 청소업체 견적서 조회
    */
-  getCompanyRequestEstimateList: (company_id) => $http.get(parameterToPath('/request_estimate_list/company/:company_id', { company_id })),
+  getCompanyRequestEstimateList: (company_id) => $http.get(parameterToPath('/estimate/company/:company_id', { company_id })),
 
   /**
-   * 견적서 요청에 관한 목록 전체 조회
+   * 견적서 요청에 관한 견적서 전체 조회
    */
-  getEstimateRequestEstimateList: (request_estimate_id) => $http.get(parameterToPath('/request_estimate_list/estimate/:request_estimate_id', { request_estimate_id })),
+  getEstimateRequestEstimateList: (request_estimate_id) => $http.get(parameterToPath('/estimate/request_estimate/:request_estimate_id', { request_estimate_id })),
 
   /**
-   * 견적서 요청 목록 수정
+   * 견적서 수정
   */
-  putRequestEstimateList: (request_estimate_list_id, body) => $http.put(parameterToPath('/request_estimate_list/:request_estimate_list_id', { request_estimate_list_id }), body),
+  putRequestEstimateList: (estimate_id, body) => $http.put(parameterToPath('/estimate/:estimate_id', { estimate_id }), body),
 
   /**
-   * 견적서 요청 목록 삭제
+   * 견적서 삭제
    */
-  deleteRequestEstimateList: (request_estimate_list_id) => $http.delete(parameterToPath('/request_estimate_list/:request_estimate_list_id', { request_estimate_list_id })),
+  deleteRequestEstimateList: (estimate_id) => $http.delete(parameterToPath('/estimate/:estimate_id', { estimate_id })),
 
 
   /**
@@ -607,6 +607,41 @@ const API = {
    */
   deleteReviewImage: (review_image_id) => $http.put(parameterToPath('/review_image/:review_image_id', { review_image_id })),
 
+
+  /**
+   * ===================
+   *     서 비 스 옵 션
+   * ===================
+   */
+  /**
+   * 서비스 옵션 생성
+   */
+  postServiceOption: (body) => $http.post('/service_option', body),
+
+  /**
+   * 서비스 옵션 전체 조회
+   */
+  getServiceOption: () => $http.get('/service_option'),
+
+  /**
+   * 서비스 옵션 단일 조회
+   */
+  getOneServiceOption: (service_option_id) => $http.get(parameterToPath('/service_option/:service_option_id', { service_option_id })),
+
+  /**
+   * 청소업체 서비스 옵션 조회
+   */
+  getCompanyServiceOption: (company_id) => $http.get(parameterToPath('/company/:company_id', { company_id })),
+
+  /**
+   * 서비스 옵션 수정
+   */
+  putServiceOption: (body) => $http.put(parameterToPath('/service_option/:service_option_id', { service_option_id }), body),
+
+  /**
+   * 서비스 옵션 삭제
+   */
+  deleteServiceOption: (service_option_id) => $http.delete(parameterToPath('/service_option/:service_option_id', { service_option_id })),
 };
 
 export default API;
