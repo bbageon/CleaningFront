@@ -1,6 +1,14 @@
 import CompaniesPresenter from "./CompaniesPresenter"
 
-const CompaniesContainer = () => {
+const CompaniesContainer = ({
+
+}) => {
+
+    /* ===== STATE ===== */
+
+    /* ===== HOOKS ===== */
+    
+
     return (
         <CompaniesPresenter
         

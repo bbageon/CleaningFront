@@ -14,7 +14,7 @@ const Icons = [
     {
         icon: <Cart fill={'#FFFFFF'}/>,
         title: '장바구니',
-        url: '/cart'
+        url: '/shoppingcart'
     },
     {
         icon: <Broom fill={'#FFFFFF'}/>,

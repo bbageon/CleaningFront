@@ -34,3 +34,6 @@ export { default as ChatBot } from './Common/ChatBot';
 
 // 장바구니 화면
 export { default as ShoppingCart} from './Common/ShoppingCart';
+
+// 컴포넌트 테스트 화면
+export { default as ComponentTest } from './Common/ComponentTest';

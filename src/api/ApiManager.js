@@ -52,7 +52,7 @@ export default class ApiManager {
   };
 
   /**
-   * NOTE Usualy Arrow function, return has same line.
+   * NOTE Usually Arrow function, return has same line.
    */
   get = (url, params = null) => this.getRequest(url, 'GET', params);
   delete = (url, body = null, stringify = true) => {
