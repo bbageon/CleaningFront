@@ -4,7 +4,7 @@ import MainServiceList from './Components/MainServiceList';
 import './Main.css';
 
 const MainPresenter = ({
-    navigate,
+
 }) => {
     return (
         <>
@@ -22,7 +22,7 @@ const MainPresenter = ({
                     border={true}
                 >
                     <MainServiceList
-                        navigate={navigate}
+                    
                     />
                     <Banner
                     

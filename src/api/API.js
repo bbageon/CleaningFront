@@ -215,27 +215,27 @@ const API = {
   /**
    * 청소업체 카테고리 지정 생성
    */
-  postCompanyCategory: (body) => $http.post('/designate_company_category', body),
+  postDesignateCompanyCategory: (body) => $http.post('/designate_company_category', body),
 
   /**
    * 청소업체 카테고리 지정 전체 조회
    */
-  getCompanyCategory: () => $http.get('/designate_company_category'),
+  getDesignateCompanyCategory: () => $http.get('/designate_company_category'),
 
   /**
    * 청소업체 카테고리 지정 단일 조회
    */
-  getOneCompanyCategory: (designate_id) => $http.get(parameterToPath('/designate_company_category/:designate_id', { designate_id })),
+  getOneDesignateCompanyCategory: (designate_id) => $http.get(parameterToPath('/designate_company_category/:designate_id', { designate_id })),
 
   /**
    * 청소업체 카테고리 지정 수정
    */
-  putCompanyCategory: (designate_id, body) => $http.put(parameterToPath('/designate_company_category/:designate_id', { designate_id }), body),
+  putDesignateCompanyCategory: (designate_id, body) => $http.put(parameterToPath('/designate_company_category/:designate_id', { designate_id }), body),
 
   /**
    * 청소업체 카테고리 지정 삭제
    */
-  deleteCompanyCategory: (designate_id) => $http.delete(parameterToPath('/designate_company_category/:designate_id', { designate_id })),
+  deleteDesignateCompanyCategory: (designate_id) => $http.delete(parameterToPath('/designate_company_category/:designate_id', { designate_id })),
 
 
   /**

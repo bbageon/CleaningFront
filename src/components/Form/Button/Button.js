@@ -10,6 +10,7 @@ const Button = ({
     padding,
     wrapPadding,
     color,
+    backgroundColor,
 
     icon,
 }) => {
@@ -21,6 +22,7 @@ const Button = ({
                     height: `${height}px`,
                     padding: padding,
                     color: color,
+                    backgroundColor: backgroundColor,
                 }}
                 onClick={onClick}
                 disabled={disabled}

@@ -22,6 +22,8 @@ import {
     ChatBot,
     CompanyMenu,
     ShoppingCart,
+
+    ComponentTest,
 } from "./pages";
 
 const Router = () => {
@@ -51,6 +53,11 @@ const Router = () => {
     return (
         <div className="app">
             <Routes>
+                {/* ===== 컴포넌트 테스트 ===== */}
+                <Route
+                    path='/componenttest'
+                    element={<ComponentTest />}
+                />
                 {/* ===== 메인 화면 ===== */}
                 <Route
                     path="/"
@@ -122,8 +129,8 @@ const Router = () => {
                 />
                 {/* 장바구니 화면 */}
                 <Route
-                    path="Shoppingcart"
-                    element={<ShoppingCart />}
+                    path="shoppingcart"
+                    element={<ShoppingCart/>}
                 />
             </Routes>
         </div>

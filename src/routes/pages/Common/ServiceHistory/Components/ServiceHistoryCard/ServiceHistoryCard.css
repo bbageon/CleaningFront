@@ -2,6 +2,10 @@
     width: 100%;
 }
 
+.service-history-card-top-wrap {
+    width: 100%;
+}
+
 .service-history-card-wrap .service-history-card-top {
     width: 100%;
     display: flex;

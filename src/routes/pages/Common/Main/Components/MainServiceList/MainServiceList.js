@@ -1,3 +1,4 @@
+import { useCustomContext } from 'context/CustomContext';
 import './MainServiceList.css';
 
 /**
@@ -8,37 +9,37 @@ const cleaningServicesList = [
     {
         serviceId: 1,
         serviceName: '가사도우미/생활청소',
-        url: '/companydetail',
+        url: '/componenttest',
         icon: 'icon1'
     },
     {
         serviceId: 2,
         serviceName: '이사/입주청소',
-        url: '/servicehistory',
+        url: '',
         icon: 'icon2'
     },
     {
         serviceId: 3,
         serviceName: '가전/가구청소',
-        url: '/writereview',
+        url: '',
         icon: 'icon3'
     },
     {
         serviceId: 4,
         serviceName: '전문/특수청소',
-        url: '4',
+        url: '',
         icon: 'icon4'
     },
     {
         serviceId: 5,
         serviceName: '사업장청소',
-        url: '5',
+        url: '',
         icon: 'icon5'
     },
     {
         serviceId: 6,
         serviceName: '건물 관리',
-        url: '6',
+        url: '',
         icon: 'icon6'
     },
 ];
@@ -48,8 +49,12 @@ const cleaningServicesList = [
  * --
  */
 const ListNavigationButton = ({
-    navigate
+
 }) => {
+
+    /* ==== NAVIGATE ===== */
+    const { navigate } = useCustomContext();
+    
     return (
         <div className='list-navigation-container'
             onClick={() => { navigate('/companies') }}
@@ -75,8 +80,11 @@ const ListNavigationButton = ({
  */
 const CleaningServiceItem = ({
     item,
-    navigate,
 }) => {
+
+    /* ==== NAVIGATE ===== */
+    const { navigate } = useCustomContext();
+
     return (
         <div className='cleaning-service-item-container'>
             <div className='cleaning-service-item-icon'
@@ -94,14 +102,14 @@ const CleaningServiceItem = ({
 };
 
 const MainServiceList = ({
-    navigate,
 
 }) => {
+
     return (
         <div className='main-service-list-container'>
 
             <ListNavigationButton
-                navigate={navigate}
+
             />
 
             <div className='main-service-list'>
@@ -111,7 +119,6 @@ const MainServiceList = ({
                             <CleaningServiceItem
                                 key={index}
                                 item={item}
-                                navigate={navigate}
                             />
                         )
                     })
