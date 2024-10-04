@@ -49,7 +49,7 @@ const Router = () => {
                 path: '/',
             });
 
-            cookie.setCookie('user_type', data?.type, {
+            cookie.setCookie('userType', data?.type, {
                 path: '/',
             });
         } catch (e) {
@@ -61,7 +61,7 @@ const Router = () => {
         cookie.remove('token', { path: '/' }, 1000);
         cookie.remove('name', { path: '/' }, 1000);
         cookie.remove('email', { path: '/' }, 1000);
-        cookie.remove('user_type', { path: '/' }, 1000);
+        cookie.remove('userType', { path: '/' }, 1000);
     }
 
     useEffect(() => {
