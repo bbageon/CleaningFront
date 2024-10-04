@@ -24,6 +24,7 @@ import {
     ShoppingCart,
 
     ComponentTest,
+    Login,
 } from "./pages";
 
 const Router = () => {
@@ -130,7 +131,12 @@ const Router = () => {
                 {/* 장바구니 화면 */}
                 <Route
                     path="shoppingcart"
-                    element={<ShoppingCart/>}
+                    element={<ShoppingCart />}
+                />
+                {/* 로그인 화면 */}
+                <Route
+                    path="login"
+                    element={<Login />}
                 />
             </Routes>
         </div>

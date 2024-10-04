@@ -31,6 +31,11 @@ const API = {
   */
   postAuthUserSignin: (body) => $http.post('/auth/user/signin', body),
 
+  /**
+   * 고객 카카오 로그인
+   */
+  postAuthUserKakaoSignin: (body) => $http.post('/auth/user/kakao/signin', body),
+
 
   /**
    * ====================
