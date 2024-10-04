@@ -26,9 +26,43 @@ import {
     ComponentTest,
     Login,
 } from "./pages";
+import { cookie } from "../util";
 
 const Router = () => {
     const socketRef = useState(null);
+
+    const setCookies = (data) => {
+        try {
+            if (!data) {
+                throw new Error(`no has save cookie data`);
+            }
+
+            cookie.setCookie('token', data?.token, {
+                path: '/',
+            });
+
+            cookie.setCookie('name', data?.name, {
+                path: '/',
+            });
+
+            cookie.setCookie('email', data?.email, {
+                path: '/',
+            });
+
+            cookie.setCookie('user_type', data?.type, {
+                path: '/',
+            });
+        } catch (e) {
+            console.error(e.message);
+        }
+    }
+
+    const logOut = () => {
+        cookie.remove('token', { path: '/' }, 1000);
+        cookie.remove('name', { path: '/' }, 1000);
+        cookie.remove('email', { path: '/' }, 1000);
+        cookie.remove('user_type', { path: '/' }, 1000);
+    }
 
     useEffect(() => {
         socketRef.current = io('ws://localhost:4200/cleaning_chat', {
@@ -136,7 +170,9 @@ const Router = () => {
                 {/* 로그인 화면 */}
                 <Route
                     path="login"
-                    element={<Login />}
+                    element={<Login
+                        setCookies={setCookies}
+                    />}
                 />
             </Routes>
         </div>
