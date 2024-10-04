@@ -82,14 +82,12 @@ const LoginContainer = ({
         // 네이버 로그인 완료 후 설정
         try {
             naverLogin.getLoginStatus(async (status) => {
-                if (!status) {
-                    throw new Error(`login error to naver`);
+                if (status) {
+                    console.log(naverLogin)
+                    console.log(naverLogin.user)
+                    saveToken(naverLogin.user)
+                    navigate('/');
                 }
-
-                console.log(naverLogin)
-                console.log(naverLogin.user)
-                saveToken(naverLogin.user)
-                navigate('/');
             });
         } catch (err) {
             console.log(err);

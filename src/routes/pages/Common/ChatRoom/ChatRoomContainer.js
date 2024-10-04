@@ -18,6 +18,7 @@ import Image14 from './components/Picture/Images/Image14.png';
 import Image15 from './components/Picture/Images/Image15.png';
 import Image16 from './components/Picture/Images/Image16.png';
 import API from '../../../../api/API';
+import { cookie } from "util";
 
 const ChatRoomContainer = ({
     socketRef,
@@ -57,6 +58,9 @@ const ChatRoomContainer = ({
             (
                 async () => {
                     try {
+                        const userName = cookie.getCookie('name');
+                        setClientId(userName);
+                        
                         const chatInfo = await API.getOneChatRoom(room_id);
                         if (chatInfo.status !== 200) throw new Error(`[ChatRoomContainer][getOneChatRoom] Error`);
 
