@@ -647,6 +647,22 @@ const API = {
    * 서비스 옵션 삭제
    */
   deleteServiceOption: (service_option_id) => $http.delete(parameterToPath('/service_option/:service_option_id', { service_option_id })),
+
+
+  /**
+   * ==================
+   *   이 미 지 테 스 트 
+   * ==================
+   */
+  /**
+   * 단일 이미지 테스트
+   */
+  postImageTest: (file) => $http.multipart('/user/imagetest', file),
+
+  /**
+   * 다수 이미지 테스트
+   */
+  postImagesTest: (file) => $http.multipart('/user/imagetests', file),
 };
 
 export default API;

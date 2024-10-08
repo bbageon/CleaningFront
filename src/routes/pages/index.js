@@ -40,3 +40,7 @@ export { default as ComponentTest } from './Common/ComponentTest';
 
 // 로그인 화면
 export { default as Login } from './Common/Login';
+
+
+// 테스트
+export { default as ImageTest } from './Test/ImageTest';
