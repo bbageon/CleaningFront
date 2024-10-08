@@ -18,6 +18,8 @@ import Image14 from './components/Picture/Images/Image14.png';
 import Image15 from './components/Picture/Images/Image15.png';
 import Image16 from './components/Picture/Images/Image16.png';
 import API from '../../../../api/API';
+import { cookie } from "util";
+import { io } from "socket.io-client";
 
 const ChatRoomContainer = ({
     socketRef,
@@ -57,13 +59,25 @@ const ChatRoomContainer = ({
             (
                 async () => {
                     try {
+                        const userName = cookie.getCookie('name');
+                        if (!userName) setClientId('홍길동');
+                        else setClientId(userName);
+
                         const chatInfo = await API.getOneChatRoom(room_id);
                         if (chatInfo.status !== 200) throw new Error(`[ChatRoomContainer][getOneChatRoom] Error`);
 
                         // chatInfo.
                         console.log(chatInfo);
-                        setSender(chatInfo.data.user.name);
-                        setReceiver(chatInfo.data.company.name);
+                        const userType = cookie.getCookie('userType');
+                        if (userType === 'USER') {
+                            setSender(chatInfo.data.user.name);
+                            setReceiver('홍길동');
+                            // setReceiver(chatInfo.data.company.name);
+                        } else {
+                            // setSender(chatInfo.data.company.name);
+                            setReceiver('홍길동');
+                            setReceiver(chatInfo.data.user.name);
+                        }
 
                         const chatMessageInfo = await API.getOneChatMessage(room_id);
                         if (chatMessageInfo.status !== 200) throw new Error(`[ChatRoomContainer][getOneChatMessage] Error`);
@@ -75,6 +89,13 @@ const ChatRoomContainer = ({
                 }
             )()
             console.log(state);
+
+            if (!socketRef.current) {
+                socketRef.current = io('ws://localhost:4200/cleaning_chat', {
+                    transports: ['websocket'],
+                    reconnectionAttempts: 3,
+                });
+            }
 
             socketRef.current?.on('chatMessage', (messageInfo) => {
                 console.log(messageInfo);
@@ -148,18 +169,6 @@ const ChatRoomContainer = ({
         })
     }
 
-    const setClientHong = () => {
-        setClientId('홍길동');
-        setSender('홍길동');
-        setReceiver('고길동')
-    }
-
-    const setClientGo = () => {
-        setClientId('고길동');
-        setSender('고길동');
-        setReceiver('홍길동')
-    }
-
     return (
         <ChatRoomPresenter
             clientId={clientId}
@@ -182,9 +191,6 @@ const ChatRoomContainer = ({
             sendChat={sendChat}
 
             inputChatRef={inputChatRef}
-
-            setClientHong={setClientHong}
-            setClientGo={setClientGo}
         />
     );
 };

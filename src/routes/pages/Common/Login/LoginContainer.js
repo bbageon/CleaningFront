@@ -3,16 +3,18 @@ import LoginPresenter from "./LoginPresenter"
 import { useNavigate } from "react-router-dom";
 import { API } from "api";
 
-const LoginContainer = () => {
+const LoginContainer = ({
+    setCookies,
+}) => {
     const navigate = useNavigate();
     const naverRef = useRef(null);
 
     // 카카오 설정
     const KAKAO_REST_API_KEY = `${process.env.REACT_APP_KAKAO_REST_API_KEY}`;
-    console.log(KAKAO_REST_API_KEY)
+    const KAKAO_SCOPE = `${process.env.REACT_APP_KAKAO_SCOPE}`;
     const redirectUri = `${process.env.REACT_APP_REDIRECT_URL}`;
-    const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_REST_API_KEY}&redirect_uri=${redirectUri}&response_type=code&scope=profile_nickname`
-    
+    const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_REST_API_KEY}&redirect_uri=${redirectUri}&response_type=code&scope=${KAKAO_SCOPE}`;
+
     // 네이버 설정
     const NAVER_CLIENT_ID = `${process.env.REACT_APP_NAVER_CLIENT_ID}`;
     console.log(NAVER_CLIENT_ID)
@@ -56,48 +58,7 @@ const LoginContainer = () => {
         }
 
         console.log(result)
-
-        // const social_id = result.data.id;
-        // const social_email = result.data.kakao_account?.email;
-        // const social_name = result.data.kakao_account?.name;
-        // let social_phone = '';
-        // if (result.data.kakao_account?.phone_number) {
-        //     social_phone = '0' + result.data.kakao_account?.phone_number?.split(' ')[1]?.replaceAll('-', '');
-        // }
-        // const social_nickname = '';
-        // console.log(social_phone);
-
-        // const body = {
-        //     social_id: social_id,
-        // }
-
-        // // 서버를 통한 로그인 시도
-        // const social_signin = await API.postSocialSignin(body);
-        // if (social_signin.code === 500) {
-        //     // 서버 연결 안됨
-        //     setError({
-        //         isError: true,
-        //         errorMsg: `서버 연결이 원활하지 않습니다.\n잠시만 기다려주시기 바랍니다.`
-        //     });
-        //     return;
-        // }
-        // if (social_signin.status === 500) {
-        //     // 에러 발생
-        //     setError({
-        //         isError: true,
-        //         errorMsg: '회원 정보 조회 중 에러가 발생하였습니다.'
-        //     });
-        //     return;
-        // }
-
-        // if (social_signin.status === 401) {
-        //     // 회원가입이 되어있지 않은 상황이면 회원가입으로 이메일과 닉네임, 전화번호 보내기
-        //     navigate('/user/signup', { state: { social_id: social_id, email: social_email, name: social_name, nickname: social_nickname, phone: social_phone } });
-        //     return;
-        // }
-
-        // 로그인 성공
-        // setCookies(social_signin.data);
+        saveToken(result?.data);
         navigate('/');
     }
 
@@ -124,74 +85,24 @@ const LoginContainer = () => {
                 if (status) {
                     console.log(naverLogin)
                     console.log(naverLogin.user)
-                    // const social_id = naverLogin.user.id;
-                    // const social_email = naverLogin.user.email;
-                    // const social_name = naverLogin.user.name;
-                    // const social_nickname = naverLogin.user.nickname;
-
-                    // console.log(naverLogin.user);
-                    // setUser(naverLogin.user);
-
-                    // const is_signup = await API.getUserCheckSignUp(naverLogin.user.email);
-                    // if (is_signup.code === 500) {
-                    //     // 서버 연결 안됨
-                    //     setError({
-                    //         isError: true,
-                    //         errorMsg: `서버 연결이 원활하지 않습니다.\n잠시만 기다려주시기 바랍니다.`
-                    //     });
-                    //     return;
-                    // }
-                    // if (is_signup.status === 500) {
-                    //     // 에러 발생
-                    //     setError({
-                    //         isError: true,
-                    //         errorMsg: '회원 정보 조회 중 에러가 발생하였습니다.'
-                    //     });
-                    //     return;
-                    // }
-
-                    // if (is_signup.data) {
-                    //     // 회원가입 되어있는 상황이면 로그인 진행
-                    //     // setEmail(user_email);
-                    //     const body = {
-                    //         social_id: social_id,
-                    //     };
-
-                    //     const social_signin = await API.postSocialSignin(body);
-                    //     if (social_signin.code === 500) {
-                    //         // 서버 연결 안됨
-                    //         setError({
-                    //             isError: true,
-                    //             errorMsg: `서버 연결이 원활하지 않습니다.\n잠시만 기다려주시기 바랍니다.`
-                    //         });
-                    //         return;
-                    //     }
-                    //     if (social_signin.status === 401) {
-                    //         // 로그인 실패
-                    //         setError({
-                    //             isError: true,
-                    //             errorMsg: '아이디가 존재하지 않습니다.'
-                    //         });
-                    //         return;
-                    //     }
-                    //     if (social_signin.status === 500) {
-                    //         // 에러 발생
-                    //         setError({
-                    //             isError: true,
-                    //             errorMsg: '회원 정보 조회 중 에러가 발생하였습니다.'
-                    //         });
-                    //         return;
-                    //     }
-
-                    // setCookies(social_signin.data);
+                    saveToken(naverLogin.user)
                     navigate('/');
-                } else {
-                    // 회원가입이 되어있지 않은 상황이면 회원가입으로 이메일과 닉네임, 전화번호 보내기
-                    // navigate('/user/signup', { state: { social_id: social_id, email: social_email, name: social_name, nickname: social_nickname } });
                 }
             });
         } catch (err) {
             console.log(err);
+        }
+    }
+
+    const saveToken = (data) => {
+        try {
+            if (!data) {
+                throw new Error(`no has login data`);
+            }
+
+            setCookies(data);
+        } catch (e) {
+            console.error(e.message);
         }
     }
 
