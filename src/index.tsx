@@ -3,16 +3,18 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+// React Query
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+// Context
+import { CustomProvider } from 'context/CustomContext';
 
 // Styles
 import './index.css';
 import './styles/colors.css';
 import './styles/font.css';
-
-// Context
-import { CustomProvider } from 'context/CustomContext';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 // React-Query
 const queryClient = new QueryClient();

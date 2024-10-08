@@ -3,7 +3,7 @@ import CompanyCard from '../CompanyCard';
 import './CompanyList.css';
 
 const CompanyList = ({
-
+    
 }) => {
     return (
         <Content
@@ -12,7 +12,6 @@ const CompanyList = ({
             paddingRight={0}
         >
             <CompanyCard
-            
             />
             <CompanyCard
             

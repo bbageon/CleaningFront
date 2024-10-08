@@ -1,6 +1,6 @@
 import { Content } from '../../../../../../components';
 import './CompanyCard.css';
-import { ReactComponent as Star } from '../../../../../../assets/icons/Star.svg';
+import { ReactComponent as Star } from '../../../../../../assets/icons/star.svg';
 import { ReactComponent as Clock } from '../../../../../../assets/icons/clock.svg';
 import test1 from './test1.jpg';
 import test2 from './test2.png';
@@ -41,9 +41,8 @@ const CompanyCardImage = ({
 };
 
 const CompanyCard = ({
-
+    
 }) => {
-
     /* TEST NAVIGATE */
     const navigate = useNavigate();
 
@@ -53,7 +52,7 @@ const CompanyCard = ({
                 border={'7px solid var(--divider-color)'}
             >
                 <div className='company-card-info'>
-                    <span className='title'>김재모의 클린 카피바라</span>
+                    {/* <span className='title'>{companiesData.company_name}</span> */}
                     <div className='company-card-rating'>
                         <div>
                             <Star

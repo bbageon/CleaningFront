@@ -1,5 +1,11 @@
 import { useCustomContext } from 'context/CustomContext';
 import './MainServiceList.css';
+import { ReactComponent as CleanIcon1 } from '../../../../../../assets/icons/cleanIcon1.svg';
+import { ReactComponent as CleanIcon2 } from '../../../../../../assets/icons/cleanIcon2.svg';
+import { ReactComponent as CleanIcon3 } from '../../../../../../assets/icons/cleanIcon3.svg';
+import { ReactComponent as CleanIcon4 } from '../../../../../../assets/icons/cleanIcon4.svg';
+import { ReactComponent as CleanIcon5 } from '../../../../../../assets/icons/cleanIcon5.svg';
+import { ReactComponent as CleanIcon6 } from '../../../../../../assets/icons/cleanIcon6.svg';
 
 /**
  * 서비스 목록
@@ -10,37 +16,37 @@ const cleaningServicesList = [
         serviceId: 1,
         serviceName: '가사도우미/생활청소',
         url: '/componenttest',
-        icon: 'icon1'
+        icon: <CleanIcon1 />
     },
     {
         serviceId: 2,
         serviceName: '이사/입주청소',
         url: '',
-        icon: 'icon2'
+        icon: <CleanIcon2 />
     },
     {
         serviceId: 3,
         serviceName: '가전/가구청소',
         url: '',
-        icon: 'icon3'
+        icon: <CleanIcon3 />
     },
     {
         serviceId: 4,
         serviceName: '전문/특수청소',
         url: '',
-        icon: 'icon4'
+        icon: <CleanIcon4 />
     },
     {
         serviceId: 5,
         serviceName: '사업장청소',
         url: '',
-        icon: 'icon5'
+        icon: <CleanIcon5 />
     },
     {
         serviceId: 6,
         serviceName: '건물 관리',
         url: '',
-        icon: 'icon6'
+        icon: <CleanIcon6 />
     },
 ];
 
@@ -54,7 +60,7 @@ const ListNavigationButton = ({
 
     /* ==== NAVIGATE ===== */
     const { navigate } = useCustomContext();
-    
+
     return (
         <div className='list-navigation-container'
             onClick={() => { navigate('/companies') }}
@@ -128,4 +134,4 @@ const MainServiceList = ({
     );
 };
 
-export default MainServiceList;
+export default MainServiceList; 

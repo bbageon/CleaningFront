@@ -5,9 +5,16 @@ const MainLayout = ({
     children,
     padding,
     footer,
+    backgroundColor,
+    full,
 }) => {
     return (
-        <div className='main-layout' style={{padding: padding}}>
+        <div className='main-layout'
+            style={{
+                height: full ? '100vh' : 'auto',
+                padding: padding,
+                backgroundColor: backgroundColor
+            }}>
             {children}
             {
                 footer ? (

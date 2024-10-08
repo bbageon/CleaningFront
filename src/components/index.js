@@ -38,3 +38,11 @@ export {
     ImageUpload,
     BottomButton,
 } from './Form';
+
+/**
+ * Navigation Components
+ * --
+ */
+export {
+    ScrollToTop,
+} from './Navigation';

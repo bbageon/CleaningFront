@@ -26,6 +26,7 @@ import {
     ComponentTest,
     Login,
 } from "./pages";
+import { ScrollToTop } from "components";
 
 const Router = () => {
     const socketRef = useState(null);
@@ -53,6 +54,7 @@ const Router = () => {
 
     return (
         <div className="app">
+            <ScrollToTop />
             <Routes>
                 {/* ===== 컴포넌트 테스트 ===== */}
                 <Route

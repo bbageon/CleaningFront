@@ -3,14 +3,16 @@ import './Companies.css';
 import CompanyList from './Components/CompanyList/CompanyList';
 
 const CompaniesPresenter = ({
-
+    
 }) => {
 
     const TabItems = [
         {
             label: '전체',
             key: '1',
-            children: <CompanyList />,
+            children:
+            <CompanyList
+            />,
         },
         {
             label: '이사/입주 청소',

@@ -1,4 +1,4 @@
-import { Banner, Content, MainLayout, Slide } from '../../../../components';
+import { Banner, Button, Content, MainLayout, Slide } from '../../../../components';
 import './Login.css';
 
 const LoginPresenter = ({
@@ -8,25 +8,37 @@ const LoginPresenter = ({
     naverRef,
 }) => {
     return (
-        <>
-            <MainLayout
-                footer={true}
+        <MainLayout
+            footer={false}
+            backgroundColor={'var(--primary-color)'}
+            full={true}
+        >
+            <Content
+                gap={20}
             >
-                <div
-                    className='social-login-button'
+                <span className='title' style={{ color: '#FFFFFF' }}>
+                    Clean Kong
+                </span>
+                <Button
+                    title={'카카오 로그인'}
+                    fontSize={'1.125rem'}
+                    fontWeight={600}
+                    padding={20}
+                    color={'#000000'}
+                    backgroundColor={'#F7E600'}
                     onClick={() => KakaoLogin()}
-                >
-                    카카오 로그인
-                </div>
+                />
                 <div id='naverIdLogin' ref={naverRef} style={{ display: 'none' }} />
-                <div
-                    className="social-login-button"
+                <Button
+                    title={'네이버 로그인'}
+                    fontSize={'1.125rem'}
+                    fontWeight={600}
+                    padding={20}
+                    backgroundColor={'#2DB400'}
                     onClick={() => NaverLogin()}
-                >
-                    네이버 로그인
-                </div>
-            </MainLayout>
-        </>
+                />
+            </Content>
+        </MainLayout>
     );
 };
 

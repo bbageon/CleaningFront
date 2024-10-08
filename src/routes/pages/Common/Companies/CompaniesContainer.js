@@ -7,7 +7,6 @@ const CompaniesContainer = ({
     /* ===== STATE ===== */
 
     /* ===== HOOKS ===== */
-    
 
     return (
         <CompaniesPresenter

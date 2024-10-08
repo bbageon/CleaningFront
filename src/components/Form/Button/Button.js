@@ -11,6 +11,8 @@ const Button = ({
     wrapPadding,
     color,
     backgroundColor,
+    fontWeight,
+    fontSize,
 
     icon,
 }) => {
@@ -23,6 +25,8 @@ const Button = ({
                     padding: padding,
                     color: color,
                     backgroundColor: backgroundColor,
+                    fontSize: fontSize,
+                    fontWeight: `${fontWeight}`,
                 }}
                 onClick={onClick}
                 disabled={disabled}
