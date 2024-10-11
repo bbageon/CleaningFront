@@ -91,10 +91,16 @@ const CleaningServiceItem = ({
     /* ==== NAVIGATE ===== */
     const { navigate } = useCustomContext();
 
+    // 아이콘 클릭 시, 해당 카테고리의 청소 업체 목록으로 이동
+    const handleNavigate = () => {
+        const tabKey = item.serviceId;
+        navigate('/companies', { state: { tabKey } });
+    };
+
     return (
         <div className='cleaning-service-item-container'>
             <div className='cleaning-service-item-icon'
-                onClick={() => { navigate(item.url) }}
+                onClick={handleNavigate}
             >
                 {item.icon}
             </div>

@@ -41,18 +41,18 @@ const CompanyCardImage = ({
 };
 
 const CompanyCard = ({
-    
+    company,
 }) => {
     /* TEST NAVIGATE */
     const navigate = useNavigate();
 
     return (
-        <div className='company-card-wrap' onClick={() => {navigate('/companydetail')}}>
+        <div className='company-card-wrap' onClick={() => {navigate(`/companydetail/${company.company_id}`)}}>
             <Content
                 border={'7px solid var(--divider-color)'}
             >
                 <div className='company-card-info'>
-                    {/* <span className='title'>{companiesData.company_name}</span> */}
+                    <span className='title'>{company.company_name}</span>
                     <div className='company-card-rating'>
                         <div>
                             <Star

@@ -3,7 +3,7 @@ import CompanyCard from '../CompanyCard';
 import './CompanyList.css';
 
 const CompanyList = ({
-    
+    companies,
 }) => {
     return (
         <Content
@@ -11,11 +11,16 @@ const CompanyList = ({
             paddingLeft={0}
             paddingRight={0}
         >
-            <CompanyCard
-            />
-            <CompanyCard
-            
-            />
+            {
+                companies.map((company, index) => {
+                    return (
+                        <CompanyCard
+                            key={index}
+                            company={company}
+                        />
+                    );
+                })
+            }
         </Content>
     );
 };

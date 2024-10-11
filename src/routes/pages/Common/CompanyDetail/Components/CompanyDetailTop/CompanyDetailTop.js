@@ -1,10 +1,11 @@
 import './CompanyDetailTop.css';
 import { Content, Top } from "../../../../../../components";
 import { ReactComponent as Star } from '../../../../../../assets/icons/star.svg';
+import { ReactComponent as Clock } from '../../../../../../assets/icons/clock.svg';
 import test from './test.png';
 
 const CompanyDetailTop = ({
-
+    company,
 }) => {
     return (
         <Content
@@ -23,7 +24,7 @@ const CompanyDetailTop = ({
 
             </div>
             <div className='company-detail-top-box1'>
-                <span className='title'>김재모의 클린 카피바라</span>
+                <span className='title'>{company.company_name}</span>
                 <div className='company-detail-top-info1'>
                     <Star
                         width={16}

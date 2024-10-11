@@ -2,6 +2,7 @@ import { Content, ReviewList, ServiceList, TabCenter } from '../../../../../../c
 import './CompanyDetailBottom.css';
 
 const CompanyDetailBottom = ({
+    company,
     data
 }) => {
 

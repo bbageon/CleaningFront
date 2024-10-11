@@ -20,7 +20,7 @@ export const designateCompanyCategoryQueryKeys = createQueryKeys('designateCompa
  * [DesignateCompanyCategory] 청소업체 카테고리 지정 전체 조회
  * --
  */
-export const useGetDesignateCompanyCategory = () => {
+export const useGetDesignateCompanyCategories = () => {
     return useQuery({
         queryKey: designateCompanyCategoryQueryKeys.getDesignateCompanyCategories().queryKey,
         queryFn: () => API.getDesignateCompanyCategory(),

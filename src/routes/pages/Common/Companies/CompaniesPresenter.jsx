@@ -3,42 +3,40 @@ import './Companies.css';
 import CompanyList from './Components/CompanyList/CompanyList';
 
 const CompaniesPresenter = ({
+    // 청소업체 전체 조회
+    companies,
     
+    // 청소업체 카테고리
+    companyCategories,
+    
+    // 청소업체 카테고리 지정
+    designateCompanyCategories,
+    
+    isLoading,
+
+    onTabChange,
+    tabKey,
 }) => {
+
+    // 데이터 로딩 상태 처리
+    if (isLoading) {
+        return <></>
+    };
 
     const TabItems = [
         {
             label: '전체',
-            key: '1',
+            key: 'all',
             children:
-            <CompanyList
-            />,
+                <CompanyList
+                    companies={companies}
+                />,
         },
-        {
-            label: '이사/입주 청소',
-            key: '2',
-            children: <CompanyList />,
-        },
-        {
-            label: '거주/생활 청소',
-            key: '3',
-            children: <CompanyList />,
-        },
-        {
-            label: '가전/가구 청소',
-            key: '4',
-            children: <CompanyList />,
-        },
-        {
-            label: '건물 관리',
-            key: '5',
-            children: <CompanyList />,
-        },
-        {
-            label: '사업장 청소',
-            key: '6',
-            children: <CompanyList />,
-        },
+        ...companyCategories.map(category => ({
+            label: category.category_name,
+            key: category.category_id,
+            children: <CompanyList companies={companies} />
+        })),
     ];
 
     return (
@@ -46,6 +44,8 @@ const CompaniesPresenter = ({
             <Top />
             <Tab
                 items={TabItems}
+                onChange={onTabChange}
+                activeKey={tabKey}
             />
         </MainLayout>
     );

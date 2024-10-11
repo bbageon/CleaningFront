@@ -7,7 +7,7 @@ import ServiceInfo from './Components/ServiceInfo';
 import './ServiceHistoryDetail.css';
 
 const ServiceHistoryDetailPresenter = ({
-
+    requestDetail,
 }) => {
     return (
         <MainLayout>
@@ -16,19 +16,19 @@ const ServiceHistoryDetailPresenter = ({
                 notShowIcon={true}
             />
             <ServiceDetailHeader
-
+                requestDetail={requestDetail}
             />
             <PaymentInfo
-
+                requestDetail={requestDetail}
             />
             <ServiceInfo
-
+                requestDetail={requestDetail}
             />
             <CompanyInfo
-
+                requestDetail={requestDetail}
             />
             <CustomerInfo
-
+                requestDetail={requestDetail}
             />
         </MainLayout>
     );

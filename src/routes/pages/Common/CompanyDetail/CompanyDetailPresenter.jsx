@@ -2,14 +2,17 @@ import './CompanyDetail.css';
 import { BottomButton, MainLayout } from '../../../../components';
 import CompanyDetailTop from './Components/CompanyDetailTop';
 import CompanyDetailBottom from './Components/CompanyDetailBottom';
+import { useParams } from 'react-router-dom';
 
 const CompanyDetailPresenter = ({
+    company,
     data,
 }) => {
+    
     return (
         <MainLayout>
             <CompanyDetailTop
-            
+                company={company}
             />
             <CompanyDetailBottom
                 data={data}

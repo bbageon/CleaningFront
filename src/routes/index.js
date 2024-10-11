@@ -108,7 +108,7 @@ const Router = () => {
                 {/* ===== 청소 업체 상세 화면 ===== */}
                 {/* company_id */}
                 <Route
-                    path='/companydetail'
+                    path='/companydetail/:id'
                     element={<CompanyDetail />}
                 />
                 {/* ===== 청소 업체 메뉴 상세 화면 ===== */}
@@ -143,7 +143,7 @@ const Router = () => {
                 />
                 {/* 서비스 상세 내역 화면 */}
                 <Route
-                    path='/servicehistorydetail'
+                    path='/servicehistorydetail/:id'
                     element={<ServiceHistoryDetail />}
                 />
                 {/* 리뷰 작성 화면 */}

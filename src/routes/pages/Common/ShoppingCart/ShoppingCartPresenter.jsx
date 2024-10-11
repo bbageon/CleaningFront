@@ -6,7 +6,9 @@ import Coupon from "./components/Coupon";
 import TotalPriceCheck from "./components/TotalPriceCheck";
 import Button from "../../../../components/Button";
 
-const ShoppingCartPresenter = () => {
+const ShoppingCartPresenter = ({
+    
+}) => {
     return (
         <MainLayout>
             <Top></Top>

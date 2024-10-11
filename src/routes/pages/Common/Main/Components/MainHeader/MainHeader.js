@@ -1,12 +1,14 @@
 import './MainHeader.css';
 import { ReactComponent as Bell } from '../../../../../../assets/icons/bell.svg';
 import { ReactComponent as Cart } from '../../../../../../assets/icons/cart.svg';
+import { useCustomContext } from 'context/CustomContext';
 
 const MainHeader = ({
 
 }) => {
 
     /* ===== STATE ===== */
+    const { navigate } = useCustomContext();
 
     /* ===== HOOKS ===== */
 
@@ -14,7 +16,7 @@ const MainHeader = ({
     return (
         <div className='main-header-container'>
             <div className='main-header-top'>
-                <span className='main-header-top-address'>
+                <span className='main-header-top-address' onClick={ () => navigate('/addressregistration') }>
                     주소를 등록해 주세요 !
                 </span>
                 <div className='main-header-top-icons'>
@@ -31,7 +33,7 @@ const MainHeader = ({
                 </span>
             </div>
             <div className='main-header-button'>
-                <button>
+                <button onClick={() => navigate('/chatbot')}>
                     견적서 요청
                 </button>
             </div>
