@@ -25,6 +25,7 @@ import {
 
     ComponentTest,
     Login,
+    ImageTest,
 } from "./pages";
 import { cookie } from "../util";
 import { ScrollToTop } from "components";
@@ -175,6 +176,12 @@ const Router = () => {
                     element={<Login
                         setCookies={setCookies}
                     />}
+                />
+
+                {/* 테스트 */}
+                <Route
+                    path="imagetest"
+                    element={<ImageTest />}
                 />
             </Routes>
         </div>

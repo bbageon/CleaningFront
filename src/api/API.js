@@ -311,80 +311,40 @@ const API = {
 
 
   /**
-   * =====================
-   *       청 소 요 청
-   * =====================
+   * =======================
+   *       견 적 서 선 택 
+   * =======================
    */
   /**
-   * 청소요청 생성
+   * 견적서 선택 생성
    */
-  postRequestClean: (body) => $http.post('/request_clean', body),
+  postRequestSelectEstimate: (body) => $http.post('/select_estimate', body),
 
   /**
-   * 청소요청 전체 조회
+   * 견적서 선택 전체 조회
    */
-  getRequestClean: () => $http.get('/request_clean'),
+  getRequestSelectEstimate: () => $http.get('/select_estimate'),
 
   /**
-   * 청소요청 단일 조회
+   * 견적서 선택 단일 조회
    */
-  getOneRequestClean: (request_clean_id) => $http.get(parameterToPath('/request_clean/:request_clean_id', { request_clean_id })),
+  getOneRequestSelectEstimate: (select_estimate_id) => $http.get(parameterToPath('/select_estimate/:select_estimate_id', { select_estimate_id })),
 
   /**
-   * 유저 청소요청 조회
+   * 청소업체 견적서 선택 조회
    */
-  getUserRequestClean: (user_id) => $http.get(parameterToPath('/request_clean/user/:user_id', { user_id })),
+  getUserRequestSelectEstimate: (company_id) => $http.get(parameterToPath('/select_estimate/user/:company_id', { company_id })),
 
   /**
-   * 청소업체 청소요청 조회
-   */
-  getCompanyRequestClean: (company_id) => $http.get(parameterToPath('/request_clean/company/:company_id', { company_id })),
-
-  /**
-   * 청소요청 수정
+   * 견적서 선택 수정
   */
-  putRequestClean: (request_clean_id, body) => $http.put(parameterToPath('/request_clean/:request_clean_id', { request_clean_id }), body),
+  putRequestSelectEstimate: (select_estimate_id, body) => $http.put(parameterToPath('/select_estimate/:select_estimate_id', { select_estimate_id }), body),
 
   /**
-   * 청소요청 삭제
+   * 견적서 선택 삭제
    */
-  deleteRequestClean: (request_clean_id) => $http.delete(parameterToPath('/request_clean/:request_clean_id', { request_clean_id })),
+  deleteRequestSelectEstimate: (select_estimate_id) => $http.delete(parameterToPath('/select_estimate/:select_estimate_id', { select_estimate_id })),
 
-
-  /**
-   * ======================
-   *       견 적 서 요 청
-   * ======================
-   */
-  /**
-   * 견적서 요청 생성
-   */
-  postRequestEstimate: (body) => $http.post('/request_estimate', body),
-
-  /**
-   * 견적서 요청 전체 조회
-   */
-  getRequestEstimate: () => $http.get('/request_estimate'),
-
-  /**
-   * 견적서 요청 단일 조회
-   */
-  getOneRequestEstimate: (request_estimate_id) => $http.get(parameterToPath('/request_estimate/:request_estimate_id', { request_estimate_id })),
-
-  /**
-   * 유저 견적서 요청 조회
-   */
-  getUserRequestEstimate: (user_id) => $http.get(parameterToPath('/request_estimate/user/:user_id', { user_id })),
-
-  /**
-   * 견적서 요청 수정
-  */
-  putRequestEstimate: (request_estimate_id, body) => $http.put(parameterToPath('/request_estimate/:request_estimate_id', { request_estimate_id }), body),
-
-  /**
-   * 견적서 요청 삭제
-   */
-  deleteRequestEstimate: (request_estimate_id) => $http.delete(parameterToPath('/request_estimate/:request_estimate_id', { request_estimate_id })),
 
 
   /**
@@ -395,37 +355,32 @@ const API = {
   /**
    * 견적서 생성
    */
-  postRequestEstimateList: (body) => $http.post('/estimate', body),
+  postRequestEstimate: (body) => $http.post('/estimate', body),
 
   /**
    * 견적서 전체 조회
    */
-  getRequestEstimateList: () => $http.get('/estimate'),
+  getRequestEstimate: () => $http.get('/estimate'),
 
   /**
    * 견적서 단일 조회
    */
-  getOneRequestEstimateList: (estimate_id) => $http.get(parameterToPath('/estimate/:estimate_id', { estimate_id })),
+  getOneRequestEstimate: (estimate_id) => $http.get(parameterToPath('/estimate/:estimate_id', { estimate_id })),
 
   /**
-   * 청소업체 견적서 조회
+   * 고객 견적서 조회
    */
-  getCompanyRequestEstimateList: (company_id) => $http.get(parameterToPath('/estimate/company/:company_id', { company_id })),
-
-  /**
-   * 견적서 요청에 관한 견적서 전체 조회
-   */
-  getEstimateRequestEstimateList: (request_estimate_id) => $http.get(parameterToPath('/estimate/request_estimate/:request_estimate_id', { request_estimate_id })),
+  getUserRequestEstimate: (user_id) => $http.get(parameterToPath('/estimate/user/:user_id', { user_id })),
 
   /**
    * 견적서 수정
   */
-  putRequestEstimateList: (estimate_id, body) => $http.put(parameterToPath('/estimate/:estimate_id', { estimate_id }), body),
+  putRequestEstimate: (estimate_id, body) => $http.put(parameterToPath('/estimate/:estimate_id', { estimate_id }), body),
 
   /**
    * 견적서 삭제
    */
-  deleteRequestEstimateList: (estimate_id) => $http.delete(parameterToPath('/estimate/:estimate_id', { estimate_id })),
+  deleteRequestEstimate: (estimate_id) => $http.delete(parameterToPath('/estimate/:estimate_id', { estimate_id })),
 
 
   /**
@@ -485,9 +440,14 @@ const API = {
   getOneCartList: (cart_list_id) => $http.get(parameterToPath('/cart_list/:cart_list_id', { cart_list_id })),
 
   /**
-   * 청소업체 장바구니 목록 조회
+   * 장바구니의 장바구니 목록 조회
   */
-  getCompanyCartList: (company_id) => $http.get(parameterToPath('/cart_list/company/:company_id', { company_id })),
+  getCompanyCartList: (cart_id) => $http.get(parameterToPath('/cart_list/cart/:cart_id', { cart_id })),
+
+  /**
+   * 장바구니 목록 서비스 조회
+  */
+  getCompanyCartList: (service_id) => $http.get(parameterToPath('/cart_list/service/:service_id', { service_id })),
 
   /**
    * 장바구니 목록 수정
@@ -498,47 +458,6 @@ const API = {
    * 장바구니 목록 삭제
    */
   deleteCartList: (cart_list_id) => $http.put(parameterToPath('/cart_list/:cart_list_id', { cart_list_id })),
-
-
-  /**
-   * ============
-   *     결 제
-   * ============
-   */
-  /**
-   * 결제 생성
-   */
-  postPay: (body) => $http.post('/pay', body),
-
-  /**
-   * 결제 전체 조회
-   */
-  getPay: () => $http.get('/pay'),
-
-  /**
-   * 결제 단일 조회
-   */
-  getOnePay: (pay_id) => $http.get(parameterToPath('/pay/:pay_id', { pay_id })),
-
-  /**
-   * 고객 결제 조회
-  */
-  getUserPay: (user_id) => $http.get(parameterToPath('/pay/user/:user_id', { user_id })),
-
-  /**
-   * 청소업체 결제 조회
-  */
-  getCompanyPay: (company_id) => $http.get(parameterToPath('/pay/company/:company_id', { company_id })),
-
-  /**
-   * 결제 수정
-   */
-  putPay: (pay_id, body) => $http.put(parameterToPath('/pay/:pay_id', { pay_id }), body),
-
-  /**
-   * 결제 삭제
-   */
-  deletePay: (pay_id) => $http.put(parameterToPath('/pay/:pay_id', { pay_id })),
 
 
   /**
@@ -613,40 +532,287 @@ const API = {
   deleteReviewImage: (review_image_id) => $http.put(parameterToPath('/review_image/:review_image_id', { review_image_id })),
 
 
-  /**
-   * ===================
-   *     서 비 스 옵 션
-   * ===================
-   */
-  /**
-   * 서비스 옵션 생성
-   */
-  postServiceOption: (body) => $http.post('/service_option', body),
+  // /**
+  //  * ===================
+  //  *     서 비 스 옵 션
+  //  * ===================
+  //  */
+  // /**
+  //  * 서비스 옵션 생성
+  //  */
+  // postServiceOption: (body) => $http.post('/service_option', body),
+
+  // /**
+  //  * 서비스 옵션 전체 조회
+  //  */
+  // getServiceOption: () => $http.get('/service_option'),
+
+  // /**
+  //  * 서비스 옵션 단일 조회
+  //  */
+  // getOneServiceOption: (service_option_id) => $http.get(parameterToPath('/service_option/:service_option_id', { service_option_id })),
+
+  // /**
+  //  * 청소업체 서비스 옵션 조회
+  //  */
+  // getCompanyServiceOption: (company_id) => $http.get(parameterToPath('/company/:company_id', { company_id })),
+
+  // /**
+  //  * 서비스 옵션 수정
+  //  */
+  // putServiceOption: (service_option_id, body) => $http.put(parameterToPath('/service_option/:service_option_id', { service_option_id }), body),
+
+  // /**
+  //  * 서비스 옵션 삭제
+  //  */
+  // deleteServiceOption: (service_option_id) => $http.delete(parameterToPath('/service_option/:service_option_id', { service_option_id })),
+
 
   /**
-   * 서비스 옵션 전체 조회
+   * ==============
+   *      직 원
+   * ==============
    */
-  getServiceOption: () => $http.get('/service_option'),
+  /**
+   * 직원 생성
+   */
+  postEmployee: (body) => $http.post('/employee', body),
 
   /**
-   * 서비스 옵션 단일 조회
+   * 직원 전체 조회
    */
-  getOneServiceOption: (service_option_id) => $http.get(parameterToPath('/service_option/:service_option_id', { service_option_id })),
+  getEmployee: () => $http.get('/employee'),
 
   /**
-   * 청소업체 서비스 옵션 조회
+   * 직원 단일 조회
    */
-  getCompanyServiceOption: (company_id) => $http.get(parameterToPath('/company/:company_id', { company_id })),
+  getOneEmployee: (employee_id) => $http.get(parameterToPath('/employee/:employee_id', { employee_id })),
 
   /**
-   * 서비스 옵션 수정
-   */
-  putServiceOption: (service_option_id, body) => $http.put(parameterToPath('/service_option/:service_option_id', { service_option_id }), body),
+   * 청소업체 직원 조회
+  */
+  getCompanyEmployee: (company_id) => $http.get(parameterToPath('/employee/company/:company_id', { company_id })),
 
   /**
-   * 서비스 옵션 삭제
+   * 직원 수정
    */
-  deleteServiceOption: (service_option_id) => $http.delete(parameterToPath('/service_option/:service_option_id', { service_option_id })),
+  putEmployee: (employee_id, body) => $http.put(parameterToPath('/employee/:employee_id', { employee_id }), body),
+
+  /**
+   * 직원 삭제
+   */
+  deleteEmployee: (employee_id) => $http.delete(parameterToPath('/employee/:employee_id', { employee_id })),
+
+
+  /**
+   * =======================
+   *      청 소 업 체 일 정
+   * =======================
+   */
+  /**
+   * 청소업체 일정 생성
+   */
+  postCompanySchedule: (body) => $http.post('/company_schedule', body),
+
+  /**
+   * 청소업체 일정 전체 조회
+   */
+  getCompanySchedule: () => $http.get('/company_schedule'),
+
+  /**
+   * 청소업체 일정 단일 조회
+   */
+  getOneCompanySchedule: (schedule_id) => $http.get(parameterToPath('/company_schedule/:schedule_id', { schedule_id })),
+
+  /**
+   * 청소업체의 일정 조회
+   */
+  getCompanyCompanySchedule: (company_id) => $http.get(parameterToPath('/company_schedule/company/:company_id', { company_id })),
+
+  /**
+   * 청소업체 일정 수정
+   */
+  putCompanySchedule: (schedule_id, body) => $http.put(parameterToPath('/company_schedule/:schedule_id', { schedule_id }), body),
+
+  /**
+   * 청소업체 일정 삭제
+   */
+  deleteCompanySchedule: (schedule_id) => $http.delete(parameterToPath('/company_schedule/:company_id', { schedule_id })),
+
+
+  /**
+   * ===============
+   *     서 비 스 
+   * ===============
+   */
+  /**
+   * 서비스 생성
+   */
+  postService: () => $http.post('/service', body),
+
+  /**
+   * 서비스 전체 조회
+   */
+  getService: () => $http.get('/service'),
+
+  /**
+   * 서비스 단일 조회
+   */
+  getOneService: (service_id) => $http.get(parameterToPath('/service/:service_id', { service_id })),
+
+  /**
+   * 청소업체 서비스 조회
+  */
+  getCompanyService: (company_id) => $http.get(parameterToPath('/service/company/:company_id', { company_id })),
+
+  /**
+   * 서비스 수정
+   */
+  putService: (service_id, body) => $http.put(parameterToPath('/service/:service_id', { service_id }), body),
+
+  /**
+   * 서비스 삭제
+   */
+  deleteService: (service_id) => $http.delete(parameterToPath('/service/:service_id', { service_id })),
+
+
+  /**
+   * =================
+   *     리 뷰 답 변
+   * =================
+   */
+  /**
+   * 리뷰 답변 생성
+   */
+  postReviewAnswer: (body) => $http.post('/review_answer', body),
+
+  /**
+   * 리뷰 답변 전체 조회
+   */
+  getReviewAnswer: () => $http.get('/review_answer'),
+
+  /**
+   * 리뷰 답변 단일 조회
+   */
+  getOneReviewAnswer: (review_answer_id) => $http.get(parameterToPath('/review_answer/:review_answer_id', { review_answer_id })),
+
+  /**
+   * 리뷰에 대한 리뷰 답변 조회
+   */
+  getReviewOneReviewAnswer: (review_id) => $http.get(parameterToPath('/review_answer/review/:review_id', { review_id })),
+
+  /**
+   * 청소업체 리뷰 답변 조회
+   */
+  getCompanyOneReviewAnswer: (company_id) => $http.get(parameterToPath('/review_answer/company/:company_id', { company_id })),
+
+  /**
+   * 리뷰 답변 수정
+   */
+  putReviewAnswer: (review_answer_id, body) => $http.put(parameterToPath('/review_answer/:review_answer_id', { review_answer_id }), body),
+
+  /**
+   * 리뷰 답변 삭제
+   */
+  deleteReviewAnswer: (review_answer_id) => $http.delete(parameterToPath('/review_answer/:review_answer_id', { review_answer_id })),
+
+
+  /**
+   * =======================
+   *       견 적 서 요 청
+   * =======================
+   */
+  /**
+   * 견적서요청 생성
+   */
+  postRequestEstimate: (body) => $http.post('/request_estimate', body),
+
+  /**
+   * 견적서요청 전체 조회
+   */
+  getRequestEstimate: () => $http.get('/request_estimate'),
+
+  /**
+   * 견적서요청 단일 조회
+   */
+  getOneRequestEstimate: (request_estimate_id) => $http.get(parameterToPath('/request_estimate/:request_estimate_id', { request_estimate_id })),
+
+  /**
+   * 고객 견적서요청 조회
+   */
+  getUserRequestEstimate: (user_id) => $http.get(parameterToPath('/request_estimate/user/:user_id', { user_id })),
+
+  /**
+   * 청소업체 견적서요청 조회
+   */
+  getCompanyRequestEstimate: (company_id) => $http.get(parameterToPath('/request_estimate/company/:company_id', { company_id })),
+
+  /**
+   * 견적서요청 수정
+  */
+  putRequestEstimate: (request_estimate_id, body) => $http.put(parameterToPath('/request_estimate/:request_estimate_id', { request_estimate_id }), body),
+
+  /**
+   * 견적서요청 삭제
+   */
+  deleteRequestEstimate: (request_estimate_id) => $http.delete(parameterToPath('/request_estimate/:request_estimate_id', { request_estimate_id })),
+
+
+  /**
+   * =======================
+   *       서 비 스 요 청
+   * =======================
+   */
+  /**
+   * 견적서요청 생성
+   */
+  postRequestService: (body) => $http.post('/request_service', body),
+
+  /**
+   * 견적서요청 전체 조회
+   */
+  getRequestService: () => $http.get('/request_service'),
+
+  /**
+   * 견적서요청 단일 조회
+   */
+  getOneRequestService: (request_service_id) => $http.get(parameterToPath('/request_service/:request_service_id', { request_service_id })),
+
+  /**
+   * 고객 견적서요청 조회
+   */
+  getUserRequestService: (user_id) => $http.get(parameterToPath('/request_service/user/:user_id', { user_id })),
+
+  /**
+   * 청소업체 견적서요청 조회
+   */
+  getCompanyRequestService: (company_id) => $http.get(parameterToPath('/request_service/company/:company_id', { company_id })),
+
+  /**
+   * 견적서요청 수정
+  */
+  putRequestService: (request_service_id, body) => $http.put(parameterToPath('/request_service/:request_service_id', { request_service_id }), body),
+
+  /**
+   * 견적서요청 삭제
+   */
+  deleteRequestService: (request_service_id) => $http.delete(parameterToPath('/request_service/:request_service_id', { request_service_id })),
+
+
+  /**
+   * ==================
+   *   이 미 지 테 스 트 
+   * ==================
+   */
+  /**
+   * 단일 이미지 테스트
+   */
+  postImageTest: (file) => $http.multipart('/user/imagetest', file),
+
+  /**
+   * 다수 이미지 테스트
+   */
+  postImagesTest: (file) => $http.multipart('/user/imagetests', file),
 };
 
 export default API;
