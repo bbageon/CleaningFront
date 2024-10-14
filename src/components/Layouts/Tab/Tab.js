@@ -6,16 +6,23 @@ const Tab = ({
     onChange,
     defaultActiveKey,
     activeKey,
+    isLoading,
 }) => {
     return (
         <div className='tab-container'>
-            <Tabs
-                defaultActiveKey={defaultActiveKey}
-                activeKey={activeKey}
-                tabPosition='top'
-                items={items}
-                onChange={onChange}
-            />
+            {
+                isLoading ? (
+                    <></>
+                ) : (
+                    <Tabs
+                        defaultActiveKey={defaultActiveKey}
+                        activeKey={activeKey}
+                        tabPosition='top'
+                        items={items}
+                        onChange={onChange}
+                    />
+                )
+            }
         </div>
     );
 };

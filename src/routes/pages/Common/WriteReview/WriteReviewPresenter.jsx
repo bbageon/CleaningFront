@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import { BottomButton, MainLayout, Modal, Top } from '../../../../components';
-import WriteReviewBottom from './WriteReviewBottom';
-import WriteReviewTop from './WriteReviewTop/WriteReviewTop';
+import WriteReviewBottom from './components/WriteReviewBottom';
+import WriteReviewTop from './components/WriteReviewTop/WriteReviewTop';
 
 const WriteReviewPresenter = ({
+    reviewContent,
 
+    handleReviewContent,
+
+    setRating,
 }) => {
 
     /* ===== STATE ===== */
@@ -28,7 +32,9 @@ const WriteReviewPresenter = ({
 
             />
             <WriteReviewBottom
+                handleReviewContent={handleReviewContent}
 
+                setRating={setRating}
             />
             <>
                 <BottomButton

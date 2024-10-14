@@ -1,4 +1,4 @@
-import { useCreateUserAddress, useDeleteUserAddress, useGetOneUserAddress, useGetUserAddress, useGetUserAddresses, useUpdateUserAddress } from "hooks/UserAddressHook";
+import { useCreateUserAddress, useDeleteUserAddress, useGetOneUserAddress, useGetUserAddress, useGetUserAddresses, useUpdateUserAddress } from "hooks/UserAddressHooks";
 import ComponentTestPresenter from "./ComponentTestPresenter"
 import { useCreateUser, useDeleteUser, useGetProfile, useGetUser, useGetUsers, useUpdateUser } from "hooks/UserHooks";
 

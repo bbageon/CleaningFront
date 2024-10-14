@@ -1,4 +1,4 @@
-import { Content } from '../../../../../components';
+import { Content } from '../../../../../../components';
 import './WriteReviewTop.css';
 
 const WriteReviewTop = ({

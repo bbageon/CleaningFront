@@ -11,10 +11,12 @@ const ServiceHistoryPresenter = ({
         <></>
     };
 
+    console.log(requestCleans)
+
     const TabItems = [
         {
             label: '전체',
-            key: '1',
+            key: 'all',
             children:
                 <ServiceHistoryList
                     requestCleans={requestCleans}
@@ -22,7 +24,7 @@ const ServiceHistoryPresenter = ({
         },
         {
             label: '이사/입주 청소',
-            key: '2',
+            key: 'MOVE',
             children:
                 <ServiceHistoryList
 
@@ -30,7 +32,7 @@ const ServiceHistoryPresenter = ({
         },
         {
             label: '거주/생활 청소',
-            key: '3',
+            key: 'APPLIANCES',
             children:
                 <ServiceHistoryList
 
@@ -38,7 +40,7 @@ const ServiceHistoryPresenter = ({
         },
         {
             label: '가전/가구 청소',
-            key: '4',
+            key: '',
             children:
                 <ServiceHistoryList
 
@@ -46,7 +48,7 @@ const ServiceHistoryPresenter = ({
         },
         {
             label: '건물 관리',
-            key: '5',
+            key: requestCleans.category,
             children:
                 <ServiceHistoryList
 
@@ -54,7 +56,7 @@ const ServiceHistoryPresenter = ({
         },
         {
             label: '사업장 청소',
-            key: '6',
+            key: requestCleans.category,
             children:
                 <ServiceHistoryList
 

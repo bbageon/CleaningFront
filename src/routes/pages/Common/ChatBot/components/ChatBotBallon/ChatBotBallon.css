@@ -1,6 +1,6 @@
 .chat-ballon {
-    padding: 15px;
-    font-size: 16pt;
+    /* padding: 1rem; */
+    font-size: 1rem;
     border-radius: 10px;
 
     width: fit-content;
@@ -17,6 +17,7 @@
 }
 
 .chat-ballon.other {
+    padding: 1rem;
     background-color: white;
     color: black;
 }

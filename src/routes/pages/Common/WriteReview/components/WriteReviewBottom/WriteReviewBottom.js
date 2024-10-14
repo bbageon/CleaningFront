@@ -1,8 +1,10 @@
-import { Content, ImageUpload, Textarea, InputStar } from '../../../../../components';
+import { Content, ImageUpload, Textarea, InputStar } from '../../../../../../components';
 import './WriteReviewBottom.css';
 
 const WriteReviewBottom = ({
+    handleReviewContent,
 
+    setRating,
 }) => {
     return (
         <>
@@ -14,9 +16,12 @@ const WriteReviewBottom = ({
                 <InputStar
                     size={30}
                     defaultValue={0}
+                    setRating={setRating}
                 />
                 <Textarea
                     placeholder={'요청받은 서비스에 대한 솔직한 리뷰를 남겨주세요. 불쾌한 단어 및 비속어 사용 시, 서비스 이용에 제한이 발생할 수 있습니다.'}
+                    onChange={handleReviewContent}
+                    maxLength={500}
                 />
                 <ImageUpload
 
@@ -38,7 +43,6 @@ const WriteReviewBottom = ({
                         </ol>
                     </div>
                 </div>
-
             </Content>
         </>
     );

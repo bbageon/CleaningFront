@@ -11,6 +11,7 @@ const Top = ({
     iconColor,
     absolute,
     top,
+    paddingBottom,
 }) => {
 
     /* ===== NAVIGATE ===== */
@@ -23,6 +24,7 @@ const Top = ({
                 background: background ? background : 'none',
                 position: absolute ? 'absolute' : 'relative',
                 top: absolute ? top : 'none',
+                paddingBottom: paddingBottom,
             }}
         >
             <div className='top-back'>

@@ -5,13 +5,10 @@ import CompanyList from './Components/CompanyList/CompanyList';
 const CompaniesPresenter = ({
     // 청소업체 전체 조회
     companies,
-    
+
     // 청소업체 카테고리
     companyCategories,
-    
-    // 청소업체 카테고리 지정
-    designateCompanyCategories,
-    
+
     isLoading,
 
     onTabChange,
@@ -40,7 +37,7 @@ const CompaniesPresenter = ({
     ];
 
     return (
-        <MainLayout>
+        <MainLayout>        
             <Top />
             <Tab
                 items={TabItems}

@@ -3,8 +3,9 @@ import './InputStar.css';
 
 const InputStar = ({
     disabled = false,
-    defaultValue = 0,
+    defaultValue = 1,
     size = 25,
+    setRating,
 }) => {
     return (
         <>
@@ -14,6 +15,7 @@ const InputStar = ({
                 }}
                 defaultValue={defaultValue}
                 disabled={disabled}
+                onChange={value => {setRating(value); console.log(value);}}
             />
         </>
     );

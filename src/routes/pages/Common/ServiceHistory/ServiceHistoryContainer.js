@@ -1,7 +1,7 @@
 import ServiceHistoryPresenter from "./ServiceHistoryPresenter"
-import { useGetCompanyCategories } from "hooks/CompanyCategory";
+import { useGetCompanyCategories } from "hooks/CompanyCategoryHooks";
 import { useGetCompanies } from "hooks/CompanyHooks";
-import { useGetRequestCleans } from "hooks/RequestClean";
+import { useGetRequestCleans } from "hooks/RequestCleanHooks";
 import { useGetUsers } from "hooks/UserHooks";
 import { useEffect, useMemo } from "react";
 import useHistoryStore from "store/useHistoryStore";
@@ -9,11 +9,12 @@ import useHistoryStore from "store/useHistoryStore";
 const ServiceHistoryContainer = () => {
 
     /* ===== STATE ===== */
-    const { setRequestCleans, requestCleans: storedRequestCleans } = useHistoryStore();
+
+        
     
-
-
     /* ===== VARIABLES ===== */
+    const { setRequestCleans, requestCleans: storedRequestCleans } = useHistoryStore();
+
     const { data: requestCleansRes, isLoading: requestCleansLoading, isError: requestCleansError } = useGetRequestCleans();
     const requestCleans = requestCleansRes?.data || [];
 
@@ -22,10 +23,14 @@ const ServiceHistoryContainer = () => {
 
     const { data: usersRes } = useGetUsers();
     const users = usersRes?.data || [];
+
+    const { data: companyCategoriesRes } = useGetCompanyCategories();
+    const companyCategories = companyCategoriesRes?.data || [];
     
 
 
     /* ===== FUNCTION ===== */
+    
 
     // 데이터 필터링 및 필요한 속성 추가
     const filteredRequestCleans = useMemo(() => {
@@ -50,9 +55,12 @@ const ServiceHistoryContainer = () => {
         });        
     }, [requestCleans, companies]);
 
+    
+
 
 
     /* ===== HOOKS ===== */
+
     useEffect(() => {
         if (JSON.stringify(storedRequestCleans) !== JSON.stringify(filteredRequestCleans)) {
             setRequestCleans(filteredRequestCleans);

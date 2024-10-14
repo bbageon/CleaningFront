@@ -1,6 +1,7 @@
 import useHistoryStore from "store/useHistoryStore";
 import ServiceHistoryDetailPresenter from "./ServiceHistoryDetailPresenter"
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 const ServiceHistoryDetailContainer = () => {
 

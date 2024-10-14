@@ -1,7 +1,7 @@
 import CompaniesPresenter from "./CompaniesPresenter"
 import { useGetCompanies } from "hooks/CompanyHooks";
-import { useGetCompanyCategories } from "hooks/CompanyCategory";
-import { useGetDesignateCompanyCategories } from "hooks/DesignateCompanyCategory";
+import { useGetCompanyCategories } from "hooks/CompanyCategoryHooks";
+import { useGetDesignateCompanyCategories } from "hooks/DesignateCompanyCategoryHooks";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
