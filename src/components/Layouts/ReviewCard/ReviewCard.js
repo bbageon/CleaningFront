@@ -3,10 +3,29 @@ import { Rating } from '../../Common';
 import Content from '../Content';
 import './ReviewCard.css';
 
+import test_logo from './test_logo.png';
 import test from './test.jpg';
 
-const ReviewCard = ({
+const CompanyReplyCard = ({
+    company
+}) => {
+    return (
+        <div className='review-card-company'>
+            <div className='review-card-company-img'>
+                <img src={test_logo} />
+            </div>
+            <div className='review-card-company-content-wrap'>
+                <div className='review-card-company-content'>
+                    <span className='large bold'>{company.company_name}</span>
+                    <span>이모저모님, 이용해 주셔서 감사합니다.이모저모님, 이용해 주셔서 감사합니다.이모저모님, 이용해 주셔서 감사합니다.이모저모님, 이용해 주셔서 감사합니다.이모저모님, 이용해 주셔서 감사합니다.이모저모님, 이용해 주셔서 감사합니다.</span>
+                </div>
+            </div>
+        </div>
+    );
+};
 
+const ReviewCard = ({
+    company,
 }) => {
     return (
         <div className='review-card-wrap'>
@@ -15,6 +34,7 @@ const ReviewCard = ({
                 paddingBottom={20}
                 border={true}
                 flexDirection={'column'}
+                gap={25}
             >
                 <div className='review-card-user-wrap'>
                     <div className='review-card-user-profile'>
@@ -45,14 +65,9 @@ const ReviewCard = ({
                         </div>
                     </div>
                 </div>
-                <div className='review-card-company'>
-                    <div className='review-card-company-img'>
-                        
-                    </div>
-                    <div className='review-card-company-content'>
-
-                    </div>
-                </div>
+                <CompanyReplyCard
+                    company={company}
+                />
             </Content>
         </div>
     );

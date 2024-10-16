@@ -3,7 +3,8 @@ import ServiceCard from '../ServiceCard';
 import './ServiceList.css';
 
 const ServiceList = ({
-    data
+    data,
+    companyService,
 }) => {
 
     return (
@@ -16,11 +17,20 @@ const ServiceList = ({
                 data.map((d, i) => {
                     return (
                         <ServiceCard
+                            key={i}
                             data={d}
                         />
                     )
                 })
             }
+            {/* {
+                companyService.map((service, index) => (
+                    <ServiceCard
+                        key={index}
+                        companyService={service}
+                    />
+                ))
+            } */}
         </Content>
     );
 };

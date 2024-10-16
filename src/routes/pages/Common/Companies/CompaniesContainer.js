@@ -14,7 +14,9 @@ const CompaniesContainer = ({
     const location = useLocation();
     const { tabKey } = location.state || { tabKey: 'all' };
 
-    /* ===== QUERY ===== */
+
+
+    /* ===== VARIABLES ===== */
     // 선택된 탭
     const [tabCategory, setTabCategory] = useState(tabKey);
 
@@ -32,6 +34,8 @@ const CompaniesContainer = ({
     // 청소업체 카테고리 지정 조회
     const { data: designateCompanyCategoriesRes, isLoading: designateCompanyCategoriesLoading } = useGetDesignateCompanyCategories();
     const designateCompanyCategories = designateCompanyCategoriesRes?.data || [];
+
+
 
     /* ===== FUNCTION ===== */
     // 청소업체 필터링 (카테고리)
@@ -51,6 +55,7 @@ const CompaniesContainer = ({
         setTabCategory(key);
     };
 
+    
 
     /* ===== HOOKS ===== */
     useEffect(() => {

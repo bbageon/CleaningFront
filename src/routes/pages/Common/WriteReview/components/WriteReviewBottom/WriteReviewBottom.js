@@ -2,13 +2,17 @@ import { Content, ImageUpload, Textarea, InputStar } from '../../../../../../com
 import './WriteReviewBottom.css';
 
 const WriteReviewBottom = ({
+    reviewContent,
     handleReviewContent,
 
     setRating,
+
+    uploadedImages,
+    setUploadedImages,
 }) => {
     return (
         <>
-            {/* 사진 첨부 */}
+            {/* 리뷰 내용 */}
             <Content
                 gap={30}
                 border={'7px solid var(--divider-color)'}
@@ -22,9 +26,11 @@ const WriteReviewBottom = ({
                     placeholder={'요청받은 서비스에 대한 솔직한 리뷰를 남겨주세요. 불쾌한 단어 및 비속어 사용 시, 서비스 이용에 제한이 발생할 수 있습니다.'}
                     onChange={handleReviewContent}
                     maxLength={500}
+                    value={reviewContent}
                 />
                 <ImageUpload
-
+                    uploadedImages={uploadedImages}
+                    setUploadedImages={setUploadedImages}
                 />
             </Content>
 

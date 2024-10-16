@@ -648,7 +648,7 @@ const API = {
   /**
    * 서비스 생성
    */
-  postService: () => $http.post('/service', body),
+  postService: (body) => $http.post('/service', body),
 
   /**
    * 서비스 전체 조회

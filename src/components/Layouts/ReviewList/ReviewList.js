@@ -4,7 +4,7 @@ import ReviewCard from '../ReviewCard';
 import './ReviewList.css';
 
 const ReviewList = ({
-    data,
+    company,
 }) => {
     return (
         <Content
@@ -13,7 +13,7 @@ const ReviewList = ({
             paddingTop={0}
         >
             <ReviewCard
-            
+                company={company}
             />
         </Content>
     );

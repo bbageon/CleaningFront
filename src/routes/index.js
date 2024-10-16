@@ -138,10 +138,10 @@ const Router = () => {
                     element={<DetailAddress />}
                 />
                 {/* 서비스 내역 목록 화면 */}
-                <Route
+                {/* <Route
                     path='/servicehistory'
                     element={<ServiceHistory />}
-                />
+                /> */}
                 {/* 서비스 상세 내역 화면 */}
                 <Route
                     path='/servicehistorydetail/:id'

@@ -3,6 +3,7 @@ import './Modal.css';
 import { Button } from 'components/Form';
 
 const Modal = ({
+    isOpen,
     title,
     content,
 
@@ -10,6 +11,8 @@ const Modal = ({
 
     onClick,
     onClose,
+
+    error = false,
 }) => {
 
     /* ===== STATE ===== */
@@ -19,6 +22,11 @@ const Modal = ({
     /* ===== HOOKS ===== */
 
     /* ===== RENDER ===== */
+
+    if (!isOpen) {
+        return null;
+    }
+
     return (
         <div className='modal-container'>
             <div className='modal-box'>
@@ -33,12 +41,16 @@ const Modal = ({
                         title={confirmBtnTitle}
                         onClick={onClick}
                     />
-                    <Button
-                        title={'취소'}
-                        onClick={onClose}
-                        backgroundColor={'var(--gray1-color'}
-                        color={'#000000'}
-                    />
+                    {
+                        !error && (
+                            <Button
+                                title={'취소'}
+                                onClick={onClose}
+                                backgroundColor={'var(--gray1-color'}
+                                color={'#000000'}
+                            />
+                        )
+                    }
                 </div>
             </div>
         </div>

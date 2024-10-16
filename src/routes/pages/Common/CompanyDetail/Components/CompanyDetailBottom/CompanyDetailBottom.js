@@ -3,6 +3,8 @@ import './CompanyDetailBottom.css';
 
 const CompanyDetailBottom = ({
     company,
+    companyService,
+
     data
 }) => {
 
@@ -13,6 +15,7 @@ const CompanyDetailBottom = ({
             children:
                 <ServiceList
                     data={data}
+                    companyService={companyService}
                 />
         },
         {
@@ -20,11 +23,10 @@ const CompanyDetailBottom = ({
             key: '2',
             children:
                 <ReviewList
-                
+                    company={company}
                 />
         },
     ]
-
 
     return (
         <>

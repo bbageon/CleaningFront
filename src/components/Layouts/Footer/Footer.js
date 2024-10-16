@@ -1,6 +1,6 @@
 import './Footer.css';
 import { ReactComponent as Home } from '../../../assets/icons/home.svg';
-import { ReactComponent as Cart } from '../../../assets/icons/cart.svg';
+import { ReactComponent as Chat } from '../../../assets/icons/chat.svg';
 import { ReactComponent as Broom } from '../../../assets/icons/broom.svg';
 import { ReactComponent as Profile } from '../../../assets/icons/profile.svg';
 import { useNavigate } from 'react-router-dom';
@@ -12,9 +12,9 @@ const Icons = [
         url: '/'
     },
     {
-        icon: <Cart fill={'#FFFFFF'}/>,
-        title: '장바구니',
-        url: '/shoppingcart'
+        icon: <Chat fill={'#FFFFFF'}/>,
+        title: '대화방',
+        url: '/chatroomlist'
     },
     {
         icon: <Broom fill={'#FFFFFF'}/>,

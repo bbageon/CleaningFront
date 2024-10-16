@@ -9,19 +9,12 @@ const WriteReviewPresenter = ({
     handleReviewContent,
 
     setRating,
+
+    uploadedImages,
+    setUploadedImages,
+
+    handleSubmit = { handleSubmit }
 }) => {
-
-    /* ===== STATE ===== */
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    /* ===== FUNCTION ===== */
-    const openModal = () => {
-        setIsModalOpen(true);
-    };
-
-    const closeModal = () => {
-        setIsModalOpen(false);
-    };
 
     return (
         <MainLayout>
@@ -33,25 +26,17 @@ const WriteReviewPresenter = ({
             />
             <WriteReviewBottom
                 handleReviewContent={handleReviewContent}
+                reviewContent={reviewContent}
 
                 setRating={setRating}
+
+                uploadedImages={uploadedImages}
+                setUploadedImages={setUploadedImages}
             />
-            <>
-                <BottomButton
-                    title={'완료'}
-                    onClick={openModal}
-                />
-                {
-                    isModalOpen && (
-                        <Modal
-                            title='리뷰 작성'
-                            content='리뷰를 제출하시겠습니까?'
-                            onClick={closeModal}
-                            onClose={closeModal}
-                        />
-                    )
-                }
-            </>
+            <BottomButton
+                title={'완료'}
+                onClick={handleSubmit}
+            />
 
         </MainLayout>
     );

@@ -22,10 +22,23 @@
     margin-bottom: 0.5rem;
 }
 .image-upload-container .image-upload-button-wrap button {
-    flex: 1;
-    aspect-ratio: 1;
+    width: 100%;
+    height: 100%;
     background: none;
     outline: none;
     border: 1px solid var(--gray4-color);
     border-radius: 5px;
+}
+.image-upload-container .image-upload-preview {
+    flex: 1;
+    aspect-ratio: 1;
+    background: none;
+    outline: none;
+    border: none;
+}
+
+.image-upload-preview .image-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
