@@ -83,7 +83,7 @@ export const useCreateChatMessage = (onSuccess?: (data: any) => void, onError?: 
 };
 
 /**
- * [ChatMessage] 채팅 메시지 정보 수정
+ * [ChatMessage] 채팅 메시지 수정
  * --
  */
 export const useUpdateChatMessage = (onSuccess?: (data: any) => void, onError?: (error: any) => void) => {

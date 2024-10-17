@@ -83,7 +83,7 @@ export const useCreateCart = (onSuccess?: (data: any) => void, onError?: (error:
 };
 
 /**
- * [Cart] 장바구니 정보 수정
+ * [Cart] 장바구니 수정
  * --
  */
 export const useUpdateUser = (onSuccess?: (data: any) => void, onError?: (error: any) => void) => {

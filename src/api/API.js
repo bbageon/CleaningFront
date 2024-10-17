@@ -41,6 +41,7 @@ const API = {
    * ====================
    *         고 객
    * ====================
+   * Hook 작성 완료
    */
   /*
    * 고객 생성
@@ -77,6 +78,7 @@ const API = {
    * ====================
    *       고 객 주 소
    * ====================
+   * Hook 작성 완료
    */
   /**
    * 고객 주소 생성
@@ -113,6 +115,7 @@ const API = {
    * =====================
    *       청 소 업 체
    * =====================
+   * Hook 작성 완료
    */
   /**
    * 청소업체 생성
@@ -144,6 +147,7 @@ const API = {
    * =============================
    *       청 소 업 체 카 테 고 리
    * =============================
+   * Hook 작성 완료
    */
   /**
    * 청소업체 카테고리 생성
@@ -175,6 +179,7 @@ const API = {
    * ==================================
    *       청 소 업 체 카 테 고 리 지 정
    * ==================================
+   * Hook 작성 완료
    */
   /**
    * 청소업체 카테고리 지정 생성
@@ -197,7 +202,7 @@ const API = {
   getCompanyDesignateCompanyCategory: (company_id) => $http.get(parameterToPath('/designate_company_category/company/:company_id', { company_id })),
 
   /**
-   * 청소업체 카테고리의 청소업체 전체 조회
+   * 청소업체 카테고리의 청소업체 전체 조회 // 카테고리별로 청소업체를 보여줌
    */
   getCategoryDesignateCompanyCategory: (company_category_id) => $http.get(parameterToPath('/designate_company_category/company_category/:company_category_id', { company_category_id })),
 
@@ -216,6 +221,7 @@ const API = {
    * ==================
    *       채 팅 방
    * ==================
+   * Hook 작성 완료
    */
   /**
    * 채팅방 생성
@@ -257,6 +263,7 @@ const API = {
    * ======================
    *       채 팅 메 시 지
    * ======================
+   * Hook 작성 완료
    */
   /**
    * 채팅 메시지 생성
@@ -293,6 +300,7 @@ const API = {
    * =================
    *       견 적 서 
    * =================
+   * Hook 작성 완료
    */
   /**
    * 견적서 생성
@@ -329,6 +337,7 @@ const API = {
    * =================
    *     장 바 구 니
    * =================
+   * Hook 작성 완료
    */
   /**
    * 장바구니 생성
@@ -365,6 +374,7 @@ const API = {
    * =====================
    *     장 바 구 니 목 록
    * =====================
+   * Hook 작성 완료
    */
   /**
    * 장바구니 목록 생성
@@ -389,7 +399,7 @@ const API = {
   /**
    * 장바구니 목록 서비스 조회
   */
-  getCompanyCartList: (service_id) => $http.get(parameterToPath('/cart_list/service/:service_id', { service_id })),
+  getServiceCartList: (service_id) => $http.get(parameterToPath('/cart_list/service/:service_id', { service_id })),
 
   /**
    * 장바구니 목록 수정
@@ -406,6 +416,7 @@ const API = {
    * ============
    *     리 뷰
    * ============
+   * Hook 작성 완료
    */
   /**
    * 리뷰 생성
@@ -447,6 +458,7 @@ const API = {
    * ===================
    *     리 뷰 이 미 지
    * ===================
+   * Hook 작성 완료
    */
   /**
    * 리뷰 이미지 생성
@@ -591,6 +603,7 @@ const API = {
    * ===============
    *     서 비 스 
    * ===============
+   * Hook 작성 완료
    */
   /**
    * 서비스 생성
@@ -627,6 +640,7 @@ const API = {
    * =================
    *     리 뷰 답 변
    * =================
+   * Hook 작성 완료
    */
   /**
    * 리뷰 답변 생성
@@ -668,6 +682,7 @@ const API = {
    * ====================
    *       청 소 요 청
    * ====================
+   * Hook 작성 완료
    */
   /**
    * 청소요청 생성
@@ -709,11 +724,12 @@ const API = {
    * ================================
    *       청 소 요 청 서 비 스 목 록
    * ================================
+   * Hook 작성 완료
    */
   /**
    * 청소요청 서비스 목록 생성
    */
-  poseRequestCleanServiceList: (body) => $http.post('/request_clean_service_list', body),
+  postRequestCleanServiceList: (body) => $http.post('/request_clean_service_list', body),
 
   /**
    * 청소요청 서비스 목록 전체 조회
@@ -745,11 +761,12 @@ const API = {
    * ==============================
    *       견 적 서 서 비 스 목 록
    * ==============================
+   * Hook 작성 완료
    */
   /**
    * 견적서 서비스 목록 생성
    */
-  poseEstimateServiceList: (body) => $http.post('/estimate_service_list', body),
+  postEstimateServiceList: (body) => $http.post('/estimate_service_list', body),
 
   /**
    * 견적서 서비스 목록 전체 조회

@@ -40,14 +40,26 @@ export const useGetOneCartList = (cart_list_id: number) => {
 };
 
 /**
- * [CartList] 청소업체 장바구니 목록 조회
+ * [CartList] 장바구니의 장바구니 목록 조회
  * --
  */
-export const useGetCompanyCartList = (company_id: number) => {
+export const useGetCompanyCartList = (cart_id: number) => {
     return useQuery({
-        queryKey: cartListQueryKeys.getCartList(company_id).queryKey,
-        queryFn: () => API.getCompanyCartList(company_id),
-        enabled: !!company_id,
+        queryKey: cartListQueryKeys.getCartList(cart_id).queryKey,
+        queryFn: () => API.getCompanyCartList(cart_id),
+        enabled: !!cart_id,
+    });
+};
+
+/**
+ * [CartList] 장바구니 목록 서비스 조회
+ * --
+ */
+export const useGetServiceCartList = (service_id: number) => {
+    return useQuery({
+        queryKey: cartListQueryKeys.getCartList(service_id).queryKey,
+        queryFn: () => API.getServiceCartList(service_id),
+        enabled: !!service_id,
     });
 };
 

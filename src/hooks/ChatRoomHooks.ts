@@ -40,6 +40,30 @@ export const useGetOneChatRoom = (room_id: number) => {
 };
 
 /**
+ * [ChatRoom] 고객 채팅방 조회
+ * --
+ */
+export const useGetUserChatRoom = (user_id: number) => {
+    return useQuery({
+        queryKey: chatRoomQueryKeys.getChatRoom(user_id).queryKey,
+        queryFn: () => API.getUserChatRoom(user_id),
+        enabled: !!user_id,
+    });
+};
+
+/**
+ * [ChatRoom] 청소업체 채팅방 조회
+ * --
+ */
+export const useGetCompanyChatRoom = (company_id: number) => {
+    return useQuery({
+        queryKey: chatRoomQueryKeys.getChatRoom(company_id).queryKey,
+        queryFn: () => API.getCompanyChatRoom(company_id),
+        enabled: !!company_id,
+    });
+};
+
+/**
  * [ChatRoom] 채팅방 생성
  * --
  */
@@ -71,7 +95,7 @@ export const useCreateChatRoom = (onSuccess?: (data: any) => void, onError?: (er
 };
 
 /**
- * [ChatRoom] 채팅방 정보 수정
+ * [ChatRoom] 채팅방 수정
  * --
  */
 export const useUpdateChatRoom = (onSuccess?: (data: any) => void, onError?: (error: any) => void) => {

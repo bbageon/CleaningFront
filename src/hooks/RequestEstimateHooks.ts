@@ -17,7 +17,7 @@ export const requestEstimateQueryKeys = createQueryKeys('requestEstimate', {
 });
 
 /**
- * [RequestEstimate] 견적서 요청 전체 조회
+ * [RequestEstimate] 견적서 전체 조회
  * --
  */
 export const useGetRequestEstimates = () => {
@@ -28,7 +28,7 @@ export const useGetRequestEstimates = () => {
 };
 
 /**
- * [RequestEstimate] 견적서 요청 단일 조회
+ * [RequestEstimate] 견적서 단일 조회
  * --
  */
 export const useGetRequestEstimate = (request_estimate_id: number) => {
@@ -40,7 +40,7 @@ export const useGetRequestEstimate = (request_estimate_id: number) => {
 };
 
 /**
- * [RequestEstimate] 유저 견적서 요청 조회
+ * [RequestEstimate] 고객 견적서 조회
  * --
  */
 export const useGetUserRequestEstimate = (user_id: number) => {
@@ -52,7 +52,7 @@ export const useGetUserRequestEstimate = (user_id: number) => {
 };
 
 /**
- * [RequestEstimate] 견적서 요청 생성
+ * [RequestEstimate] 견적서 생성
  * --
  */
 export const useCreateRequestEstimate = (onSuccess?: (data: any) => void, onError?: (error: any) => void) => {
@@ -83,7 +83,7 @@ export const useCreateRequestEstimate = (onSuccess?: (data: any) => void, onErro
 };
 
 /**
- * [RequestEstimate] 견적서 요청 수정
+ * [RequestEstimate] 견적서 수정
  * --
  */
 export const useUpdateRequestEstimate = (onSuccess?: (data: any) => void, onError?: (error: any) => void) => {
@@ -114,7 +114,7 @@ export const useUpdateRequestEstimate = (onSuccess?: (data: any) => void, onErro
 };
 
 /**
- * [RequestEstimate] 견적서 요청 삭제
+ * [RequestEstimate] 견적서 삭제
  * --
  */
 export const useDeleteRequestEstimate = (onSuccess?: (data: any) => void, onError?: (error:any) => void) => {

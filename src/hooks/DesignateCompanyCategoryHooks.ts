@@ -40,6 +40,30 @@ export const useGetOneDesignateCompanyCategory = (designate_id: number) => {
 };
 
 /**
+ * [DesignateCompanyCategory] 청소업체의 청소업체 카테고리 전체 조회
+ * --
+ */
+export const useGetCompanyDesignateCompanyCategory = (company_id: number) => {
+    return useQuery({
+        queryKey: designateCompanyCategoryQueryKeys.getDesignateCompanyCategory(company_id).queryKey,
+        queryFn: () => API.getCompanyDesignateCompanyCategory(company_id),
+        enabled: !!company_id,
+    });
+};
+
+/**
+ * [DesignateCompanyCategory] 청소업체 카테고리의 청소업체 전체 조회
+ * --
+ */
+export const useGetCategoryDesignateCompanyCategory = (company_category_id: number) => {
+    return useQuery({
+        queryKey: designateCompanyCategoryQueryKeys.getDesignateCompanyCategory(company_category_id).queryKey,
+        queryFn: () => API.getCategoryDesignateCompanyCategory(company_category_id),
+        enabled: !!company_category_id,
+    });
+};
+
+/**
  * [DesignateCompanyCategory] 청소업체 카테고리 지정 생성
  * --
  */

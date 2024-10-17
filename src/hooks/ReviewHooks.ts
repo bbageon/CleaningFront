@@ -52,6 +52,18 @@ export const useGetUserReview = (user_id: number) => {
 };
 
 /**
+ * [Review] 청소업체 작성된 리뷰 조회
+ * --
+ */
+export const useGetCompanyReview = (company_id: number) => {
+    return useQuery({
+        queryKey: reviewQueryKeys.getReview(company_id).queryKey,
+        queryFn: () => API.getCompanyReview(company_id),
+        enabled: !!company_id,
+    });
+};
+
+/**
  * [Review] 리뷰 생성
  * --
  */

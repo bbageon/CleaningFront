@@ -31,11 +31,11 @@ export const useGetCompanyCategories = () => {
  * [CompanyCategory] 청소업체 카테고리 단일 조회
  * --
  */
-export const useGetCompanyCategory = (company_id: number) => {
+export const useGetCompanyCategory = (category_id: number) => {
     return useQuery({
-        queryKey: companyCategoryQueryKeys.getCompanyCategory(company_id).queryKey,
-        queryFn: () => API.getOneCompanyCategory(company_id),
-        enabled: !!company_id,
+        queryKey: companyCategoryQueryKeys.getCompanyCategory(category_id).queryKey,
+        queryFn: () => API.getOneCompanyCategory(category_id),
+        enabled: !!category_id,
     });
 };
 
@@ -78,8 +78,8 @@ export const useUpdateCompanyCategory = (onSuccess?: (data: any) => void, onErro
     const queryClient = useQueryClient();
     
     return useMutation({
-        mutationFn: async ({ company_id, body }: { company_id: number, body: any }) => {
-            const response = await API.putCompanyCategory(company_id, body);
+        mutationFn: async ({ category_id, body }: { category_id: number, body: any }) => {
+            const response = await API.putCompanyCategory(category_id, body);
             return response.data;
         },
         onSuccess: (data) => {
@@ -109,8 +109,8 @@ export const useDeleteCompanyCategory = (onSuccess?: (data: any) => void, onErro
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: async (company_id: number) => {
-            const response = await API.deleteCompanyCategory(company_id);
+        mutationFn: async (category_id: number) => {
+            const response = await API.deleteCompanyCategory(category_id);
             return response.data;
         },
         onSuccess: (data) => {
