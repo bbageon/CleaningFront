@@ -1,3 +1,25 @@
 .social-login-button-wrap {
     width: 100%;
 }
+
+.login-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    align-items: center;
+}
+
+.login-info .title {
+    font-size: 30pt;
+    text-align: right;
+}
+
+.login-info .title div:first-child {
+    letter-spacing: 0.25rem;
+}
+
+.login-info .sub-title {
+    color: white;
+    word-spacing: 0.5rem;
+}

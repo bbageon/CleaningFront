@@ -9,6 +9,8 @@ const LoginContainer = ({
     const navigate = useNavigate();
     const naverRef = useRef(null);
 
+    const MAIN_URL = '/main';
+
     // 카카오 설정
     const KAKAO_REST_API_KEY = `${process.env.REACT_APP_KAKAO_REST_API_KEY}`;
     const KAKAO_SCOPE = `${process.env.REACT_APP_KAKAO_SCOPE}`;
@@ -24,6 +26,11 @@ const LoginContainer = ({
         initializeNaverLogin()
         initializeKakaoLogin()
     }, []);
+
+    // 테스트 후 삭제 요망
+    const goMain = () => {
+        navigate(MAIN_URL);
+    }
 
     // 카카오 로그인
     const KakaoLogin = () => {
@@ -59,7 +66,7 @@ const LoginContainer = ({
 
         console.log(result)
         saveToken(result?.data);
-        navigate('/');
+        navigate(MAIN_URL);
     }
 
 
@@ -86,7 +93,7 @@ const LoginContainer = ({
                     console.log(naverLogin)
                     console.log(naverLogin.user)
                     saveToken(naverLogin.user)
-                    navigate('/');
+                    navigate(MAIN_URL);
                 }
             });
         } catch (err) {
@@ -112,6 +119,8 @@ const LoginContainer = ({
 
             NaverLogin={NaverLogin}
             naverRef={naverRef}
+
+            goMain={goMain}
         />
     );
 };

@@ -13,6 +13,7 @@ const Button = ({
     backgroundColor,
     fontWeight,
     fontSize,
+    borderRadius,
 
     icon,
 }) => {
@@ -27,6 +28,7 @@ const Button = ({
                     backgroundColor: backgroundColor,
                     fontSize: fontSize,
                     fontWeight: `${fontWeight}`,
+                    borderRadius: borderRadius,
                 }}
                 onClick={onClick}
                 disabled={disabled}

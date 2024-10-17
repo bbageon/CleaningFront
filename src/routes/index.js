@@ -98,7 +98,7 @@ const Router = () => {
                 />
                 {/* ===== 메인 화면 ===== */}
                 <Route
-                    path="/"
+                    path="/main"
                     element={<Main />}
                 />
                 {/* ===== 청소 업체 목록 화면 ===== */}
@@ -172,7 +172,7 @@ const Router = () => {
                 />
                 {/* 로그인 화면 */}
                 <Route
-                    path="login"
+                    path="/"
                     element={<Login
                         setCookies={setCookies}
                     />}
