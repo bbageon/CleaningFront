@@ -29,7 +29,7 @@ const LoginPresenter = ({
                 </div>
                 <Button
                     title={'네이버로 로그인'}
-                    fontSize={'17pt'}
+                    fontSize={'1.125rem'}
                     fontWeight={600}
                     padding={20}
                     borderRadius={40}
@@ -38,7 +38,7 @@ const LoginPresenter = ({
                 />
                 <Button
                     title={'카카오톡으로 로그인'}
-                    fontSize={'17pt'}
+                    fontSize={'1.125rem'}
                     fontWeight={600}
                     padding={20}
                     borderRadius={40}
