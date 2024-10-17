@@ -5,12 +5,22 @@ import CompanyDetailBottom from './Components/CompanyDetailBottom';
 import { useParams } from 'react-router-dom';
 
 const CompanyDetailPresenter = ({
+    isLoading,
+
     company,
-    companyService,
     designateCompanyCategory,
+
+    companyReview,
+    companyAnswer,
+
+    companyService,
 
     data,
 }) => {
+
+    if (isLoading) {
+        return null;
+    }
     
     return (
         <MainLayout>
@@ -21,8 +31,11 @@ const CompanyDetailPresenter = ({
             />
 
             <CompanyDetailBottom
-                company={company}
+                companyReview={companyReview}
+                companyAnswer={companyAnswer}
+
                 companyService={companyService}
+
                 data={data}
             />
 

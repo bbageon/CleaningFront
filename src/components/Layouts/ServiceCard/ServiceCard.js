@@ -8,7 +8,7 @@ import test from './test.jpg';
 
 
 const ServiceCard = ({
-    data,
+    service,
     menuPage,
 }) => {
 
@@ -29,10 +29,10 @@ const ServiceCard = ({
             >
                 <div className='service-card-info-wrap'>
                     <div className='service-card-info-box'>
-                        <span className='sub-title'>{data.service_name}</span>
+                        <span className='sub-title'>{service.service_name}</span>
                     </div>
                     <div className='service-card-info-box'>
-                        <p className='small' style={{ lineHeight: 'normal' }}>{data.service_content}</p>
+                        <p className='small' style={{ lineHeight: 'normal' }}>{service.service_content}</p>
                     </div>
                     {
                         menuPage ? (
@@ -44,8 +44,8 @@ const ServiceCard = ({
                                     <span className='bold'>시간당</span>
                                 </div>
                                 <div className='service-card-info-box'>
-                                    <span className>{formatPrice(data.price_per_meter)}원</span>
-                                    <span className>{formatPrice(data.price_per_time)}원</span>
+                                    <span className>{formatPrice(service.price_per_meter)}원</span>
+                                    <span className>{formatPrice(service.price_per_time)}원</span>
                                 </div>
                             </div>
                         )

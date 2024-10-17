@@ -3,6 +3,8 @@ import CompanyDetailPresenter from "./CompanyDetailPresenter"
 import { useParams } from "react-router-dom";
 import { useGetCompanyService } from "hooks/ServiceHooks";
 import { useGetOneDesignateCompanyCategory } from "hooks/DesignateCompanyCategoryHooks";
+import { useGetCompanyReview } from "hooks/ReviewHooks";
+import { useGetCompanyOneReviewAnswer } from "hooks/ReviewAnswerHooks";
 
 const CompanyDetailContainer = () => {
 
@@ -12,13 +14,20 @@ const CompanyDetailContainer = () => {
     const { data: companyRes, isLoading: companyLoading, isError: companyError } = useGetCompany(companyId);
     const company = companyRes?.data || [];
 
-    const { data: companyServiceRes, isLoading: companyServiceLoading, isError: companyServiceError } = useGetCompanyService(companyId);
-    const companyService = companyServiceRes?.data || [];
-
     const { data: designateCompanyCategoryRes, isLoading: designateCompanyCategoryLoading, isError: designateCompanyCategoryError } = useGetOneDesignateCompanyCategory(companyId)
     const designateCompanyCategory = designateCompanyCategoryRes?.data || [];
 
-    
+    const { data: companyReviewRes, isLoading: companyReviewLoading, isError: companyReviewError } = useGetCompanyReview(companyId);
+    const companyReview = companyReviewRes?.data || [];
+
+    const { data: companyAnswerRes, isLoading: companyAnswerLoading, isError: companyAnswerError } = useGetCompanyOneReviewAnswer(companyId);
+    const companyAnswer = companyAnswerRes?.data || [];
+
+    // 서비스
+    const { data: companyServiceRes, isLoading: companyServiceLoading, isError: companyServiceError } = useGetCompanyService(companyId);
+    const companyService = companyServiceRes?.data || [];
+    console.log(companyService.services)
+
 
     const testList = [
         {
@@ -48,12 +57,16 @@ const CompanyDetailContainer = () => {
         <CompanyDetailPresenter
 
             company={company}
-            companyService={companyService}
             designateCompanyCategory={designateCompanyCategory}
-
+            
+            companyReview={companyReview}
+            companyAnswer={companyAnswer}
+            
+            companyService={companyService}
+            
             data = {testList}
             
-            isLoading={companyLoading || companyServiceLoading}
+            isLoading={companyLoading || companyServiceLoading || companyReviewLoading || companyAnswerLoading}
             
         />
     );

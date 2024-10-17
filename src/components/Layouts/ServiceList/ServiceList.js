@@ -14,11 +14,11 @@ const ServiceList = ({
             paddingTop={0}
         >
             {
-                data.map((d, i) => {
+                companyService.services.map((service, index) => {
                     return (
                         <ServiceCard
-                            key={i}
-                            data={d}
+                            key={index}
+                            service={service}
                         />
                     )
                 })

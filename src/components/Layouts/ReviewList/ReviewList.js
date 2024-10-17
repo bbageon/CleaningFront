@@ -4,17 +4,31 @@ import ReviewCard from '../ReviewCard';
 import './ReviewList.css';
 
 const ReviewList = ({
-    company,
+    companyReview,
+    companyAnswer,
 }) => {
+
+    /* ===== RENDER ===== */
     return (
         <Content
             paddingRight={0}
             paddingLeft={0}
             paddingTop={0}
         >
-            <ReviewCard
-                company={company}
-            />
+            {
+                companyReview.reviews.map((review, index) => {
+                    const answer = companyAnswer.review_answers.find(answer => answer.review_id === review.review_id);
+
+                    return (
+                        <ReviewCard
+                            key={index}
+                            review={review}
+                            answer={answer}
+                            companyReview={companyReview}
+                        />
+                    )
+                })
+            }
         </Content>
     );
 };

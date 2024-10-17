@@ -2,10 +2,12 @@ import { Content, ReviewList, ServiceList, TabCenter } from '../../../../../../c
 import './CompanyDetailBottom.css';
 
 const CompanyDetailBottom = ({
-    company,
+    companyReview,
+    companyAnswer,
+    
     companyService,
 
-    data
+    data,
 }) => {
 
     const TabItems = [
@@ -23,7 +25,8 @@ const CompanyDetailBottom = ({
             key: '2',
             children:
                 <ReviewList
-                    company={company}
+                    companyReview={companyReview}
+                    companyAnswer={companyAnswer}
                 />
         },
     ]

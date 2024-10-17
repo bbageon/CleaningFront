@@ -1,14 +1,21 @@
-
+import './ReviewCard.css';
 import { Rating } from '../../Common';
 import Content from '../Content';
-import './ReviewCard.css';
+import formatDate from 'utils/dateUtils';
 
 import test_logo from './test_logo.png';
 import test from './test.jpg';
 
+/**
+ * 답변 컴포넌트
+ * --
+ */
 const CompanyReplyCard = ({
-    company
+    answer,
+    companyReview
 }) => {
+
+    /* ===== RENDER ===== */
     return (
         <div className='review-card-company'>
             <div className='review-card-company-img'>
@@ -16,17 +23,23 @@ const CompanyReplyCard = ({
             </div>
             <div className='review-card-company-content-wrap'>
                 <div className='review-card-company-content'>
-                    <span className='large bold'>{company.company_name}</span>
-                    <span>이모저모님, 이용해 주셔서 감사합니다.이모저모님, 이용해 주셔서 감사합니다.이모저모님, 이용해 주셔서 감사합니다.이모저모님, 이용해 주셔서 감사합니다.이모저모님, 이용해 주셔서 감사합니다.이모저모님, 이용해 주셔서 감사합니다.</span>
+                    <span className='large bold'>{companyReview?.company.company_name}</span>
+                    <span>{answer?.answer_message}</span>
                 </div>
             </div>
         </div>
     );
 };
 
+
+
 const ReviewCard = ({
-    company,
+    review,
+    answer,
+    companyReview,
 }) => {
+
+    /* ===== RENDER ===== */
     return (
         <div className='review-card-wrap'>
             <Content
@@ -44,30 +57,35 @@ const ReviewCard = ({
                         <div className='review-card-user-box'>
                             <div className='review-card-user-info'>
                                 <div>
-                                    <span className='large bold' style={{ paddingRight: '5px' }}>이모저모</span>
+                                    <span className='large bold' style={{ paddingRight: '5px' }}>{review.user}</span>
                                     {/* <span className='small gray2'>
                                     리뷰 7 평균별점 4.0
                                 </span> */}
                                 </div>
-                                <span className='small gray2'>2024. 09. 18(수)</span>
+                                <span className='small gray2'>{formatDate(review?.created_at)}</span>
                             </div>
                             <div>
-                                <Rating rating={4} />
+                                <Rating rating={review?.rating} />
                             </div>
                         </div>
                     </div>
                     <div>
                         <div className='review-card-user-content'>
-                            <p>집 청소할 시간이 부족해서 맡겨봤는데 만족했어요!! 추천합니다잇 :) 가나다라마바사아자차타카타파하</p>
+                            <p></p>
                         </div>
                         <div className='review-card-user-content-img'>
                             <img src={test} />
                         </div>
                     </div>
                 </div>
-                <CompanyReplyCard
-                    company={company}
-                />
+                {
+                    answer && (
+                        <CompanyReplyCard
+                            answer={answer}
+                            companyReview={companyReview}
+                        />
+                    )
+                }
             </Content>
         </div>
     );
