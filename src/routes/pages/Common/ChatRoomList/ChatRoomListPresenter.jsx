@@ -1,5 +1,5 @@
 import './ChatRoomList.css';
-import { MainLayout } from '../../../../components';
+import { MainLayout, Top } from '../../../../components';
 import ChatList from './components/ChatList';
 
 const ChatRoomListPresenter = ({
@@ -7,9 +7,10 @@ const ChatRoomListPresenter = ({
 }) => {
     return (
         <MainLayout>
-            <div className="room-list-header">
-                대화방 목록
-            </div>
+            <Top
+                title={'대화방 목록'}
+                notShowIcon={true}
+            />
             <ChatList
                 chatList={chatList}
             />

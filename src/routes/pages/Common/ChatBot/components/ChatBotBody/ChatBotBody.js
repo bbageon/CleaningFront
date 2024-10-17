@@ -12,6 +12,7 @@ const ChatBotBody = ({
                         chatInfo={chat}
                         type={chat.type}
                         buttonType={idx > 1 && 'dark'}
+                        chatIndex={idx}
                     />
                 ))
             }

@@ -5,8 +5,9 @@ const ChatBotBallon = ({
     chatInfo,
     type,
     buttonType,
+    chatIndex,
 }) => {
-    const { title, option, event } = chatInfo;
+    const { title, option, event, enabled } = chatInfo;
 
     return (
         <div
@@ -22,8 +23,9 @@ const ChatBotBallon = ({
                                 <ChatBotButton
                                     title={option_title}
                                     content={value}
-                                    onClick={() => event(opt)}
+                                    onClick={() => event(opt, chatIndex)}
                                     buttonType={buttonType}
+                                    enabled={enabled}
                                 />
                             </div>
                         )

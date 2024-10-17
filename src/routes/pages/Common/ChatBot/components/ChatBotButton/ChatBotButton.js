@@ -5,13 +5,16 @@ const ChatBotButton = ({
     content,
     onClick,
     buttonType,
+    enabled,
 }) => {
+
     return (
         <div className='chatbot-button-container'>
             <span className='chatbot-title'>{option_title}</span>
             <button
                 className={`chatbot-button ${buttonType}`}
                 onClick={onClick}
+                disabled={!enabled}
             >
                 {content}
             </button>
