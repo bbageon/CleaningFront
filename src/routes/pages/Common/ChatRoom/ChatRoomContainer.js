@@ -75,14 +75,14 @@ const ChatRoomContainer = ({
                             // setReceiver(chatInfo.data.company.name);
                         } else {
                             // setSender(chatInfo.data.company.name);
-                            setReceiver('홍길동');
+                            setSender('홍길동');
                             setReceiver(chatInfo.data.user.name);
                         }
 
                         const chatMessageInfo = await API.getOneChatMessage(room_id);
                         if (chatMessageInfo.status !== 200) throw new Error(`[ChatRoomContainer][getOneChatMessage] Error`);
-                        setChatList(chatMessageInfo.data);
-                        setChatList(chatMessageInfo.data);
+                        setChatList(chatMessageInfo.data.room_messages);
+                        console.log(chatMessageInfo.data)
                     } catch (e) {
                         console.log(e.message);
                     }
