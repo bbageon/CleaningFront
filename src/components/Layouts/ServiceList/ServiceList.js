@@ -3,10 +3,10 @@ import ServiceCard from '../ServiceCard';
 import './ServiceList.css';
 
 const ServiceList = ({
-    data,
     companyService,
 }) => {
-
+    
+    /* ===== RENDER ===== */
     return (
         <Content
             paddingRight={0}
@@ -14,23 +14,17 @@ const ServiceList = ({
             paddingTop={0}
         >
             {
-                companyService.services.map((service, index) => {
-                    return (
+                companyService && companyService.services && companyService.services.length > 0 ? (
+                    companyService.services.map((service, index) => (
                         <ServiceCard
                             key={index}
                             service={service}
                         />
-                    )
-                })
+                    ))
+                ) : (
+                    <Content><span className='gray1 medium'>등록된 서비스가 없습니다.</span></Content>
+                )
             }
-            {/* {
-                companyService.map((service, index) => (
-                    <ServiceCard
-                        key={index}
-                        companyService={service}
-                    />
-                ))
-            } */}
         </Content>
     );
 };

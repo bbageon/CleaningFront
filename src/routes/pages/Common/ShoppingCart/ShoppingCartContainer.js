@@ -1,9 +1,15 @@
 import ShoppingCartPresenter from "./ShoppingCartPresenter";
 
 const ShoppingCartContainer = () => {
+
+    /* ===== VARIABLES ===== */
+
+    /* ===== RENDER ===== */
     return (
-        <ShoppingCartPresenter/>
-    )
-}
+        <ShoppingCartPresenter
+        
+        />
+    );
+};
 
 export default ShoppingCartContainer;

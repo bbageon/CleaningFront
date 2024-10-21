@@ -7,21 +7,22 @@ const ServiceInfo = ({
     requestDetail
 }) => {
 
-    // 1: MOVE
-    // 2: APPLIANCES
-    // 3: WORKPLACE
-    // 4: MANAGEMENT
-    // 5: RESIDENCE
-    // 6: SPECIAL
-
     const categoryLabels = {
-        'MOVE': '이사/입주청소',
-        'APPLIANCES': '가전/가구청소',
-        'WORKPLACE': '사업장청소',
-        'MANAGEMENT': '건물 관리',
-        'RESIDENCE': '가사도우미/생활청소',
-        'SPECIAL': '전문/특수청소',
+        1: '이사/입주청소',        // MOVE
+        2: '거주/생활청소',        // RESIDENCE
+        3: '가전/가구청소',        // APPLIANCES
+        4: '전문/특수청소',        // SPECIAL
+        5: '사업장청소',           // WORKPLACE
+        6: '건물관리',            // MANAGEMENT
     };
+
+    const periodLabels = {
+        'NONE': '없음',
+        'EVERYWEEK': '매주',
+        'BIWEEKLY': '격주',
+        'MONTHLY': '매월',
+        'ONCE': '이번 한번만',
+    }
 
     return (
         <div className='service-history-detail-card-wrap'>
@@ -36,7 +37,7 @@ const ServiceInfo = ({
                     </div>
                     <div className='service-history-detail-card-between'>
                         <p className='gray2'>주기</p>
-                        <p>매주</p>
+                        <p>{periodLabels[requestDetail.request_period]}</p>
                     </div>
                     {/* <div className='service-history-detail-card-between'>
                         <p className='gray2'>요일</p>
@@ -48,7 +49,7 @@ const ServiceInfo = ({
                     </div>
                     <div className='service-history-detail-card-between'>
                         <p className='gray2'>시작 시간</p>
-                        <p>{formatTime(requestDetail.request_time)} ~ {formatTime(requestDetail.request_end_time)}</p>
+                        <p>{formatTime(requestDetail.start_clean_date)} ~ {formatTime(requestDetail.end_clean_date)}</p>
                     </div>
                 </div>
 

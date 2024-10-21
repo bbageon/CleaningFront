@@ -1,23 +1,22 @@
 import { React, useState } from 'react';
 import './RadioButton.css';
+import formatPrice from 'utils/priceUtils';
+import BottomButton from '../BottomButton';
 
-// dummy options
-const dummy_options = [
-    { id: 'option1', name: '김재모의 재모1', price: 10000 },
-    { id: 'option2', name: '김재모의 재모2', price: 20000 },
-    { id: 'option3', name: '김재모의 재모3', price: 5000 },
-    { id: 'option4', name: '김재모의 재모4', price: 1000 }
-];
 
 const RadioButton = ({
-    options = dummy_options
+    options,
+    setPrice,
 }) => {
+
     /* ===== STATE ===== */
-    const [selected, setSelected] = useState(options[0]?.id || '');
+    const [selected, setSelected] = useState('');
 
     /* ===== FUNCTION ===== */
-    const handleChange = (event) => {
-        setSelected(event.target.value);
+    const handleChange = (e) => {
+        const selectedOption = options.find(option => option.id === e.target.value);
+        setSelected(e.target.value);
+        setPrice(selectedOption.price);
     };
 
     /* ===== HOOKS ===== */
@@ -42,7 +41,7 @@ const RadioButton = ({
                             </div>
                             <div className='radio-button-right'>
                                 <span className='bold'>
-                                    +{option.price}원
+                                    + {option.price && formatPrice(option?.price)} 원
                                 </span>
                             </div>
                         </div>

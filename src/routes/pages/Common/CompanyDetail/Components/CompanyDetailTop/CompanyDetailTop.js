@@ -7,9 +7,15 @@ import test from './test.png';
 
 const CompanyDetailTop = ({
     company,
+    companyReview,
     designateCompanyCategory,
     
 }) => {
+
+    /* ===== VARIABLES ===== */
+    const companyTotalReviewCount = companyReview.reviews.length;
+
+    /* ===== RENDER ===== */
     return (
         <Content
             paddingLeft={0}
@@ -33,11 +39,14 @@ const CompanyDetailTop = ({
                         height={16}
                     />
                     <span className='rating'>{company.total_rating}.0</span>
-                    <span className='review-count'>{company.total_review_count >= 100 ? '(100+)' : `(${company.total_review_count})`}</span>
+                    <span className='review-count'>{companyTotalReviewCount >= 100 ? '(100+)' : `(${companyTotalReviewCount})`}</span>
                 </div>
                 <div className='company-detail-top-info2'>
-                    <span className='flagship-service'>이사/입주청소</span>
-                    <span className='flagship-service'>거주/생활청소</span>
+                    {
+                        designateCompanyCategory.designateCategories.map((category, index) => (
+                            <span key={index} className='flagship-service'>{category.company_category.category_name}</span>
+                        ))
+                    }
                 </div>
             </div>
 

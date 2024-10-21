@@ -1,58 +1,36 @@
-import { useGetCompany } from "hooks/CompanyHooks";
 import CompanyDetailPresenter from "./CompanyDetailPresenter"
+import { useGetCompany } from "hooks/CompanyHooks";
 import { useParams } from "react-router-dom";
 import { useGetCompanyService } from "hooks/ServiceHooks";
-import { useGetOneDesignateCompanyCategory } from "hooks/DesignateCompanyCategoryHooks";
+import { useGetCompanyDesignateCompanyCategory } from "hooks/DesignateCompanyCategoryHooks";
 import { useGetCompanyReview } from "hooks/ReviewHooks";
 import { useGetCompanyOneReviewAnswer } from "hooks/ReviewAnswerHooks";
+import useCartStore from "store/useCartStore";
+import formatPrice from "utils/priceUtils";
 
 const CompanyDetailContainer = () => {
 
     // 청소업체
-    const { id : companyId } = useParams();
+    const { id : company_id } = useParams();
 
-    const { data: companyRes, isLoading: companyLoading, isError: companyError } = useGetCompany(companyId);
+    const { data: companyRes, isLoading: companyLoading, isError: companyError } = useGetCompany(company_id);
     const company = companyRes?.data || [];
 
-    const { data: designateCompanyCategoryRes, isLoading: designateCompanyCategoryLoading, isError: designateCompanyCategoryError } = useGetOneDesignateCompanyCategory(companyId)
+    const { data: designateCompanyCategoryRes, isLoading: designateCompanyCategoryLoading, isError: designateCompanyCategoryError } = useGetCompanyDesignateCompanyCategory(company_id)
     const designateCompanyCategory = designateCompanyCategoryRes?.data || [];
 
-    const { data: companyReviewRes, isLoading: companyReviewLoading, isError: companyReviewError } = useGetCompanyReview(companyId);
+    const { data: companyReviewRes, isLoading: companyReviewLoading, isError: companyReviewError } = useGetCompanyReview(company_id);
     const companyReview = companyReviewRes?.data || [];
 
-    const { data: companyAnswerRes, isLoading: companyAnswerLoading, isError: companyAnswerError } = useGetCompanyOneReviewAnswer(companyId);
+    const { data: companyAnswerRes, isLoading: companyAnswerLoading, isError: companyAnswerError } = useGetCompanyOneReviewAnswer(company_id);
     const companyAnswer = companyAnswerRes?.data || [];
 
-    // 서비스
-    const { data: companyServiceRes, isLoading: companyServiceLoading, isError: companyServiceError } = useGetCompanyService(companyId);
+    const { data: companyServiceRes, isLoading: companyServiceLoading, isError: companyServiceError } = useGetCompanyService(company_id);
     const companyService = companyServiceRes?.data || [];
-    console.log(companyService.services)
 
-
-    const testList = [
-        {
-            service_id: 1,
-            service_name: '서비스 옵션1',
-            service_content: '이 청소는 서비스 옵션1로 김재모의 노하우를 제공합니다.',
-            price_per_meter: 10000,
-            price_per_time: 10000,
-        },
-        {
-            service_id: 1,
-            service_name: '서비스 옵션1',
-            service_content: '이 청소는 서비스 옵션1로 김재모의 노하우를 제공합니다.',
-            price_per_meter: 10000,
-            price_per_time: 10000,            
-        },
-        {
-            service_id: 1,
-            service_name: '서비스 옵션1',
-            service_content: '이 청소는 서비스 옵션1로 김재모의 노하우를 제공합니다.',
-            price_per_meter: 10000,
-            price_per_time: 10000,
-        },
-    ];
-
+    const totalPrice = useCartStore((state) => state.totalPrice);
+    
+    /* ===== RENDER ===== */
     return (
         <CompanyDetailPresenter
 
@@ -64,10 +42,10 @@ const CompanyDetailContainer = () => {
             
             companyService={companyService}
             
-            data = {testList}
-            
-            isLoading={companyLoading || companyServiceLoading || companyReviewLoading || companyAnswerLoading}
-            
+            isLoading={companyLoading || companyServiceLoading || companyReviewLoading || companyAnswerLoading || designateCompanyCategoryLoading}
+
+            totalPrice={totalPrice}
+            formatPrice={formatPrice}
         />
     );
 };

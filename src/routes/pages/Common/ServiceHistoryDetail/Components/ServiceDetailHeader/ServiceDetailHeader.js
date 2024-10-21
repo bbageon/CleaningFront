@@ -5,18 +5,9 @@ const ServiceDetailHeader = ({
     requestDetail,
 }) => {
 
-    /* ===== STATUS 관리 ===== */
-
-    // 0: NONE
-    // 1: WAITING
-    // 2: CANCELED
-    // 3: DONE
-    // 4: CLEANING
-    // 5: PAY_WAITING
-
     let message, messageColor;
 
-    switch (requestDetail.request_clean_status) {
+    switch (requestDetail?.request_status) {
         case 'DONE':
             message = '완료';
             messageColor = 'var(--green-color)';
@@ -50,7 +41,7 @@ const ServiceDetailHeader = ({
                 <div className='large'>
                     <span style={{ color: messageColor }}>{message}</span>
                     {
-                        requestDetail.request_clean_status === 'WAITING' || requestDetail.request_clean_status === 'PAY_WAITING' ? (
+                        requestDetail?.request_status === 'WAITING' || requestDetail?.request_status === 'PAY_WAITING' || requestDetail?.request_status === 'CLEANING' ? (
                             <span>인 요청입니다.</span>
                         ) : (
                             <span>된 요청입니다.</span>

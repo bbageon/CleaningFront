@@ -57,6 +57,7 @@ const Top = ({
                             />
                             <Cart
                                 fill={iconColor ? iconColor : '#005abd'}
+                                onClick={() => { navigate('/shoppingcart')}}
                             />
                         </>
                     )

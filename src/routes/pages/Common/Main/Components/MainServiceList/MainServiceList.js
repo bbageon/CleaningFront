@@ -14,38 +14,32 @@ import { ReactComponent as CleanIcon6 } from '../../../../../../assets/icons/cle
 const cleaningServicesList = [
     {
         serviceId: 1,
-        serviceName: '가사도우미/생활청소',
-        url: '/componenttest',
+        serviceName: '이사/입주청소',
         icon: <CleanIcon1 />
     },
     {
         serviceId: 2,
-        serviceName: '이사/입주청소',
-        url: '',
+        serviceName: '거주/생활청소',
         icon: <CleanIcon2 />
     },
     {
         serviceId: 3,
         serviceName: '가전/가구청소',
-        url: '',
         icon: <CleanIcon3 />
     },
     {
         serviceId: 4,
         serviceName: '전문/특수청소',
-        url: '',
         icon: <CleanIcon4 />
     },
     {
         serviceId: 5,
         serviceName: '사업장청소',
-        url: '',
         icon: <CleanIcon5 />
     },
     {
         serviceId: 6,
-        serviceName: '건물 관리',
-        url: '',
+        serviceName: '건물관리',
         icon: <CleanIcon6 />
     },
 ];

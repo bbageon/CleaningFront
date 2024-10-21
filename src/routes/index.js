@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes, useFetcher } from 'react-router-dom';
 import { io } from 'socket.io-client';
+import { cookie } from "../util";
+import { ScrollToTop, Toast } from "components";
 
 /**
  * 페이지
@@ -27,8 +29,6 @@ import {
     Login,
     ImageTest,
 } from "./pages";
-import { cookie } from "../util";
-import { ScrollToTop } from "components";
 
 const Router = () => {
     const socketRef = useState(null);
@@ -90,6 +90,7 @@ const Router = () => {
     return (
         <div className="app">
             <ScrollToTop />
+            <Toast />
             <Routes>
                 {/* ===== 컴포넌트 테스트 ===== */}
                 <Route
@@ -107,24 +108,16 @@ const Router = () => {
                     element={<Companies />}
                 />
                 {/* ===== 청소 업체 상세 화면 ===== */}
-                {/* company_id */}
                 <Route
                     path='/companydetail/:id'
                     element={<CompanyDetail />}
                 />
                 {/* ===== 청소 업체 메뉴 상세 화면 ===== */}
-                {/* company_id, menu_id */}
                 <Route
-                    path='/companymenu'
+                    path='/companydetail/:company_id/service/:service_id'
                     element={<CompanyMenu />}
                 />
-                {/* 결제 화면 */}
-                <Route
-                    path='/payment'
-                    element={<Payment />}
-                />
                 {/* 주소 등록 화면 */}
-                {/* user_id */}
                 <Route
                     path='/addressregistration'
                     element={<AddressRegistration />}
@@ -138,10 +131,10 @@ const Router = () => {
                     element={<DetailAddress />}
                 />
                 {/* 서비스 내역 목록 화면 */}
-                {/* <Route
+                <Route
                     path='/servicehistory'
                     element={<ServiceHistory />}
-                /> */}
+                />
                 {/* 서비스 상세 내역 화면 */}
                 <Route
                     path='/servicehistorydetail/:id'
@@ -149,7 +142,7 @@ const Router = () => {
                 />
                 {/* 리뷰 작성 화면 */}
                 <Route
-                    path='writereview'
+                    path='/writereview/:request_clean_id'
                     element={<WriteReview />}
                 />
                 {/* 대화방 화면 */}
@@ -177,7 +170,6 @@ const Router = () => {
                         setCookies={setCookies}
                     />}
                 />
-
                 {/* 테스트 */}
                 <Route
                     path="imagetest"

@@ -1,25 +1,33 @@
 import "./ShoppingCart.css";
-import { MainLayout, Top } from "../../../../components";
+import { BottomButton, MainLayout, Top } from "../../../../components";
 import CompanyTitle from "./components/CompanyTitle";
 import CompanyContent from "./components/CompanyContent/CompanyContent";
 import Coupon from "./components/Coupon";
 import TotalPriceCheck from "./components/TotalPriceCheck";
-import Button from "../../../../components/Button";
 
 const ShoppingCartPresenter = ({
-    
+
 }) => {
     return (
         <MainLayout>
-            <Top></Top>
-            <CompanyTitle></CompanyTitle>
-            <CompanyContent></CompanyContent>
-            <Coupon></Coupon>
-            <TotalPriceCheck></TotalPriceCheck>
-            <Button
-                flexDirection={'row'}
-                gap={'20'}
-                Link={'/'}
+            <Top
+                notShowIcon={true}
+                title={'장바구니'}
+            />
+            <CompanyTitle
+
+            />
+            <CompanyContent
+            
+            />
+            <Coupon
+
+            />
+            <TotalPriceCheck
+
+            />
+            <BottomButton
+                title={'결제하기'}
             />
         </MainLayout>
     );

@@ -14,7 +14,7 @@ const CustomerInfo = ({
                 <div className='service-history-detail-card-info'>
                     <div className='service-history-detail-card-between'>
                         <p className='gray2'>이름</p>
-                        <p>{requestDetail.user_name}</p>
+                        <p>{requestDetail.user.name}</p>
                     </div>
                     <div className='service-history-detail-card-between'>
                         <p className='gray2'>주소</p>
@@ -25,7 +25,7 @@ const CustomerInfo = ({
                     </div>
                     <div className='service-history-detail-card-between'>
                         <p className='gray2'>전화번호</p>
-                        <p>{formatPhone(requestDetail.user_phone)}</p>
+                        <p>{formatPhone(requestDetail.user.phone)}</p>
                     </div>
                 </div>
 

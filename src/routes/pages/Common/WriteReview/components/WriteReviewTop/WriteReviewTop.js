@@ -2,8 +2,7 @@ import { Content } from '../../../../../../components';
 import './WriteReviewTop.css';
 
 const WriteReviewTop = ({
-    img,
-    company_name = '김재모의 카피바라 청소'
+    requestInfo,
 }) => {
     return (
         <Content
@@ -11,10 +10,10 @@ const WriteReviewTop = ({
             border={'7px solid var(--divider-color)'}
         >
             <div className='write-review-logo'>
-                <img src={img} />
+                <img src={requestInfo.company.logo_image} />
             </div>
             <div>
-                <span className='maximum'>{company_name}</span>
+                <span className='maximum'>{requestInfo.company.company_name}</span>
             </div>
         </Content>
     );

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './Modal.css';
 import { Button } from 'components/Form';
+import useModalStore from 'store/useModalStore';
 
 const Modal = ({
     isOpen,
@@ -8,25 +9,30 @@ const Modal = ({
     content,
 
     confirmBtnTitle = '확인',
-
-    onClick,
-    onClose,
-
-    error = false,
 }) => {
+
+    /* ===== VARIABLES ===== */
+    const { onConfirm, closeModal, buttonType } = useModalStore();
 
     /* ===== STATE ===== */
 
     /* ===== FUNCTION ===== */
-
-    /* ===== HOOKS ===== */
-
-    /* ===== RENDER ===== */
-
     if (!isOpen) {
         return null;
     }
 
+    const handleConfirm = () => {
+        if (onConfirm) {
+            onConfirm();
+        }
+        closeModal();
+    };
+
+    /* ===== HOOKS ===== */
+
+    
+    
+    /* ===== RENDER ===== */
     return (
         <div className='modal-container'>
             <div className='modal-box'>
@@ -39,13 +45,13 @@ const Modal = ({
                 <div className='modal-button-wrap'>
                     <Button
                         title={confirmBtnTitle}
-                        onClick={onClick}
+                        onClick={handleConfirm}
                     />
                     {
-                        !error && (
+                        buttonType === 'double' && (
                             <Button
                                 title={'취소'}
-                                onClick={onClose}
+                                onClick={closeModal}
                                 backgroundColor={'var(--gray1-color'}
                                 color={'#000000'}
                             />

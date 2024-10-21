@@ -1,24 +1,29 @@
+import { memo, useMemo } from 'react';
 import { Content, MainLayout, Tab, Top } from '../../../../components';
 import './Companies.css';
 import CompanyList from './Components/CompanyList/CompanyList';
 
 const CompaniesPresenter = ({
+    // 로딩 처리
+    isLoading,
+
     // 청소업체 전체 조회
     companies,
 
     // 청소업체 카테고리
-    companyCategories,
+    categories,
 
-    isLoading,
+    // 카테고리에 따른 청소업체 조회
+    companiesByCategory,
 
+    // 청소업체 카테고리 지정 전체 조회
+    designateCompanyCategory,
+
+    // 탭 이벤트
     onTabChange,
+
     tabKey,
 }) => {
-
-    // 데이터 로딩 상태 처리
-    if (isLoading) {
-        return <></>
-    };
 
     const TabItems = [
         {
@@ -27,17 +32,26 @@ const CompaniesPresenter = ({
             children:
                 <CompanyList
                     companies={companies}
+                    designateCompanyCategory={designateCompanyCategory}
                 />,
         },
-        ...companyCategories.map(category => ({
-            label: category.category_name,
+        ...categories.map(category => ({
             key: category.category_id,
-            children: <CompanyList companies={companies} />
+            label: category.category_name,
+            children:
+                <CompanyList
+                    companies={companiesByCategory.designateCategories}
+                    designateCompanyCategory={designateCompanyCategory}
+                />
         })),
     ];
 
+    if (isLoading) {
+        return null;
+    };
+
     return (
-        <MainLayout>        
+        <MainLayout>
             <Top />
             <Tab
                 items={TabItems}

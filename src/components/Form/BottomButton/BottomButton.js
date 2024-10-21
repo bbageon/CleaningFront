@@ -4,7 +4,6 @@ const BottomButton = ({
     title,
     disabled,
     onClick,
-
 }) => {
     return (
         <div className='bottom-button-container'>

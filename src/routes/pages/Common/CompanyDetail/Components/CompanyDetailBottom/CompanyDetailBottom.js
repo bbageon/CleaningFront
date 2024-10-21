@@ -4,10 +4,8 @@ import './CompanyDetailBottom.css';
 const CompanyDetailBottom = ({
     companyReview,
     companyAnswer,
-    
-    companyService,
 
-    data,
+    companyService,
 }) => {
 
     const TabItems = [
@@ -15,19 +13,26 @@ const CompanyDetailBottom = ({
             label: '청소서비스',
             key: '1',
             children:
-                <ServiceList
-                    data={data}
-                    companyService={companyService}
-                />
+                companyService && companyService.services ? (
+                    <ServiceList
+                        companyService={companyService}
+                    />
+                ) : (
+                    <></>
+                )
         },
         {
             label: '리뷰',
             key: '2',
             children:
-                <ReviewList
-                    companyReview={companyReview}
-                    companyAnswer={companyAnswer}
-                />
+                companyReview && companyReview.reviews ? (
+                    <ReviewList
+                        companyReview={companyReview}
+                        companyAnswer={companyAnswer}
+                    />
+                ) : (
+                    <></>
+                )
         },
     ]
 

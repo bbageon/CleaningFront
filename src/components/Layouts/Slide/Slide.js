@@ -46,7 +46,7 @@ const Slide = ({
                 {
                     datas.map((data, index) => {
                         return (
-                            <div id={index} className='slide-content'>
+                            <div key={index} className='slide-content'>
                                 <div className='slide-content-img'>
                                     <img>
                                     </img>

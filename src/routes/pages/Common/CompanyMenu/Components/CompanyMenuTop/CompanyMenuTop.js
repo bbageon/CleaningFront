@@ -4,7 +4,7 @@ import './CompanyMenuTop.css';
 import test from './test.jpg';
 
 const CompanyMenuTop = ({
-
+    service,
 }) => {
     return (
         <div className='company-menu-top-wrap'>
@@ -14,9 +14,11 @@ const CompanyMenuTop = ({
             />
             <div className='company-menu-top'>
                 <img src={test} />
+                {/* <img src={service.service_image} alt='service_image' /> */}
             </div>
             <ServiceCard
-                menuPage={true}
+                service={service}
+                isMenuPage={true}
             />
         </div>
     );

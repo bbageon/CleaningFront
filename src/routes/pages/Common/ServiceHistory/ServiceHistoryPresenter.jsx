@@ -4,14 +4,12 @@ import './ServiceHistory.css';
 
 const ServiceHistoryPresenter = ({
     isLoading,
-    requestCleans
+    userRequestClean,
 }) => {
 
     if (isLoading) {
-        <></>
+        return null;
     };
-
-    console.log(requestCleans)
 
     const TabItems = [
         {
@@ -19,7 +17,7 @@ const ServiceHistoryPresenter = ({
             key: 'all',
             children:
                 <ServiceHistoryList
-                    requestCleans={requestCleans}
+                    userRequestClean={userRequestClean}
                 />
         },
         {
@@ -27,7 +25,7 @@ const ServiceHistoryPresenter = ({
             key: 'MOVE',
             children:
                 <ServiceHistoryList
-
+                    userRequestClean={userRequestClean}
                 />
         },
         {
@@ -35,7 +33,7 @@ const ServiceHistoryPresenter = ({
             key: 'APPLIANCES',
             children:
                 <ServiceHistoryList
-
+                    userRequestClean={userRequestClean}
                 />
         },
         {
@@ -43,23 +41,23 @@ const ServiceHistoryPresenter = ({
             key: '',
             children:
                 <ServiceHistoryList
-
+                    userRequestClean={userRequestClean}
                 />
         },
         {
             label: '건물 관리',
-            key: requestCleans.category,
+            key: '5',
             children:
                 <ServiceHistoryList
-
+                    userRequestClean={userRequestClean}
                 />
         },
         {
             label: '사업장 청소',
-            key: requestCleans.category,
+            key: '6',
             children:
                 <ServiceHistoryList
-
+                    userRequestClean={userRequestClean}
                 />
         },
     ];

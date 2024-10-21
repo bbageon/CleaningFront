@@ -4,27 +4,27 @@ import './ServiceCard.css';
 import formatPrice from 'utils/priceUtils';
 
 import test from './test.jpg';
+import { useCustomContext } from 'context/CustomContext';
 
 
 
 const ServiceCard = ({
     service,
-    menuPage,
+    isMenuPage,
 }) => {
 
-    // TEST NAVIGATE
-    const navigate = useNavigate();
+    const { navigate } = useCustomContext();
 
     return (
         <div
             className='service-card-wrap'
-            onClick={() => navigate('/companymenu')}
+            onClick={() => navigate(`companydetail/${service.company_id}/service/${service.service_id}`)}
         >
             <Content
                 paddingTop={20}
                 paddingBottom={20}
                 flexDirection={'row'}
-                border={menuPage ? '10px solid var(--divider-color)' : true}
+                border={isMenuPage ? '10px solid var(--divider-color)' : true}
                 gap={'10'}
             >
                 <div className='service-card-info-wrap'>
@@ -35,7 +35,7 @@ const ServiceCard = ({
                         <p className='small' style={{ lineHeight: 'normal' }}>{service.service_content}</p>
                     </div>
                     {
-                        menuPage ? (
+                        isMenuPage ? (
                             <></>
                         ) : (
                             <div className='service-card-price-wrap'>
@@ -55,7 +55,7 @@ const ServiceCard = ({
                     </div> */}
                 </div>
                 {
-                    menuPage ? (
+                    isMenuPage ? (
                         <></>
                     ) : (
                         <div className='service-card-img-box'>

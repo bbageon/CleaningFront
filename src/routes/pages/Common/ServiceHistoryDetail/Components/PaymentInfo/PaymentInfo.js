@@ -6,13 +6,6 @@ const PaymentInfo = ({
     requestDetail,
 }) => {
 
-    // 0: NONE
-    // 1: WAITING
-    // 2: CANCELED
-    // 3: DONE
-    // 4: CLEANING
-    // 5: PAY_WAITING
-
     return (
         <div className='service-history-detail-card-wrap'>
             <Content>
@@ -26,20 +19,22 @@ const PaymentInfo = ({
                     <div className='service-history-detail-card-between'>
                         <span>결제금액</span>
                         {
-                            requestDetail.request_clean_status === 'CANCELED' ? (
-                                <span className='strike-through-text'>{formatPrice(requestDetail.price)}{requestDetail.unit}</span>
+                            requestDetail.request_status === 'CANCELED' ? (
+                                // <span className='strike-through-text'>{formatPrice(requestDetail.total_price)}{requestDetail.unit}</span>
+                                <span className='strike-through-text'>{formatPrice(requestDetail.total_price)} 원</span>
                             ) : (
-                                <span>{formatPrice(requestDetail.price)}{requestDetail.unit}</span>
+                                // <span>{formatPrice(requestDetail.total_price)}{requestDetail.unit}</span>
+                                <span>{formatPrice(requestDetail.total_price)} 원</span>
                             )
                         }
                     </div>
                     {
-                        requestDetail.request_clean_status === 'PAY_WAITING' ? (
+                        requestDetail.request_status === 'PAY_WAITING' ? (
                             <span className='gray1 end'>결제하기 ⟩</span>
                         ) : (
                             <div className='service-history-detail-card-payment'>
                                 {
-                                    requestDetail.request_clean_status === 'NONE' ? (
+                                    requestDetail.request_status === 'NONE' ? (
                                         <></>
                                     ) : (
                                         <>
@@ -49,7 +44,7 @@ const PaymentInfo = ({
                                             </div>
                                             <div className='service-history-detail-card-between small'>
                                                 {
-                                                    requestDetail.request_clean_status === 'CANCELED' ? (
+                                                    requestDetail.request_status === 'CANCELED' ? (
                                                         <span className='gray2'>취소일자</span>
                                                     ) : (
                                                         <span className='gray2'>결제일자</span>

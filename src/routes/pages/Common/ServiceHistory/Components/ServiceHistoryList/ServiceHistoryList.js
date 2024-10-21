@@ -3,7 +3,7 @@ import ServiceHistoryCard from '../ServiceHistoryCard';
 import './ServiceHistoryList.css';
 
 const ServiceHistoryList = ({
-    requestCleans,
+    userRequestClean,
 }) => {
 
     return (
@@ -14,11 +14,11 @@ const ServiceHistoryList = ({
             paddingLeft={0}
         >
             {
-                requestCleans.map((data, index) => {
+                userRequestClean.request_cleans.map((request, index) => {
                     return (
                         <ServiceHistoryCard
                             key={index}
-                            data={data}
+                            request={request}
                         />
                     )
                 })

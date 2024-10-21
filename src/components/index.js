@@ -5,6 +5,7 @@
 export {
     Rating,
     Modal,
+    Toast,
 } from './Common';
 
 /**

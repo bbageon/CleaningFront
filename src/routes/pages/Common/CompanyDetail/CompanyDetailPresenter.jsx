@@ -15,7 +15,8 @@ const CompanyDetailPresenter = ({
 
     companyService,
 
-    data,
+    totalPrice,
+    formatPrice,
 }) => {
 
     if (isLoading) {
@@ -27,20 +28,18 @@ const CompanyDetailPresenter = ({
 
             <CompanyDetailTop
                 company={company}
+                companyReview={companyReview}
                 designateCompanyCategory={designateCompanyCategory}
-            />
+            />           
 
             <CompanyDetailBottom
                 companyReview={companyReview}
                 companyAnswer={companyAnswer}
-
                 companyService={companyService}
-
-                data={data}
             />
 
             <BottomButton
-                title={'00,000원 장바구니 보기'}
+                title={`${formatPrice(totalPrice)}원 장바구니 보기`}
             />
 
         </MainLayout>

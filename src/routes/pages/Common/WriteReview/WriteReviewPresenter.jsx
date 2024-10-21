@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import { BottomButton, MainLayout, Modal, Top } from '../../../../components';
+import { BottomButton, MainLayout, Top } from '../../../../components';
 import WriteReviewBottom from './components/WriteReviewBottom';
 import WriteReviewTop from './components/WriteReviewTop/WriteReviewTop';
 
 const WriteReviewPresenter = ({
+    requestInfo,
+
     reviewContent,
 
     handleReviewContent,
@@ -13,7 +14,7 @@ const WriteReviewPresenter = ({
     uploadedImages,
     setUploadedImages,
 
-    handleSubmit = { handleSubmit }
+    handleSubmit
 }) => {
 
     return (
@@ -22,7 +23,7 @@ const WriteReviewPresenter = ({
                 notShowIcon={true}
             />
             <WriteReviewTop
-
+                requestInfo={requestInfo}
             />
             <WriteReviewBottom
                 handleReviewContent={handleReviewContent}

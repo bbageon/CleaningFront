@@ -1,20 +1,19 @@
 import './CompanyTitle.css';
 import Crown from '../Crown.png'
+import { Content } from 'components';
 
-const CompanyTitle = () => {
+const CompanyTitle = ({
+
+}) => {
     return (
-        <div className='company-title-container'>
-            <div className='company-title-img'>
-                <img src={Crown} />
+        <Content
+            paddingBottom={0}
+        >
+            <div className='company-title-container'>
+                <span className='bold large'>청소업체 이름 ⟩</span>
             </div>
-            <div className='company-tile-name'>
-                <text className='sub-title' style={{fontSize : '18px'}}>김재모의 클린 카피바라</text>
-            </div>
-            <div className='company-title-navigate'>
-                {'>'}
-            </div>
-        </div>
-    )
-}
+        </Content>
+    );
+};
 
 export default CompanyTitle;

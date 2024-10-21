@@ -15,7 +15,7 @@ const InputStar = ({
                 }}
                 defaultValue={defaultValue}
                 disabled={disabled}
-                onChange={value => {setRating(value); console.log(value);}}
+                onChange={value => {setRating(value);}}
             />
         </>
     );

@@ -7,10 +7,7 @@ const MainHeader = ({
 
 }) => {
 
-    /* ===== STATE ===== */
     const { navigate } = useCustomContext();
-
-    /* ===== HOOKS ===== */
 
     /* ===== RENDER ====== */
     return (
@@ -21,7 +18,7 @@ const MainHeader = ({
                 </span>
                 <div className='main-header-top-icons'>
                     <Bell fill='#FFFFFF' width={20} height={20} />
-                    <Cart fill='#FFFFFF' width={20} height={20} />
+                    <Cart fill='#FFFFFF' width={20} height={20} onClick={() => navigate('/shoppingcart')}/>
                 </div>
             </div>
             <div className='main-header-title'>

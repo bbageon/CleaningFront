@@ -4,7 +4,8 @@ import { ReactComponent as Star } from '../../../../../../assets/icons/star.svg'
 import { ReactComponent as Clock } from '../../../../../../assets/icons/clock.svg';
 import test1 from './test1.jpg';
 import test2 from './test2.png';
-import { useNavigate } from 'react-router-dom';
+import { useCustomContext } from 'context/CustomContext';
+import formatTime from 'utils/timeUtils';
 
 const dummy = [
     {
@@ -42,12 +43,13 @@ const CompanyCardImage = ({
 
 const CompanyCard = ({
     company,
+    designatedCategories,
 }) => {
-    /* TEST NAVIGATE */
-    const navigate = useNavigate();
+
+    const { navigate } = useCustomContext();
 
     return (
-        <div className='company-card-wrap' onClick={() => {navigate(`/companydetail/${company.company_id}`)}}>
+        <div className='company-card-wrap' onClick={() => {navigate(`/companydetail/${company?.company_id}`)}}>
             <Content
                 border={'7px solid var(--divider-color)'}
             >
@@ -59,23 +61,26 @@ const CompanyCard = ({
                                 width={16}
                                 height={16}
                             />
-                            <span className='rating'>5.0</span>
-                            <span className='review-count'>(100+)</span>
+                            <span className='rating'>{company.total_rating}.0</span>
+                            <span className='review-count'></span>
                         </div>
                         <div>
-                            <span className='flagship-service'>이사/입주청소</span>
-                            <span className='flagship-service'>거주/생활청소</span>
+                            {
+                                designatedCategories.map((category, index) => (
+                                    <span key={index} className='flagship-service'>{category.company_category.category_name}</span>
+                                ))
+                            }
                         </div>
                     </div>
                     <div className='company-card-time'>
                         <Clock fill='var(--gray3-color)' width={15} height={15} />
-                        <span>09:00~20:00</span>
+                        <span>{`${formatTime(company.open_time)}~${formatTime(company.close_time)}`}</span>
                         <span className='flagship-service'></span>
-                        <span className='flagship-service none'>공휴일 X</span>
+                        <span className='flagship-service none'>공휴일 {company?.is_holidays === 0 ? 'X' : 'O'}</span>
                     </div>
                 </div>
                 <CompanyCardImage
-                
+                    
                 />
             </Content>
         </div>

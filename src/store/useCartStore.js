@@ -1,22 +1,28 @@
-import create from 'zustand';
+import { create } from 'zustand';
 
 const useCartStore = create((set) => ({
-    options: [],
+    cartItems: [],
     totalPrice: 0,
 
-    addOption: (option) => set((state) => {
-        const updatedOptions = [...state.options, option];
-        const updateTotalPrice = updatedOptions.reduce((sum, option) => sum + option.price, 0);
-        return { options: updatedOptions, totalPrice: updateTotalPrice };
+    addToCartStore: (item) => set((state) => {
+        const existingService = state.cartItems.find(i => i.service_id === item.service_id);
+        const sameCompanyItems = state.cartItems.filter(i => i.company_id === item.company_id);
+
+        if (!existingService) {
+            if (sameCompanyItems.length === 0 || sameCompanyItems[0].company_id === item.company_id) {
+                return {
+                    cartItems: [...state.cartItems, item],
+                    totalPrice: state.totalPrice + item.price,
+                };
+            }
+        }
+        return state;
     }),
 
-    removeOption: (optionId) => set((state) => {
-        const updatedOptions = state.options.filter((option) => option.id !== optionId);
-        const updatedTotalPrice = updatedOptions.reduce((sum, option) => sum + option.price, 0);
-        return { options: updatedOptions, totalPrice: updatedTotalPrice };
-    }),
-
-    clearCart: () => set({ options: [], totalPrice: 0 }),
+    clearCartStore: () => set(() => ({
+        cartItems: [],
+        totalPrice: 0,
+    })),
 }));
 
 export default useCartStore;

@@ -1,22 +1,17 @@
-import useHistoryStore from "store/useHistoryStore";
+import { useGetOneRequestClean } from "hooks/RequestCleanHooks";
 import ServiceHistoryDetailPresenter from "./ServiceHistoryDetailPresenter"
 import { useParams } from "react-router-dom";
-import { useState } from "react";
 
 const ServiceHistoryDetailContainer = () => {
 
-    const { requestCleans } = useHistoryStore();
     const { id: requestId } = useParams();
 
-    const requestDetail = requestCleans.find(request => request.request_clean_id === Number(requestId));
+    const { data: requestDetailRes, isLoading, isError } = useGetOneRequestClean(requestId);
+    const requestDetail = requestDetailRes?.data || [];
 
-    /* ===== STATE ===== */
-
-    /* ===== VARIABLES ===== */
-
-    /* ===== FUNCTION ===== */
-
-    /* ===== HOOKS ===== */
+    if (isLoading) {
+        return null;
+    }
 
     /* ===== RENDER ===== */
     return (
