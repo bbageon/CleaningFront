@@ -4,7 +4,7 @@ const RegistrationInput = ({
     title,
     placeholder,
     value,
-    setValue,
+    onChange,
 }) => {
     return (
         <div className='registration-input'>
@@ -15,10 +15,7 @@ const RegistrationInput = ({
             <input
                 placeholder={placeholder}
                 value={value}
-                onClick={(e) => {
-                    if (!setValue) return
-                    setValue(e.target.value)
-                }}
+                onChange={onChange}
             />
         </div>
     )
