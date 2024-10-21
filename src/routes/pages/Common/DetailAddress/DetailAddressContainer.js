@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import DetailAddressPresenter from "./DetailAddressPresenter"
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useCreateUserAddress } from "hooks/UserAddressHooks";
 
 const DetailAddressContainer = () => {
+    const navigate = useNavigate();
     const location = useLocation();
     const [addressInfo, setAddressInfo] = useState({
         user_id: 1,
@@ -16,10 +17,12 @@ const DetailAddressContainer = () => {
     })
 
     const { mutate: addToAddress } = useCreateUserAddress(
-        
+
     );
 
     useEffect(() => {
+        if (!location.state) return;
+
         const { address, address_detail } = location?.state;
         setAddressInfo(prev => {
             return {
@@ -32,6 +35,7 @@ const DetailAddressContainer = () => {
 
     const registerAddress = () => {
         addToAddress(addressInfo);
+        navigate(-2);
     };
 
     return (
