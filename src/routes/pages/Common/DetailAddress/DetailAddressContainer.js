@@ -8,6 +8,7 @@ const DetailAddressContainer = () => {
     const location = useLocation();
     const [addressInfo, setAddressInfo] = useState({
         user_id: 1,
+        user_id: 1,
         address: '부산광역시 사상구 주례로 47',
         address_detail: '부산광역시 사상구 주례동 88',
         added_detail: '',
@@ -41,6 +42,9 @@ const DetailAddressContainer = () => {
     return (
         <DetailAddressPresenter
             addressInfo={addressInfo}
+            setAddressInfo={setAddressInfo}
+
+            registerAddress={registerAddress}
             setAddressInfo={setAddressInfo}
 
             registerAddress={registerAddress}
