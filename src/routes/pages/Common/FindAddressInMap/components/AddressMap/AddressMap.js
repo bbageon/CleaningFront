@@ -10,8 +10,8 @@ const AddressMap = ({
 }) => {
     const { kakao } = window;
     const [markerPosition, setMarkerPosition] = useState({
-        lat: 33.1842281,
-        lng: 127.989635,
+        lat:35.1460786494674 ,
+        lng: 129.007038894696,
     });
     const mapRef = useRef(null);
     const geocoder = new kakao.maps.services.Geocoder();
