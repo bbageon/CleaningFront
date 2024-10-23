@@ -1,30 +1,34 @@
-import { Content } from '../../../../../../components';
 import './TotalPriceCheck.css';
+import { Content } from '../../../../../../components';
 
-const TotalPriceCheck = () => {
+const TotalPriceCheck = ({
+
+}) => {
     return (
-        <Content>
-            <div className='total-price-container'>
-                <div className='total-price-title'>
-                    <text className='sub-title'>결제금액을 확인해주세요</text>
+        <div className='total-price-check-wrap'>
+            <Content>
+                <div className='total-price-check-title'>
+                    <span className='bold large'>결제금액을 확인해 주세요.</span>
                 </div>
-                <div className='total-price-content-wrap'>
-                    <div className='total-price-content'>
-                        <text>부가세</text>
-                        <text>3,000원</text>
+                <div className='total-price-check-container'>
+                    <div className='total-price-unit-container'>
+                        <div className='total-price-unit-box'>
+                            <span>서비스금액</span>
+                            <span>10,000원</span>
+                        </div>
+                        <div className='total-price-unit-box'>
+                            <span>부과세</span>
+                            <span>10,000원</span>
+                        </div>
                     </div>
-                    <div className='total-price-content'>
-                        <text>부가세</text>
-                        <text>3,000원</text>
+                    <div className='total-price-box'>
+                        <span className='large bold'>결제예정금액</span>
+                        <span className='large bold'>10,000원</span>
                     </div>
                 </div>
-                <div className='total-price-scheduled'>
-                    <text className='sub-title'>결제 예정 금액</text>
-                    <text className='sub-title'>24,000 원</text>
-                </div>
-            </div>
-        </Content>
-    )
-}
+            </Content>
+        </div>
+    );
+};
 
 export default TotalPriceCheck;

@@ -5,6 +5,7 @@ import './ServiceHistoryList.css';
 const ServiceHistoryList = ({
     userRequestClean,
 }) => {
+    console.log(userRequestClean)
 
     return (
         <Content

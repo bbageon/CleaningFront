@@ -30,6 +30,7 @@ export const useGetCarts = () => {
 /**
  * [Cart] 장바구니 단일 조회
  * --
+ * @param cart_id
  */
 export const useGetOneCart = (cart_id: number) => {
     return useQuery({
@@ -42,6 +43,7 @@ export const useGetOneCart = (cart_id: number) => {
 /**
  * [Cart] 고객 장바구니 조회
  * --
+ * @param user_id
  */
 export const useGetUserCart = (user_id: number) => {
     return useQuery({

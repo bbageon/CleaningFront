@@ -1,0 +1,22 @@
+.cart-service-list-container {
+    width: 100%;
+    border: 1px solid var(--gray3-color);
+    border-radius: 10px;
+}
+
+.cart-service-list-container .cart-service-list-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-service-list-container .cart-service-list-button button {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 1.25rem;
+    font-size: 1rem;
+    color: var(--gray2-color);
+}

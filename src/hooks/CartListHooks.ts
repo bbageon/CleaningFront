@@ -30,6 +30,7 @@ export const useGetCartList = () => {
 /**
  * [CartList] 장바구니 목록 단일 조회
  * --
+ * @param cart_list_id
  */
 export const useGetOneCartList = (cart_list_id: number) => {
     return useQuery({
@@ -42,6 +43,7 @@ export const useGetOneCartList = (cart_list_id: number) => {
 /**
  * [CartList] 장바구니의 장바구니 목록 조회
  * --
+ * @param cart_id
  */
 export const useGetCompanyCartList = (cart_id: number) => {
     return useQuery({
@@ -54,6 +56,7 @@ export const useGetCompanyCartList = (cart_id: number) => {
 /**
  * [CartList] 장바구니 목록 서비스 조회
  * --
+ * @param service_id
  */
 export const useGetServiceCartList = (service_id: number) => {
     return useQuery({

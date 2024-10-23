@@ -54,6 +54,11 @@ const Router = () => {
             cookie.setCookie('userType', data?.type, {
                 path: '/',
             });
+
+            cookie.setCookie('user_id', data?.user_id, {
+                path: '/',
+            });
+            
         } catch (e) {
             console.error(e.message);
         }
