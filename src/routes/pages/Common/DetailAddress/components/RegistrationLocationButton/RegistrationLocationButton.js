@@ -4,14 +4,12 @@ const RegistrationLocationButton = ({
     locationButtonInfo,
 
     selectLocationButton,
-    setIsSelectLocationButton,
+    onClick,
 }) => {
     return (
         <div
             className={`registration-location-button ${locationButtonInfo.title === selectLocationButton ? 'active' : ''}`}
-            onClick={() => {
-                setIsSelectLocationButton(locationButtonInfo.title);
-            }}
+            onClick={onClick}
         >
             <locationButtonInfo.icon />
             <div className='location-button-title'>

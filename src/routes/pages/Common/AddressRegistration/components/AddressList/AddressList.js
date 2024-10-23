@@ -12,13 +12,13 @@ const AddressList = ({
                 addressList?.map(address => (
                     <div className='address'>
                         {
-                            isSearch ? 
-                            <div className='search-space'>
+                            isSearch ?
+                                <div className='search-space'>
 
-                            </div> :
-                            <div className='pin-icon'>
-                                {address.isCurrent ? <Pin /> : <EmptyPin />}
-                            </div>
+                                </div> :
+                                <div className='pin-icon'>
+                                    {address.isCurrent ? <Pin /> : <EmptyPin />}
+                                </div>
                         }
                         <div className='address-info'>
                             {
@@ -28,13 +28,13 @@ const AddressList = ({
                                 </span>
                             }
                             <div className='title'>
-                                {address.title}
+                                {address?.address_name}
                             </div>
                             <div className='address-detail'>
-                                {address.address}
+                                {address?.address}
                             </div>
                             <div className='special_note'>
-                                {address.special_note}
+                                {address?.address_detail}
                             </div>
                         </div>
                     </div>
