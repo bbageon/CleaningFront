@@ -22,6 +22,7 @@ import {
     ChatBot,
     CompanyMenu,
     ShoppingCart,
+    Profile,
 
     ComponentTest,
     Login,
@@ -176,6 +177,11 @@ const Router = () => {
                     element={<Login
                         setCookies={setCookies}
                     />}
+                />
+                {/* 프로필 화면 */}
+                <Route
+                    path="profile"
+                    element={<Profile/>}
                 />
 
                 {/* 테스트 */}

@@ -1,0 +1,143 @@
+.profile-address-management {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    padding: 10px 10px 10px 30px;
+    margin: 10px;
+
+    gap: 30px;
+}
+
+.profile-address-image {
+    display: flex;
+    width: 5%;
+}
+
+.profile-address-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.profile-address-contents {
+    display: flex;
+    width: 95%;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.address-standard {
+    display: flex;
+    width: auto;
+
+    font-size: 0.5rem;
+    color: #1E90FF;
+
+    /* background: rgba(30, 144, 255, 0.19); */
+}
+
+.address-standard span {
+    background: rgba(30, 144, 255, 0.19);
+    padding: 3px;
+    border-radius: 2px;
+}
+
+.address-contents-detail {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.address-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.address-info {
+    font-size: 0.8rem;
+}
+
+.address-optional {
+    font-size: 0.8rem;
+    color: #8E8E8E;
+}
+
+/* 리뷰 관리 */
+.profile-review-management {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 100%;
+    padding: 10px 30px 10px 30px;
+    margin: 10px;
+
+    gap: 30px;
+}
+
+.review-content-form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+
+    gap: 10px;
+}
+
+.review-img-form {
+    display: flex;
+}
+
+.review-img-form img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.review-content-info {
+    display: flex;
+    flex-direction: row;
+
+    gap: 12px;
+}
+
+.review-company-img {
+    display: flex;
+}
+
+.review-company-info {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.review-company-title {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.review-content-text {
+    font-size: 0.8rem;
+    font-weight: 100;
+
+    color: #8E8E8E;
+}
+
+.profile-payment-management {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    padding: 10px 10px 10px 30px;
+    margin: 10px;
+
+    gap: 30px;
+}
+
+.payment-info {
+    font-size: 0.9rem;
+    color: #8E8E8E;
+}
