@@ -2,13 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import AddressRegistrationPresenter from "./AddressRegistrationPresenter"
 import { useGetOneUserAddress } from "hooks/UserAddressHooks";
 import { useLocation } from "react-router-dom";
+import { useAuthStore } from "store";
 
 const AddressRegistrationContainer = () => {
+
+    /* ===== VARIABLES =====*/
     const location = useLocation();
 
-    const { data: userAddressRes, isLoading: userAddressLoading, isError: userAddressError, refetch } = useGetOneUserAddress(1);
-    const userAddress = userAddressRes?.data || [];
-
+    /* ===== STATE ===== */
     const [isSearch, setIsSearch] = useState(false);
     const [searchValue, setSearchValue] = useState('');
     const [addressList, setAddressList] = useState([
@@ -44,6 +45,14 @@ const AddressRegistrationContainer = () => {
         // },
     ]);
 
+    /* ==== STORE ===== */
+    const userId = useAuthStore(state => state.user_id);
+
+    /* ===== QUERY ===== */
+    const { data: userAddressRes, isLoading: userAddressLoading, isError: userAddressError, refetch } = useGetOneUserAddress(userId);
+    const userAddress = userAddressRes?.data || [];
+
+    /* ===== HOOKS ===== */
     useEffect(() => {
         setIsSearch(searchValue.length > 0);
         if (!searchValue.length && !userAddress.user_addresses) {
@@ -60,6 +69,7 @@ const AddressRegistrationContainer = () => {
         setAddressList(list);
     }, [searchValue, location, userAddress]);
 
+    /* ===== RENDER ===== */
     return (
         <AddressRegistrationPresenter
             isSearch={isSearch}

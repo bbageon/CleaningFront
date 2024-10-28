@@ -1,18 +1,28 @@
 import CompanyDetailPresenter from "./CompanyDetailPresenter"
 import { useGetCompany } from "hooks/CompanyHooks";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGetCompanyService } from "hooks/ServiceHooks";
 import { useGetCompanyDesignateCompanyCategory } from "hooks/DesignateCompanyCategoryHooks";
 import { useGetCompanyReview } from "hooks/ReviewHooks";
 import { useGetCompanyOneReviewAnswer } from "hooks/ReviewAnswerHooks";
-import useCartStore from "store/useCartStore";
+import { useAuthStore, useCartStore } from "store";
 import formatPrice from "utils/priceUtils";
+import { useEffect } from "react";
+import { useGetUserCartServiceList } from "hooks/CartListHooks";
 
 const CompanyDetailContainer = () => {
 
-    // 청소업체
-    const { id : company_id } = useParams();
+    /* =====  VARIABLES =====*/
+    const { id: company_id } = useParams();
+    const navigate = useNavigate();
 
+    /* ===== STORE ===== */
+    const totalPrice = useCartStore((state) => state.totalPrice ?? 0);
+    const clearCartStore = useCartStore(state => state.clearCartStore);
+    const syncCartWithDB = useCartStore(state => state.syncCartWithDB);
+    const userId = useAuthStore(state => state.user_id);
+
+    /* ===== QUERY ===== */
     const { data: companyRes, isLoading: companyLoading, isError: companyError } = useGetCompany(company_id);
     const company = companyRes?.data || [];
 
@@ -28,24 +38,35 @@ const CompanyDetailContainer = () => {
     const { data: companyServiceRes, isLoading: companyServiceLoading, isError: companyServiceError } = useGetCompanyService(company_id);
     const companyService = companyServiceRes?.data || [];
 
-    const totalPrice = useCartStore((state) => state.totalPrice);
+    const { data: userCartServiceListRes, isLoading: userCartServiceListLoading, isError: userCartServiceListError } = useGetUserCartServiceList(userId);
+    const userCartServiceList = userCartServiceListRes?.data || [];
+
+    const isLoading = companyLoading || designateCompanyCategoryLoading || companyReviewLoading || companyAnswerLoading || companyServiceLoading || userCartServiceListLoading;
+
+    /* ===== HOOKS ===== */
+    useEffect(() => {
+        if (userId && userCartServiceList.length > 0) {
+            syncCartWithDB(userCartServiceList);
+        } else if (userCartServiceList.length === 0) {
+            clearCartStore();
+        }
+    }, [userId, userCartServiceList]);
     
     /* ===== RENDER ===== */
     return (
         <CompanyDetailPresenter
+            navigate={navigate}
+            
+            totalPrice={totalPrice}
+            formatPrice={formatPrice}
 
             company={company}
             designateCompanyCategory={designateCompanyCategory}
-            
             companyReview={companyReview}
             companyAnswer={companyAnswer}
-            
             companyService={companyService}
-            
-            isLoading={companyLoading || companyServiceLoading || companyReviewLoading || companyAnswerLoading || designateCompanyCategoryLoading}
 
-            totalPrice={totalPrice}
-            formatPrice={formatPrice}
+            isLoading={isLoading}
         />
     );
 };

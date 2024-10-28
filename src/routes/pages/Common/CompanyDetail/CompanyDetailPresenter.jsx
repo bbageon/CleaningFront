@@ -5,18 +5,18 @@ import CompanyDetailBottom from './Components/CompanyDetailBottom';
 import { useParams } from 'react-router-dom';
 
 const CompanyDetailPresenter = ({
-    isLoading,
-
-    company,
-    designateCompanyCategory,
-
-    companyReview,
-    companyAnswer,
-
-    companyService,
+    navigate,
 
     totalPrice,
     formatPrice,
+
+    company,
+    designateCompanyCategory,
+    companyReview,
+    companyAnswer,
+    companyService,
+    
+    isLoading,
 }) => {
 
     if (isLoading) {
@@ -40,6 +40,8 @@ const CompanyDetailPresenter = ({
 
             <BottomButton
                 title={`${formatPrice(totalPrice)}원 장바구니 보기`}
+                onClick={() => navigate('/shoppingcart')}
+                disabled={totalPrice === 0}
             />
 
         </MainLayout>

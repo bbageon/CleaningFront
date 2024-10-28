@@ -7,10 +7,12 @@ import BottomButton from '../BottomButton';
 const RadioButton = ({
     options,
     setPrice,
+    selected,
+    setSelected,
 }) => {
 
     /* ===== STATE ===== */
-    const [selected, setSelected] = useState('');
+    // const [selected, setSelected] = useState('');
 
     /* ===== FUNCTION ===== */
     const handleChange = (e) => {

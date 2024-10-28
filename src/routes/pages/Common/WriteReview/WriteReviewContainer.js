@@ -1,18 +1,14 @@
-import { useState } from "react";
 import WriteReviewPresenter from "./WriteReviewPresenter"
-import { Modal } from "components";
-import useModalStore from "store/useModalStore";
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Modal } from "components";
 import { useCreateReview } from "hooks/ReviewHooks";
 import { useCreateReviewImage } from "hooks/ReviewImageHooks";
-import useToastStore from "store/useToastStore";
+import { useAuthStore, useModalStore } from "store";
 
 const WriteReviewContainer = () => {
 
     /* ===== VARIABLES ===== */
-    const { isModalOpen, content, openModal, closeModal } = useModalStore();
-    const { showToast } = useToastStore();
-    
     const navigate = useNavigate();
     const location = useLocation();
     const requestInfo = { ...location.state.request };
@@ -22,9 +18,13 @@ const WriteReviewContainer = () => {
     const [rating, setRating] = useState(0);
     const [uploadedImages, setUploadedImages] = useState([]);
 
-    /* ===== FUNCTION ===== */
+    /* ===== STORE ===== */
+    const { isModalOpen, content, openModal, closeModal } = useModalStore();
+    const userId = useAuthStore(state => state.user_id);
+
+    /* ===== MUTATE ===== */
     // 리뷰 작성 mutate
-    const { mutate: submitReview, isLoading: isSubmittingReview } = useCreateReview(
+    const { mutate: submitReview } = useCreateReview(
         (data) => {
             uploadedImages.forEach((image) => {
                 submitReviewImages({
@@ -33,16 +33,15 @@ const WriteReviewContainer = () => {
                 })
             });
 
-            showToast('리뷰가 성공적으로 제출되었습니다 !');
-            openModal('리뷰 작성 성공', '리뷰가 성공적으로 작성되었습니다.', () => {navigate(-1)}, 'single');
+            openModal('리뷰 작성 성공', '리뷰가 성공적으로 작성되었습니다.', () => { navigate(-1) }, 'single');
         },
         (error) => {
             openModal('리뷰 작성 실패', '리뷰 작성 중 오류가 발생했습니다.', null, 'single');
         }
     );
-    
+
     // 리뷰 이미지 작성 mutate
-    const { mutate: submitReviewImages, isLoading: isSubmittingImages } = useCreateReviewImage(
+    const { mutate: submitReviewImages } = useCreateReviewImage(
         (data) => {
             // openModal('리뷰 작성 성공', '리뷰가 성공적으로 작성되었습니다.', () => {navigate(-1)}, 'single');
         },
@@ -51,6 +50,7 @@ const WriteReviewContainer = () => {
         }
     );
 
+    /* ===== FUNCTION ===== */
     // 리뷰 내용 저장
     const handleReviewContent = (e) => {
         setReviewContent(e.target.value);
@@ -71,7 +71,7 @@ const WriteReviewContainer = () => {
 
         openModal('리뷰 제출', '작성한 리뷰를 제출하시겠습니까?', () => {
             submitReview({
-                user_id: requestInfo.user_id,
+                user_id: userId,
                 request_clean_id: requestInfo.request_clean_id,
                 company_id: requestInfo.company_id,
                 rating: rating,

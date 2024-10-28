@@ -67,6 +67,20 @@ export const useGetServiceCartList = (service_id: number) => {
 };
 
 /**
+ * [CartList] 회원 장바구니 목록 조회
+ * --
+ * @param user_id
+ */
+export const useGetUserCartServiceList = (user_id: number) => {
+    return useQuery({
+        queryKey: cartListQueryKeys.getCartList(user_id).queryKey,
+        queryFn: () => API.getUserServiceCartList(user_id),
+        enabled: !!user_id,
+    });
+};
+
+
+/**
  * [CartList] 장바구니 목록 생성
  * --
  */
@@ -157,4 +171,4 @@ export const useDeleteCartList = (onSuccess?: (data: any) => void, onError?: (er
             }
         },
     });
-}
+};

@@ -13,9 +13,9 @@ const RegistrationAddress = ({
 
     registerAddress,
 }) => {
+
+    /* ===== VARIABLES ===== */
     const { address, address_detail } = addressInfo;
-    const [selectLocationButton, setIsSelectLocationButton] = useState('');
-    const [isInputLocation, setIsInputLocation] = useState(false);
     const locationButtons = [
         {
             icon: Home,
@@ -31,10 +31,16 @@ const RegistrationAddress = ({
         },
     ]
 
+    /* ===== STATE ===== */
+    const [selectLocationButton, setIsSelectLocationButton] = useState('');
+    const [isInputLocation, setIsInputLocation] = useState(false);
+
+    /* ===== HOOKS ===== */
     useEffect(() => {
         setIsInputLocation(selectLocationButton === '직접입력');
     }, [selectLocationButton]);
 
+    /* ===== RENDER ===== */
     return (
         <div className="registration-address">
             <div className="registration-address-info">

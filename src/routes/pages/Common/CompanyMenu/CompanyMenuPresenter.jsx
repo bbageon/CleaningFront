@@ -5,6 +5,10 @@ import CompanyMenuTop from './Components/CompanyMenuTop';
 
 const CompanyMenuPresenter = ({
     service,
+    isLoading,
+
+    serviceType,
+    setServiceType,
 
     price,
     setPrice,
@@ -12,6 +16,11 @@ const CompanyMenuPresenter = ({
     onAddToCart,
     formatPrice,
 }) => {
+
+    if (isLoading) {
+        return null;
+    }
+
     return (
         <MainLayout>
             <CompanyMenuTop
@@ -19,7 +28,8 @@ const CompanyMenuPresenter = ({
             />
             <CompanyMenuBottom
                 service={service}
-
+                serviceType={serviceType}
+                setServiceType={setServiceType}
                 setPrice={setPrice}
             />
             <BottomButton

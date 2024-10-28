@@ -1,6 +1,5 @@
 import './DetailAddress.css';
-import { MainLayout } from '../../../../components';
-import DetailAddressTop from './components/DetailAddressTop';
+import { MainLayout, Top } from '../../../../components';
 import RegistrationAddress from './components/RegistrationAddress';
 
 const DetailAddressPresenter = ({
@@ -10,7 +9,10 @@ const DetailAddressPresenter = ({
 }) => {
     return (
         <MainLayout>
-            <DetailAddressTop />
+            <Top
+                title={'상세 주소'}
+                notShowIcon={true}
+            />
             <RegistrationAddress
                 addressInfo={addressInfo}
                 setAddressInfo={setAddressInfo}

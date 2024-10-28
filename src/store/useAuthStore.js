@@ -1,27 +1,34 @@
 import CookieManager from 'util/CookieManager';
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 const cookieManager = new CookieManager();
 
-const useAuthStore = create((set) => ({
-    token: cookieManager.getCookie('token') || null,
-    user_id: cookieManager.getCookie('user_id') || null,
+const useAuthStore = create(
+    persist(
+        (set) => ({
+            token: null,
+            user_id: null,
+            isAuthenticated: false,
 
-    setToken: (token) => {
-        cookieManager.setCookie('token', token);
-        set({ token });
-    },
+            setToken: (token) => {
+                set({ token, isAuthenticated: !!token });
+            },
 
-    setUserId: (user_id) => {
-        cookieManager.setCookie('user_id', user_id);
-        set({ user_id });
-    },
+            setUserId: (user_id) => {
+                set({ user_id });
+            },
 
-    removeAuth: () => {
-        cookieManager.remove('token');
-        cookieManager.remove('user_id');
-        set({ token: null, user_id: null });
-    },
-}));
+            removeAuth: () => {
+                set({ token: null, user_id: null, isAuthenticated: false});
+            },
+        }),
+        {
+            name: 'auto-storage',
+            getStorage: () => localStorage,
+            partialize: (state) => ({ user_id: state.user_id }),
+        }
+    )
+);
 
 export default useAuthStore;

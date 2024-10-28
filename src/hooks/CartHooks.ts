@@ -88,7 +88,7 @@ export const useCreateCart = (onSuccess?: (data: any) => void, onError?: (error:
  * [Cart] 장바구니 수정
  * --
  */
-export const useUpdateUser = (onSuccess?: (data: any) => void, onError?: (error: any) => void) => {
+export const useUpdateCart = (onSuccess?: (data: any) => void, onError?: (error: any) => void) => {
     const queryClient = useQueryClient();
     
     return useMutation({

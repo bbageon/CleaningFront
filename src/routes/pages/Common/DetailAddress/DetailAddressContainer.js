@@ -2,12 +2,20 @@ import { useEffect, useRef, useState } from "react";
 import DetailAddressPresenter from "./DetailAddressPresenter"
 import { useLocation, useNavigate } from "react-router-dom";
 import { useCreateUserAddress } from "hooks/UserAddressHooks";
+import { useAuthStore } from "store";
 
 const DetailAddressContainer = () => {
+
+    /* ===== VARIABLES ===== */
     const navigate = useNavigate();
     const location = useLocation();
+
+    /* ===== STORE ===== */
+    const userId = useAuthStore(state => state.user_id);
+
+    /* ===== STATE ===== */
     const [addressInfo, setAddressInfo] = useState({
-        user_id: 1,
+        user_id: userId,
         address: '부산광역시 사상구 주례로 47',
         address_detail: '부산광역시 사상구 주례동 88',
         added_detail: '',
@@ -16,9 +24,8 @@ const DetailAddressContainer = () => {
         directions: '',
     })
 
-    const { mutate: addToAddress } = useCreateUserAddress(
-
-    );
+    /* ===== MUTATE ===== */
+    const { mutate: addToAddress } = useCreateUserAddress();
 
     useEffect(() => {
         if (!location.state) return;

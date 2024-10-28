@@ -1,15 +1,57 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import LoginPresenter from "./LoginPresenter"
 import { useNavigate } from "react-router-dom";
 import { API } from "api";
+import useAuthStore from "store/useAuthStore";
+import useCartStore from "store/useCartStore";
+import { useCreateCart, useGetUserCart } from "hooks/CartHooks";
+import { useCreateUser } from "hooks/UserHooks";
 
 const LoginContainer = ({
     setCookies,
 }) => {
+
     const navigate = useNavigate();
     const naverRef = useRef(null);
 
+    // Store 설정
+    const { setUserId, setToken } = useAuthStore();
+    const { setCartMetadata } = useCartStore();
+
+    const [userData, setUserData] = useState(null);
+
     const MAIN_URL = '/main';
+
+    // 장바구니 Mutate
+    const { mutate: createCart } = useCreateCart(
+        (data) => {
+            console.log('장바구니 생성 성공: ', data);
+
+            // 장바구니 Store에 저장
+            setCartMetadata({
+                cart_id: data.cart_id,
+                total_price: data.total_price,
+                createAt: data.create_at,
+                updated_at: data.updated_at,
+            });
+        },
+        (error) => {
+            console.log('장바구니 생성 실패: ', error);
+        },
+    );
+
+
+
+    /* =========== 임시 고객 테스트 =========== */
+    const { mutate: createUser } = useCreateUser(
+        (data) => {
+            console.log('고객 생성 성공: ', data);
+            setUserData(data);
+
+            setUserId(data.user_id);
+        }
+    );
+    /* ===================================== */
 
     // 카카오 설정
     const KAKAO_REST_API_KEY = `${process.env.REACT_APP_KAKAO_REST_API_KEY}`;
@@ -29,6 +71,7 @@ const LoginContainer = ({
 
     // 테스트 후 삭제 요망
     const goMain = () => {
+        setUserId(19);
         navigate(MAIN_URL);
     }
 
@@ -66,6 +109,12 @@ const LoginContainer = ({
 
         console.log(result)
         saveToken(result?.data);
+
+        // 장바구니 및 고객 데이터 저장
+        const userData = result?.data;
+        setUserId(userData.user_id);
+        setUserData(userData);
+
         navigate(MAIN_URL);
     }
 
@@ -93,6 +142,13 @@ const LoginContainer = ({
                     console.log(naverLogin)
                     console.log(naverLogin.user)
                     saveToken(naverLogin.user)
+
+                    // 장바구니 및 고객 데이터 저장
+                    const userData = naverLogin?.user;
+                    setToken(userData.token);
+                    setUserId(userData.user_id);
+                    setUserData(userData);
+
                     navigate(MAIN_URL);
                 }
             });
@@ -113,6 +169,49 @@ const LoginContainer = ({
         }
     }
 
+    /* =========== 임시 고객 테스트 =========== */
+    const handleTestLogin = () => {
+        const dummyUser = {
+            name: "가나다라",
+            social_id: "249r35hfa20gjgh",
+            email: "test@test000.com",
+            pw: "1q2w3e4r1!",
+            phone: "01024254931",
+            receive_event_method: "EMAIL",
+            is_receive_event: true,
+            is_push_notification: true,
+            profile_image: "lshafouashfoasflkjas",
+        };
+
+        createUser(dummyUser);
+
+        setCookies(dummyUser);
+
+        console.log(userData);
+    }
+    /* ===================================== */
+
+    // 기존 장바구니 조회
+    const { data: existingCartRes, isLoading: isCartLoading } = useGetUserCart(userData?.user_id);
+    const existingCart = existingCartRes?.data || [];
+
+    // 기존 장바구니가 존재 시 store에 저장, 없으면 새로 생성
+    useEffect(() => {
+
+        if (userData && existingCart) {
+            if (existingCart?.cart_id) {
+                setCartMetadata({
+                    cart_id: existingCart.cart_id,
+                    total_price: existingCart.total_price,
+                    create_at: existingCart.create_at,
+                    updated_at: existingCart.updated_at,
+                });
+            } else if (!isCartLoading) {
+                createCart({ user_id: userData.user_id });
+            }
+        }
+    }, [userData, existingCart, createCart, setCartMetadata, isCartLoading]);
+
     return (
         <LoginPresenter
             KakaoLogin={KakaoLogin}
@@ -121,6 +220,7 @@ const LoginContainer = ({
             naverRef={naverRef}
 
             goMain={goMain}
+            handleTestLogin={handleTestLogin}
         />
     );
 };

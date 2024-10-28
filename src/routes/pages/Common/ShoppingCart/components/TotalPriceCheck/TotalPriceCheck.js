@@ -1,8 +1,9 @@
 import './TotalPriceCheck.css';
 import { Content } from '../../../../../../components';
+import formatPrice from 'utils/priceUtils';
 
 const TotalPriceCheck = ({
-
+    totalPrice
 }) => {
     return (
         <div className='total-price-check-wrap'>
@@ -14,16 +15,16 @@ const TotalPriceCheck = ({
                     <div className='total-price-unit-container'>
                         <div className='total-price-unit-box'>
                             <span>서비스금액</span>
-                            <span>10,000원</span>
+                            <span>{formatPrice(totalPrice)}원</span>
                         </div>
-                        <div className='total-price-unit-box'>
+                        {/* <div className='total-price-unit-box'>
                             <span>부과세</span>
                             <span>10,000원</span>
-                        </div>
+                        </div> */}
                     </div>
                     <div className='total-price-box'>
                         <span className='large bold'>결제예정금액</span>
-                        <span className='large bold'>10,000원</span>
+                        <span className='large bold'>{formatPrice(totalPrice)}원</span>
                     </div>
                 </div>
             </Content>

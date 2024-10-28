@@ -1,13 +1,11 @@
 import ServiceHistoryPresenter from "./ServiceHistoryPresenter"
 import { useGetOneRequestClean, useGetUserRequestClean } from "hooks/RequestCleanHooks";
-import CookieManager from "util/CookieManager";
+import useAuthStore from "store/useAuthStore";
 
 const ServiceHistoryContainer = () => {
 
     /* ===== STATE ===== */
-
-    const cookie = new CookieManager();
-    // const userId = cookie.getCookie('user_id');
+    // const userId = useAuthStore(state => state.user_id);
     const userId = 1;
 
 

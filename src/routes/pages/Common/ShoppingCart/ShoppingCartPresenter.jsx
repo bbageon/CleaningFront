@@ -6,6 +6,13 @@ import TotalPriceCheck from "./components/TotalPriceCheck";
 import CartServiceList from "./components/CartServiceList/CartServiceList";
 
 const ShoppingCartPresenter = ({
+    userCartServiceList,
+
+    totalPrice,
+
+    company,
+    handleNavigateCompany,
+
     handleToggleDaySelector,
     isDaySelectorOpen,
     setIsDaySelectorOpen,
@@ -13,7 +20,19 @@ const ShoppingCartPresenter = ({
     selectedDays,
     setSelectedDays,
 
+    handleDeleteCartList,
+    handleRequestClean,
+
+    isLoading,
+
+    navigate,
+
 }) => {
+
+    if (isLoading) {
+        return null;
+    };
+
     return (
         <MainLayout>
             <Top
@@ -21,28 +40,45 @@ const ShoppingCartPresenter = ({
                 title={'장바구니'}
                 paddingBottom={'20px'}
             />
-            <CompanyTitle
-
-            />
+            {
+                company ? (
+                    <CompanyTitle
+                        company={company}
+                        handleNavigateCompany={handleNavigateCompany}
+                    />
+                ) : (
+                    <></>
+                )
+            }
             <CartServiceList
+                company={company}
+                navigate={navigate}
+
+                userCartServiceList={userCartServiceList}
+
+                handleNavigateCompany={handleNavigateCompany}
+
                 handleToggleDaySelector={handleToggleDaySelector}
                 selectedDays={selectedDays}
                 setSelectedDays={setSelectedDays}
+
+                handleDeleteCartList={handleDeleteCartList}
             />
             <TotalPriceCheck
-                    
+                totalPrice={totalPrice}
             />
             <BottomButton
                 title={'결제하기'}
+                onClick={handleRequestClean}
             />
             {
                 isDaySelectorOpen &&
-                    <DaySelector
-                        isOpen={isDaySelectorOpen}
-                        setIsOpen={setIsDaySelectorOpen}
-                        selectedDays={selectedDays}
-                        setSelectedDays={setSelectedDays}
-                    />
+                <DaySelector
+                    isOpen={isDaySelectorOpen}
+                    setIsOpen={setIsDaySelectorOpen}
+                    selectedDays={selectedDays}
+                    setSelectedDays={setSelectedDays}
+                />
             }
         </MainLayout>
     );

@@ -93,12 +93,12 @@ const API = {
   /**
    * 고객 주소 단일 조회
    */
-  getOneUserAddress: (user_address_id) => $http.get(parameterToPath('/user_address/user/:user_address_id', { user_address_id })),
+  getOneUserAddress: (user_address_id) => $http.get(parameterToPath('/user_address/:user_address_id', { user_address_id })),
 
   /**
    * 고객 주소 조회
    */
-  getUserAddress: (user_id) => $http.get(parameterToPath('/user_address/:user_id', { user_id })),
+  getUserAddress: (user_id) => $http.get(parameterToPath('/user_address/user/:user_id', { user_id })),
 
   /**
    * 고객 주소 수정
@@ -400,6 +400,11 @@ const API = {
    * 장바구니 목록 서비스 조회
   */
   getServiceCartList: (service_id) => $http.get(parameterToPath('/cart_list/service/:service_id', { service_id })),
+
+  /**
+   * 회원 장바구니 목록 조회
+   */
+  getUserServiceCartList: (user_id) => $http.get(parameterToPath('/cart_list/user/:user_id', { user_id })),
 
   /**
    * 장바구니 목록 수정

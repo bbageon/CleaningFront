@@ -3,30 +3,43 @@ import CartServiceCard from '../CartServiceCard/CartServiceCard';
 import './CartServiceList.css';
 
 const CartServiceList = ({
+    company,
+    navigate,
+    handleNavigateCompany,
+
+    userCartServiceList,
+
     handleToggleDaySelector,
     selectedDays,
     setSelectedDays,
+
+    handleDeleteCartList,
 }) => {
+
     return (
         <Content>
             <div className='cart-service-list-container'>
-                <CartServiceCard
-                    handleToggleDaySelector={handleToggleDaySelector}
-                    selectedDays={selectedDays}
-                    setSelectedDays={setSelectedDays}
-                />
-                <CartServiceCard
-                    handleToggleDaySelector={handleToggleDaySelector}
-                    selectedDays={selectedDays}
-                    setSelectedDays={setSelectedDays}
-                />
-                <CartServiceCard
-                    handleToggleDaySelector={handleToggleDaySelector}
-                    selectedDays={selectedDays}
-                    setSelectedDays={setSelectedDays}
-                />
+                {
+                    userCartServiceList.map((service) => {
+                        return (
+                            <CartServiceCard
+                                key={service.service_id}
+
+                                service={service}
+
+                                handleToggleDaySelector={handleToggleDaySelector}
+                                selectedDays={selectedDays}
+                                setSelectedDays={setSelectedDays}
+
+                                handleDeleteCartList={handleDeleteCartList}
+                            />
+                        )
+                    })
+                }
                 <div className='cart-service-list-button'>
-                    <button>+ 서비스 추가</button>
+                    <button
+                        onClick={ company ? handleNavigateCompany : () => navigate('/companies')}
+                    >+ 서비스 추가</button>
                 </div>
             </div>
         </Content>

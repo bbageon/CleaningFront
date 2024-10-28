@@ -3,7 +3,8 @@ import './CompanyMenuBottom.css';
 
 const CompanyMenuBottom = ({
     service,
-
+    serviceType,
+    setServiceType,
     setPrice,
 }) => {
     return (
@@ -26,14 +27,16 @@ const CompanyMenuBottom = ({
                     options={
                         [
                             {
-                                id: 'meter', name: '평당', price: service.price_per_meter,
+                                id: 'AREA', name: '평당', price: service.price_per_meter,
                             },
                             {
-                                id: 'time', name: '시간당', price: service.price_per_time,
+                                id: 'TIME', name: '시간당', price: service.price_per_time,
                             }
                         ]
                     }
                     setPrice={setPrice}
+                    selected={serviceType}
+                    setSelected={setServiceType}
                 />
             </Content>
 
