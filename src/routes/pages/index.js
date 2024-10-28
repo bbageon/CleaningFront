@@ -41,6 +41,9 @@ export { default as ComponentTest } from './Common/ComponentTest';
 // 로그인 화면
 export { default as Login } from './Common/Login';
 
+// 프로필 화면
+export { default as Profile } from './Common/Profile';
+
 
 // 테스트
 export { default as ImageTest } from './Test/ImageTest';
