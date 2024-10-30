@@ -39,6 +39,10 @@ const Router = () => {
                 throw new Error(`no has save cookie data`);
             }
 
+            cookie.setCookie('id', data?.user_id, {
+                path: '/',
+            });
+
             cookie.setCookie('token', data?.token, {
                 path: '/',
             });

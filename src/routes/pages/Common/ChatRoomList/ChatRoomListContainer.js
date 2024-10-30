@@ -60,10 +60,10 @@ const ChatRoomListContainer = () => {
         (
             async () => {
                 try {
-                    const result = await API.getChatRoom();
+                    const result = await API.getUserChatRoom(1);
                     if (result.status !== 200) throw new Error(`[ChatRoomListContainer] [useEffect] Error`);
                     console.log(result.data);
-                    setChatList(result.data);
+                    setChatList(result.data.chat_rooms);
 
                 } catch (e) {
                     console.log(e.message);

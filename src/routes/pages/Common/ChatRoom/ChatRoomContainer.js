@@ -31,7 +31,7 @@ const ChatRoomContainer = ({
 
     // Chat State
     const [sender, setSender] = useState('홍길동');
-    const [receiver, setReceiver] = useState('테스트');
+    const [receiver, setReceiver] = useState('고길동');
     const [clientId, setClientId] = useState('홍길동');
     const [chatMessage, setChatMessage] = useState('');
     const [chatTitle, setChatTitle] = useState('김재모의 카피바라 청소');
@@ -59,9 +59,10 @@ const ChatRoomContainer = ({
             (
                 async () => {
                     try {
-                        const userName = cookie.getCookie('name');
-                        if (!userName) setClientId('홍길동');
-                        else setClientId(userName);
+                        // const userName = cookie.getCookie('name');
+                        // if (!userName) setClientId('홍길동');
+                        // else setClientId(userName);
+                        setClientId('홍길동')
 
                         const chatInfo = await API.getOneChatRoom(room_id);
                         if (chatInfo.status !== 200) throw new Error(`[ChatRoomContainer][getOneChatRoom] Error`);
@@ -69,15 +70,17 @@ const ChatRoomContainer = ({
                         // chatInfo.
                         console.log(chatInfo);
                         const userType = cookie.getCookie('userType');
-                        if (userType === 'USER') {
-                            setSender(chatInfo.data.user.name);
-                            setReceiver('홍길동');
-                            // setReceiver(chatInfo.data.company.name);
-                        } else {
-                            // setSender(chatInfo.data.company.name);
-                            setSender('홍길동');
-                            setReceiver(chatInfo.data.user.name);
-                        }
+                        setSender(chatInfo.data.user.name);
+                        setReceiver('고길동');
+                        // if (userType === 'USER') {
+                        //     setSender(chatInfo.data.user.name);
+                        //     setReceiver('홍길동');
+                        //     // setReceiver(chatInfo.data.company.name);
+                        // } else {
+                        //     // setSender(chatInfo.data.company.name);
+                        //     setSender('홍길동');
+                        //     setReceiver(chatInfo.data.user.name);
+                        // }
 
                         const chatMessageInfo = await API.getOneChatMessage(room_id);
                         if (chatMessageInfo.status !== 200) throw new Error(`[ChatRoomContainer][getOneChatMessage] Error`);
