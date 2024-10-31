@@ -36,6 +36,11 @@ const API = {
    */
   postAuthUserKakaoSignin: (body) => $http.post('/auth/user/kakao/signin', body),
 
+  /**
+   * 고객 네이버 로그인
+   */
+  postAuthUserNaverSignin: (body) => $http.post('/auth/user/naver/signin', body),
+
 
   /**
    * ====================
