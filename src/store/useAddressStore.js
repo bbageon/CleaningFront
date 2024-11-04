@@ -11,6 +11,11 @@ const useAddressStore = create(persist(
             address: address,
             address_detail: address_detail,
         }),
+
+        clearAddress: () => set({
+            address: null,
+            address_detail: null,
+        }),
     }),
     {
         name: 'address-storage',

@@ -3,9 +3,10 @@ import './CompanyMenu.css';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetOneService } from 'hooks/ServiceHooks';
-import { useCreateCartList, useGetUserCartServiceList } from 'hooks/CartListHooks';
+import { useCreateCartList, useGetCompanyCartList, useGetUserCartServiceList } from 'hooks/CartListHooks';
 import { useAuthStore, useCartStore, useToastStore } from 'store';
 import formatPrice from 'utils/priceUtils';
+import { useGetUserCart } from 'hooks/CartHooks';
 
 const CompanyMenuContainer = () => {
 
@@ -14,8 +15,8 @@ const CompanyMenuContainer = () => {
     const navigate = useNavigate();
 
     /* ===== STATE ===== */
+    const [cartId, setCartId] = useState(null);
     const [price, setPrice] = useState(0);
-    console.log(price);
     const [serviceType, setServiceType] = useState(null);
 
     /* ===== STORE ===== */
@@ -27,22 +28,36 @@ const CompanyMenuContainer = () => {
     const cartItems = useCartStore(state => state.cartItems);
 
     /* ===== QUERY ===== */
+    // 회원 장바구니 조회
+    const { data: userCartRes, isLoading: userCartLoading, isError: userCartError } = useGetUserCart(userId);
+    const userCart = userCartRes?.data || [];
+
     // 서비스 조회
     const { data: serviceRes, isLoading: serviceLoading, isError: serviceError } = useGetOneService(service_id);
     const service = serviceRes?.data || [];
 
     // 회원 장바구니 목록 조회
-    const { data: userCartListRes, isLoading: userCartListLoading, isError: userCartListError } = useGetUserCartServiceList(userId);
-    const userCartServiceList = userCartListRes?.data || [];
+    const { data: userCartListRes, isLoading: userCartListLoading, isError: userCartListError } = useGetCompanyCartList(cartId);
+    const userCartServiceList = userCartListRes?.data.cart_lists || [];
 
-    const isLoading = serviceLoading || userCartListLoading;
+    const isLoading = serviceLoading || userCartListLoading || userCartLoading;
 
-    /* ===== HOOKS ===== */
+
+
+    /* ===== EFFECT ===== */
+    // useEffect(() => {
+    //     if (userCartServiceList?.length === 0) {
+    //         clearCartStore();
+    //     }
+    // }, []);
+
     useEffect(() => {
-        if (userCartServiceList.length === 0) {
-            clearCartStore();
+        if (userCart && userCart.carts?.length) {
+            setCartId(userCart.carts[userCart.carts.length - 1].cart_id);
         }
-    }, [userCartServiceList]);
+    }, [userCart, cartId]);
+
+
 
     /* ===== MUTATE ===== */
     // 장바구니 담기
@@ -56,15 +71,17 @@ const CompanyMenuContainer = () => {
         },
     );
 
+
+
     /* ===== FUNCTION ===== */
     const handleAddToCart = () => {
         const selectedService = {
-            cart_id: 7,
+            cart_id: cartId,
             service_id: service.service_id,
             price: price,
         };
 
-        const existingService = cartItems.find(item => item.service_id === service.service_id);
+        const existingService = userCartServiceList.find(item => item.service_id === service.service_id);
 
         if (existingService) {
             showToast('이미 장바구니에 담긴 서비스입니다.');
@@ -72,7 +89,7 @@ const CompanyMenuContainer = () => {
         };
 
         const storeSelectedService = {
-            cart_id: 7,
+            cart_id: cartId,
             service_id: service.service_id,
             price: price,
             service_name: service.service_name,

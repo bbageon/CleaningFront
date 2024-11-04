@@ -22,16 +22,11 @@ const LoginContainer = ({
     const { setCartMetadata } = useCartStore();
 
     /* ===== STATE ===== */
-    // const [userData, setUserData] = useState(null);
-
-    // 테스트 후 삭제
-    const [userData, setUserData] = useState({
-        user_id: 3,
-    });
+    const [userData, setUserData] = useState(null);
 
     /* ===== QUERY ===== */
     // 기존 장바구니 조회
-    const { data: existingCartRes, isLoading: isCartLoading } = useGetUserCart(userData.user_id);
+    const { data: existingCartRes, isLoading: isCartLoading } = useGetUserCart(userData?.user_id);
     const existingCart = existingCartRes?.data || [];
 
     /* ===== MUTATE ===== */
@@ -87,7 +82,7 @@ const LoginContainer = ({
 
     // 테스트 후 삭제 요망
     const goMain = () => {
-        setUserId(3);
+        setUserId(19);
         navigate(MAIN_URL);
     };
 

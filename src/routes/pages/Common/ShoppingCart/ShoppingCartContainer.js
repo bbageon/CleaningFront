@@ -1,12 +1,13 @@
 import ShoppingCartPresenter from "./ShoppingCartPresenter";
 import { useEffect, useState } from "react";
-import { useAddressStore, useAuthStore, useCartStore } from "store";
-import { useDeleteCartList, useGetUserCartServiceList } from "hooks/CartListHooks";
-import { useGetOneService } from "hooks/ServiceHooks";
 import { useNavigate } from "react-router-dom";
+import { API } from "api";
+import { useDeleteCartList, useGetCompanyCartList } from "hooks/CartListHooks";
+import { useGetOneService } from "hooks/ServiceHooks";
 import { useCreateRequestClean } from "hooks/RequestCleanHooks";
 import { useCreateRequestCleanServiceList } from "hooks/RequestCleanServiceListHooks";
-import { API } from "api";
+import { useGetUserCart } from "hooks/CartHooks";
+import { useAddressStore, useAuthStore, useCartStore } from "store";
 import dayjs from "dayjs";
 
 const ShoppingCartContainer = () => {
@@ -18,6 +19,7 @@ const ShoppingCartContainer = () => {
 
     /* ===== STATE ===== */
     const [serviceId, setServiceId] = useState(null);
+    const [cartId, setCartId] = useState(null);
     const [company, setCompany] = useState(null);
     const [cartList, setCartList] = useState([]);
 
@@ -34,22 +36,25 @@ const ShoppingCartContainer = () => {
 
 
     /* ===== QUERY ===== */
+    // 고객 장바구니
+    const { data: userCartRes, isLoading: userCartLoading, isError: userCartError } = useGetUserCart(userId);
+    const userCart = userCartRes?.data || [];
+
     // 고객 장바구니 목록
-    const { data: userCartServiceListRes, isLoading: userCartServiceListLoading, isError: userCartServiceListError } = useGetUserCartServiceList(userId);
-    const userCartServiceList = userCartServiceListRes?.data || [];
+    const { data: userCartServiceListRes, isLoading: userCartServiceListLoading, isError: userCartServiceListError } = useGetCompanyCartList(cartId);
+    const userCartServiceList = userCartServiceListRes?.data.cart_lists || [];
 
     // 서비스 단일 조회
     const { data: serviceRes, isLoading: serviceLoading, isError: serviceError } = useGetOneService(serviceId);
     const service = serviceRes?.data || [];
 
-    const isLoading = userCartServiceListLoading || serviceLoading;
+    const isLoading = userCartServiceListLoading || serviceLoading || userCartLoading;
 
     const totalPrice = userCartServiceList.reduce((sum, i) => sum + i.price, 0);
 
 
 
     /* ===== MUTATE ===== */
-
     // 청소 요청
     const { mutate: requestClean } = useCreateRequestClean(
         async (data) => {
@@ -119,6 +124,12 @@ const ShoppingCartContainer = () => {
             setCompany(service.company);
         }
     }, [service]);
+
+    useEffect(() => {
+        if (userCart && userCart.carts?.length) {
+            setCartId(userCart.carts[userCart.carts.length - 1].cart_id);
+        }
+    }, [userCart, cartId]);
 
 
 

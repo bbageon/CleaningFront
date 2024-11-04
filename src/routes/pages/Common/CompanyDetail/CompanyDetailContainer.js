@@ -1,20 +1,28 @@
 import CompanyDetailPresenter from "./CompanyDetailPresenter"
-import { useGetCompany } from "hooks/CompanyHooks";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useGetCompany } from "hooks/CompanyHooks";
 import { useGetCompanyService } from "hooks/ServiceHooks";
 import { useGetCompanyDesignateCompanyCategory } from "hooks/DesignateCompanyCategoryHooks";
 import { useGetCompanyReview } from "hooks/ReviewHooks";
 import { useGetCompanyOneReviewAnswer } from "hooks/ReviewAnswerHooks";
+import { useGetCompanyCartList } from "hooks/CartListHooks";
 import { useAuthStore, useCartStore } from "store";
+import { useGetUserCart } from "hooks/CartHooks";
 import formatPrice from "utils/priceUtils";
-import { useEffect } from "react";
-import { useGetUserCartServiceList } from "hooks/CartListHooks";
 
 const CompanyDetailContainer = () => {
 
-    /* =====  VARIABLES =====*/
+    /* ===== VARIABLES =====*/
     const { id: company_id } = useParams();
     const navigate = useNavigate();
+
+
+
+    /* ===== STATE =====*/
+    const [cartId, setCartId] = useState(null);
+
+
 
     /* ===== STORE ===== */
     const totalPrice = useCartStore((state) => state.totalPrice ?? 0);
@@ -22,7 +30,10 @@ const CompanyDetailContainer = () => {
     const syncCartWithDB = useCartStore(state => state.syncCartWithDB);
     const userId = useAuthStore(state => state.user_id);
 
+
+
     /* ===== QUERY ===== */
+    // 청소업체 관련
     const { data: companyRes, isLoading: companyLoading, isError: companyError } = useGetCompany(company_id);
     const company = companyRes?.data || [];
 
@@ -38,12 +49,19 @@ const CompanyDetailContainer = () => {
     const { data: companyServiceRes, isLoading: companyServiceLoading, isError: companyServiceError } = useGetCompanyService(company_id);
     const companyService = companyServiceRes?.data || [];
 
-    const { data: userCartServiceListRes, isLoading: userCartServiceListLoading, isError: userCartServiceListError } = useGetUserCartServiceList(userId);
-    const userCartServiceList = userCartServiceListRes?.data || [];
+    // 장바구니의 장바구니 목록 조회
+    const { data: userCartServiceListRes, isLoading: userCartServiceListLoading, isError: userCartServiceListError } = useGetCompanyCartList(cartId);
+    const userCartServiceList = userCartServiceListRes?.data.cart_lists || [];
 
-    const isLoading = companyLoading || designateCompanyCategoryLoading || companyReviewLoading || companyAnswerLoading || companyServiceLoading || userCartServiceListLoading;
+    // 고객 장바구니
+    const { data: userCartRes, isLoading: userCartLoading, isError: userCartError } = useGetUserCart(userId);
+    const userCart = userCartRes?.data || [];
 
-    /* ===== HOOKS ===== */
+    const isLoading = companyLoading || designateCompanyCategoryLoading || companyReviewLoading || companyAnswerLoading || companyServiceLoading || userCartServiceListLoading || userCartLoading;
+
+
+
+    /* ===== EFFECT ===== */
     useEffect(() => {
         if (userId && userCartServiceList.length > 0) {
             syncCartWithDB(userCartServiceList);
@@ -51,7 +69,15 @@ const CompanyDetailContainer = () => {
             clearCartStore();
         }
     }, [userId, userCartServiceList]);
-    
+
+    useEffect(() => {
+        if (userId && userCart.carts?.length) {
+            setCartId(userCart.carts[userCart.carts.length - 1].cart_id);
+        }
+    }, [userId, userCart]);
+
+
+
     /* ===== RENDER ===== */
     return (
         <CompanyDetailPresenter
