@@ -17,9 +17,7 @@ const CompanyDetailBottom = ({
                     <ServiceList
                         companyService={companyService}
                     />
-                ) : (
-                    <></>
-                )
+                ) : null
         },
         {
             label: '리뷰',
@@ -30,9 +28,7 @@ const CompanyDetailBottom = ({
                         companyReview={companyReview}
                         companyAnswer={companyAnswer}
                     />
-                ) : (
-                    <></>
-                )
+                ) : null
         },
     ]
 

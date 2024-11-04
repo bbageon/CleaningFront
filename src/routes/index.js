@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Route, Routes, useFetcher } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Route, Routes } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import { cookie } from "../util";
 import { ScrollToTop, Toast } from "components";
@@ -59,7 +59,7 @@ const Router = () => {
             cookie.setCookie('user_id', data?.user_id, {
                 path: '/',
             });
-            
+
         } catch (e) {
             console.error(e.message);
         }
@@ -179,7 +179,7 @@ const Router = () => {
                 {/* 프로필 화면 */}
                 <Route
                     path="profile"
-                    element={<Profile/>}
+                    element={<Profile />}
                 />
 
                 {/* 테스트 */}

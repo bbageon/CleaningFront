@@ -93,7 +93,7 @@ const API = {
   /**
    * 고객 주소 단일 조회
    */
-  getOneUserAddress: (user_address_id) => $http.get(parameterToPath('/user_address/:user_address_id', { user_address_id })),
+  getOneUserAddress: (user_address_id) => $http.get(parameterToPath('/user_address/user/:user_address_id', { user_address_id })),
 
   /**
    * 고객 주소 조회
@@ -367,7 +367,7 @@ const API = {
   /**
    * 장바구니 삭제
    */
-  deleteCart: (cart_id) => $http.put(parameterToPath('/cart/:cart_id', { cart_id })),
+  deleteCart: (cart_id) => $http.delete(parameterToPath('/cart/:cart_id', { cart_id })),
 
 
   /**
@@ -414,7 +414,7 @@ const API = {
   /**
    * 장바구니 목록 삭제
    */
-  deleteCartList: (cart_list_id) => $http.put(parameterToPath('/cart_list/:cart_list_id', { cart_list_id })),
+  deleteCartList: (cart_list_id) => $http.delete(parameterToPath('/cart_list/:cart_list_id', { cart_list_id })),
 
 
   /**
@@ -456,7 +456,7 @@ const API = {
   /**
    * 리뷰 삭제
    */
-  deleteReview: (review_id) => $http.put(parameterToPath('/review/:review_id', { review_id })),
+  deleteReview: (review_id) => $http.delete(parameterToPath('/review/:review_id', { review_id })),
 
 
   /**
@@ -493,7 +493,7 @@ const API = {
   /**
    * 리뷰 이미지 삭제
    */
-  deleteReviewImage: (review_image_id) => $http.put(parameterToPath('/review_image/:review_image_id', { review_image_id })),
+  deleteReviewImage: (review_image_id) => $http.delete(parameterToPath('/review_image/:review_image_id', { review_image_id })),
 
 
   // /**

@@ -8,7 +8,6 @@ const LoginPresenter = ({
     naverRef,
 
     goMain,
-    handleTestLogin,
 }) => {
     return (
         <MainLayout
@@ -46,10 +45,6 @@ const LoginPresenter = ({
                     color={'#000000'}
                     backgroundColor={'#F7E600'}
                     onClick={() => KakaoLogin()}
-                />
-                <Button
-                    title={'테스트'}
-                    onClick={handleTestLogin}
                 />
                 <span onClick={goMain} style={{ color: 'white' }}><u>메인으로 이동</u></span>
                 <div id='naverIdLogin' ref={naverRef} style={{ display: 'none' }} />

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import DetailAddressPresenter from "./DetailAddressPresenter"
 import { useLocation, useNavigate } from "react-router-dom";
 import { useCreateUserAddress } from "hooks/UserAddressHooks";
@@ -40,9 +40,14 @@ const DetailAddressContainer = () => {
         });
     }, []);
 
+    /* ===== FUNCTION ===== */
     const registerAddress = () => {
         addToAddress(addressInfo);
         navigate(-2);
+    };
+
+    const handleAddressInfo = (e) => {
+        setAddressInfo()
     };
 
     return (

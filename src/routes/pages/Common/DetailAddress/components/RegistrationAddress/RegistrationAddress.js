@@ -51,6 +51,8 @@ const RegistrationAddress = ({
                 <div className='common'>
                     <RegistrationInput
                         placeholder='상세주소 추가'
+
+                        setAddressInfo={setAddressInfo}
                     />
                     <div className='registration-location-buttons'>
                         <RegistrationLocationButton

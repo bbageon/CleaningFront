@@ -14,6 +14,8 @@ const CartServiceList = ({
     setSelectedDays,
 
     handleDeleteCartList,
+
+    setCartList,
 }) => {
 
     return (
@@ -32,13 +34,15 @@ const CartServiceList = ({
                                 setSelectedDays={setSelectedDays}
 
                                 handleDeleteCartList={handleDeleteCartList}
+
+                                setCartList={setCartList}
                             />
                         )
                     })
                 }
                 <div className='cart-service-list-button'>
                     <button
-                        onClick={ company ? handleNavigateCompany : () => navigate('/companies')}
+                        onClick={company ? handleNavigateCompany : () => navigate('/companies')}
                     >+ 서비스 추가</button>
                 </div>
             </div>

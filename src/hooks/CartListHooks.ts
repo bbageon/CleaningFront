@@ -119,7 +119,7 @@ export const useUpdateCartList = (onSuccess?: (data: any) => void, onError?: (er
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: async ({ cart_list_id, body}: { cart_list_id: number, body: any }) => {
+        mutationFn: async ({ cart_list_id, body }: { cart_list_id: number, body: any }) => {
             const response = await API.putCartList(body);
             return response.data;
         },

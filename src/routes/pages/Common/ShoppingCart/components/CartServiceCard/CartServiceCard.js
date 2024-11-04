@@ -1,6 +1,7 @@
 import { useGetOneService } from 'hooks/ServiceHooks';
 import './CartServiceCard.css';
 import formatPrice from 'utils/priceUtils';
+import { useDeleteCartList } from 'hooks/CartListHooks';
 
 const CartServiceCard = ({
     service,
@@ -9,11 +10,30 @@ const CartServiceCard = ({
     selectedDays,
     setSelectedDays,
 
-    handleDeleteCartList,
+    // handleDeleteCartList,
+
+    setCartList,
 }) => {
 
+    /* ===== QUERY ===== */
     const { data: serviceRes } = useGetOneService(service.service_id);
     const serviceData = serviceRes?.data || [];
+
+    /* ===== MUTATE ===== */
+    const { mutate: deleteCartList } = useDeleteCartList(
+        (data) => {
+
+        },
+        (error) => {
+
+        },
+    );
+
+    /* ===== FUNCTION ===== */
+    const handleDeleteCartList = (cart_list_id) => {
+        setCartList((prev) => prev.filter((item) => item.cart_list_id !== cart_list_id));
+        deleteCartList(cart_list_id);
+    };
 
     return (
         <div className='cart-service-card-container'>

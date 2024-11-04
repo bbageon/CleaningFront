@@ -27,6 +27,11 @@ const ShoppingCartPresenter = ({
 
     navigate,
 
+    setCartList,
+
+    address,
+    address_detail
+
 }) => {
 
     if (isLoading) {
@@ -45,6 +50,9 @@ const ShoppingCartPresenter = ({
                     <CompanyTitle
                         company={company}
                         handleNavigateCompany={handleNavigateCompany}
+
+                        address={address}
+                        address_detail={address_detail}
                     />
                 ) : (
                     <></>
@@ -63,6 +71,8 @@ const ShoppingCartPresenter = ({
                 setSelectedDays={setSelectedDays}
 
                 handleDeleteCartList={handleDeleteCartList}
+
+                setCartList={setCartList}
             />
             <TotalPriceCheck
                 totalPrice={totalPrice}

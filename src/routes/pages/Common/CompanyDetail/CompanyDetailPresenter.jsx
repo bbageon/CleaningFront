@@ -30,7 +30,7 @@ const CompanyDetailPresenter = ({
                 company={company}
                 companyReview={companyReview}
                 designateCompanyCategory={designateCompanyCategory}
-            />           
+            />
 
             <CompanyDetailBottom
                 companyReview={companyReview}

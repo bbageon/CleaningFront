@@ -1,7 +1,7 @@
 import CompaniesPresenter from "./CompaniesPresenter"
 import { useGetCompanies } from "hooks/CompanyHooks";
 import { useGetCompanyCategories } from "hooks/CompanyCategoryHooks";
-import { useGetCategoryDesignateCompanyCategory, useGetDesignateCompanyCategories, useGetOneDesignateCompanyCategory } from "hooks/DesignateCompanyCategoryHooks";
+import { useGetCategoryDesignateCompanyCategory, useGetDesignateCompanyCategories } from "hooks/DesignateCompanyCategoryHooks";
 import { useCallback, useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -9,19 +9,15 @@ const CompaniesContainer = ({
 
 }) => {
 
-
-
-    /* ===== STATE ===== */
-    // 아이콘 클릭 시, 해당 카테고리의 청소업체 목록으로 이동
+    /* ===== VARIABLES ===== */
     const location = useLocation();
     const { tabKey } = location.state || { tabKey: 'all' };
 
-
-
-    /* ===== VARIABLES ===== */
+    /* ===== STATE ===== */
     // 선택된 탭
     const [tabCategory, setTabCategory] = useState(tabKey);
 
+    /* ===== QUERY ===== */
     // 청소업체 전체 조회
     const { data: companiesRes, isLoading: companiesLoading, isError: companiesError } = useGetCompanies();
     const companies = companiesRes?.data || [];
@@ -38,15 +34,11 @@ const CompaniesContainer = ({
     const { data: designateCompanyCategoryRes } = useGetDesignateCompanyCategories();
     const designateCompanyCategory = designateCompanyCategoryRes?.data || [];
 
-
-
     /* ===== FUNCTION ===== */
     // 탭 이벤트 함수
     const handleTabChange = useCallback((key) => {
         setTabCategory(key);
     }, []);
-
-
 
     /* ===== RENDER ===== */
     return (

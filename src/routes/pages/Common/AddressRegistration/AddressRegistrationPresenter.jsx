@@ -8,7 +8,13 @@ const AddressRegistrationPresenter = ({
     addressList,
 
     setSearchValue,
+
+    isLoading,
 }) => {
+
+    if (isLoading) return null;
+
+    /* ===== RENDER ===== */
     return (
         <MainLayout>
             <RegistrationHeader

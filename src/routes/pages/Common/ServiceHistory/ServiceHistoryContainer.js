@@ -5,8 +5,7 @@ import useAuthStore from "store/useAuthStore";
 const ServiceHistoryContainer = () => {
 
     /* ===== STATE ===== */
-    // const userId = useAuthStore(state => state.user_id);
-    const userId = 1;
+    const userId = useAuthStore(state => state.user_id);
 
 
     /* ===== VARIABLES ===== */
