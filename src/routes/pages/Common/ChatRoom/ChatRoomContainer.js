@@ -67,7 +67,7 @@ const ChatRoomContainer = ({
                         if (chatInfo.status !== 200) throw new Error(`[ChatRoomContainer][getOneChatRoom] Error`);
 
                         // chatInfo.
-                        console.log(chatInfo);
+                        
                         const userType = cookie.getCookie('userType');
                         if (userType === 'USER') {
                             setSender(chatInfo.data.user.name);
@@ -82,13 +82,13 @@ const ChatRoomContainer = ({
                         const chatMessageInfo = await API.getOneChatMessage(room_id);
                         if (chatMessageInfo.status !== 200) throw new Error(`[ChatRoomContainer][getOneChatMessage] Error`);
                         setChatList(chatMessageInfo.data.room_messages);
-                        console.log(chatMessageInfo.data)
+                        
                     } catch (e) {
-                        console.log(e.message);
+                        
                     }
                 }
             )()
-            console.log(state);
+            
 
             if (!socketRef.current) {
                 socketRef.current = io('ws://localhost:4200/cleaning_chat', {
@@ -98,8 +98,8 @@ const ChatRoomContainer = ({
             }
 
             socketRef.current?.on('chatMessage', (messageInfo) => {
-                console.log(messageInfo);
-                console.log(messageInfo.message);
+                
+                
                 setChatList(prev => {
                     return [
                         ...prev,
@@ -112,7 +112,7 @@ const ChatRoomContainer = ({
                 });
             });
         } catch (e) {
-            console.log(e)
+            
         }
     }, []);
 
@@ -129,7 +129,7 @@ const ChatRoomContainer = ({
         if (chatMessage.length === 0) return;
 
         // const chatText = inputChatRef.current.value;
-        // console.log(chat_room_id);
+        // 
         socketRef.current.emit('chatMessage', {
             room_id,
             chat_room_id: state.chat_room_id,

@@ -52,7 +52,7 @@ export const useCreateCompany = (onSuccess?: (data: any) => void, onError?: (err
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('청소업체 생성 완료: ', data);
+            // console.log('청소업체 생성 완료: ', data);
 
             queryClient.invalidateQueries(companyQueryKeys.getCompanies());
 
@@ -61,7 +61,7 @@ export const useCreateCompany = (onSuccess?: (data: any) => void, onError?: (err
             }
         },
         onError: (error) => {
-            console.error('청소업체 생성 실패: ', error);
+            // console.error('청소업체 생성 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -83,7 +83,7 @@ export const useUpdateCompany = (onSuccess?: (data: any) => void, onError?: (err
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('청소업체 정보 수정 완료: ', data);
+            // console.log('청소업체 정보 수정 완료: ', data);
 
             queryClient.invalidateQueries(companyQueryKeys.getCompanies());
 
@@ -92,7 +92,7 @@ export const useUpdateCompany = (onSuccess?: (data: any) => void, onError?: (err
             }
         },
         onError: (error) => {
-            console.error('청소업체 정보 수정 실패: ', error);
+            // console.error('청소업체 정보 수정 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -114,7 +114,7 @@ export const useDeleteCompany = (onSuccess?: (data: any) => void, onError?: (err
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('청소업체 삭제 완료: ', data)
+            // console.log('청소업체 삭제 완료: ', data)
 
             queryClient.invalidateQueries(companyQueryKeys.getCompanies());
 
@@ -123,7 +123,7 @@ export const useDeleteCompany = (onSuccess?: (data: any) => void, onError?: (err
             }
         },
         onError: (error) => {
-            console.error('청소업체 삭제 실패: ', error);
+            // console.error('청소업체 삭제 실패: ', error);
 
             if (onError) {
                 onError(error);

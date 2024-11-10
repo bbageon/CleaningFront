@@ -64,7 +64,7 @@ export const useCreateChatMessage = (onSuccess?: (data: any) => void, onError?: 
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('채팅 메시지 생성 완료: ', data);
+            // console.log('채팅 메시지 생성 완료: ', data);
 
             queryClient.invalidateQueries(chatMessageQueryKeys.getChatMessages());
 
@@ -73,7 +73,7 @@ export const useCreateChatMessage = (onSuccess?: (data: any) => void, onError?: 
             }
         },
         onError: (error) => {
-            console.error('채팅 메시지 생성 실패: ', error);
+            // console.error('채팅 메시지 생성 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -95,7 +95,7 @@ export const useUpdateChatMessage = (onSuccess?: (data: any) => void, onError?: 
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('채팅 메시지 정보 수정 완료: ', data);
+            // console.log('채팅 메시지 정보 수정 완료: ', data);
 
             queryClient.invalidateQueries(chatMessageQueryKeys.getChatMessages());
 
@@ -104,7 +104,7 @@ export const useUpdateChatMessage = (onSuccess?: (data: any) => void, onError?: 
             }
         },
         onError: (error) => {
-            console.error('채팅 메시지 정보 수정 실패: ', error);
+            // console.error('채팅 메시지 정보 수정 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -126,7 +126,7 @@ export const useDeleteChatMessage = (onSuccess?: (data: any) => void, onError?: 
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('채팅 메시지 삭제 완료: ', data)
+            // console.log('채팅 메시지 삭제 완료: ', data)
 
             queryClient.invalidateQueries(chatMessageQueryKeys.getChatMessages());
 
@@ -135,7 +135,7 @@ export const useDeleteChatMessage = (onSuccess?: (data: any) => void, onError?: 
             }
         },
         onError: (error) => {
-            console.error('채팅 메시지 삭제 실패: ', error);
+            // console.error('채팅 메시지 삭제 실패: ', error);
 
             if (onError) {
                 onError(error);

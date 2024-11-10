@@ -4,17 +4,27 @@ import MainServiceList from './Components/MainServiceList';
 import './Main.css';
 
 const MainPresenter = ({
+    isLoading,
+
+    // MainHeader
+    navigate,
+    userAddress,
 
 }) => {
+
+    if (isLoading) {
+        return null;
+    }
+
     return (
         <>
             <MainHeader
-            
+                navigate={navigate}
+                userAddress={userAddress}
             />
             <MainLayout
                 footer={true}
             >
-                
                 <Content
                     paddingLeft={16}
                     paddingRight={16}
@@ -22,10 +32,10 @@ const MainPresenter = ({
                     border={true}
                 >
                     <MainServiceList
-                    
+
                     />
                     <Banner
-                    
+
                     />
                 </Content>
 

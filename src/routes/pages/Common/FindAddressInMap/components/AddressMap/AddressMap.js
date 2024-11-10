@@ -21,14 +21,14 @@ const AddressMap = ({
     }, []);
 
     const successHandler = (response) => {
-        console.log(response); // coords: GeolocationCoordinates {latitude: 위도, longitude: 경도, …} timestamp: 1673446873903
+        
         const { latitude, longitude } = response.coords;
         addressCoord(latitude, longitude);
         setMarkerPosition({ lat: latitude, lng: longitude });
     };
 
     const errorHandler = (error) => {
-        console.log(error);
+        
     };
 
     const getCoord = (latLng) => {

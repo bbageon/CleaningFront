@@ -64,7 +64,7 @@ export const useCreateRequestCleanServiceList = (onSuccess?: (data: any) => void
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('청소요청 서비스 목록 생성 완료: ', data);
+            // console.log('청소요청 서비스 목록 생성 완료: ', data);
 
             queryClient.invalidateQueries(requestCleanServiceListQueryKeys.getRequestCleanServiceLists());
 
@@ -73,7 +73,7 @@ export const useCreateRequestCleanServiceList = (onSuccess?: (data: any) => void
             }
         },
         onError: (error) => {
-            console.error('청소요청 서비스 목록 생성 실패: ', error);
+            // console.error('청소요청 서비스 목록 생성 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -95,7 +95,7 @@ export const useUpdateRequestCleanServiceList = (onSuccess?: (data: any) => void
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('청소요청 서비스 목록 수정 완료: ', data);
+            // console.log('청소요청 서비스 목록 수정 완료: ', data);
 
             queryClient.invalidateQueries(requestCleanServiceListQueryKeys.getRequestCleanServiceLists());
 
@@ -104,7 +104,7 @@ export const useUpdateRequestCleanServiceList = (onSuccess?: (data: any) => void
             }
         },
         onError: (error) => {
-            console.error('청소요청 서비스 목록 수정 실패: ', error);
+            // console.error('청소요청 서비스 목록 수정 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -126,7 +126,7 @@ export const useDeleteRequestCleanServiceList = (onSuccess?: (data: any) => void
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('청소요청 서비스 목록 삭제 완료: ', data);
+            // console.log('청소요청 서비스 목록 삭제 완료: ', data);
 
             queryClient.invalidateQueries(requestCleanServiceListQueryKeys.getRequestCleanServiceLists());
 
@@ -135,7 +135,7 @@ export const useDeleteRequestCleanServiceList = (onSuccess?: (data: any) => void
             }
         },
         onError: (error) => {
-            console.error('청소요청 서비스 목록 삭제 실패: ', error);
+            // console.error('청소요청 서비스 목록 삭제 실패: ', error);
 
             if (onError) {
                 onError(error);

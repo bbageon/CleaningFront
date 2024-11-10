@@ -147,6 +147,20 @@ const RegistrationAddress = ({
                             });
                         }}
                     />
+                    <RegistrationInput
+                        title='평수'
+                        placeholder='예) 숫자만 입력해 주세요. (1, 10, 20, ...)'
+                        // value={addressInfo?.meter}
+                        onChange={e => {
+                            setAddressInfo(prev => {
+                                const meter = Number(e.target.value);
+                                return {
+                                    ...prev,
+                                    meter,
+                                }
+                            });
+                        }}
+                    />
                 </div>
             </div>
             <div

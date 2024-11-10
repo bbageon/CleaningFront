@@ -64,7 +64,7 @@ export const useCreateUser = (onSuccess?: (data: any) => void, onError?: (error:
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('고객 생성 완료: ', data);
+            // console.log('고객 생성 완료: ', data);
 
             queryClient.invalidateQueries(userQueryKeys.getUsers());
 
@@ -73,7 +73,7 @@ export const useCreateUser = (onSuccess?: (data: any) => void, onError?: (error:
             }
         },
         onError: (error) => {
-            console.error('고객 생성 실패: ', error);
+            // console.error('고객 생성 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -95,7 +95,7 @@ export const useUpdateUser = (onSuccess?: (data: any) => void, onError?: (error:
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('고객 정보 수정 완료: ', data);
+            // console.log('고객 정보 수정 완료: ', data);
 
             queryClient.invalidateQueries(userQueryKeys.getUsers());
 
@@ -104,7 +104,7 @@ export const useUpdateUser = (onSuccess?: (data: any) => void, onError?: (error:
             }
         },
         onError: (error) => {
-            console.error('고객 정보 수정 실패: ', error);
+            // console.error('고객 정보 수정 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -126,7 +126,7 @@ export const useDeleteUser = (onSuccess?: (data: any) => void, onError?: (error:
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('고객 삭제 완료: ', data)
+            // console.log('고객 삭제 완료: ', data)
 
             queryClient.invalidateQueries(userQueryKeys.getUsers());
 
@@ -135,7 +135,7 @@ export const useDeleteUser = (onSuccess?: (data: any) => void, onError?: (error:
             }
         },
         onError: (error) => {
-            console.error('고객 삭제 실패: ', error);
+            // console.error('고객 삭제 실패: ', error);
 
             if (onError) {
                 onError(error);

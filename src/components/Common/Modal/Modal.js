@@ -14,7 +14,7 @@ const Modal = ({
     /* ===== VARIABLES ===== */
     const { onConfirm, closeModal, buttonType } = useModalStore();
 
-    /* ===== STATE ===== */
+
 
     /* ===== FUNCTION ===== */
     if (!isOpen) {
@@ -27,9 +27,7 @@ const Modal = ({
         }
         closeModal();
     };
-
-    /* ===== HOOKS ===== */
-
+    
     
     
     /* ===== RENDER ===== */

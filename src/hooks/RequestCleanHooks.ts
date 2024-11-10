@@ -76,7 +76,7 @@ export const useCreateRequestClean = (onSuccess?: (data: any) => void, onError?:
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('청소요청 생성 완료: ', data);
+            // console.log('청소요청 생성 완료: ', data);
 
             queryClient.invalidateQueries(requestCleanQueryKeys.getRequestCleans());
 
@@ -85,7 +85,7 @@ export const useCreateRequestClean = (onSuccess?: (data: any) => void, onError?:
             }
         },
         onError: (error) => {
-            console.error('청소요청 생성 실패: ', error);
+            // console.error('청소요청 생성 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -107,7 +107,7 @@ export const useUpdateRequestClean = (onSuccess?: (data: any) => void, onError?:
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('청소요청 정보 수정 완료: ', data);
+            // console.log('청소요청 정보 수정 완료: ', data);
 
             queryClient.invalidateQueries(requestCleanQueryKeys.getRequestCleans());
 
@@ -116,7 +116,7 @@ export const useUpdateRequestClean = (onSuccess?: (data: any) => void, onError?:
             }
         },
         onError: (error) => {
-            console.error('청소요청 정보 수정 실패: ', error);
+            // console.error('청소요청 정보 수정 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -138,7 +138,7 @@ export const useDeleteRequestClean = (onSuccess?: (data: any) => void, onError?:
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('청소요청 삭제 완료: ', data)
+            // console.log('청소요청 삭제 완료: ', data)
 
             queryClient.invalidateQueries(requestCleanQueryKeys.getRequestCleans());
 
@@ -147,7 +147,7 @@ export const useDeleteRequestClean = (onSuccess?: (data: any) => void, onError?:
             }
         },
         onError: (error) => {
-            console.error('청소요청 삭제 실패: ', error);
+            // console.error('청소요청 삭제 실패: ', error);
 
             if (onError) {
                 onError(error);

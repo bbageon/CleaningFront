@@ -76,7 +76,7 @@ export const useCreateChatRoom = (onSuccess?: (data: any) => void, onError?: (er
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('채팅방 생성 완료: ', data);
+            // console.log('채팅방 생성 완료: ', data);
 
             queryClient.invalidateQueries(chatRoomQueryKeys.getChatRooms());
 
@@ -85,7 +85,7 @@ export const useCreateChatRoom = (onSuccess?: (data: any) => void, onError?: (er
             }
         },
         onError: (error) => {
-            console.error('채팅방 생성 실패: ', error);
+            // console.error('채팅방 생성 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -107,7 +107,7 @@ export const useUpdateChatRoom = (onSuccess?: (data: any) => void, onError?: (er
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('채팅방 정보 수정 완료: ', data);
+            // console.log('채팅방 정보 수정 완료: ', data);
 
             queryClient.invalidateQueries(chatRoomQueryKeys.getChatRooms());
 
@@ -116,7 +116,7 @@ export const useUpdateChatRoom = (onSuccess?: (data: any) => void, onError?: (er
             }
         },
         onError: (error) => {
-            console.error('채팅방 정보 수정 실패: ', error);
+            // console.error('채팅방 정보 수정 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -138,7 +138,7 @@ export const useDeleteChatRoom = (onSuccess?: (data: any) => void, onError?: (er
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('채팅방 삭제 완료: ', data)
+            // console.log('채팅방 삭제 완료: ', data)
 
             queryClient.invalidateQueries(chatRoomQueryKeys.getChatRooms());
 
@@ -147,7 +147,7 @@ export const useDeleteChatRoom = (onSuccess?: (data: any) => void, onError?: (er
             }
         },
         onError: (error) => {
-            console.error('채팅방 삭제 실패: ', error);
+            // console.error('채팅방 삭제 실패: ', error);
 
             if (onError) {
                 onError(error);

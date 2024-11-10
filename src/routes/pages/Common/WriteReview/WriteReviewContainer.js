@@ -43,7 +43,7 @@ const WriteReviewContainer = () => {
     // 리뷰 이미지 작성 mutate
     const { mutate: submitReviewImages } = useCreateReviewImage(
         (data) => {
-            // openModal('리뷰 작성 성공', '리뷰가 성공적으로 작성되었습니다.', () => {navigate(-1)}, 'single');
+            
         },
         (error) => {
             openModal('리뷰 이미지 업로드 실패', '이미지 업로드 중 오류가 발생했습니다.', null, 'single');
@@ -60,12 +60,12 @@ const WriteReviewContainer = () => {
     const handleSubmit = () => {
 
         if (rating === 0) {
-            openModal('경고', '별점은 최소 1점입니다.', null, 'confirm-only');
+            openModal('경고', '별점은 최소 1점입니다.', null, 'single');
             return;
         }
 
         if (reviewContent.trim() === '') {
-            openModal('경고', '리뷰 내용을 입력해주세요.', null, 'confirm-only');
+            openModal('경고', '리뷰 내용을 입력해주세요.', null, 'single');
             return;
         }
 

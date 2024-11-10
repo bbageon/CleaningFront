@@ -1,27 +1,73 @@
 import './AddressList.css';
 import { ReactComponent as Pin } from '../../../../../../assets/icons/pin.svg';
 import { ReactComponent as EmptyPin } from '../../../../../../assets/icons/emptyPin.svg';
-import { useAddressStore } from 'store';
 import { useNavigate } from 'react-router-dom';
+import { useUpdateUserAddress } from 'hooks/UserAddressHooks';
+import dayjs from 'dayjs';
+import { useToastStore } from 'store';
 
 const AddressList = ({
     isSearch,
     addressList,
 }) => {
-
+    
     /* ===== VARIABLES ===== */
     const navigate = useNavigate();
 
-    /* ==== STORE ===== */
-    const setAddressStore = useAddressStore((state) => state.setAddress);
+
+
+    /* ===== STORE ===== */
+    const showToast = useToastStore(state => state.showToast);
+
+
+
+    /* ===== MUTATE ===== */
+    const { mutate: defaultAddress } = useUpdateUserAddress(
+        (data) => {
+
+        },
+        (error) => {
+
+        },
+    );
+
+
 
     /* ===== FUNCTION ===== */
-    const handleSetAddressStore = (address) => {
-        setAddressStore(address.address, address.address_detail);
-        navigate('/main');
+    // 주소 즐겨찾기 설정
+    const handleSelectAddress = (address) => {
+        const { user_address_id, is_favorite, ...updateData } = address;
+
+        if (is_favorite === 1) {
+            showToast('이미 지정된 주소입니다.');
+            return;
+        }
+
+        const updatedAddressList = addressList.map(address => ({
+            user_address_id: address.user_address_id,
+            body: {
+                ...address,
+                updated_at: dayjs().unix(),
+                is_favorite: address.user_address_id === user_address_id,
+            }
+        }));
+
+        Promise.all(
+            updatedAddressList.map(address =>
+                defaultAddress(address)
+            )
+        ).then(() => {
+            showToast('주소가 변경되었습니다.');
+            navigate('/main');
+        }).catch(error => {
+            showToast('주소 변경 중 오류가 발생했습니다.');
+            console.error(error);
+        });
     };
 
+    
 
+    /* ===== RENDER ===== */
     return (
         <div className='address-list'>
             {
@@ -29,7 +75,7 @@ const AddressList = ({
                     return (
                         <div
                             className='address'
-                            onClick={() => handleSetAddressStore(address)}
+                            onClick={() => handleSelectAddress(address)}
                         >
                             {
                                 isSearch ?

@@ -7,14 +7,14 @@ const ImageTestContainer = () => {
     const [images, setImages] = useState([]);
 
     const selectImage = (image) => {
-        console.log(image)
+        
 
         setImageFile(image)
     }
 
     const selectImages = (image) => {
         const imageArray = Array.from(image);
-        console.log(imageArray)
+        
 
         imageArray.map(img => {
             setImageFile(prev => {
@@ -36,7 +36,7 @@ const ImageTestContainer = () => {
         try {
             const result = await API.postImageTest(formData);
 
-            console.log(result);
+            
             setImages(prev => {
                 return [...prev, result.data]
             });
@@ -57,14 +57,14 @@ const ImageTestContainer = () => {
         });
 
         for (const [key, value] of formData.entries()) {
-            console.log(key, value);
+            
         };
 
         // 다수 이미지
         try {
             const result = await API.postImagesTest(formData);
 
-            console.log(result);
+            
             result?.data?.map(r => {
                 setImages(prev => {
                     return [...prev, r]

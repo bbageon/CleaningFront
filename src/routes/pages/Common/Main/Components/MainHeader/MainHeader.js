@@ -1,24 +1,32 @@
 import './MainHeader.css';
 import { ReactComponent as Bell } from '../../../../../../assets/icons/bell.svg';
 import { ReactComponent as Cart } from '../../../../../../assets/icons/cart.svg';
-import { useCustomContext } from 'context/CustomContext';
 
 const MainHeader = ({
-
+    navigate,
+    userAddress,
 }) => {
-
-    const { navigate } = useCustomContext();
 
     /* ===== RENDER ====== */
     return (
         <div className='main-header-container'>
             <div className='main-header-top'>
-                <span className='main-header-top-address' onClick={ () => navigate('/addressregistration') }>
-                    주소를 등록해 주세요 !
-                </span>
+                {
+                    userAddress ? (
+                        <span className='main-header-top-address' onClick={() => navigate('/addressregistration')}>
+                            {userAddress?.[0].address} ⟩
+                        </span>
+
+                    ) : (
+
+                        <span className='main-header-top-address' onClick={() => navigate('/addressregistration')}>
+                            주소를 등록해 주세요 ! ⟩
+                        </span>
+                    )
+                }
                 <div className='main-header-top-icons'>
                     <Bell fill='#FFFFFF' width={20} height={20} />
-                    <Cart fill='#FFFFFF' width={20} height={20} onClick={() => navigate('/shoppingcart')}/>
+                    <Cart fill='#FFFFFF' width={20} height={20} onClick={() => navigate('/shoppingcart')} />
                 </div>
             </div>
             <div className='main-header-title'>

@@ -22,6 +22,7 @@ const DetailAddressContainer = () => {
         address_name: '',
         entrance_number: '',
         directions: '',
+        meter: 0,
     })
 
     /* ===== MUTATE ===== */
@@ -46,10 +47,7 @@ const DetailAddressContainer = () => {
         navigate(-2);
     };
 
-    const handleAddressInfo = (e) => {
-        setAddressInfo()
-    };
-
+    /* ===== RENDER ===== */
     return (
         <DetailAddressPresenter
             addressInfo={addressInfo}

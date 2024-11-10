@@ -76,7 +76,7 @@ export const useCreateDesignateCompanyCategory = (onSuccess?: (data: any) => voi
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('청소업체 카테고리 지정 생성 완료: ', data);
+            // console.log('청소업체 카테고리 지정 생성 완료: ', data);
 
             queryClient.invalidateQueries(designateCompanyCategoryQueryKeys.getDesignateCompanyCategories());
 
@@ -85,7 +85,7 @@ export const useCreateDesignateCompanyCategory = (onSuccess?: (data: any) => voi
             }
         },
         onError: (error) => {
-            console.error('청소업체 카테고리 지정 생성 실패: ', error);
+            // console.error('청소업체 카테고리 지정 생성 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -107,7 +107,7 @@ export const useUpdateDesignateCompanyCategory = (onSuccess?: (data: any) => voi
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('청소업체 카테고리 지정 정보 수정 완료: ', data);
+            // console.log('청소업체 카테고리 지정 정보 수정 완료: ', data);
 
             queryClient.invalidateQueries(designateCompanyCategoryQueryKeys.getDesignateCompanyCategories());
 
@@ -116,7 +116,7 @@ export const useUpdateDesignateCompanyCategory = (onSuccess?: (data: any) => voi
             }
         },
         onError: (error) => {
-            console.error('청소업체 카테고리 지정 정보 수정 실패: ', error);
+            // console.error('청소업체 카테고리 지정 정보 수정 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -138,7 +138,7 @@ export const useDeleteDesignateCompanyCategory = (onSuccess?: (data: any) => voi
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('청소업체 카테고리 지정 삭제 완료: ', data)
+            // console.log('청소업체 카테고리 지정 삭제 완료: ', data)
 
             queryClient.invalidateQueries(designateCompanyCategoryQueryKeys.getDesignateCompanyCategories());
 
@@ -147,7 +147,7 @@ export const useDeleteDesignateCompanyCategory = (onSuccess?: (data: any) => voi
             }
         },
         onError: (error) => {
-            console.error('청소업체 카테고리 지정 삭제 실패: ', error);
+            // console.error('청소업체 카테고리 지정 삭제 실패: ', error);
 
             if (onError) {
                 onError(error);

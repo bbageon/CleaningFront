@@ -62,11 +62,11 @@ const ChatRoomListContainer = () => {
                 try {
                     const result = await API.getChatRoom();
                     if (result.status !== 200) throw new Error(`[ChatRoomListContainer] [useEffect] Error`);
-                    console.log(result.data);
+                    
                     setChatList(result.data);
 
                 } catch (e) {
-                    console.log(e.message);
+                    
                 }
             }
         )()

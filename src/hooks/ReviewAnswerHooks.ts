@@ -76,7 +76,7 @@ export const useCreateReviewAnswer = (onSuccess?: (data: any) => void, onError?:
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('리뷰 답변 생성 완료:', data);
+            // console.log('리뷰 답변 생성 완료:', data);
 
             queryClient.invalidateQueries(reviewAnswerQueryKeys.getReviewAnswers());
 
@@ -85,7 +85,7 @@ export const useCreateReviewAnswer = (onSuccess?: (data: any) => void, onError?:
             }
         },
         onError: (error) => {
-            console.log('리뷰 답변 생성 실패: ', error);
+            // console.log('리뷰 답변 생성 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -107,7 +107,7 @@ export const useUpdateReviewAnswer = (onSuccess?: (data: any) => void, onError?:
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('리뷰 답변 수정 완료:', data);
+            // console.log('리뷰 답변 수정 완료:', data);
 
             queryClient.invalidateQueries(reviewAnswerQueryKeys.getReviewAnswers());
 
@@ -116,7 +116,7 @@ export const useUpdateReviewAnswer = (onSuccess?: (data: any) => void, onError?:
             }
         },
         onError: (error) => {
-            console.log('리뷰 답변 수정 실패: ', error);
+            // console.log('리뷰 답변 수정 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -138,7 +138,7 @@ export const useDeleteReviewAnswer = (onSuccess?: (data: any) => void, onError?:
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('리뷰 답변 삭제 완료:', data);
+            // console.log('리뷰 답변 삭제 완료:', data);
 
             queryClient.invalidateQueries(reviewAnswerQueryKeys.getReviewAnswers());
 
@@ -147,7 +147,7 @@ export const useDeleteReviewAnswer = (onSuccess?: (data: any) => void, onError?:
             }
         },
         onError: (error) => {
-            console.log('리뷰 답변 삭제 실패: ', error);
+            // console.log('리뷰 답변 삭제 실패: ', error);
 
             if (onError) {
                 onError(error);

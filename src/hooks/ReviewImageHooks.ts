@@ -64,7 +64,7 @@ export const useCreateReviewImage = (onSuccess?: (data: any) => void, onError?: 
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('리뷰 이미지 생성 완료: ', data);
+            // console.log('리뷰 이미지 생성 완료: ', data);
 
             queryClient.invalidateQueries(reviewImageQueryKeys.getReviewImages());
 
@@ -73,7 +73,7 @@ export const useCreateReviewImage = (onSuccess?: (data: any) => void, onError?: 
             };
         },
         onError: (error) => {
-            console.error('리뷰 이미지 생성 실패: ', error);
+            // console.error('리뷰 이미지 생성 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -95,7 +95,7 @@ export const useUpdateReviewImage = (onSuccess?: (data: any) => void, onError?: 
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('리뷰 이미지 수정 완료: ', data);
+            // console.log('리뷰 이미지 수정 완료: ', data);
 
             queryClient.invalidateQueries(reviewImageQueryKeys.getReviewImages());
 
@@ -104,7 +104,7 @@ export const useUpdateReviewImage = (onSuccess?: (data: any) => void, onError?: 
             };
         },
         onError: (error) => {
-            console.error('리뷰 수정 실패: ', error);
+            // console.error('리뷰 수정 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -126,7 +126,7 @@ export const useDeleteReviewImage = (onSuccess?: (data: any) => void, onError?: 
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('리뷰 이미지 삭제 완료: ', data);
+            // console.log('리뷰 이미지 삭제 완료: ', data);
 
             queryClient.invalidateQueries(reviewImageQueryKeys.getReviewImages());
 
@@ -135,7 +135,7 @@ export const useDeleteReviewImage = (onSuccess?: (data: any) => void, onError?: 
             };
         },
         onError: (error) => {
-            console.error('리뷰 이미지 삭제 실패: ', error);
+            // console.error('리뷰 이미지 삭제 실패: ', error);
 
             if (onError) {
                 onError(error);

@@ -23,10 +23,10 @@ const CustomerInfo = ({
                             <p>{requestDetail.clean_address_detail}</p>
                         </div>
                     </div>
-                    <div className='service-history-detail-card-between'>
+                    {/* <div className='service-history-detail-card-between'>
                         <p className='gray2'>전화번호</p>
                         <p>{formatPhone(requestDetail.user.phone)}</p>
-                    </div>
+                    </div> */}
                 </div>
 
             </Content>

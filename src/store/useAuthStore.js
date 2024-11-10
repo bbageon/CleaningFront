@@ -1,8 +1,5 @@
-import CookieManager from 'util/CookieManager';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-
-const cookieManager = new CookieManager();
 
 const useAuthStore = create(
     persist(

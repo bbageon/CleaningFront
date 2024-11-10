@@ -147,7 +147,7 @@ export default class ApiManager {
    * Multipart File
    */
   multipartRequest = async (url, body = null, method = 'POST') => {
-    console.log(body)
+    
     try {
       const response = await fetch(`${this.BASE_URL}${url}`, {
         method,
@@ -166,9 +166,9 @@ export default class ApiManager {
         // mimeType: 'multipart/form-data',
         body: body,
       });
-      //console.log(response);
+      //
       const responseJson = await response.json();
-      //console.log("ERROR : ", responseJson);
+      //
       return responseJson;
     } catch (error) {
       return {

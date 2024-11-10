@@ -4,6 +4,10 @@ import './ServiceHistory.css';
 
 const ServiceHistoryPresenter = ({
     isLoading,
+
+    // Tab
+    setTabKey,
+    
     userRequestClean,
 }) => {
 
@@ -14,47 +18,47 @@ const ServiceHistoryPresenter = ({
     const TabItems = [
         {
             label: '전체',
-            key: 'all',
+            key: 0,
             children:
                 <ServiceHistoryList
                     userRequestClean={userRequestClean}
                 />
         },
         {
-            label: '이사/입주 청소',
-            key: 'MOVE',
+            label: '이사/입주청소',
+            key: 1,
             children:
                 <ServiceHistoryList
                     userRequestClean={userRequestClean}
                 />
         },
         {
-            label: '거주/생활 청소',
-            key: 'APPLIANCES',
+            label: '거주/생활청소',
+            key: 2,
             children:
                 <ServiceHistoryList
                     userRequestClean={userRequestClean}
                 />
         },
         {
-            label: '가전/가구 청소',
-            key: '',
+            label: '가전/가구청소',
+            key: 3,
             children:
                 <ServiceHistoryList
                     userRequestClean={userRequestClean}
                 />
         },
         {
-            label: '건물 관리',
-            key: '5',
+            label: '사업장청소',
+            key: 4,
             children:
                 <ServiceHistoryList
                     userRequestClean={userRequestClean}
                 />
         },
         {
-            label: '사업장 청소',
-            key: '6',
+            label: '건물관리',
+            key: 5,
             children:
                 <ServiceHistoryList
                     userRequestClean={userRequestClean}
@@ -70,6 +74,7 @@ const ServiceHistoryPresenter = ({
             />
             <Tab
                 items={TabItems}
+                onChange={setTabKey}
             />
         </MainLayout>
     );

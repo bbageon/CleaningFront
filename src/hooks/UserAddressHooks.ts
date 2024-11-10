@@ -64,7 +64,7 @@ export const useCreateUserAddress = (onSuccess?: (data: any) => void, onError?: 
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('고객 주소 생성 완료: ', data);
+            // console.log('고객 주소 생성 완료: ', data);
 
             queryClient.invalidateQueries(userAddressQueryKeys.getUserAddresses());
 
@@ -73,7 +73,7 @@ export const useCreateUserAddress = (onSuccess?: (data: any) => void, onError?: 
             }
         },
         onError: (error) => {
-            console.error('고객 주소 생성 실패: ', error);
+            // console.error('고객 주소 생성 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -90,12 +90,17 @@ export const useUpdateUserAddress = (onSuccess?: (data: any) => void, onError?: 
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: async ({ user_address_id, body}: {user_address_id: number, body: any}) => {
-            const response = await API.putUserAddress(user_address_id, body);
-            return response.data;
+        mutationFn: async ({ user_address_id, body }: { user_address_id: Number, body: any }) => {
+            try {
+                const response = await API.putUserAddress(user_address_id, body);
+                return response;
+                
+            } catch (error) {
+                throw error;
+            }
         },
         onSuccess: (data) => {
-            console.log('고객 주소 수정 완료: ', data);
+            // console.log('고객 주소 수정 완료: ', data);
 
             queryClient.invalidateQueries(userAddressQueryKeys.getUserAddresses());
 
@@ -104,7 +109,7 @@ export const useUpdateUserAddress = (onSuccess?: (data: any) => void, onError?: 
             }
         },
         onError: (error) => {
-            console.error('고객 주소 수정 실패: ', error);
+            // console.error('고객 주소 수정 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -117,7 +122,7 @@ export const useUpdateUserAddress = (onSuccess?: (data: any) => void, onError?: 
  * [User Address] 고객 주소 삭제
  * --
  */
-export const useDeleteUserAddress = (onSuccess?: (data:any) => void, onError?: (error: any) => void) => {
+export const useDeleteUserAddress = (onSuccess?: (data: any) => void, onError?: (error: any) => void) => {
     const queryClient = useQueryClient();
 
     return useMutation({
@@ -126,7 +131,7 @@ export const useDeleteUserAddress = (onSuccess?: (data:any) => void, onError?: (
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('고객 주소 삭제 완료: ', data);
+            // console.log('고객 주소 삭제 완료: ', data);
 
             queryClient.invalidateQueries(userAddressQueryKeys.getUserAddresses());
 
@@ -135,7 +140,7 @@ export const useDeleteUserAddress = (onSuccess?: (data:any) => void, onError?: (
             }
         },
         onError: (error) => {
-            console.error('고객 주소 삭제 실패: ', error);
+            // console.error('고객 주소 삭제 실패: ', error);
 
             if (onError) {
                 onError(error);

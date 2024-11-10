@@ -7,8 +7,10 @@ import { useGetOneService } from "hooks/ServiceHooks";
 import { useCreateRequestClean } from "hooks/RequestCleanHooks";
 import { useCreateRequestCleanServiceList } from "hooks/RequestCleanServiceListHooks";
 import { useGetUserCart } from "hooks/CartHooks";
-import { useAddressStore, useAuthStore, useCartStore } from "store";
+import {  useAuthStore, useCartStore, useModalStore } from "store";
 import dayjs from "dayjs";
+import { Modal } from "components";
+import { useGetUserAddress } from "hooks/UserAddressHooks";
 
 const ShoppingCartContainer = () => {
 
@@ -31,7 +33,7 @@ const ShoppingCartContainer = () => {
     /* ===== STORE ===== */
     const userId = useAuthStore(state => state.user_id);
     const clearCartStore = useCartStore(state => state.clearCartStore);
-    const { address, address_detail } = useAddressStore(state => state);
+    const { isModalOpen, content, openModal } = useModalStore(state => state);
 
 
 
@@ -48,7 +50,12 @@ const ShoppingCartContainer = () => {
     const { data: serviceRes, isLoading: serviceLoading, isError: serviceError } = useGetOneService(serviceId);
     const service = serviceRes?.data || [];
 
-    const isLoading = userCartServiceListLoading || serviceLoading || userCartLoading;
+    // 고객 주소 조회
+    const { data: userAddressesRes, isLoading: userAddressesLoading, isError: userAddressesError } = useGetUserAddress(userId);
+    const userAddresses = userAddressesRes?.data.user_addresses || [];
+    const filteredUserAddress = userAddresses.filter(address => address.is_favorite === 1);
+
+    const isLoading = userCartServiceListLoading || serviceLoading || userCartLoading || userAddressesLoading;
 
     const totalPrice = userCartServiceList.reduce((sum, i) => sum + i.price, 0);
 
@@ -81,6 +88,7 @@ const ShoppingCartContainer = () => {
                 });
             });
 
+            openModal('청소 요청', '청소 요청에 성공하셨습니다.', () => { navigate('/main') }, 'single');
         },
         (error) => {
             console.error(error);
@@ -147,45 +155,63 @@ const ShoppingCartContainer = () => {
     };
 
     const handleRequestClean = () => {
-        requestClean({
-            user_id: userId,
-            company_id: company.company_id,
-            request_status: 'WAITING',
-            created_at: dayjs().unix(),
-            updated_at: dayjs().unix(),
-            request_date: dayjs().unix(),
-            clean_address: address,
-            clean_address_detail: address_detail,
-            total_price: totalPrice,
-        });
+
+        if (!userCartServiceList.length) {
+            openModal('청소 요청', '장바구니에 서비스가 존재하지 않습니다.', null, 'single');
+            return;
+        }
+
+        openModal('청소 요청', '청소를 요청하시겠습니까?', () => {
+            requestClean({
+                user_id: userId,
+                company_id: company.company_id,
+                request_status: 'WAITING',
+                created_at: dayjs().unix(),
+                updated_at: dayjs().unix(),
+                request_date: dayjs().unix(),
+                clean_address: filteredUserAddress[0].address,
+                clean_address_detail: filteredUserAddress[0].address_detail,
+                total_price: totalPrice,
+                quantity: filteredUserAddress[0].meter,
+                category: userCartServiceList[0].service.service_category,
+            });
+        }, 'double');
     };
 
 
 
     /* ===== RENDER ===== */
     return (
-        <ShoppingCartPresenter
-            userCartServiceList={userCartServiceList}
-            totalPrice={totalPrice}
-            company={company}
-            selectedDays={selectedDays}
+        <>
+            <ShoppingCartPresenter
+                userCartServiceList={userCartServiceList}
+                totalPrice={totalPrice}
+                company={company}
+                selectedDays={selectedDays}
 
-            isLoading={isLoading}
-            isDaySelectorOpen={isDaySelectorOpen}
+                isLoading={isLoading}
+                isDaySelectorOpen={isDaySelectorOpen}
 
-            setIsDaySelectorOpen={setIsDaySelectorOpen}
-            setSelectedDays={setSelectedDays}
-            setCartList={setCartList}
+                setIsDaySelectorOpen={setIsDaySelectorOpen}
+                setSelectedDays={setSelectedDays}
+                setCartList={setCartList}
 
-            handleNavigateCompany={handleNavigateCompany}
-            handleDeleteCartList={handleDeleteCartList}
-            handleRequestClean={handleRequestClean}
-            handleToggleDaySelector={handleToggleDaySelector}
-            navigate={navigate}
-
-            address={address}
-            address_detail={address_detail}
-        />
+                handleNavigateCompany={handleNavigateCompany}
+                handleDeleteCartList={handleDeleteCartList}
+                handleRequestClean={handleRequestClean}
+                handleToggleDaySelector={handleToggleDaySelector}
+                navigate={navigate}
+            />
+            {
+                isModalOpen && (
+                    <Modal
+                        isOpen={isModalOpen}
+                        title={content.title}
+                        content={content.message}
+                    />
+                )
+            }
+        </>
     );
 };
 

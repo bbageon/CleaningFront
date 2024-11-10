@@ -42,7 +42,7 @@ const PaymentInfo = ({
                                                 <span className='gray2'>결제수단</span>
                                                 <span>신용카드</span>
                                             </div>
-                                            <div className='service-history-detail-card-between small'>
+                                            {/* <div className='service-history-detail-card-between small'>
                                                 {
                                                     requestDetail.request_status === 'CANCELED' ? (
                                                         <span className='gray2'>취소일자</span>
@@ -51,7 +51,7 @@ const PaymentInfo = ({
                                                     )
                                                 }
                                                 <span>2024. 08. 20. (화)</span>
-                                            </div>
+                                            </div> */}
                                         </>
                                     )
                                 }

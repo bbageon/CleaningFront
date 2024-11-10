@@ -1,8 +1,5 @@
-import { React, useState } from 'react';
 import './RadioButton.css';
 import formatPrice from 'utils/priceUtils';
-import BottomButton from '../BottomButton';
-
 
 const RadioButton = ({
     options,
@@ -10,10 +7,7 @@ const RadioButton = ({
     selected,
     setSelected,
 }) => {
-
-    /* ===== STATE ===== */
-    // const [selected, setSelected] = useState('');
-
+    
     /* ===== FUNCTION ===== */
     const handleChange = (e) => {
         const selectedOption = options.find(option => option.id === e.target.value);
@@ -21,8 +15,7 @@ const RadioButton = ({
         setPrice(selectedOption.price);
     };
 
-    /* ===== HOOKS ===== */
-
+    /* ===== RENDER ===== */
     return (
         <>
             {

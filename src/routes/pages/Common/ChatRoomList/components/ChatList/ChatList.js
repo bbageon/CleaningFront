@@ -14,7 +14,7 @@ const ChatList = ({
                         <div
                             className='chat-list'
                             onClick={() => {
-                                console.log(chat.chat_room_id)
+                                
                                 navigate(`/chatroom/${chat.room_id}`, {
                                     state: { chat_room_id: chat.chat_room_id }
                                 })

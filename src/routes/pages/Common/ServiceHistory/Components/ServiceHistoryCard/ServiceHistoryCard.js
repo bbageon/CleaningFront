@@ -70,12 +70,7 @@ const ServiceHistoryCard = ({
                 </div>
                 <div className='service-history-card-button'>
                     {
-                        request.is_write_review === 1 ? (
-                            <Button
-                                disabled={true}
-                                title={'리뷰 작성 완료'}
-                            />
-                        ) : (
+                        request.is_write_review === 0 && request.request_status === 'DONE' ? (
                             <Button
                                 title={'리뷰 작성'}
                                 onClick={() => navigate(`/writereview/${request.request_clean_id}`, {
@@ -83,6 +78,11 @@ const ServiceHistoryCard = ({
                                         request: request,
                                     },
                                 })}
+                            />
+                        ) : (
+                            <Button
+                                disabled={true}
+                                title={'리뷰 작성'}
                             />
                         )
                     }

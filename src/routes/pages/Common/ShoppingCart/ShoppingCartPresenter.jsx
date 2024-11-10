@@ -1,7 +1,6 @@
 import "./ShoppingCart.css";
 import { BottomButton, DaySelector, MainLayout, Top } from "../../../../components";
 import CompanyTitle from "./components/CompanyTitle";
-import Coupon from "./components/Coupon";
 import TotalPriceCheck from "./components/TotalPriceCheck";
 import CartServiceList from "./components/CartServiceList/CartServiceList";
 
@@ -29,9 +28,6 @@ const ShoppingCartPresenter = ({
 
     setCartList,
 
-    address,
-    address_detail
-
 }) => {
 
     if (isLoading) {
@@ -50,9 +46,6 @@ const ShoppingCartPresenter = ({
                     <CompanyTitle
                         company={company}
                         handleNavigateCompany={handleNavigateCompany}
-
-                        address={address}
-                        address_detail={address_detail}
                     />
                 ) : (
                     <></>

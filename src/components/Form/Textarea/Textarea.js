@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './Textarea.css';
 
 const Textarea = ({
@@ -8,15 +7,6 @@ const Textarea = ({
     maxLength,
     onChange,
 }) => {
-
-    /* ===== STATE ===== */
-    const [count, setCount] = useState(0);
-
-    /* ===== FUNCTION ===== */
-    // 글자수 확인
-    const handleTextCount = (e) => {
-        setCount(e.target.value.length);
-    };
 
     return (
         <div className='textarea-container'>

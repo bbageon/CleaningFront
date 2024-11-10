@@ -81,11 +81,11 @@ const Router = () => {
         const socket = socketRef.current;
 
         socket.on('connect', () => {
-            console.log('Connected to WebSocket server');
+            
         });
 
         socket.on('disconnect', () => {
-            console.log('Disconnected from WebSocket server');
+            
         });
 
         return () => {

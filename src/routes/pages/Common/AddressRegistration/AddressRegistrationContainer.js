@@ -43,12 +43,13 @@ const AddressRegistrationContainer = () => {
     /* ===== RENDER ===== */
     return (
         <AddressRegistrationPresenter
+            isLoading={isLoading}
+
             isSearch={isSearch}
             addressList={addressList}
 
             setSearchValue={setSearchValue}
 
-            isLoading={isLoading}
         />
     );
 };

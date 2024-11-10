@@ -12,7 +12,9 @@ const AddressRegistrationPresenter = ({
     isLoading,
 }) => {
 
-    if (isLoading) return null;
+    if (isLoading) {
+        return null;
+    }
 
     /* ===== RENDER ===== */
     return (

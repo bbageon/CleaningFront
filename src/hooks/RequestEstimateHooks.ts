@@ -64,7 +64,7 @@ export const useCreateRequestEstimate = (onSuccess?: (data: any) => void, onErro
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('견적서 요청 생성 완료: ', data);
+            // console.log('견적서 요청 생성 완료: ', data);
 
             queryClient.invalidateQueries(requestEstimateQueryKeys.getRequestEstimates());
 
@@ -73,7 +73,7 @@ export const useCreateRequestEstimate = (onSuccess?: (data: any) => void, onErro
             }
         },
         onError: (error) => {
-            console.error('견적서 요청 생성 실패: ', error);
+            // console.error('견적서 요청 생성 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -95,7 +95,7 @@ export const useUpdateRequestEstimate = (onSuccess?: (data: any) => void, onErro
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('견적서 요청 수정 완료: ', data);
+            // console.log('견적서 요청 수정 완료: ', data);
 
             queryClient.invalidateQueries(requestEstimateQueryKeys.getRequestEstimates());
 
@@ -104,7 +104,7 @@ export const useUpdateRequestEstimate = (onSuccess?: (data: any) => void, onErro
             }
         },
         onError: (error) => {
-            console.error('견적서 요청 수정 실패: ', error);
+            // console.error('견적서 요청 수정 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -126,7 +126,7 @@ export const useDeleteRequestEstimate = (onSuccess?: (data: any) => void, onErro
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('견적서 요청 삭제 완료: ', data)
+            // console.log('견적서 요청 삭제 완료: ', data)
 
             queryClient.invalidateQueries(requestEstimateQueryKeys.getRequestEstimates());
 
@@ -135,7 +135,7 @@ export const useDeleteRequestEstimate = (onSuccess?: (data: any) => void, onErro
             }
         },
         onError: (error) => {
-            console.error('견적서 요청 삭제 실패: ', error);
+            // console.error('견적서 요청 삭제 실패: ', error);
 
             if (onError) {
                 onError(error);

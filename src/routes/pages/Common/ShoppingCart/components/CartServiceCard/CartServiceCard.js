@@ -10,8 +10,6 @@ const CartServiceCard = ({
     selectedDays,
     setSelectedDays,
 
-    // handleDeleteCartList,
-
     setCartList,
 }) => {
 
@@ -44,7 +42,7 @@ const CartServiceCard = ({
 
             <div className='cart-service-card-info'>
                 <span className='large bold '>{serviceData?.service_name}</span>
-                <span className='small gray2'>기본가격 : {formatPrice(serviceData?.service_default_price)}</span>
+                <span className='small gray2'>기본가격 : {formatPrice(serviceData?.service_default_price)}원</span>
                 <span className='large'>{formatPrice(service.price)}원</span>
             </div>
 

@@ -88,7 +88,7 @@ const LoginContainer = ({
 
     /* ===== KAKAO LOGIN ===== */
     const KakaoLogin = () => {
-        console.log('kakao login!');
+        
         window.location.href = kakaoUrl;
     };
 
@@ -116,7 +116,7 @@ const LoginContainer = ({
             return;
         }
 
-        console.log(result)
+        
 
         if (result?.data) {
             saveToken(result.data);
@@ -128,7 +128,7 @@ const LoginContainer = ({
 
     /* ===== NAVER LOGIN ===== */
     const NaverLogin = () => {
-        console.log('naver login!');
+        
         naverRef.current.children[0].click();
     };
 
@@ -147,7 +147,7 @@ const LoginContainer = ({
             naverLogin.getLoginStatus(async (status) => {
                 if (status) {
                     const userData = naverLogin.user;
-                    console.log(userData);
+                    
 
                     saveToken(userData);
                     setUserData(userData);
@@ -156,7 +156,7 @@ const LoginContainer = ({
                 }
             });
         } catch (err) {
-            console.log(err);
+            
         }
     };
 

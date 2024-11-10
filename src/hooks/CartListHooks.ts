@@ -93,7 +93,7 @@ export const useCreateCartList = (onSuccess?: (data: any) => void, onError?: (er
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('장바구니 목록 생성 완료: ', data);
+            // console.log('장바구니 목록 생성 완료: ', data);
 
             queryClient.invalidateQueries(cartListQueryKeys.getCartLists());
 
@@ -102,7 +102,7 @@ export const useCreateCartList = (onSuccess?: (data: any) => void, onError?: (er
             }
         },
         onError: (error) => {
-            console.error('장바구니 목록 생성 실패: ', error);
+            // console.error('장바구니 목록 생성 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -124,7 +124,7 @@ export const useUpdateCartList = (onSuccess?: (data: any) => void, onError?: (er
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('장바구니 목록 수정 완료: ', data);
+            // console.log('장바구니 목록 수정 완료: ', data);
 
             queryClient.invalidateQueries(cartListQueryKeys.getCartLists());
 
@@ -133,7 +133,7 @@ export const useUpdateCartList = (onSuccess?: (data: any) => void, onError?: (er
             }
         },
         onError: (error) => {
-            console.error('장바구니 목록 수정 실패: ', error);
+            // console.error('장바구니 목록 수정 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -155,7 +155,7 @@ export const useDeleteCartList = (onSuccess?: (data: any) => void, onError?: (er
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('장바구니 목록 삭제 완료: ', data);
+            // console.log('장바구니 목록 삭제 완료: ', data);
 
             queryClient.invalidateQueries(cartListQueryKeys.getCartLists());
 
@@ -164,7 +164,7 @@ export const useDeleteCartList = (onSuccess?: (data: any) => void, onError?: (er
             }
         },
         onError: (error) => {
-            console.error('장바구니 목록 삭제 실패: ', error);
+            // console.error('장바구니 목록 삭제 실패: ', error);
 
             if (onError) {
                 onError(error);

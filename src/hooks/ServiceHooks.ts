@@ -64,7 +64,7 @@ export const useCreateService = (onSuccess?: (data: any) => void, onError?: (err
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('서비스 생성 완료: ', data);
+            // console.log('서비스 생성 완료: ', data);
 
             queryClient.invalidateQueries(serviceQueryKeys.getServices());
 
@@ -73,7 +73,7 @@ export const useCreateService = (onSuccess?: (data: any) => void, onError?: (err
             }
         },
         onError: (error) => {
-            console.error('서비스 생성 실패: ', error);
+            // console.error('서비스 생성 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -95,7 +95,7 @@ export const useUpdateService = (onSuccess?: (data: any) => void, onError?: (err
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('서비스 수정 완료: ', data);
+            // console.log('서비스 수정 완료: ', data);
 
             queryClient.invalidateQueries(serviceQueryKeys.getServices());
 
@@ -104,7 +104,7 @@ export const useUpdateService = (onSuccess?: (data: any) => void, onError?: (err
             }
         },
         onError: (error) => {
-            console.error('서비스 수정 실패: ', error);
+            // console.error('서비스 수정 실패: ', error);
         },
     });
 };
@@ -122,7 +122,7 @@ export const useDeleteService = (onSuccess?: (data: any) => void, onError?: (err
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('서비스 삭제 완료: ', data);
+            // console.log('서비스 삭제 완료: ', data);
 
             queryClient.invalidateQueries(serviceQueryKeys.getServices());
 
@@ -131,7 +131,7 @@ export const useDeleteService = (onSuccess?: (data: any) => void, onError?: (err
             }
         },
         onError: (error) => {
-            console.error('서비스 삭제 실패: ', error);
+            // console.error('서비스 삭제 실패: ', error);
         },
     });
 };
