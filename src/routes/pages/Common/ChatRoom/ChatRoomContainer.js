@@ -59,19 +59,26 @@ const ChatRoomContainer = ({
             (
                 async () => {
                     try {
-                        // const userName = cookie.getCookie('name');
-                        // if (!userName) setClientId('홍길동');
-                        // else setClientId(userName);
-                        setClientId('홍길동')
+                        console.log(process.env.REACT_APP_CHAT_SERVER)
+                        const userName = cookie.getCookie('name');
+                        console.log(userName)
+                        if (!userName) setClientId('홍길동');
+                        else setClientId(userName);
+                        // setClientId('홍길동')
 
                         const chatInfo = await API.getOneChatRoom(room_id);
                         if (chatInfo.status !== 200) throw new Error(`[ChatRoomContainer][getOneChatRoom] Error`);
 
                         // chatInfo.
                         console.log(chatInfo);
-                        const userType = cookie.getCookie('userType');
-                        setSender(chatInfo.data.user.name);
-                        setReceiver('고길동');
+                        const { data } = chatInfo;
+                        console.log(data.user.name);
+                        console.log(data.company.company_name);
+                        setChatTitle(data.chat_room_name);
+                        setSender(data.user.name);
+                        setReceiver(data.company.company_name);
+                        // const userType = cookie.getCookie('userType');
+                        // setReceiver(chatInfo.data.company.name);
                         // if (userType === 'USER') {
                         //     setSender(chatInfo.data.user.name);
                         //     setReceiver('홍길동');
@@ -94,7 +101,7 @@ const ChatRoomContainer = ({
             console.log(state);
 
             if (!socketRef.current) {
-                socketRef.current = io('ws://localhost:4200/cleaning_chat', {
+                socketRef.current = io(`${process.env.REACT_APP_CHAT_SERVER}/cleaning_chat`, {
                     transports: ['websocket'],
                     reconnectionAttempts: 3,
                 });
