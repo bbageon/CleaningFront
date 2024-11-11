@@ -4,25 +4,25 @@ import { ReactComponent as Star } from '../../../assets/icons/star.svg';
 const dummyData = [
     {
         id: 1,
-        img: '',
+        img: 'https://cleaning-image.s3.ap-northeast-2.amazonaws.com/review_image_1.png',
         rating: '5.0',
         userName: '브라이언'
     },
     {
         id: 2,
-        img: '',
+        img: 'https://cleaning-image.s3.ap-northeast-2.amazonaws.com/review_image_2.png',
         rating: '4.4',
         userName: '김재모',
     },
     {
         id: 3,
-        img: '',
+        img: 'https://cleaning-image.s3.ap-northeast-2.amazonaws.com/review_image_3.png',
         rating: '4',
         userName: '허관',
     },
     {
         id: 4,
-        img: '',
+        img: 'https://cleaning-image.s3.ap-northeast-2.amazonaws.com/review_image_4.png',
         rating: '3',
         userName: '임주노',
     }
@@ -48,8 +48,7 @@ const Slide = ({
                         return (
                             <div key={index} className='slide-content'>
                                 <div className='slide-content-img'>
-                                    <img>
-                                    </img>
+                                    <img src={data.img}/>
                                 </div>
                                 <div className='slide-content-info-box'>
                                     <span className='slide-content-date small'>

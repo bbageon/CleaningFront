@@ -174,6 +174,7 @@ const ShoppingCartContainer = () => {
                 total_price: totalPrice,
                 quantity: filteredUserAddress[0].meter,
                 category: userCartServiceList[0].service.service_category,
+                start_clean_date: dayjs().unix(),
             });
         }, 'double');
     };

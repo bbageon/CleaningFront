@@ -8,7 +8,7 @@ const Banner = ({
 }) => {
     return (
         <div className='banner-container'>
-            
+            <img src={'https://cleaning-image.s3.ap-northeast-2.amazonaws.com/banner.png'} />
         </div>
     );
 };

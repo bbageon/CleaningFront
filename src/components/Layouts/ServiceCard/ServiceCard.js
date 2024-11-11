@@ -13,6 +13,8 @@ const ServiceCard = ({
     isMenuPage,
 }) => {
 
+    console.log(service)
+
     const { navigate } = useCustomContext();
 
     return (
@@ -59,7 +61,7 @@ const ServiceCard = ({
                         <></>
                     ) : (
                         <div className='service-card-img-box'>
-                            <img src={test} />
+                            <img src={service.service_image} />
                         </div>
                     )
                 }

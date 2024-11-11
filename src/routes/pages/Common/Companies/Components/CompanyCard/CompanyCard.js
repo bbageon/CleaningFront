@@ -74,7 +74,7 @@ const CompanyCard = ({
                     </div>
                     <div className='company-card-time'>
                         <Clock fill='var(--gray3-color)' width={15} height={15} />
-                        <span>{`${formatTime(company.open_time)}~${formatTime(company.close_time)}`}</span>
+                        <span>{company.open_time}~{company.close_time}</span>
                         <span className='flagship-service'></span>
                         <span className='flagship-service none'>공휴일 {company?.is_holidays === 0 ? 'X' : 'O'}</span>
                     </div>
