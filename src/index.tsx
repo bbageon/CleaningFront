@@ -29,7 +29,7 @@ if (rootElement) {
         <CustomProvider>
           <App />
           {/* React Query Devtools: 추후 삭제 */}
-          <ReactQueryDevtools />
+          {/* <ReactQueryDevtools /> */}
         </CustomProvider>
       </Router>
     </QueryClientProvider>

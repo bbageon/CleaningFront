@@ -14,6 +14,7 @@ const CompanyList = ({
             paddingBottom={0}
             paddingLeft={0}
             paddingRight={0}
+            paddingTop={0}
         >
             {
                 companies.map((company, index) => {

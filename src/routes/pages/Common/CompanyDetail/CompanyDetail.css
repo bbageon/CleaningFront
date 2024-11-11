@@ -1,0 +1,12 @@
+.company-detail-chat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    position: fixed;
+    right: 10px;
+    bottom: 80px;
+
+    border: none;
+    background-color: transparent;
+}

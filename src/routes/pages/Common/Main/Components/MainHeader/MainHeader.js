@@ -12,15 +12,13 @@ const MainHeader = ({
         <div className='main-header-container'>
             <div className='main-header-top'>
                 {
-                    userAddress ? (
+                    userAddress?.length ? (
                         <span className='main-header-top-address' onClick={() => navigate('/addressregistration')}>
-                            {userAddress?.[0].address} ⟩
+                            {userAddress?.[0]?.address} ⟩
                         </span>
-
                     ) : (
-
                         <span className='main-header-top-address' onClick={() => navigate('/addressregistration')}>
-                            주소를 등록해 주세요 ! ⟩
+                            주소를 등록해 주세요 !
                         </span>
                     )
                 }

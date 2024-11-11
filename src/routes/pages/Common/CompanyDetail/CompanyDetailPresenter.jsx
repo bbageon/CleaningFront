@@ -2,7 +2,7 @@ import './CompanyDetail.css';
 import { BottomButton, MainLayout } from '../../../../components';
 import CompanyDetailTop from './Components/CompanyDetailTop';
 import CompanyDetailBottom from './Components/CompanyDetailBottom';
-import { useParams } from 'react-router-dom';
+import { ReactComponent as ChatIcon } from '../../../../assets/icons/chatIcon.svg';
 
 const CompanyDetailPresenter = ({
     navigate,
@@ -15,14 +15,14 @@ const CompanyDetailPresenter = ({
     companyReview,
     companyAnswer,
     companyService,
-    
+
     isLoading,
 }) => {
 
     if (isLoading) {
         return null;
     }
-    
+
     return (
         <MainLayout>
 
@@ -43,6 +43,13 @@ const CompanyDetailPresenter = ({
                 onClick={() => navigate('/shoppingcart')}
                 disabled={totalPrice === 0}
             />
+
+            <button
+                className='company-detail-chat'
+            >
+                <ChatIcon />
+            </button>
+
 
         </MainLayout>
     );

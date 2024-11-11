@@ -81,10 +81,10 @@ const LoginContainer = ({
     }, []);
 
     // 테스트 후 삭제 요망
-    const goMain = () => {
-        setUserId(19);
-        navigate(MAIN_URL);
-    };
+    // const goMain = () => {
+    //     setUserId(19);
+    //     navigate(MAIN_URL);
+    // };
 
     /* ===== KAKAO LOGIN ===== */
     const KakaoLogin = () => {
@@ -181,7 +181,7 @@ const LoginContainer = ({
             NaverLogin={NaverLogin}
             naverRef={naverRef}
 
-            goMain={goMain}
+            // goMain={goMain}
         />
     );
 };
