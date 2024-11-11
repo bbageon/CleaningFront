@@ -14,7 +14,7 @@ const MainHeader = ({
                 {
                     userAddress ? (
                         <span className='main-header-top-address' onClick={() => navigate('/addressregistration')}>
-                            {userAddress?.[0].address} ⟩
+                            {userAddress?.[0]?.address} ⟩
                         </span>
 
                     ) : (
