@@ -13,7 +13,7 @@ const CompanyMenuTop = ({
                 iconColor={'#FFFFFF'}
             />
             <div className='company-menu-top'>
-                <img src={test} />
+                <img src={service.service_image} />
                 {/* <img src={service.service_image} alt='service_image' /> */}
             </div>
             <ServiceCard

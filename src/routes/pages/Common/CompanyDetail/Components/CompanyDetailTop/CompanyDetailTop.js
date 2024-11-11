@@ -1,18 +1,11 @@
 import './CompanyDetailTop.css';
 import { Content, Top } from "../../../../../../components";
 import { ReactComponent as Star } from '../../../../../../assets/icons/star.svg';
-import formatTime from 'utils/timeUtils';
-import test from './test.png';
-
 const CompanyDetailTop = ({
     company,
-    companyReview,
     designateCompanyCategory,
     
 }) => {
-
-    /* ===== VARIABLES ===== */
-    const companyTotalReviewCount = companyReview.reviews.length;
 
     /* ===== RENDER ===== */
     return (
@@ -28,7 +21,7 @@ const CompanyDetailTop = ({
                     iconColor={'#ffffff'}
                     absolute={true}
                 />
-                <img src={test} />
+                <img src={company.logo_image} />
             </div>
             <div className='company-detail-top-box1'>
                 <span className='title'>{company.company_name}</span>
@@ -38,7 +31,7 @@ const CompanyDetailTop = ({
                         height={16}
                     />
                     <span className='rating'>{company.total_rating}.0</span>
-                    <span className='review-count'>{companyTotalReviewCount >= 100 ? '(100+)' : `(${companyTotalReviewCount})`}</span>
+                    <span className='review-count'>{company.total_review_count >= 100 ? '(100+)' : `(${company.total_review_count})`}</span>
                 </div>
                 <div className='company-detail-top-info2'>
                     {
@@ -52,7 +45,7 @@ const CompanyDetailTop = ({
             <div className='company-detail-top-box2'>
                 <div className='company-detail-top-info3'>
                     <span className='info-title'>영업 시간</span>
-                    <span>{formatTime(company.open_time)}~{formatTime(company.close_time)}</span>
+                    <span>{company.open_time}~{company.close_time}</span>
                 </div>
                 <div className='company-detail-top-info3'>
                     <span className='info-title'>공휴일</span>
