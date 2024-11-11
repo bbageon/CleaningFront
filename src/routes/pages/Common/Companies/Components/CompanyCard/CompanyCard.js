@@ -4,8 +4,8 @@ import { ReactComponent as Star } from '../../../../../../assets/icons/star.svg'
 import { ReactComponent as Clock } from '../../../../../../assets/icons/clock.svg';
 import test1 from './test1.jpg';
 import test2 from './test2.png';
-import { useCustomContext } from 'context/CustomContext';
 import formatTime from 'utils/timeUtils';
+import { useNavigate } from 'react-router-dom';
 
 const dummy = [
     {
@@ -46,7 +46,7 @@ const CompanyCard = ({
     designatedCategories,
 }) => {
 
-    const { navigate } = useCustomContext();
+    const navigate = useNavigate();
 
     return (
         <div className='company-card-wrap' onClick={() => {navigate(`/companydetail/${company?.company_id}`)}}>

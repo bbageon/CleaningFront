@@ -2,7 +2,7 @@ import CompaniesPresenter from "./CompaniesPresenter"
 import { useGetCompanies } from "hooks/CompanyHooks";
 import { useGetCompanyCategories } from "hooks/CompanyCategoryHooks";
 import { useGetCategoryDesignateCompanyCategory, useGetDesignateCompanyCategories } from "hooks/DesignateCompanyCategoryHooks";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 const CompaniesContainer = ({
@@ -16,6 +16,7 @@ const CompaniesContainer = ({
     /* ===== STATE ===== */
     // 선택된 탭
     const [tabCategory, setTabCategory] = useState(tabKey);
+    const [filteredCompanies, setFilteredCompanies] = useState([]);
 
     /* ===== QUERY ===== */
     // 청소업체 전체 조회
@@ -26,23 +27,34 @@ const CompaniesContainer = ({
     const { data: categoriesRes, isLoading: categoriesLoading, isError: categoriesError } = useGetCompanyCategories();
     const categories = categoriesRes?.data || [];
 
-    // 카테고리에 따른 청소업체 조회
-    const { data: companiesByCategoryRes, isLoading: companiesByCategoryLoading, isError: companiesByCategoryError } = useGetCategoryDesignateCompanyCategory(tabCategory);
-    const companiesByCategory = companiesByCategoryRes?.data || [];
-
     // 청소업체 카테고리 지정 전체 조회
-    const { data: designateCompanyCategoryRes } = useGetDesignateCompanyCategories();
+    const { data: designateCompanyCategoryRes, isLoading: designateCompanyCategoryLoading } = useGetDesignateCompanyCategories();
     const designateCompanyCategory = designateCompanyCategoryRes?.data || [];
 
+    const isLoading = companiesLoading || categoriesLoading || designateCompanyCategoryLoading;
+
     /* ===== FUNCTION ===== */
-    // 탭 이벤트 함수
-    const handleTabChange = useCallback((key) => {
-        setTabCategory(key);
-    }, []);
+
+    /* ===== EFFECTS ===== */
+    useEffect(() => {
+        if (!isLoading && designateCompanyCategory) {
+            if (tabCategory === 'all') {
+                setFilteredCompanies(companies);
+            } else {
+                const filteredCompaniesByCategory = designateCompanyCategory.filter(company => company.company_category.category_id === tabCategory);
+                setFilteredCompanies(filteredCompaniesByCategory);
+            }
+        }
+
+    }, [tabCategory, designateCompanyCategory, isLoading]);
 
     /* ===== RENDER ===== */
     return (
         <CompaniesPresenter
+            // 데이터 로딩
+            isLoading={isLoading}
+
+            filteredCompanies={filteredCompanies}
 
             // 청소업체 전체 조회
             companies={companies}
@@ -50,19 +62,11 @@ const CompaniesContainer = ({
             // 청소업체 카테고리
             categories={categories}
 
-            // 카테고리에 따른 청소업체 조회
-            companiesByCategory={companiesByCategory}
-
             // 청소업체 카테고리 지정 전체 조회
             designateCompanyCategory={designateCompanyCategory}
 
-            // 데이터 로딩
-            isLoading={companiesLoading || companiesByCategoryLoading || categoriesLoading}
-
-            // 탭 이벤트 함수
-            onTabChange={handleTabChange}
-
             tabKey={tabCategory}
+            setTabCategory={setTabCategory}
 
         />
     );
