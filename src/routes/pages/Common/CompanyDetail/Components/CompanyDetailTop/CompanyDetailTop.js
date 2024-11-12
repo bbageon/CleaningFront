@@ -30,7 +30,7 @@ const CompanyDetailTop = ({
                         width={16}
                         height={16}
                     />
-                    <span className='rating'>{company.total_rating}.0</span>
+                    <span className='rating'>{company.total_rating}</span>
                     <span className='review-count'>{company.total_review_count >= 100 ? '(100+)' : `(${company.total_review_count})`}</span>
                 </div>
                 <div className='company-detail-top-info2'>

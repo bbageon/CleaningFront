@@ -23,8 +23,8 @@ const CompanyReplyCard = ({
             </div>
             <div className='review-card-company-content-wrap'>
                 <div className='review-card-company-content'>
-                    <span className='large bold'>{companyReview?.company.company_name}</span>
-                    <span>{answer?.answer_message}</span>
+                    <span className='large bold'>{companyReview.company.company_name}</span>
+                    <span>{answer.answer_message}</span>
                 </div>
             </div>
         </div>
@@ -39,6 +39,8 @@ const ReviewCard = ({
     companyReview,
 }) => {
 
+
+    console.log(review)
     /* ===== RENDER ===== */
     return (
         <div className='review-card-wrap'>
@@ -57,21 +59,21 @@ const ReviewCard = ({
                         <div className='review-card-user-box'>
                             <div className='review-card-user-info'>
                                 <div>
-                                    <span className='large bold' style={{ paddingRight: '5px' }}>{review.user}</span>
+                                    <span className='large bold' style={{ paddingRight: '5px' }}>{review.user.name}</span>
                                     {/* <span className='small gray2'>
                                     리뷰 7 평균별점 4.0
                                 </span> */}
                                 </div>
-                                <span className='small gray2'>{formatDate(review?.created_at)}</span>
+                                <span className='small gray2'>{formatDate(review.created_at)}</span>
                             </div>
                             <div>
-                                <Rating rating={review?.rating} />
+                                <Rating rating={review.rating} />
                             </div>
                         </div>
                     </div>
                     <div>
                         <div className='review-card-user-content'>
-                            <p></p>
+                            <p>{review.review_message}</p>
                         </div>
                         <div className='review-card-user-content-img'>
                             <img src={test} />
