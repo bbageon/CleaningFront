@@ -40,6 +40,10 @@ const Router = () => {
                 throw new Error(`no has save cookie data`);
             }
 
+            cookie.setCookie('id', data?.user_id, {
+                path: '/',
+            });
+
             cookie.setCookie('token', data?.token, {
                 path: '/',
             });
@@ -73,7 +77,7 @@ const Router = () => {
     }
 
     useEffect(() => {
-        socketRef.current = io('ws://localhost:4200/cleaning_chat', {
+        socketRef.current = io(`${process.env.REACT_APP_CHAT_SERVER}/cleaning_chat`, {
             transports: ['websocket'],
             reconnectionAttempts: 3,
         });

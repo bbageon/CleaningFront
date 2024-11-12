@@ -144,12 +144,30 @@ const LoginContainer = ({
         try {
             naverLogin.getLoginStatus(async (status) => {
                 if (status) {
-                    const userData = naverLogin.user;
-                    
+                    console.log(naverLogin)
+                    console.log(naverLogin.user)
+                    const user = naverLogin.user;
+                    // 인가코드를 통한 카카오 로그인 시도
+                    const result = await API.postAuthUserNaverSignin(user);
+                    console.log(result)
+                    if (result.code === 500) {
+                        // 서버 연결 안됨
+                        console.error(`서버 연결이 원활하지 않습니다.\n잠시만 기다려주시기 바랍니다.`);
+                        return;
+                    }
+                    if (result.status === 401) {
+                        // 로그인 실패
+                        console.error('아이디가 존재하지 않습니다.');
+                        return;
+                    }
+                    if (result.status === 500) {
+                        // 에러 발생
+                        console.error('회원 정보 조회 중 에러가 발생하였습니다.');
+                        return;
+                    }
 
-                    saveToken(userData);
-                    setUserData(userData);
-                    setUserId(userData.user_id);
+                    console.log(result);
+                    saveToken(result?.data);
                     navigate(MAIN_URL);
                 }
             });
