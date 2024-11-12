@@ -76,7 +76,7 @@ export const useCreateReview = (onSuccess?: (data: any) => void, onError?: (erro
             return response.data;
         },
         onSuccess: (data) => {
-            // console.log('리뷰 생성 완료: ', data);
+            console.log('리뷰 생성 완료: ', data);
 
             queryClient.invalidateQueries(reviewQueryKeys.getReviews());
 
@@ -85,7 +85,7 @@ export const useCreateReview = (onSuccess?: (data: any) => void, onError?: (erro
             }
         },
         onError: (error) => {
-            // console.error('리뷰 생성 실패: ', error);
+            console.error('리뷰 생성 실패: ', error);
 
             if (onError) {
                 onError(error);

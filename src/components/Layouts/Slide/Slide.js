@@ -39,7 +39,7 @@ const Slide = ({
                     {title}
                 </span>
                 <span className='slide-more'>
-                    {title} 보기 {'>'}
+                    {/* {title} 보기 {'>'} */}
                 </span>
             </div>
             <div className='slide-content-box'>

@@ -4,8 +4,9 @@ import { ReactComponent as Chat } from '../../../assets/icons/chat.svg';
 import { ReactComponent as Broom } from '../../../assets/icons/broom.svg';
 import { ReactComponent as Profile } from '../../../assets/icons/profile.svg';
 import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from 'store';
 
-const Icons = [
+const Buttons = [
     {
         icon: <Home fill={'#FFFFFF'}/>,
         title: '홈',
@@ -31,21 +32,37 @@ const Icons = [
 const Footer = ({
 
 }) => {
+    /* ===== STORE ===== */
+    const userId = useAuthStore(state => state.user_id);
 
-    /* ===== NAVIGATE ===== */
+    /* ===== VARIABLES ===== */
     const navigate = useNavigate();
+
+    /* ===== FUNCTION ===== */
+    const handleHomeButton = () => {
+        if (userId) {
+            
+        }
+    };
 
     return (
         <div className='footer-container'>
             {
-                Icons.map((icon, index) => {
+                Buttons.map((button, index) => {
+
+                    const buttonUrl = index === 0 && userId ? '/main' : button.url;
+
                     return (
-                        <div className='footer-icon-wrap' key={index} onClick={()=>{navigate(icon.url)}}>
+                        <div
+                            className='footer-icon-wrap'
+                            key={index}
+                            onClick={() => { navigate(buttonUrl) }}
+                        >
                             <div className='footer-icon'>
-                                {icon.icon}
+                                {button.icon}
                             </div>
                             <div className='footer-text'>
-                                <span className='small'>{icon.title}</span>
+                                <span className='small'>{button.title}</span>
                             </div>
                         </div>
                     )

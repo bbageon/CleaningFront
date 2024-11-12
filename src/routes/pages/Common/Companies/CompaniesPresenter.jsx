@@ -14,14 +14,8 @@ const CompaniesPresenter = ({
     // 청소업체 카테고리
     categories,
 
-    // 카테고리에 따른 청소업체 조회
-    companiesByCategory,
-
     // 청소업체 카테고리 지정 전체 조회
     designateCompanyCategory,
-
-    // 탭 이벤트
-    onTabChange,
 
     tabKey,
     setTabCategory,

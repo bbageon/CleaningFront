@@ -8,8 +8,6 @@ const CompanyList = ({
 }) => {
 
     return (
-
-
         <Content
             paddingBottom={0}
             paddingLeft={0}

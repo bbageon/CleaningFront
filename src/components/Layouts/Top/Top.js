@@ -40,7 +40,6 @@ const Top = ({
                             {title}
                         </span>
                     </div>
-
                 ) : (
                     <></>
                 )
@@ -53,7 +52,7 @@ const Top = ({
                         <>
                             <Home
                                 fill={iconColor ? iconColor : '#005abd'}
-                                onClick={() => { navigate('/') }}
+                                onClick={() => { navigate('/main') }}
                             />
                             <Cart
                                 fill={iconColor ? iconColor : '#005abd'}

@@ -64,7 +64,7 @@ const ListNavigationButton = ({
                     업체 둘러보기
                 </span>
                 <div className='list-navigation-more'>
-                    {'>'}
+                    ⟩
                 </div>
             </div>
             <div className='list-navigation-text'>
@@ -115,7 +115,7 @@ const MainServiceList = ({
         <div className='main-service-list-container'>
 
             <ListNavigationButton
-
+            
             />
 
             <div className='main-service-list'>

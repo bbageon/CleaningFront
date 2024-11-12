@@ -13,8 +13,6 @@ const ServiceCard = ({
     isMenuPage,
 }) => {
 
-    console.log(service)
-
     const { navigate } = useCustomContext();
 
     return (

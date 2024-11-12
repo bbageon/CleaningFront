@@ -65,17 +65,14 @@ body {
 }
 
 /* 폰트 초기화 */
-@font-face {
-	font-family: 'NanumGothic';
-	src: url('./Fonts/NanumGothic.ttf');
-}
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 *, body {
-	font-family: 'NanumGothic';
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
 /* Ant Design - Tabs */
 .ant-tabs {
-	font-family: 'NanumGothic';
+	font-family: 'Nanum Gothic';
 	font-size: 16px;
 }
 .ant-tabs >.ant-tabs-nav {

@@ -51,7 +51,7 @@ const Modal = ({
                                 title={'취소'}
                                 onClick={closeModal}
                                 backgroundColor={'var(--gray1-color'}
-                                color={'#000000'}
+                                color={'#FFFFFF'}
                             />
                         )
                     }

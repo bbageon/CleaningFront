@@ -5,6 +5,7 @@ import { Modal } from "components";
 import { useCreateReview } from "hooks/ReviewHooks";
 import { useCreateReviewImage } from "hooks/ReviewImageHooks";
 import { useAuthStore, useModalStore } from "store";
+import dayjs from "dayjs";
 
 const WriteReviewContainer = () => {
 
@@ -26,12 +27,12 @@ const WriteReviewContainer = () => {
     // 리뷰 작성 mutate
     const { mutate: submitReview } = useCreateReview(
         (data) => {
-            uploadedImages.forEach((image) => {
-                submitReviewImages({
-                    review_id: data.review_id,
-                    image_url: image
-                })
-            });
+            // uploadedImages.forEach((image) => {
+            //     submitReviewImages({
+            //         review_id: data.review_id,
+            //         image_url: image
+            //     })
+            // });
 
             openModal('리뷰 작성 성공', '리뷰가 성공적으로 작성되었습니다.', () => { navigate(-1) }, 'single');
         },
@@ -76,6 +77,8 @@ const WriteReviewContainer = () => {
                 company_id: requestInfo.company_id,
                 rating: rating,
                 review_message: reviewContent,
+                created_at: dayjs().unix(),
+                updated_at: dayjs().unix(),
             });
         }, 'double');
     };

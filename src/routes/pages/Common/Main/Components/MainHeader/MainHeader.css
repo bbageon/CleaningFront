@@ -41,14 +41,17 @@
     right: 0;
 }
 
-.main-header-container .main-header-title {
-    width: 80%;
+.main-header-container .main-header-title-container {
+    width: 85%;
+    padding-top: 16px;
+}
+
+.main-header-title-container .main-header-title {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    padding-top: 16px;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 600;
+    gap: 0.65rem;
 }
 
 .main-header-container .main-header-button {

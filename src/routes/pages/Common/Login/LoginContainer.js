@@ -115,9 +115,7 @@ const LoginContainer = ({
             console.error('회원 정보 조회 중 에러가 발생하였습니다.');
             return;
         }
-
         
-
         if (result?.data) {
             saveToken(result.data);
             setUserData(result.data);

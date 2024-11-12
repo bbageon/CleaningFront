@@ -1,4 +1,4 @@
-import { Banner, Button, Content, MainLayout, Slide } from '../../../../components';
+import { Button, Content, MainLayout } from '../../../../components';
 import './Login.css';
 
 const LoginPresenter = ({

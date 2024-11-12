@@ -4,6 +4,7 @@ import { useGetCompanyCategories } from "hooks/CompanyCategoryHooks";
 import { useGetCategoryDesignateCompanyCategory, useGetDesignateCompanyCategories } from "hooks/DesignateCompanyCategoryHooks";
 import { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useGetServices } from "hooks/ServiceHooks";
 
 const CompaniesContainer = ({
 
@@ -30,6 +31,10 @@ const CompaniesContainer = ({
     // 청소업체 카테고리 지정 전체 조회
     const { data: designateCompanyCategoryRes, isLoading: designateCompanyCategoryLoading } = useGetDesignateCompanyCategories();
     const designateCompanyCategory = designateCompanyCategoryRes?.data || [];
+
+    // 서비스 전체 조회
+    const { data: servicesRes, isLoading: servicesLoading } = useGetServices();
+    const services = servicesRes?.data || [];
 
     const isLoading = companiesLoading || categoriesLoading || designateCompanyCategoryLoading;
 
