@@ -28,7 +28,7 @@ const ChatList = ({
                                     <span className='chat-time'>{chat.chat_time}</span>
                                 </div>
                                 <div className='chat-info-line'>
-                                    <span className='chat-subtitle'>{chat.subtitle}</span>
+                                    <span className='chat-subtitle'>{chat.last_chat_message}</span>
                                     <span className='chat-alert-count'>{chat.alert_count}</span>
                                 </div>
                                 <div className='chat-info-line'>
