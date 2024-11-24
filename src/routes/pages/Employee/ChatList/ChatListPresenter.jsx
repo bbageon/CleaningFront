@@ -1,17 +1,21 @@
-import './Main.css';
+import './ChatList.css';
 import { EmployeeMainLayout } from 'components/Layouts';
 
-const MainPresenter = ({
+const ChatListPresenter = ({
 
 }) => {
 
     return (
         <EmployeeMainLayout
             footer={true}
+
+            isShowTop={true}
+            title={'대화방 목록'}
+            notShowIcon={true}
         >
 
         </EmployeeMainLayout>
     );
 };
 
-export default MainPresenter;
+export default ChatListPresenter;

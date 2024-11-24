@@ -29,8 +29,15 @@ import {
     ComponentTest,
     Login,
     ImageTest,
+
     EmployeeLogin,
     EmployeeMain,
+    EmployeeRequestList,
+    EmployeeRequestInfo,
+    EmployeeChatList,
+    EmployeeChatRoom,
+    EmployeeProfile,
+    EmployeeRequestImage,
 } from "./pages";
 
 const Router = () => {
@@ -189,13 +196,45 @@ const Router = () => {
                 />
 
                 {/* ==================직원 페이지================== */}
+                {/* 메인 화면 */}
                 <Route
                     path="employee"
                     element={<EmployeeMain />}
                 />
+                {/* 로그인 화면 */}
                 <Route
                     path="employee/login"
                     element={<EmployeeLogin />}
+                />
+                {/* 청소요청 목록 화면 */}
+                <Route
+                    path="employee/requestlist"
+                    element={<EmployeeRequestList />}
+                />
+                {/* 청소요청 정보 화면 */}
+                <Route
+                    path="employee/requestinfo"
+                    element={<EmployeeRequestInfo />}
+                />
+                {/* 청소완료 이미지 등록 화면 */}
+                <Route
+                    path="employee/requestimage"
+                    element={<EmployeeRequestImage />}
+                />
+                {/* 대화방 목록 화면 */}
+                <Route
+                    path="employee/chatlist"
+                    element={<EmployeeChatList />}
+                />
+                {/* 대화방 화면 */}
+                <Route
+                    path="employee/chatroom"
+                    element={<EmployeeChatRoom />}
+                />
+                {/* 프로필 화면 */}
+                <Route
+                    path="employee/profile"
+                    element={<EmployeeProfile />}
                 />
 
                 {/* 테스트 */}
