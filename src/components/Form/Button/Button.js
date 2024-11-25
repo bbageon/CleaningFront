@@ -14,8 +14,6 @@ const Button = ({
     fontWeight,
     fontSize,
     borderRadius,
-
-    icon,
 }) => {
     return (
         <div className='button-wrap' style={{ padding: wrapPadding }}>

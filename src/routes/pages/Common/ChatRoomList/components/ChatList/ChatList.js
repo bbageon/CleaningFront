@@ -24,16 +24,21 @@ const ChatList = ({
                             <div className='chat-image'></div>
                             <div className='chat-info'>
                                 <div className='chat-info-line'>
-                                    <span className='chat-title'>{chat.chat_room_name}</span>
-                                    <span className='chat-time'>{chat.chat_time}</span>
+                                    {/* <span className='chat-title'>{chat.chat_room_name}</span> */}
+                                    <span className='chat-title'>청년아이앤에스</span>
+                                    {/* <span className='chat-time'>{chat.chat_time}</span> */}
+                                    <span className='chat-time'>17:27</span>
                                 </div>
                                 <div className='chat-info-line'>
-                                    <span className='chat-subtitle'>{chat.subtitle}</span>
-                                    <span className='chat-alert-count'>{chat.alert_count}</span>
+                                    {/* <span className='chat-subtitle'>{chat.subtitle}</span> */}
+                                    <span className='chat-subtitle'>서비스를 이용해주셔서 감사합니다.</span>
+                                    {/* <span className='chat-alert-count'>{chat.alert_count}</span> */}
+                                    <span className='chat-alert-count'>2</span>
                                 </div>
                                 <div className='chat-info-line'>
                                     <span className='chat-status-circle'></span>
-                                    <span className='chat-status'>{chat.chat_status}</span>
+                                    {/* <span className='chat-status'>{chat.chat_status}</span> */}
+                                    <span className='chat-status'>청소 완료</span>
                                 </div>
                             </div>
                         </div>

@@ -1,0 +1,35 @@
+.payment-success-body-container {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    border-bottom: 1px solid var(--divider-color);
+    padding: 2rem 0;
+}
+
+.payment-success-body-container:first-child {
+    padding-top: 0;
+}
+
+.payment-success-body-container:last-child {
+    border: none;
+}
+
+.payment-success-body-container .payment-success-body-wrap {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.payment-success-body-wrap span:first-child {
+    color: var(--gray1-color);
+}
+
+.payment-success-body-btn {
+    width: 100%;
+
+    padding-top: 2rem;
+}

@@ -44,6 +44,8 @@ export { default as Login } from './Common/Login';
 // 프로필 화면
 export { default as Profile } from './Common/Profile';
 
+// 결제 완료 화면
+export { default as PaymentSuccess } from './Common/PaymentSuccess';
 
 // 테스트
 export { default as ImageTest } from './Test/ImageTest';
