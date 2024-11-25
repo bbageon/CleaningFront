@@ -24,10 +24,8 @@ const ChatList = ({
                             <div className='chat-image'></div>
                             <div className='chat-info'>
                                 <div className='chat-info-line'>
-                                    {/* <span className='chat-title'>{chat.chat_room_name}</span> */}
-                                    <span className='chat-title'>청년아이앤에스</span>
-                                    {/* <span className='chat-time'>{chat.chat_time}</span> */}
-                                    <span className='chat-time'>17:27</span>
+                                    <span className='chat-title'>{chat.chat_room_name}</span>
+                                    <span className='chat-time'>{chat.chat_time}</span>
                                 </div>
                                 <div className='chat-info-line'>
                                     <span className='chat-subtitle'>{chat.last_chat_message}</span>
