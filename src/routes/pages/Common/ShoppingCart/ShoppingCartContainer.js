@@ -1,16 +1,16 @@
 import ShoppingCartPresenter from "./ShoppingCartPresenter";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API } from "api";
 import { useDeleteCartList, useGetCompanyCartList } from "hooks/CartListHooks";
 import { useGetOneService } from "hooks/ServiceHooks";
 import { useCreateRequestClean } from "hooks/RequestCleanHooks";
 import { useCreateRequestCleanServiceList } from "hooks/RequestCleanServiceListHooks";
 import { useGetUserCart } from "hooks/CartHooks";
-import {  useAuthStore, useCartStore, useModalStore } from "store";
-import dayjs from "dayjs";
-import { Modal } from "components";
+import { useAuthStore, useCartStore, useModalStore } from "store";
 import { useGetUserAddress } from "hooks/UserAddressHooks";
+import { Modal } from "components";
+import { API } from "api";
+import dayjs from "dayjs";
 
 const ShoppingCartContainer = () => {
 
@@ -59,21 +59,22 @@ const ShoppingCartContainer = () => {
 
     const totalPrice = userCartServiceList.reduce((sum, i) => sum + i.price, 0);
 
-
+    console.log(userCartServiceList);
 
     /* ===== MUTATE ===== */
     // 청소 요청
     const { mutate: requestClean } = useCreateRequestClean(
         async (data) => {
             const requestCleanId = data.request.request_clean_id;
-
+    
             const serviceDetails = await Promise.all(
                 userCartServiceList.map(service =>
                     API.getOneService(service.service_id).then(response => response.data)
                 )
             );
-
-            serviceDetails.forEach((serviceDetail) => {
+    
+            serviceDetails.forEach((serviceDetail, index) => {
+                const cartService = userCartServiceList[index];
                 requestCleanServiceList({
                     request_clean_id: requestCleanId,
                     service_id: serviceDetail.service_id,
@@ -85,10 +86,20 @@ const ShoppingCartContainer = () => {
                     service_default_price: serviceDetail.service_default_price,
                     created_at: dayjs().unix(),
                     updated_at: dayjs().unix(),
+                    unit: cartService.service_unit,
                 });
             });
-
-            openModal('청소 요청', '청소 요청에 성공하셨습니다.', () => { navigate('/main') }, 'single');
+    
+            openModal('청소 요청', '청소 요청 중입니다...', null, 'loading');
+            setTimeout(() => {
+                navigate('/paymentsuccess', {
+                    state: {
+                        data: data,
+                        company: company,
+                        totalPrice: totalPrice,
+                    },
+                });
+            }, 2000);
         },
         (error) => {
             console.error(error);

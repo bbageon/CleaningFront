@@ -25,6 +25,7 @@ import {
     CompanyMenu,
     ShoppingCart,
     Profile,
+    PaymentSuccess,
 
     ComponentTest,
     Login,
@@ -193,6 +194,10 @@ const Router = () => {
                 <Route
                     path="profile"
                     element={<Profile />}
+                />
+                <Route
+                    path='paymentsuccess'
+                    element={<PaymentSuccess />}
                 />
 
                 {/* ==================직원 페이지================== */}

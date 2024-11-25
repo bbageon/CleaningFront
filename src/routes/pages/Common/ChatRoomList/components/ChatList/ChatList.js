@@ -33,7 +33,8 @@ const ChatList = ({
                                 </div>
                                 <div className='chat-info-line'>
                                     <span className='chat-status-circle'></span>
-                                    <span className='chat-status'>{chat.chat_status}</span>
+                                    {/* <span className='chat-status'>{chat.chat_status}</span> */}
+                                    <span className='chat-status'>청소 완료</span>
                                 </div>
                             </div>
                         </div>

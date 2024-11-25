@@ -27,9 +27,9 @@ const Modal = ({
         }
         closeModal();
     };
-    
-    
-    
+
+
+
     /* ===== RENDER ===== */
     return (
         <div className='modal-container'>
@@ -41,18 +41,26 @@ const Modal = ({
                     <span className='large'>{content}</span>
                 </div>
                 <div className='modal-button-wrap'>
-                    <Button
-                        title={confirmBtnTitle}
-                        onClick={handleConfirm}
-                    />
                     {
-                        buttonType === 'double' && (
-                            <Button
-                                title={'취소'}
-                                onClick={closeModal}
-                                backgroundColor={'var(--gray1-color'}
-                                color={'#FFFFFF'}
-                            />
+                        buttonType === 'loading' ? (
+                            null
+                        ) : (
+                            <>
+                                <Button
+                                    title={confirmBtnTitle}
+                                    onClick={handleConfirm}
+                                />
+                                {
+                                    buttonType === 'double' && (
+                                        <Button
+                                            title={'취소'}
+                                            onClick={closeModal}
+                                            backgroundColor={'var(--gray1-color'}
+                                            color={'#FFFFFF'}
+                                        />
+                                    )
+                                }
+                            </>
                         )
                     }
                 </div>
