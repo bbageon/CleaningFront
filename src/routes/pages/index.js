@@ -1,3 +1,4 @@
+/* ============ 고객 ============ */
 // 메인 화면
 export { default as Main } from './Common/Main';
 
@@ -47,5 +48,13 @@ export { default as Profile } from './Common/Profile';
 // 결제 완료 화면
 export { default as PaymentSuccess } from './Common/PaymentSuccess';
 
-// 테스트
+/* ============ 테스트 ============ */
 export { default as ImageTest } from './Test/ImageTest';
+
+
+/* ============ 직원 ============ */
+// 메인 화면
+export { default as EmployeeMain } from './Employee/Main';
+
+// 로그인 화면
+export { default as EmployeeLogin } from './Employee/Login';

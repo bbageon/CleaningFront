@@ -30,6 +30,8 @@ import {
     ComponentTest,
     Login,
     ImageTest,
+    EmployeeLogin,
+    EmployeeMain,
 } from "./pages";
 
 const Router = () => {
@@ -86,11 +88,11 @@ const Router = () => {
         const socket = socketRef.current;
 
         socket.on('connect', () => {
-            
+
         });
 
         socket.on('disconnect', () => {
-            
+
         });
 
         return () => {
@@ -189,6 +191,16 @@ const Router = () => {
                 <Route
                     path='paymentsuccess'
                     element={<PaymentSuccess />}
+                />
+
+                {/* ==================직원 페이지================== */}
+                <Route
+                    path="employee"
+                    element={<EmployeeMain />}
+                />
+                <Route
+                    path="employee/login"
+                    element={<EmployeeLogin />}
                 />
 
                 {/* 테스트 */}

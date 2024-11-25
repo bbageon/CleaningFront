@@ -71,7 +71,7 @@ const ShoppingCartPresenter = ({
                 totalPrice={totalPrice}
             />
             <BottomButton
-                title={'결제하기'}
+                title={'요청하기'}
                 onClick={handleRequestClean}
             />
             {

@@ -30,10 +30,8 @@ const ChatList = ({
                                     <span className='chat-time'>17:27</span>
                                 </div>
                                 <div className='chat-info-line'>
-                                    {/* <span className='chat-subtitle'>{chat.subtitle}</span> */}
-                                    <span className='chat-subtitle'>서비스를 이용해주셔서 감사합니다.</span>
-                                    {/* <span className='chat-alert-count'>{chat.alert_count}</span> */}
-                                    <span className='chat-alert-count'>2</span>
+                                    <span className='chat-subtitle'>{chat.last_chat_message}</span>
+                                    <span className='chat-alert-count'>{chat.alert_count}</span>
                                 </div>
                                 <div className='chat-info-line'>
                                     <span className='chat-status-circle'></span>
