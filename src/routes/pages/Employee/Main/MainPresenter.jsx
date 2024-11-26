@@ -1,4 +1,4 @@
-import EmployeeHeader from './components/Header/Header';
+// import EmployeeHeader from './components/Header/Header';
 import './Main.css';
 import { EmployeeMainLayout } from 'components/Layouts';
 
@@ -10,9 +10,9 @@ const MainPresenter = ({
         <EmployeeMainLayout
             footer={true}
         >
-            <EmployeeHeader
+            {/* <EmployeeHeader
                 EmployName={"김건우"}
-            />   
+            />    */}
         </EmployeeMainLayout>
     );
 };

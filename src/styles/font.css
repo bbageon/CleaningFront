@@ -88,6 +88,10 @@
     font-weight: 600;
 }
 
+.bolder {
+    font-weight: bolder;
+}
+
 .strike-through-text {
     text-decoration: line-through;
     color: var(--gray3-color);
