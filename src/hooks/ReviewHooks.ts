@@ -133,25 +133,49 @@ export const useDeleteReview = (onSuccess?: (data: any) => void, onError?: (erro
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: async (review_id: number) => {
+        mutationFn: async ({ review_id, user_id }: { review_id: number, user_id: number }) => {
             const response = await API.deleteReview(review_id);
             return response.data;
         },
-        onSuccess: (data) => {
+        onMutate: async ({ review_id, user_id }: { review_id: number, user_id: number }) => {
+
+            const previousData = queryClient.getQueryData(reviewQueryKeys.getReview(user_id).queryKey);
+
+            queryClient.setQueryData(reviewQueryKeys.getReview(user_id).queryKey, (oldData: any) => {
+                if (!Array.isArray(oldData?.data?.reviews)) return oldData;
+                return {
+                    ...oldData,
+                    data: {
+                        ...oldData.data,
+                        reviews: oldData.data.reviews.filter((item: any) => item.review_id !== review_id),
+                    }
+                };
+            });
+
+            return { previousData };
+        },
+        onSuccess: (data, { user_id }) => {
             // console.log('리뷰 삭제 완료: ', data);
 
-            queryClient.invalidateQueries(reviewQueryKeys.getReviews());
+            queryClient.invalidateQueries(reviewQueryKeys.getReview(user_id));
 
             if (onSuccess) {
                 onSuccess(data);
             }
         },
-        onError: (error) => {
+        onError: (error, variables, context) => {
             // console.error('리뷰 삭제 실패: ', error);
+
+            if (context?.previousData) {
+                queryClient.setQueryData(reviewQueryKeys.getReview(variables.user_id).queryKey, context.previousData);
+            }
 
             if (onError) {
                 onError(error);
             }
         },
+        onSettled: ({ user_id }) => {
+            queryClient.invalidateQueries(reviewQueryKeys.getReview(user_id));
+        }
     })
 };

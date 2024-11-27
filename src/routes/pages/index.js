@@ -45,8 +45,14 @@ export { default as Login } from './Common/Login';
 // 프로필 화면
 export { default as Profile } from './Common/Profile';
 
+// 프로필 수정 화면
+export { default as ProfileUpdate } from './Common/ProfileUpdate'
+
 // 결제 완료 화면
 export { default as PaymentSuccess } from './Common/PaymentSuccess';
+
+// 리뷰 내역 화면
+export { default as ReviewHistory } from './Common/ReviewHistory';
 
 /* ============ 테스트 ============ */
 export { default as ImageTest } from './Test/ImageTest';

@@ -8,12 +8,14 @@ const Link = ({
     const navigate = useNavigate();
 
     return (
-        <div className='link-container'>
+        <div
+            className='link-container'
+            onClick={() => navigate(link)}
+        >
             <span>{title ? title : "error"}</span>
             <span
                 style={{color : '#D9D9D9', cursor : 'pointer'}}
-                onClick={() => navigate(link)}
-            > {'>'} </span>
+            > ⟩ </span>
         </div>
     )
 };

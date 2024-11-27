@@ -13,22 +13,18 @@ const CompanyDetailBottom = ({
             label: '청소서비스',
             key: '1',
             children:
-                companyService && companyService.services ? (
-                    <ServiceList
-                        companyService={companyService}
-                    />
-                ) : null
+                <ServiceList
+                    companyService={companyService}
+                />
         },
         {
             label: '리뷰',
             key: '2',
             children:
-                companyReview && companyReview.reviews ? (
-                    <ReviewList
-                        companyReview={companyReview}
-                        companyAnswer={companyAnswer}
-                    />
-                ) : null
+                <ReviewList
+                    reviews={companyReview}
+                    answers={companyAnswer}
+                />
         },
     ]
 

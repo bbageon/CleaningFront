@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
@@ -29,7 +28,7 @@ if (rootElement) {
         <CustomProvider>
           <App />
           {/* React Query Devtools: 추후 삭제 */}
-          {/* <ReactQueryDevtools /> */}
+          <ReactQueryDevtools />
         </CustomProvider>
       </Router>
     </QueryClientProvider>

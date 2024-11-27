@@ -1,15 +1,12 @@
 import Content from '../Content';
 import ReviewCard from '../ReviewCard';
 
-import './ReviewList.css';
-
 const ReviewList = ({
-    companyReview,
-    companyAnswer,
+    reviews,
+    answers,
 }) => {
 
     /* ===== RENDER ===== */
-
     return (
         <Content
             paddingRight={0}
@@ -17,16 +14,14 @@ const ReviewList = ({
             paddingTop={0}
         >
             {
-                companyReview && companyReview.reviews && companyReview.reviews.length > 0 ? (
-                    companyReview.reviews.map((review, index) => {
-                        const answer = companyAnswer.review_answers.find(answer => answer.review_id === review.review_id);
-
+                reviews.reviews?.length ? (
+                    reviews.reviews.map((review, index) => {
                         return (
                             <ReviewCard
                                 key={index}
                                 review={review}
-                                answer={answer}
-                                companyReview={companyReview}
+                                answers={answers}
+                                company={reviews}
                             />
                         );
                     })
