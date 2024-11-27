@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './Modal.css';
 import { Button } from 'components/Form';
 import useModalStore from 'store/useModalStore';
@@ -12,7 +11,7 @@ const Modal = ({
 }) => {
 
     /* ===== VARIABLES ===== */
-    const { onConfirm, closeModal, buttonType } = useModalStore();
+    const { onConfirm, closeModal, buttonType } = useModalStore(state => state);
 
 
 

@@ -26,6 +26,11 @@
     animation: modalUp 0.3s ease-out;
 }
 
+.modal-container .modal-content {
+    white-space: pre-line;
+    line-height: 1.5rem;
+}
+
 .modal-container .modal-button-wrap {
     display: flex;
     gap: 0.75rem;

@@ -12,35 +12,36 @@ import test from './test.jpg';
  */
 const CompanyReplyCard = ({
     answer,
-    companyReview
+    company
 }) => {
 
     /* ===== RENDER ===== */
     return (
         <div className='review-card-company'>
             <div className='review-card-company-img'>
-                <img src={test_logo} />
+                <img src={test_logo} alt='Company Logo' />
             </div>
             <div className='review-card-company-content-wrap'>
                 <div className='review-card-company-content'>
-                    <span className='large bold'>{companyReview.company.company_name}</span>
-                    <span>{answer.answer_message}</span>
+                    <span className='large bold'>{company?.company?.company_name}</span>
+                    <span>{answer?.answer_message}</span>
                 </div>
             </div>
         </div>
     );
 };
 
-
-
 const ReviewCard = ({
     review,
-    answer,
-    companyReview,
+    answers,
+    company,
 }) => {
 
+    /* ===== VARIABLES ===== */
+    const matchingAnswer = answers?.review_answers.find(
+        (answer) => answer.review_id === review.review_id
+    );
 
-    console.log(review)
     /* ===== RENDER ===== */
     return (
         <div className='review-card-wrap'>
@@ -54,7 +55,7 @@ const ReviewCard = ({
                 <div className='review-card-user-wrap'>
                     <div className='review-card-user-profile'>
                         <div className='review-card-user-img'>
-                            <img src={test} />
+                            <img src={review.user.profile_image} />
                         </div>
                         <div className='review-card-user-box'>
                             <div className='review-card-user-info'>
@@ -76,15 +77,15 @@ const ReviewCard = ({
                             <p>{review.review_message}</p>
                         </div>
                         <div className='review-card-user-content-img'>
-                            <img src={test} />
+                            <img src={test} alt='Review Image'/>
                         </div>
                     </div>
                 </div>
                 {
-                    answer && (
+                    matchingAnswer && (
                         <CompanyReplyCard
-                            answer={answer}
-                            companyReview={companyReview}
+                            answer={matchingAnswer}
+                            company={company}
                         />
                     )
                 }

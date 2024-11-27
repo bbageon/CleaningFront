@@ -1,0 +1,34 @@
+.profile-update-input-container {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-update-input-container .profile-update-input {
+    width: 100%;
+
+    outline: none;
+    border: none;
+    border-bottom: 1px solid var(--gray3-color);
+
+    padding: 0.75rem 0.5rem;
+
+    font-size: 1.25rem;
+    text-align: center;
+}
+
+.profile-update-input-container .profile-update-input:focus {
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.profile-update-input-container .profile-update-input:focus.warning {
+    border-bottom: 1px solid var(--red-color);
+}
+
+.profile-update-input-container .profile-update-input:disabled {
+    background-color: transparent;
+    color: var(--gray3-color);
+    cursor: not-allowed;
+}

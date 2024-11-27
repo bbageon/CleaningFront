@@ -12,6 +12,7 @@ const Top = ({
     absolute,
     top,
     paddingBottom,
+    link,
 }) => {
 
     /* ===== NAVIGATE ===== */
@@ -30,7 +31,7 @@ const Top = ({
             <div className='top-back'>
                 <Back
                     fill={iconColor ? iconColor : '#000000'}
-                    onClick={() => { navigate(-1) }}
+                    onClick={ link ? () => { navigate(link) } : () => { navigate(-1) }}
                 />
             </div>
             {

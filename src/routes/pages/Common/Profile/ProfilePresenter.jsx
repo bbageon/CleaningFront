@@ -1,16 +1,42 @@
-import React from "react";
 import './Profile.css';
-import { Footer, MainLayout, Top } from "components";
-import ProfileHeader from "./Components/ProfileHeader";
-import ProfileContents from "./Components/ProfileContents";
+import { MainLayout, Top } from "components";
+import ProfileHeader from "./components/ProfileHeader";
+import ProfileAddress from './components/ProfileAddress/ProfileAddress';
+import ProfilePayment from './components/ProfilePayment/ProfilePayment';
+import ProfileReview from './components/ProfileReview/ProfileReview';
 
-const ProfilePresenter = () => {
+const ProfilePresenter = ({
+    navigate,
+
+    userData,
+
+    userAddress,
+
+    recentReview,
+}) => {
+
+    /* ===== RENDER ===== */
     return (
-        <MainLayout>
-            <Top/>
-            <ProfileHeader/>
-            <ProfileContents/>
-            <Footer/>
+        <MainLayout
+            footer={true}
+        >
+            <Top
+                title={'프로필'}
+            />
+            <ProfileHeader
+                navigate={navigate}
+
+                userData={userData}
+            />
+            <ProfileAddress
+                userAddress={userAddress}
+            />
+            <ProfileReview
+                recentReview={recentReview}
+            />
+            <ProfilePayment
+
+            />
         </MainLayout>
     )
 }

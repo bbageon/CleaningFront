@@ -25,7 +25,9 @@ import {
     CompanyMenu,
     ShoppingCart,
     Profile,
+    ProfileUpdate,
     PaymentSuccess,
+    ReviewHistory,
 
     ComponentTest,
     Login,
@@ -188,6 +190,17 @@ const Router = () => {
                     path="profile"
                     element={<Profile />}
                 />
+                {/* 프로필 수정 화면 */}
+                <Route
+                    path='profileupdate'
+                    element={<ProfileUpdate />}
+                />
+                {/* 리뷰 내역 화면 */}
+                <Route
+                    path='reviewhistory'
+                    element={<ReviewHistory />}
+                />
+                {/* 결제(요청) 완료 */}
                 <Route
                     path='paymentsuccess'
                     element={<PaymentSuccess />}
