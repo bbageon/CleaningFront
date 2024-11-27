@@ -31,7 +31,8 @@ const EmployeeHeader = ({
                     position: "absolute",
                     bottom : 0,
                     width: "100%",
-                    padding: 20,
+                    paddingBottom : 10,
+                    paddingLeft : 20,
 
                     lineHeight : 1.2,
                     fontSize : 23,
