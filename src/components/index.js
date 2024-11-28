@@ -47,4 +47,13 @@ export {
  */
 export {
     ScrollToTop,
+    PrivateRoute,
 } from './Navigation';
+
+/**
+ * Pages Components
+ * --
+ */
+export { 
+    NotFound,
+} from './Pages';

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Route, Routes } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import { cookie } from "../util";
-import { ScrollToTop, Toast } from "components";
+import { ScrollToTop, Toast, PrivateRoute, NotFound } from "components";
 
 /**
  * 페이지
@@ -29,7 +29,6 @@ import {
     PaymentSuccess,
     ReviewHistory,
 
-    ComponentTest,
     Login,
     ImageTest,
     EmployeeLogin,
@@ -107,77 +106,6 @@ const Router = () => {
             <ScrollToTop />
             <Toast />
             <Routes>
-                {/* ===== 컴포넌트 테스트 ===== */}
-                <Route
-                    path='/componenttest'
-                    element={<ComponentTest />}
-                />
-                {/* ===== 메인 화면 ===== */}
-                <Route
-                    path="/main"
-                    element={<Main />}
-                />
-                {/* ===== 청소 업체 목록 화면 ===== */}
-                <Route
-                    path='/companies'
-                    element={<Companies />}
-                />
-                {/* ===== 청소 업체 상세 화면 ===== */}
-                <Route
-                    path='/companydetail/:id'
-                    element={<CompanyDetail />}
-                />
-                {/* ===== 청소 업체 메뉴 상세 화면 ===== */}
-                <Route
-                    path='/companydetail/:company_id/service/:service_id'
-                    element={<CompanyMenu />}
-                />
-                {/* 주소 등록 화면 */}
-                <Route
-                    path='/addressregistration'
-                    element={<AddressRegistration />}
-                />
-                <Route
-                    path='/findaddressinmap'
-                    element={<FindAddressInMap />}
-                />
-                <Route
-                    path='/detailaddress'
-                    element={<DetailAddress />}
-                />
-                {/* 서비스 내역 목록 화면 */}
-                <Route
-                    path='/servicehistory'
-                    element={<ServiceHistory />}
-                />
-                {/* 서비스 상세 내역 화면 */}
-                <Route
-                    path='/servicehistorydetail/:id'
-                    element={<ServiceHistoryDetail />}
-                />
-                {/* 리뷰 작성 화면 */}
-                <Route
-                    path='/writereview/:request_clean_id'
-                    element={<WriteReview />}
-                />
-                {/* 대화방 화면 */}
-                <Route
-                    path="chatroomlist"
-                    element={<ChatRoomList />}
-                />
-                <Route
-                    path="chatroom/:room_id"
-                    element={<ChatRoom socketRef={socketRef} />}
-                />
-                <Route
-                    path="chatbot"
-                    element={<ChatBot />}
-                />
-                {/* 장바구니 화면 */}
-                <Route
-                    path="shoppingcart"
-                    element={<ShoppingCart />}
-                />
                 {/* 로그인 화면 */}
                 <Route
                     path="/"
@@ -185,44 +113,116 @@ const Router = () => {
                         setCookies={setCookies}
                     />}
                 />
-                {/* 프로필 화면 */}
-                <Route
-                    path="profile"
-                    element={<Profile />}
-                />
-                {/* 프로필 수정 화면 */}
-                <Route
-                    path='profileupdate'
-                    element={<ProfileUpdate />}
-                />
-                {/* 리뷰 내역 화면 */}
-                <Route
-                    path='reviewhistory'
-                    element={<ReviewHistory />}
-                />
-                {/* 결제(요청) 완료 */}
-                <Route
-                    path='paymentsuccess'
-                    element={<PaymentSuccess />}
-                />
+                {/* ===== 보호된 라우트 ===== */}
+                <Route element={<PrivateRoute />}>
+                    {/* ===== 메인 화면 ===== */}
+                    <Route
+                        path="/main"
+                        element={<Main />}
+                    />
+                    {/* ===== 청소 업체 목록 화면 ===== */}
+                    <Route
+                        path='/companies'
+                        element={<Companies />}
+                    />
+                    {/* ===== 청소 업체 상세 화면 ===== */}
+                    <Route
+                        path='/companydetail/:id'
+                        element={<CompanyDetail />}
+                    />
+                    {/* ===== 청소 업체 메뉴 상세 화면 ===== */}
+                    <Route
+                        path='/companydetail/:company_id/service/:service_id'
+                        element={<CompanyMenu />}
+                    />
+                    {/* 주소 등록 화면 */}
+                    <Route
+                        path='/addressregistration'
+                        element={<AddressRegistration />}
+                    />
+                    <Route
+                        path='/findaddressinmap'
+                        element={<FindAddressInMap />}
+                    />
+                    <Route
+                        path='/detailaddress'
+                        element={<DetailAddress />}
+                    />
+                    {/* 서비스 내역 목록 화면 */}
+                    <Route
+                        path='/servicehistory'
+                        element={<ServiceHistory />}
+                    />
+                    {/* 서비스 상세 내역 화면 */}
+                    <Route
+                        path='/servicehistorydetail/:id'
+                        element={<ServiceHistoryDetail />}
+                    />
+                    {/* 리뷰 작성 화면 */}
+                    <Route
+                        path='/writereview/:request_clean_id'
+                        element={<WriteReview />}
+                    />
+                    {/* 대화방 화면 */}
+                    <Route
+                        path="chatroomlist"
+                        element={<ChatRoomList />}
+                    />
+                    <Route
+                        path="chatroom/:room_id"
+                        element={<ChatRoom socketRef={socketRef} />}
+                    />
+                    <Route
+                        path="chatbot"
+                        element={<ChatBot />}
+                    />
+                    {/* 장바구니 화면 */}
+                    <Route
+                        path="shoppingcart"
+                        element={<ShoppingCart />}
+                    />
 
-                {/* ==================직원 페이지================== */}
-                <Route
-                    path="employee"
-                    element={<EmployeeMain />}
-                />
-                <Route
-                    path="employee/login"
-                    element={<EmployeeLogin />}
-                />
+                    {/* 프로필 화면 */}
+                    <Route
+                        path="profile"
+                        element={<Profile />}
+                    />
+                    {/* 프로필 수정 화면 */}
+                    <Route
+                        path='profileupdate'
+                        element={<ProfileUpdate />}
+                    />
+                    {/* 리뷰 내역 화면 */}
+                    <Route
+                        path='reviewhistory'
+                        element={<ReviewHistory />}
+                    />
+                    {/* 결제(요청) 완료 */}
+                    <Route
+                        path='paymentsuccess'
+                        element={<PaymentSuccess />}
+                    />
 
-                {/* 테스트 */}
-                <Route
-                    path="imagetest"
-                    element={<ImageTest />}
-                />
+                    {/* ==================직원 페이지================== */}
+                    <Route
+                        path="employee"
+                        element={<EmployeeMain />}
+                    />
+                    <Route
+                        path="employee/login"
+                        element={<EmployeeLogin />}
+                    />
+
+                    {/* 테스트 */}
+                    <Route
+                        path="imagetest"
+                        element={<ImageTest />}
+                    />
+                </Route>
+                <Route path='*' element={<NotFound />}/>
             </Routes>
         </div>
-    )
-}
+    );
+};
+
 export default Router;

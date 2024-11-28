@@ -1,5 +1,5 @@
 import './Profile.css';
-import { MainLayout, Top } from "components";
+import { Content, MainLayout, Top } from "components";
 import ProfileHeader from "./components/ProfileHeader";
 import ProfileAddress from './components/ProfileAddress/ProfileAddress';
 import ProfilePayment from './components/ProfilePayment/ProfilePayment';
@@ -13,6 +13,8 @@ const ProfilePresenter = ({
     userAddress,
 
     recentReview,
+
+    onLogoutClick,
 }) => {
 
     /* ===== RENDER ===== */
@@ -22,21 +24,40 @@ const ProfilePresenter = ({
         >
             <Top
                 title={'프로필'}
+                notShowIcon={true}
             />
             <ProfileHeader
                 navigate={navigate}
 
                 userData={userData}
             />
-            <ProfileAddress
-                userAddress={userAddress}
-            />
-            <ProfileReview
-                recentReview={recentReview}
-            />
-            <ProfilePayment
-
-            />
+            {
+                userData.length !== 0 ? (
+                    <>
+                        <ProfileAddress
+                            userAddress={userAddress}
+                        />
+                        <ProfileReview
+                            recentReview={recentReview}
+                        />
+                        {/* <ProfilePayment
+        
+                    /> */}
+                        <Content
+                            paddingTop={50}
+                        >
+                            <span
+                                style={{
+                                    color: 'var(--gray1-color)'
+                                }}
+                                onClick={onLogoutClick}
+                            >로그아웃</span>
+                        </Content>
+                    </>
+                ) : (
+                    null
+                )
+            }
         </MainLayout>
     )
 }

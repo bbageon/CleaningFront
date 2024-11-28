@@ -61,7 +61,7 @@ const CompanyCard = ({
                                 width={16}
                                 height={16}
                             />
-                            <span className='rating'>{company.total_rating}</span>
+                            <span className='rating'>{company.total_rating.toFixed(1)}</span>
                             <span className='review-count'></span>
                         </div>
                         <div>

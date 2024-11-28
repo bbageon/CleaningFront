@@ -1,10 +1,12 @@
 import ProfilePresenter from './ProfilePresenter';
 import { useEffect, useState } from 'react';
-import { useAuthStore } from 'store';
+import { useAuthStore, useModalStore } from 'store';
 import { useGetUserAddress } from 'hooks/UserAddressHooks';
 import { useGetUserReview } from 'hooks/ReviewHooks';
 import { useGetUser } from 'hooks/UserHooks';
 import { useNavigate } from 'react-router-dom';
+import { cookie } from 'util';
+import { Modal } from 'components';
 
 const ProfileContainer = () => {
     /* ===== VARIABLES ===== */
@@ -12,6 +14,11 @@ const ProfileContainer = () => {
 
     /* ===== STORE ===== */
     const userId = useAuthStore(state => state.user_id);
+    const removeAuth = useAuthStore(state => state.removeAuth);
+
+    const openModal = useModalStore(state => state.openModal);
+    const isModalOpen = useModalStore(state => state.isModalOpen);
+    const content = useModalStore(state => state.content);
 
     /* ===== STATE ===== */
     const [userAddress, setUserAddress] = useState(null);
@@ -44,19 +51,48 @@ const ProfileContainer = () => {
         }
     }, [isLoading, userReviews]);
 
+    /* ===== FUNCTION ===== */
+    const handleLogout = () => {
+
+        openModal('로그아웃', '로그아웃 하시겠습니까?', () => {
+            cookie.remove('token', { path: '/' });
+            cookie.remove('name', { path: '/' });
+            cookie.remove('email', { path: '/' });
+            cookie.remove('userType', { path: '/' });
+            cookie.remove('user_id', { path: '/' });
+
+            removeAuth();
+
+            navigate('/');
+        }, 'double');
+    };
+
     if (isLoading) return null;
 
     /* ===== RENDER ===== */
     return (
-        <ProfilePresenter
-            navigate={navigate}
-            
-            userData={userData}
+        <>
+            <ProfilePresenter
+                navigate={navigate}
 
-            userAddress={userAddress}
+                userData={userData}
 
-            recentReview={recentReview}
-        />
+                userAddress={userAddress}
+
+                recentReview={recentReview}
+
+                onLogoutClick={handleLogout}
+            />
+            {
+                isModalOpen && (
+                    <Modal
+                        isOpen={isModalOpen}
+                        title={content.title}
+                        content={content.message}
+                    />
+                )
+            }
+        </>
     );
 };
 
