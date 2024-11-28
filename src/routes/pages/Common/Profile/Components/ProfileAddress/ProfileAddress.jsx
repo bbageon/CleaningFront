@@ -18,27 +18,34 @@ const ProfileAddress = ({
                 link={'/addressregistration'}
             />
             <div className='profile-address-management'>
-                <div className='profile-address-image'>
-                    <img src={AddressIcon} />
-                </div>
-                <div className='profile-address-contents'>
-                    <div className='address-standard'>
-                        <span>현재 설정된 주소</span>
-                    </div>
-                    <div className='address-contents-detail'>
-                        {
-                            userAddress?.name ? (
-                                <span className='address-title'>{userAddress?.name}</span>
-                            ) : (
-                                <span className='address-title'>청소할 집</span>
-                            )
-                        }
-                        <span>{userAddress?.address}</span>
-                        <span className='small gray2'>{userAddress?.address_detail}, {userAddress?.meter}평</span>
-                    </div>
-                </div>
+                {
+                    userAddress ? (
+                        <>
+                            <div className='profile-address-image'>
+                                <img src={AddressIcon} />
+                            </div>
+                            <div className='profile-address-contents'>
+                                <div className='address-standard'>
+                                    <span>현재 설정된 주소</span>
+                                </div>
+                                <div className='address-contents-detail'>
+                                    {
+                                        userAddress?.name ? (
+                                            <span className='address-title'>{userAddress?.name}</span>
+                                        ) : (
+                                            <span className='address-title'>청소할 집</span>
+                                        )
+                                    }
+                                    <span>{userAddress?.address}</span>
+                                    <span className='small gray2'>{userAddress?.address_detail}, {userAddress?.meter}평</span>
+                                </div>
+                            </div>
+                        </>
+                    ) : (
+                        <span>등록된 주소가 없습니다.</span>
+                    )
+                }
             </div>
-
 
         </Content>
     );

@@ -11,7 +11,6 @@ const ReviewHistoryContainer = () => {
 
     const isModalOpen = useModalStore(state => state.isModalOpen);
     const content = useModalStore(state => state.content);
-    const openModal = useModalStore(state => state.openModal);
 
     /* ===== QUERY ===== */
     const { data: userDataRes, isLoading: userDataLoading, isError: userDataError } = useGetUser(userId);

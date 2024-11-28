@@ -13,7 +13,7 @@ const useAuthStore = create(
             },
 
             setUserId: (user_id) => {
-                set({ user_id });
+                set({ user_id, isAuthenticated: !!user_id });
             },
 
             removeAuth: () => {
@@ -23,7 +23,7 @@ const useAuthStore = create(
         {
             name: 'auto-storage',
             getStorage: () => localStorage,
-            partialize: (state) => ({ user_id: state.user_id }),
+            partialize: (state) => ({ user_id: state.user_id, isAuthenticated: state.isAuthenticated }),
         }
     )
 );

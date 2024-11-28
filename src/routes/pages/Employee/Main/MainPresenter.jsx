@@ -1,5 +1,5 @@
-import EmployeeHeader from './components/Header/Header';
-import EmployeeMainContents from './components/Contents/EmployeeMainContents';
+import EmployeeMainContents from './Components/Contents/EmployeeMainContents';
+import EmployeeHeader from './Components/Header/Header';
 import './Main.css';
 import { EmployeeMainLayout } from 'components/Layouts';
 

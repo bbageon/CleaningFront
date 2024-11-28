@@ -1,16 +1,16 @@
-import { useAuthStore } from 'store';
 import ProfileUpdatePresenter from './ProfileUpdatePresenter';
 import { useGetUser, useUpdateUser } from 'hooks/UserHooks';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from 'store';
 
 const ProfileUpdateContainer = () => {
     /* ===== VARIABLES ===== */
     const navigate = useNavigate();
 
     /* ===== STATE ===== */
-    const [userName, setUserName] = useState(null);
-
+    const [userName, setUserName] = useState('');
+    
     /* ===== STORE ===== */
     const userId = useAuthStore(state => state.user_id);
 
@@ -48,14 +48,16 @@ const ProfileUpdateContainer = () => {
     if (isLoading) return null;
 
     return (
-        <ProfileUpdatePresenter
-            userName={userName}
-            setUserName={setUserName}
+        <>
+            <ProfileUpdatePresenter
+                userName={userName}
+                setUserName={setUserName}
 
-            userData={userData}
+                userData={userData}
 
-            onUpdateClick={handleUserUpdate}
-        />
+                onUpdateClick={handleUserUpdate}
+            />
+        </>
     );
 };
 

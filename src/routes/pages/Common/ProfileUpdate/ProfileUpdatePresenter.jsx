@@ -11,7 +11,6 @@ const ProfileUpdatePresenter = ({
     onUpdateClick,
 }) => {
 
-
     /* ===== RENDER ===== */
     return (
         <MainLayout>

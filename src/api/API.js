@@ -437,6 +437,11 @@ const API = {
   getServiceCartList: (service_id) => $http.get(parameterToPath('/cart_list/service/:service_id', { service_id })),
 
   /**
+   * 회원 장바고니 목록 서비스 조회
+   */
+  getUserServiceCartList: (user_id) => $http.get(parameterToPath('/car_list/user/:user_id', { user_id })),
+
+  /**
    * 장바구니 목록 수정
    */
   putCartList: (cart_list_id, body) => $http.put(parameterToPath('/cart_list/:cart_list_id', { cart_list_id }), body),

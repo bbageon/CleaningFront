@@ -18,7 +18,7 @@ const LoginContainer = ({
     const MAIN_URL = '/main';
 
     /* ===== STORE ===== */
-    const { setUserId } = useAuthStore();
+    const setUserId = useAuthStore(state => state.setUserId);
     const { setCartMetadata } = useCartStore();
 
     /* ===== STATE ===== */
@@ -41,7 +41,7 @@ const LoginContainer = ({
             });
         },
         (error) => {
-            console.error('장바구니 생성 실패: ', error);
+            // console.error('장바구니 생성 실패: ', error);
         },
     )
 
@@ -65,11 +65,15 @@ const LoginContainer = ({
         }
     }, [userData, isCartLoading]);
 
+
+
     /* ===== KAKAO SETTING ===== */
     const KAKAO_REST_API_KEY = `${process.env.REACT_APP_KAKAO_REST_API_KEY}`;
     const KAKAO_SCOPE = `${process.env.REACT_APP_KAKAO_SCOPE}`;
     const redirectUri = `${process.env.REACT_APP_REDIRECT_URL}`;
     const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_REST_API_KEY}&redirect_uri=${redirectUri}&response_type=code&scope=${KAKAO_SCOPE}`;
+
+
 
     /* ===== NAVER SETTING ===== */
     const NAVER_CLIENT_ID = `${process.env.REACT_APP_NAVER_CLIENT_ID}`;
@@ -80,15 +84,11 @@ const LoginContainer = ({
         initializeKakaoLogin()
     }, []);
 
-    // 테스트 후 삭제 요망
-    // const goMain = () => {
-    //     setUserId(19);
-    //     navigate(MAIN_URL);
-    // };
+
 
     /* ===== KAKAO LOGIN ===== */
     const KakaoLogin = () => {
-        
+
         window.location.href = kakaoUrl;
     };
 
@@ -102,20 +102,20 @@ const LoginContainer = ({
         const result = await API.postAuthUserKakaoSignin({ code, nickname: 'test' });
         if (result.code === 500) {
             // 서버 연결 안됨
-            console.error(`서버 연결이 원활하지 않습니다.\n잠시만 기다려주시기 바랍니다.`);
+            // console.error(`서버 연결이 원활하지 않습니다.\n잠시만 기다려주시기 바랍니다.`);
             return;
         }
         if (result.status === 401) {
             // 로그인 실패
-            console.error('아이디가 존재하지 않습니다.');
+            // console.error('아이디가 존재하지 않습니다.');
             return;
         }
         if (result.status === 500) {
             // 에러 발생
-            console.error('회원 정보 조회 중 에러가 발생하였습니다.');
+            // console.error('회원 정보 조회 중 에러가 발생하였습니다.');
             return;
         }
-        
+
         if (result?.data) {
             saveToken(result.data);
             setUserData(result.data);
@@ -124,9 +124,11 @@ const LoginContainer = ({
         }
     };
 
+
+
     /* ===== NAVER LOGIN ===== */
     const NaverLogin = () => {
-        
+
         naverRef.current.children[0].click();
     };
 
@@ -144,37 +146,39 @@ const LoginContainer = ({
         try {
             naverLogin.getLoginStatus(async (status) => {
                 if (status) {
-                    console.log(naverLogin)
-                    console.log(naverLogin.user)
+                    // console.log(naverLogin)
+                    // console.log(naverLogin.user)
                     const user = naverLogin.user;
                     // 인가코드를 통한 카카오 로그인 시도
                     const result = await API.postAuthUserNaverSignin(user);
-                    console.log(result)
+                    // console.log(result)
                     if (result.code === 500) {
                         // 서버 연결 안됨
-                        console.error(`서버 연결이 원활하지 않습니다.\n잠시만 기다려주시기 바랍니다.`);
+                        // console.error(`서버 연결이 원활하지 않습니다.\n잠시만 기다려주시기 바랍니다.`);
                         return;
                     }
                     if (result.status === 401) {
                         // 로그인 실패
-                        console.error('아이디가 존재하지 않습니다.');
+                        // console.error('아이디가 존재하지 않습니다.');
                         return;
                     }
                     if (result.status === 500) {
                         // 에러 발생
-                        console.error('회원 정보 조회 중 에러가 발생하였습니다.');
+                        // console.error('회원 정보 조회 중 에러가 발생하였습니다.');
                         return;
                     }
 
-                    console.log(result);
+                    // console.log(result);
                     saveToken(result?.data);
                     navigate(MAIN_URL);
                 }
             });
         } catch (err) {
-            
+
         }
     };
+
+
 
     /* ===== SAVE TOKEN ===== */
     const saveToken = (data) => {
@@ -185,9 +189,11 @@ const LoginContainer = ({
 
             setCookies(data);
         } catch (e) {
-            console.error(e.message);
+            // console.error(e.message);
         }
     };
+
+
 
     /* ===== RENDER ===== */
     return (
@@ -196,8 +202,6 @@ const LoginContainer = ({
 
             NaverLogin={NaverLogin}
             naverRef={naverRef}
-
-            // goMain={goMain}
         />
     );
 };
