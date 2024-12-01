@@ -1,0 +1,94 @@
+.request-card-container {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    /* padding: 0px 10px 0px 10px; */
+
+    min-height: 10vh;
+    margin-left: 10px;
+}
+
+.request-date {
+    display: flex;
+    flex-direction: column;
+
+    padding-bottom: 20px;
+    min-width: fit-content;
+
+    align-items: center;
+    /* justify-content: center; */
+
+    font-family: 'nanum-gothic';
+    gap: 8px;
+}
+
+.request-card {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 85%;
+
+    min-height: 10vh;
+
+    padding: 10px;
+    gap: 8px;
+
+    background-color: aliceblue;
+    border-radius: 16px;
+}
+
+.request-category {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 6px 10px;
+}
+
+.category-item {
+    display: flex;
+
+    background-color: #FFFFFF;
+    padding: 5px 10px;
+
+    border-radius: 6px;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.category-content {
+    font-size: 0.7rem;
+    font-family: 'nanum-gothic';
+    font-weight: bold;
+}
+
+.request-time {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 0.8rem;
+    font-weight: 400;
+    font-family: 'nanum-gothic';
+}
+
+.request-address {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 0.8rem;
+    font-weight: 400;
+    font-family: 'nanum-gothic';
+}

@@ -5,7 +5,7 @@
     width: 100%;
     height: 100%;
 
-    gap: 10px;
+    gap: 20px;
 
     padding: 0 20px 0 20px;
 }
@@ -13,7 +13,7 @@
 
 .main-contents-explain {
     width: 100%;
-    padding: 20px 0px 0px 0px;
+    /* padding: 20px 0px 0px 0px; */
 
     font-family: "nanum-gothic";
     font-weight: bold;
@@ -73,6 +73,9 @@
 .requirement-image-container {
     display: flex;
     flex-direction: row;
+
+    width: 100%;
+    height: 75px;
 
     align-items: center;
     gap: 10px;

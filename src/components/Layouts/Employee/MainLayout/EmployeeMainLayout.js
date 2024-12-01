@@ -14,6 +14,7 @@ const EmployeeMainLayout = ({
     absolute,
     top,
     paddingBottom,
+    gap,
 }) => {
     return (
         <>
@@ -31,6 +32,7 @@ const EmployeeMainLayout = ({
             }
             <MainLayout
                 footer={false}
+                gap = {gap}
             >
                 {children}
                 {

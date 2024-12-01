@@ -10,6 +10,7 @@ const MainPresenter = ({
     return (
         <EmployeeMainLayout
             footer={true}
+            gap={"20px"}
         >
             <EmployeeHeader
                 EmployName={"김건우"}
@@ -23,3 +24,4 @@ const MainPresenter = ({
 };
 
 export default MainPresenter;
+
