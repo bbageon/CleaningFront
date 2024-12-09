@@ -7,13 +7,15 @@ const MainLayout = ({
     footer,
     backgroundColor,
     full,
+    gap,
 }) => {
     return (
         <div className='main-layout'
             style={{
                 height: full ? '100vh' : 'auto',
                 padding: padding,
-                backgroundColor: backgroundColor
+                backgroundColor: backgroundColor,
+                gap : gap
             }}>
             {children}
             {

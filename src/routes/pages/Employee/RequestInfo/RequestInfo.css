@@ -1,0 +1,143 @@
+.request-info-container {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+    padding: 30px;
+    gap: 12px;
+    
+    font-family: 'nanum-gothic';
+    font-weight: bold;
+    color: #144B44;
+}
+
+.request-info-form {
+    display: flex;
+    flex-direction: column;
+    
+    gap: 8px;
+}
+
+.request-info-title {
+    color: #747474;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.request-info-content {
+    color: #000000;
+    font-weight: 500;
+    font-size: 1rem;
+
+    word-break: break-word;
+}
+
+.main-divider {
+    border: 0.5px solid #B5B5B5;
+}
+
+.request-date-container {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.request-date-form {
+    display: flex;
+    flex: none;
+
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 8px 12px;
+
+    color: #000000;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.request-info-date {
+    display: flex;
+    flex-direction: row;
+
+    gap: 1rem;
+}
+
+.request-day-container {
+    display: flex;
+    flex-direction: row;
+
+    gap: 9px;
+}
+
+.request-day-form {
+    display: flex;
+
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+
+    padding: 8px;
+
+    color: #000000;
+    font-weight: 400;
+    font-size: 1.1rem;
+}
+
+.request-day-form-include {
+    display: flex;
+
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+
+    padding: 8px;
+
+    background-color: #144B44;
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 1.1rem;
+}
+
+.request-time-container {
+    display: flex;
+    flex: none;
+
+    max-width: fit-content;
+
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+
+    /* justify-content: center; */
+    align-items: center;
+
+    padding: 6px 12px;
+
+    color: #000000;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.request-image-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    overflow: hidden;
+    position: relative;
+
+    gap: 15px;
+}
+
+.image-wrap {
+    min-width: 80px;
+    min-height: 80px;
+
+    border-radius: 5px;
+    flex: none;
+}

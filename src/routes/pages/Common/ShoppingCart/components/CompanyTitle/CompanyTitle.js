@@ -15,7 +15,7 @@ const CompanyTitle = ({
         address_detail: '',
     });
 
-    
+
 
     /* ===== VARIABLES ===== */
     const navigate = useNavigate();
@@ -47,24 +47,42 @@ const CompanyTitle = ({
     return (
         <Content
             paddingBottom={0}
+            paddingLeft={0}
+            paddingRight={0}
+            paddingTop={0}
         >
-            <div className='company-title-container'>
-                <span className='bold large' onClick={handleNavigateCompany}>{company.company_name} ⟩</span>
+            <div
+                className='company-title-container'
+                onClick={handleNavigateCompany}
+            >
+                <div className="company-title-text">
+                    <div className="company-title">
+                        청소업체
+                    </div>
+                    <span className='company-text'>{company.company_name}</span>
+                </div>
+                <span className='right-bracket'></span>
             </div>
             <div
-                className='company-title-address'
+                className='company-title-container'
                 onClick={() => navigate('/addressregistration')}
             >
-                {
-                    userFavoriteAddress?.address && userFavoriteAddress?.address_detail ? (
-                        <>
-                            <span>{userFavoriteAddress.address} ⟩</span>
-                            <span className='gray1'>({userFavoriteAddress.address_detail})</span>
-                        </>
-                    ) : (
-                        <span>등록된 주소가 없습니다. ⟩</span>
-                    )
-                }
+                <div className="company-title-text">
+                    <div className="company-title">
+                        청소 요청 주소
+                    </div>
+                    {
+                        userFavoriteAddress?.address && userFavoriteAddress?.address_detail ? (
+                            <>
+                                <span className='company-text'>{userFavoriteAddress.address} ⟩</span>
+                                <span className='gray1 company-text'>({userFavoriteAddress.address_detail})</span>
+                            </>
+                        ) : (
+                            <span className='company-text'>등록된 주소가 없습니다.</span>
+                        )
+                    }
+                </div>
+                <span className='right-bracket'></span>
             </div>
         </Content>
     );

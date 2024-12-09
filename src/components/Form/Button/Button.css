@@ -19,3 +19,21 @@
 .button-wrap button:disabled {
     background-color: var(--gray3-color);
 }
+
+.employee-button {
+    display: flex;
+    flex-direction: row;
+
+    gap: 20px;
+
+    align-items: center;
+}
+
+.employee-button-explain {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    font-family: 'nanum-gothic';
+}

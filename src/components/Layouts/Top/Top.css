@@ -11,6 +11,7 @@
 .top-container .top-back {
     width: 90px;
     padding-left: 16px;
+    cursor: pointer;
 }
 
 .top-container .top-title {
