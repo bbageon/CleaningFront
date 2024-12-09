@@ -10,6 +10,8 @@ const MainPresenter = ({
     navigate,
     userAddress,
 
+    reviews,
+
 }) => {
 
     if (isLoading) {
@@ -42,6 +44,7 @@ const MainPresenter = ({
                 <Content>
                     <Slide
                         title={'리뷰'}
+                        datas={reviews}
                     />
                 </Content>
             </MainLayout>
