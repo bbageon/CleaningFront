@@ -27,6 +27,7 @@ const ChatRoomContainer = ({
     const inputChatRef = useRef(null);
     const chatRef = useRef(null);
     const { state } = useLocation();
+    const { chat_room_id } = state;
     const { room_id } = useParams();
 
     // Chat State
@@ -92,13 +93,13 @@ const ChatRoomContainer = ({
                         const chatMessageInfo = await API.getOneChatMessage(room_id);
                         if (chatMessageInfo.status !== 200) throw new Error(`[ChatRoomContainer][getOneChatMessage] Error`);
                         setChatList(chatMessageInfo.data.room_messages);
-                        
+
                     } catch (e) {
-                        
+
                     }
                 }
             )()
-            
+
 
             if (!socketRef.current) {
                 socketRef.current = io(`${process.env.REACT_APP_CHAT_SERVER}/cleaning_chat`, {
@@ -108,8 +109,9 @@ const ChatRoomContainer = ({
             }
 
             socketRef.current?.on('chatMessage', (messageInfo) => {
-                
-                
+                // 현재 채팅방이 아닌 다른 채팅방에서 수신한 메시지는 거른다
+                if (messageInfo.chat_room_id !== chat_room_id) return;
+
                 setChatList(prev => {
                     return [
                         ...prev,
@@ -122,7 +124,7 @@ const ChatRoomContainer = ({
                 });
             });
         } catch (e) {
-            
+
         }
     }, []);
 
@@ -142,7 +144,7 @@ const ChatRoomContainer = ({
         // 
         socketRef.current.emit('chatMessage', {
             room_id,
-            chat_room_id: state.chat_room_id,
+            chat_room_id,
             message: chatMessage,
             sender,
             receiver,
