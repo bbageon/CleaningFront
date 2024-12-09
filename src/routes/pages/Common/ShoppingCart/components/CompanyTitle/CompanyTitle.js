@@ -73,10 +73,14 @@ const CompanyTitle = ({
                     </div>
                     {
                         userFavoriteAddress?.address && userFavoriteAddress?.address_detail ? (
-                            <>
-                                <span className='company-text'>{userFavoriteAddress.address} ⟩</span>
+                            <div style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '8px',
+                            }}>
+                                <span className='company-text'>{userFavoriteAddress.address}</span>
                                 <span className='gray1 company-text'>({userFavoriteAddress.address_detail})</span>
-                            </>
+                            </div>
                         ) : (
                             <span className='company-text'>등록된 주소가 없습니다.</span>
                         )

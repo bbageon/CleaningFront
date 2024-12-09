@@ -31,27 +31,39 @@ const CartServiceList = ({
         >
             <div className='cart-service-list-container'>
                 {
-                    userCartServiceList.map((service) => {
-                        return (
-                            <div className='cart-service-list-wrap'>
-                                <CartServiceCard
-                                    key={service.service_id}
+                    userCartServiceList?.length === 0 ? (
+                        <div style={{
+                            textAlign: 'center'
+                        }}>
+                            <span
+                                className='gray1'
+                                styles={{
+                                    width: '100%',
+                                }}>장바구니에 담긴 서비스가 없습니다.</span>
+                        </div>
+                    ) : (
+                        userCartServiceList.map((service) => {
+                            return (
+                                <div className='cart-service-list-wrap'>
+                                    <CartServiceCard
+                                        key={service.service_id}
 
-                                    service={service}
+                                        service={service}
 
-                                    handleToggleDaySelector={handleToggleDaySelector}
-                                    selectedDays={selectedDays}
-                                    setSelectedDays={setSelectedDays}
+                                        handleToggleDaySelector={handleToggleDaySelector}
+                                        selectedDays={selectedDays}
+                                        setSelectedDays={setSelectedDays}
 
-                                    handleDeleteCartList={handleDeleteCartList}
+                                        handleDeleteCartList={handleDeleteCartList}
 
-                                    setCartList={setCartList}
+                                        setCartList={setCartList}
 
-                                    filteredUserAddress={filteredUserAddress}
-                                />
-                            </div>
-                        )
-                    })
+                                        filteredUserAddress={filteredUserAddress}
+                                    />
+                                </div>
+                            )
+                        })
+                    )
                 }
                 <div className="cart-service-total-price-wrap">
                     <div className="divide"></div>
