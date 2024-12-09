@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { io } from 'socket.io-client';
-import { cookie } from "../util";
+import { cookie, isLogin } from "../util";
 import { ScrollToTop, Toast, PrivateRoute, NotFound } from "components";
 
 /**
@@ -44,6 +44,8 @@ import {
 
 const Router = () => {
     const socketRef = useState(null);
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const setCookies = (data) => {
         try {
@@ -107,6 +109,19 @@ const Router = () => {
             socket.disconnect();
         }
     }, []);
+
+    // 라우터 변경 감지 (로그인 확인용)
+    useEffect(() => {
+        const { pathname } = location;
+        if (pathname !== '/') return;
+
+        // 만약 로그인 되어있지 않다면 메인 화면으로 이동
+        if (isLogin()) {
+            navigate('/main');
+            return;
+        }
+
+    }, [location]);
 
     return (
         <div className="app">
@@ -210,47 +225,47 @@ const Router = () => {
                         element={<PaymentSuccess />}
                     />
 
-                {/* ==================직원 페이지================== */}
-                {/* 메인 화면 */}
-                <Route
-                    path="employee"
-                    element={<EmployeeMain />}
-                />
-                {/* 로그인 화면 */}
-                <Route
-                    path="employee/login"
-                    element={<EmployeeLogin />}
-                />
-                {/* 청소요청 목록 화면 */}
-                <Route
-                    path="employee/requestlist"
-                    element={<EmployeeRequestList />}
-                />
-                {/* 청소요청 정보 화면 */}
-                <Route
-                    path="employee/requestinfo"
-                    element={<EmployeeRequestInfo />}
-                />
-                {/* 청소완료 이미지 등록 화면 */}
-                <Route
-                    path="employee/requestimage"
-                    element={<EmployeeRequestImage />}
-                />
-                {/* 대화방 목록 화면 */}
-                <Route
-                    path="employee/chatlist"
-                    element={<EmployeeChatList />}
-                />
-                {/* 대화방 화면 */}
-                <Route
-                    path="employee/chatroom"
-                    element={<EmployeeChatRoom />}
-                />
-                {/* 프로필 화면 */}
-                <Route
-                    path="employee/profile"
-                    element={<EmployeeProfile />}
-                />
+                    {/* ==================직원 페이지================== */}
+                    {/* 메인 화면 */}
+                    <Route
+                        path="employee"
+                        element={<EmployeeMain />}
+                    />
+                    {/* 로그인 화면 */}
+                    <Route
+                        path="employee/login"
+                        element={<EmployeeLogin />}
+                    />
+                    {/* 청소요청 목록 화면 */}
+                    <Route
+                        path="employee/requestlist"
+                        element={<EmployeeRequestList />}
+                    />
+                    {/* 청소요청 정보 화면 */}
+                    <Route
+                        path="employee/requestinfo"
+                        element={<EmployeeRequestInfo />}
+                    />
+                    {/* 청소완료 이미지 등록 화면 */}
+                    <Route
+                        path="employee/requestimage"
+                        element={<EmployeeRequestImage />}
+                    />
+                    {/* 대화방 목록 화면 */}
+                    <Route
+                        path="employee/chatlist"
+                        element={<EmployeeChatList />}
+                    />
+                    {/* 대화방 화면 */}
+                    <Route
+                        path="employee/chatroom"
+                        element={<EmployeeChatRoom />}
+                    />
+                    {/* 프로필 화면 */}
+                    <Route
+                        path="employee/profile"
+                        element={<EmployeeProfile />}
+                    />
 
                     {/* 테스트 */}
                     <Route
@@ -258,7 +273,7 @@ const Router = () => {
                         element={<ImageTest />}
                     />
                 </Route>
-                <Route path='*' element={<NotFound />}/>
+                <Route path='*' element={<NotFound />} />
             </Routes>
         </div>
     );
