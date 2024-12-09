@@ -37,8 +37,8 @@ const WriteReviewContainer = () => {
     // 리뷰 작성 mutate
     const { mutate: submitReview } = useCreateReview(
         (data) => {
-            
-            uploadedImages.forEach( async (image) => {
+
+            uploadedImages.forEach(async (image) => {
                 submitReviewImages({
                     review_id: data.review_id,
                     image_url: await handleImagesSelection(image?.file),
@@ -104,15 +104,7 @@ const WriteReviewContainer = () => {
         try {
             const result = await API.postImageTest(formData);
 
-            console.log(result.data);
-
             return result.data;
-
-            // result?.data?.map(r => {
-            //     setImages(prev => {
-            //         return [...prev, r];
-            //     });
-            // })
         } catch (e) {
             console.error(e);
         }

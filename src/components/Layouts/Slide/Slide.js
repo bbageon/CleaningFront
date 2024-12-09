@@ -1,37 +1,45 @@
 import './Slide.css';
 import { ReactComponent as Star } from '../../../assets/icons/star.svg';
+import { useGetUser } from 'hooks/UserHooks';
+import { formatDate } from 'utils';
 
-const dummyData = [
-    {
-        id: 1,
-        img: 'https://cleaning-image.s3.ap-northeast-2.amazonaws.com/review_image_1.png',
-        rating: '5.0',
-        userName: '브라이언'
-    },
-    {
-        id: 2,
-        img: 'https://cleaning-image.s3.ap-northeast-2.amazonaws.com/review_image_2.png',
-        rating: '4.4',
-        userName: '김재모',
-    },
-    {
-        id: 3,
-        img: 'https://cleaning-image.s3.ap-northeast-2.amazonaws.com/review_image_3.png',
-        rating: '4',
-        userName: '허관',
-    },
-    {
-        id: 4,
-        img: 'https://cleaning-image.s3.ap-northeast-2.amazonaws.com/review_image_4.png',
-        rating: '3',
-        userName: '임주노',
-    }
-]
+const SlideCard = ({
+    data,
+}) => {
+
+    const { data: userRes, isLoading: userLoading, isError: userError } = useGetUser(data.review.user_id);
+    const user = userRes?.data || [];
+
+    /* ===== RENDER ===== */
+    return (
+        <div className='slide-content'>
+            <div className='slide-content-img'>
+                <img src={data.image_url} />
+            </div>
+            <div className='slide-content-info-box'>
+                <span className='slide-content-date small'>
+                    {formatDate(data.updated_at)}
+                </span>
+                <div className='slide-content-info'>
+                    <span>
+                        {user.name}
+                    </span>
+                    <Star width={16} />
+                    <span>
+                        {Number(data.review.rating).toFixed(1)}
+                    </span>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 const Slide = ({
     title,
-    datas = dummyData,
+    datas,
 }) => {
+
+    /* ===== RENDER ===== */
     return (
         <div className='slide-container'>
             <div className='slide-title-box'>
@@ -44,29 +52,12 @@ const Slide = ({
             </div>
             <div className='slide-content-box'>
                 {
-                    datas.map((data, index) => {
-                        return (
-                            <div key={index} className='slide-content'>
-                                <div className='slide-content-img'>
-                                    <img src={data.img}/>
-                                </div>
-                                <div className='slide-content-info-box'>
-                                    <span className='slide-content-date small'>
-                                        2024. 08. 21. (수)
-                                    </span>
-                                    <div className='slide-content-info'>
-                                        <span>
-                                            작성자: {data.userName}
-                                        </span>
-                                        <Star width={16} />
-                                        <span>
-                                            {data.rating}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        )
-                    })
+                    datas?.slice(0, 5).map((data, index) => (
+                        <SlideCard
+                            key={index}
+                            data={data}
+                        />
+                    ))
                 }
             </div>
         </div>
