@@ -33,7 +33,7 @@ const ShoppingCartContainer = () => {
     /* ===== STORE ===== */
     const userId = useAuthStore(state => state.user_id);
     const clearCartStore = useCartStore(state => state.clearCartStore);
-    const { isModalOpen, content, openModal } = useModalStore(state => state);
+    const { isModalOpen, content, openModal, closeModal } = useModalStore(state => state);
 
 
 
@@ -53,6 +53,7 @@ const ShoppingCartContainer = () => {
     // 고객 주소 조회
     const { data: userAddressesRes, isLoading: userAddressesLoading, isError: userAddressesError } = useGetUserAddress(userId);
     const userAddresses = userAddressesRes?.data.user_addresses || [];
+    console.log(userAddressesRes)
     const filteredUserAddress = userAddresses.filter(address => address.is_favorite === 1);
 
     const isLoading = userCartServiceListLoading || serviceLoading || userCartLoading || userAddressesLoading;
@@ -99,6 +100,7 @@ const ShoppingCartContainer = () => {
                         totalPrice: totalPrice,
                     },
                 });
+                closeModal();
             }, 2000);
         },
         (error) => {

@@ -133,7 +133,7 @@ const API = {
   /**
    * 고객 주소 조회
    */
-  getUserAddress: (user_id) => $http.get(parameterToPath('/user_address/:user_id', { user_id })),
+  getUserAddress: (user_id) => $http.get(parameterToPath('/user_address/user/:user_id', { user_id })),
 
   /**
    * 고객 주소 수정
