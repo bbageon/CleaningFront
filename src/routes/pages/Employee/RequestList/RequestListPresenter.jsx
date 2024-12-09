@@ -1,4 +1,4 @@
-import Requestform from './Components/Requestform';
+import Requestform from './components/Requestform';
 import './RequestList.css';
 import { EmployeeMainLayout, Top } from 'components/Layouts';
 
