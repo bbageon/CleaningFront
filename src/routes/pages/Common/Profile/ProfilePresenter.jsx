@@ -1,10 +1,10 @@
+import ProfileAddress from './Components/ProfileAddress/ProfileAddress';
+import ProfileHeader from './Components/ProfileHeader';
+import ProfileReview from './Components/ProfileReview/ProfileReview';
 import './Profile.css';
 import { Content, MainLayout, Top } from "components";
-import ProfileHeader from "./components/ProfileHeader";
-import ProfileAddress from './components/ProfileAddress/ProfileAddress';
-import ProfilePayment from './components/ProfilePayment/ProfilePayment';
-import ProfileReview from './components/ProfileReview/ProfileReview';
 
+    /* ===== RENDER ===== */
 const ProfilePresenter = ({
     navigate,
 

@@ -158,6 +158,7 @@ export const useDeleteReview = (onSuccess?: (data: any) => void, onError?: (erro
             console.log('리뷰 삭제 완료: ', data);
 
             queryClient.invalidateQueries(reviewQueryKeys.getReview(user_id));
+            queryClient.invalidateQueries(reviewQueryKeys.getReview(user_id));
 
             if (onSuccess) {
                 onSuccess(data);

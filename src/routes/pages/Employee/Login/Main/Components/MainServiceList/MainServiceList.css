@@ -1,0 +1,61 @@
+.main-service-list-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 1.1rem;
+}
+
+.main-service-list-container .main-service-list {
+    width: 100%;
+    padding: 0 4px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 1.5rem;
+}
+
+/* ===== ListNavigationButton 컴포넌트 ===== */
+.list-navigation-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0 14px 25px 14px;
+    border-bottom: 1px solid #e3e3e3;
+}
+.list-navigation-container .list-navigation-button {
+    display: flex;
+    justify-content: space-between;
+}
+.list-navigation-container .list-navigation-more {
+    color: #9E9E9E;
+}
+.list-navigation-container .list-navigation-button span {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+.list-navigation-container .list-navigation-text {
+    font-size: 0.9rem;
+    color: #9E9E9E;
+} 
+
+/* ===== CleaningServiceItem 컴포넌트 ===== */
+.cleaning-service-item-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+}
+.cleaning-service-item-container .cleaning-service-item-icon {
+    width: 75px;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cleaning-service-item-container .cleaning-service-item-text {
+    font-size: 0.8rem;
+}

@@ -2,9 +2,16 @@ import './ChatBot.css';
 import { MainLayout, Top } from '../../../../components';
 import ChatBotTop from './components/ChatBotTop';
 import ChatBotBody from './components/ChatBotBody';
+import { DateModal } from './components/Modal/DateModal/DateModal';
 
 const ChatBotPresenter = ({
     chatList,
+
+    showSelectDate,
+    showSelectDateModal,
+
+    onSelectDate,
+    selectedDate,
 }) => {
     return (
         <div className='chat-room-container'>
@@ -16,6 +23,14 @@ const ChatBotPresenter = ({
             <ChatBotBody
                 chatList={chatList}
             />
+            {
+                showSelectDate &&
+                <DateModal
+                    showSelectDateModal={showSelectDateModal}
+                    onSelectDate={onSelectDate}
+                    selectedDate={selectedDate}
+                />
+            }
         </div>
     );
 };

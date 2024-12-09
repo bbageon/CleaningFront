@@ -1,6 +1,31 @@
 import ApiManager from './ApiManager';
 const $http = new ApiManager();
 
+export const getToday = () => {
+  return Math.floor(Date.now() / 1000);
+}
+
+export const getTimeFormat = (dateFormat) => {
+  const date = new Date(dateFormat);
+  return Math.floor(date.getTime() / 1000);
+}
+
+export const getPrevDate = (date) => {
+  const nextDay = new Date(date);
+  nextDay.setDate(nextDay.getDate() - 1);
+  return nextDay;
+}
+
+export const getNextDate = (date) => {
+  const nextDay = new Date(date);
+  nextDay.setDate(nextDay.getDate() + 1);
+  return nextDay;
+}
+
+export const getDate = (timestamp) => {
+  return new Date(timestamp * 1000);
+}
+
 const parameterToPath = (path, params = {}) => {
   const keys = Object.keys(params);
   let newStr = path;
@@ -40,6 +65,11 @@ const API = {
    * 고객 네이버 로그인
    */
   postAuthUserNaverSignin: (body) => $http.post('/auth/user/naver/signin', body),
+
+  /**
+   * 직원 로그인
+   */
+  postEmployeeSignin: (body) => $http.post('/auth/employee/signin', body),
 
 
   /**
@@ -103,7 +133,7 @@ const API = {
   /**
    * 고객 주소 조회
    */
-  getUserAddress: (user_id) => $http.get(parameterToPath('/user_address/user/:user_id', { user_id })),
+  getUserAddress: (user_id) => $http.get(parameterToPath('/user_address/:user_id', { user_id })),
 
   /**
    * 고객 주소 수정
@@ -407,9 +437,9 @@ const API = {
   getServiceCartList: (service_id) => $http.get(parameterToPath('/cart_list/service/:service_id', { service_id })),
 
   /**
-   * 회원 장바구니 목록 조회
+   * 회원 장바고니 목록 서비스 조회
    */
-  getUserServiceCartList: (user_id) => $http.get(parameterToPath('/cart_list/user/:user_id', { user_id })),
+  getUserServiceCartList: (user_id) => $http.get(parameterToPath('/car_list/user/:user_id', { user_id })),
 
   /**
    * 장바구니 목록 수정
@@ -561,6 +591,11 @@ const API = {
    * 청소업체 직원 조회
   */
   getCompanyEmployee: (company_id) => $http.get(parameterToPath('/employee/company/:company_id', { company_id })),
+
+  /**
+   * 직원 채팅방 조회
+   */
+  getEmployeeChatRoom: (employee_id) => $http.get(parameterToPath('/employee/chat_room/:employee_id', { employee_id })),
 
   /**
    * 직원 수정
@@ -720,6 +755,31 @@ const API = {
   getCompanyRequestClean: (company_id) => $http.get(parameterToPath('/request_clean/company/:company_id', { company_id })),
 
   /**
+   * 요청 목록 청소요청 조회(1년 단위)
+   */
+  getYearRequestClean: (today) => $http.get(parameterToPath('/request_clean/schedule/:today', { today })),
+
+  /**
+   * 특정 기간의 청소요청 조회
+   */
+  getPeriodRequestClean: (first_date, last_date) => $http.get(parameterToPath('/request_clean/schedule/:first_date/:last_date', { first_date, last_date })),
+
+  /**
+   * 특정 기간의 청소요청 조회
+   */
+  getSearchPeriodRequestClean: (first_date, last_date) => $http.get(parameterToPath('/request_clean/search/:first_date/:last_date', { first_date, last_date })),
+
+  /**
+   * 요청 목록 특정 날짜의 청소요청 조회
+   */
+  getDateRequestClean: (date) => $http.get(parameterToPath('/request_clean/date/:date', { date })),
+
+  /**
+   * 직원 청소요청 조회
+   */
+  getEmployeeRequestClean: (employee_id) => $http.get(parameterToPath('/request_clean/employee/:employee_id', { employee_id })),
+
+  /**
    * 청소요청 수정
   */
   putRequestClean: (request_clean_id, body) => $http.put(parameterToPath('/request_clean/:request_clean_id', { request_clean_id }), body),
@@ -728,6 +788,43 @@ const API = {
    * 청소요청 삭제
    */
   deleteRequestClean: (request_clean_id) => $http.delete(parameterToPath('/request_clean/:request_clean_id', { request_clean_id })),
+
+
+  /**
+   * ============================
+   *       청 소 요 청 이 미 지
+   * ============================
+   * Hook 작성 완료
+   */
+  /**
+   * 청소요청 이미지 생성
+   */
+  postRequestCleanImage: (body) => $http.post('/request_clean_image/', body),
+
+  /**
+   * 청소요청 이미지 단일 조회
+   */
+  getOneRequestCleanImage: (request_clean_image_id) => $http.get(parameterToPath('/request_clean_image/:request_clean_image_id', { request_clean_image_id })),
+
+  /**
+   * 단일 청소요청 이미지 조회
+   */
+  getEachRequestCleanImage: (request_clean_id) => $http.get(parameterToPath('/request_clean_image/request_clean/:request_clean_id', { request_clean_id })),
+
+  /**
+   * 청소요청 이미지 전체 조회
+   */
+  getRequestCleanImage: () => $http.get(parameterToPath('/request_clean_image/')),
+
+  /**
+   * 청소요청 이미지 수정
+   */
+  putRequestCleanImage: (request_clean_image_id, body) => $http.put(parameterToPath('/request_clean_image/:request_clean_image_id', { request_clean_image_id }), body),
+
+  /**
+   * 청소요청 이미지 식제
+   */
+  deleteRequestCleanImage: (request_clean_image_id) => $http.delete(parameterToPath('/request_clean_image/:request_clean_image_id', { request_clean_image_id })),
 
 
   /**
@@ -807,6 +904,58 @@ const API = {
    * 견적서 서비스 목록 삭제
    */
   deleteEstimateServiceList: (estimate_service_list_id) => $http.delete(parameterToPath('/estimate_service_list/:estimate_service_list_id', { estimate_service_list_id })),
+
+
+  /**
+   * =====================
+   *       직 원 배 정
+   * =====================
+   * Hook 작성 완료
+   */
+  /**
+   * 직원 배정 생성
+   */
+  postEmployeeAssignment: (body) => $http.post('/employee_assignment', body),
+  /**
+   * 직원 배정 단일 조회
+   */
+  getOneEmployeeAssignment: (employee_assignment_id) => $http.get(parameterToPath('/employee_assignment/:employee_assignment_id', { employee_assignment_id })),
+  /**
+   * 청소요청 직원 배정 조회
+   */
+  getRequestEmployeeAssignment: (request_clean_id) => $http.get(parameterToPath('/employee_assignment/request_clean/:request_clean_id', { request_clean_id })),
+  /**
+   * 직원의 직원 배정 조회
+   */
+  getEmployeeEmployeeAssignment: (employee_id) => $http.get(parameterToPath('/employee_assignment/employee/:employee_id', { employee_id })),
+  /**
+   * 청소업체 직원 배정 조회
+   */
+  getCompanyEmployeeAssignment: (company_id) => $http.get(parameterToPath('/employee_assignment/company/:company_id', { company_id })),
+  /**
+   * 특정 기간 청소요청의 청소업체 직원 배정 조회
+   */
+  getPeriodCompanyEmployeeAssignment: (first_date, last_date, company_id) => $http.get(parameterToPath('/employee_assignment/period/:first_date/:last_date/:company_id', { first_date, last_date, company_id })),
+  /**
+   * 청소업체의 직원 중 배정되지 않은 직원 조회
+   */
+  getCompanyEmployeeNonAssignment: (company_id) => $http.get(parameterToPath('/employee_assignment/non_assign/:company_id', { company_id })),
+  /**
+   * 청소업체 직원 배정 전체 조회
+   */
+  getEmployeeAssignment: () => $http.get('/employee_assignment'),
+  /**
+   * 직원 배정 수정
+   */
+  putEmployeeAssignment: (employee_assignment_id, body) => $http.put(parameterToPath('/employee_assignment/:employee_assignment_id', { employee_assignment_id }), body),
+  /**
+   * 직원 배정 삭제
+   */
+  deleteEmployeeAssignment: (employee_assignment_id) => $http.delete(parameterToPath('/employee_assignment/:employee_assignment_id', { employee_assignment_id })),
+  /**
+   * 직원 배정 삭제(직원 아이디로 삭제)
+   */
+  deleteAssignmentEmployee: (employee_id) => $http.delete(parameterToPath('/employee_assignment/employee/:employee_id', { employee_id })),
 
 
   /**

@@ -27,6 +27,7 @@ const ShoppingCartPresenter = ({
     navigate,
 
     setCartList,
+    filteredUserAddress,
 
 }) => {
 
@@ -35,55 +36,62 @@ const ShoppingCartPresenter = ({
     };
 
     return (
-        <MainLayout>
+        <>
             <Top
                 notShowIcon={true}
                 title={'장바구니'}
                 paddingBottom={'20px'}
             />
-            {
-                company ? (
-                    <CompanyTitle
-                        company={company}
-                        handleNavigateCompany={handleNavigateCompany}
-                    />
-                ) : (
-                    <></>
-                )
-            }
-            <CartServiceList
-                company={company}
-                navigate={navigate}
+            <MainLayout
+                padding={30}
+            >
+                {
+                    company ? (
+                        <CompanyTitle
+                            company={company}
+                            handleNavigateCompany={handleNavigateCompany}
+                        />
+                    ) : (
+                        <></>
+                    )
+                }
+                <CartServiceList
+                    company={company}
+                    navigate={navigate}
 
-                userCartServiceList={userCartServiceList}
+                    userCartServiceList={userCartServiceList}
 
-                handleNavigateCompany={handleNavigateCompany}
+                    handleNavigateCompany={handleNavigateCompany}
 
-                handleToggleDaySelector={handleToggleDaySelector}
-                selectedDays={selectedDays}
-                setSelectedDays={setSelectedDays}
-
-                handleDeleteCartList={handleDeleteCartList}
-
-                setCartList={setCartList}
-            />
-            <TotalPriceCheck
-                totalPrice={totalPrice}
-            />
-            <BottomButton
-                title={'요청하기'}
-                onClick={handleRequestClean}
-            />
-            {
-                isDaySelectorOpen &&
-                <DaySelector
-                    isOpen={isDaySelectorOpen}
-                    setIsOpen={setIsDaySelectorOpen}
+                    handleToggleDaySelector={handleToggleDaySelector}
                     selectedDays={selectedDays}
                     setSelectedDays={setSelectedDays}
+
+                    handleDeleteCartList={handleDeleteCartList}
+
+                    setCartList={setCartList}
+
+                    totalPrice={totalPrice}
+                    filteredUserAddress={filteredUserAddress}
                 />
-            }
-        </MainLayout>
+                {/* <TotalPriceCheck
+                totalPrice={totalPrice}
+            /> */}
+                <BottomButton
+                    title={'결제하기'}
+                    onClick={handleRequestClean}
+                />
+                {
+                    isDaySelectorOpen &&
+                    <DaySelector
+                        isOpen={isDaySelectorOpen}
+                        setIsOpen={setIsDaySelectorOpen}
+                        selectedDays={selectedDays}
+                        setSelectedDays={setSelectedDays}
+                    />
+                }
+            </MainLayout>
+        </>
     );
 };
 

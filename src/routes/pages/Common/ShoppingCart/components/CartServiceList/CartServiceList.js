@@ -16,35 +16,55 @@ const CartServiceList = ({
     handleDeleteCartList,
 
     setCartList,
+
+    totalPrice,
+
+    filteredUserAddress,
 }) => {
 
     return (
-        <Content>
+        <Content
+            paddingBottom={0}
+            paddingLeft={0}
+            paddingRight={0}
+            paddingTop={0}
+        >
             <div className='cart-service-list-container'>
                 {
                     userCartServiceList.map((service) => {
                         return (
-                            <CartServiceCard
-                                key={service.service_id}
+                            <div className='cart-service-list-wrap'>
+                                <CartServiceCard
+                                    key={service.service_id}
 
-                                service={service}
+                                    service={service}
 
-                                handleToggleDaySelector={handleToggleDaySelector}
-                                selectedDays={selectedDays}
-                                setSelectedDays={setSelectedDays}
+                                    handleToggleDaySelector={handleToggleDaySelector}
+                                    selectedDays={selectedDays}
+                                    setSelectedDays={setSelectedDays}
 
-                                handleDeleteCartList={handleDeleteCartList}
+                                    handleDeleteCartList={handleDeleteCartList}
 
-                                setCartList={setCartList}
-                            />
+                                    setCartList={setCartList}
+
+                                    filteredUserAddress={filteredUserAddress}
+                                />
+                            </div>
                         )
                     })
                 }
-                <div className='cart-service-list-button'>
-                    <button
-                        onClick={company ? handleNavigateCompany : () => navigate('/companies')}
-                    >+ 서비스 추가</button>
+                <div className="cart-service-total-price-wrap">
+                    <div className="divide"></div>
+                    <div className="cart-service-total-price">
+                        <span>총 서비스 금액</span>
+                        <span className='bolder'>{totalPrice.toLocaleString()}원</span>
+                    </div>
                 </div>
+            </div>
+            <div className='cart-service-list-button'>
+                <button
+                    onClick={company ? handleNavigateCompany : () => navigate('/companies')}
+                >+ 서비스 더 담기</button>
             </div>
         </Content>
     );

@@ -59,7 +59,7 @@ const ShoppingCartContainer = () => {
 
     const totalPrice = userCartServiceList.reduce((sum, i) => sum + i.price, 0);
 
-    console.log(userCartServiceList);
+    console.log(filteredUserAddress);
 
     /* ===== MUTATE ===== */
     // 청소 요청
@@ -200,6 +200,7 @@ const ShoppingCartContainer = () => {
                 totalPrice={totalPrice}
                 company={company}
                 selectedDays={selectedDays}
+                filteredUserAddress={filteredUserAddress}
 
                 isLoading={isLoading}
                 isDaySelectorOpen={isDaySelectorOpen}

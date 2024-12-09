@@ -9,49 +9,66 @@ const PaymentSuccessBody = ({
     location,
 }) => {
 
-    const { data, company, totalPrice } = location.state;
+    let data, company, totalPrice;
+
+    if (location.state) {
+        data = location.state?.data;
+        company = location.state?.company;
+        totalPrice = location.state?.totalPrice;
+    } else {
+        data = null;
+        company = null;
+        totalPrice = null;
+    }
 
     return (
         <Content
             paddingLeft={30}
             paddingRight={30}
         >
-            <div className='payment-success-body-container'>
-                <div className='payment-success-body-wrap'>
-                    <span>요청날짜</span>
-                    <span>{formatDate(data.request.request_date)}</span>
-                </div>
-                {/* <div className='payment-success-body-wrap'>
+            {
+                data &&
+                <>
+                    <div className='payment-success-body-container'>
+                        <div className='payment-success-body-wrap'>
+                            <span>요청날짜</span>
+                            <span>{formatDate(data.request.request_date)}</span>
+                        </div>
+                        {/* <div className='payment-success-body-wrap'>
                     <span>청소 시작일</span>
                     <span>gkdfgmd</span>
                 </div> */}
-                {/* <div className='payment-success-body-wrap'>
+                        {/* <div className='payment-success-body-wrap'>
                     <span>청소 시간</span>
                     <span>gkdfgmd</span>
                 </div> */}
-            </div>
+                    </div>
+                    <div className='payment-success-body-container'>
+                        <div className='payment-success-body-wrap'>
+                            <span>결제일</span>
+                            <span>{formatDate(data.request.request_date)}</span>
+                        </div>
+                        <div className='payment-success-body-wrap'>
+                            <span>결제금액</span>
+                            <span>{formatPrice(totalPrice)}</span>
+                        </div>
+                    </div>
+                </>
+            }
 
-            <div className='payment-success-body-container'>
-                <div className='payment-success-body-wrap'>
-                    <span>결제일</span>
-                    <span>{formatDate(data.request.request_date)}</span>
+            {
+                company &&
+                <div className='payment-success-body-container'>
+                    <div className='payment-success-body-wrap'>
+                        <span>업체명</span>
+                        <span>{company.company_name}</span>
+                    </div>
+                    <div className='payment-success-body-wrap'>
+                        <span>업체 연락처</span>
+                        <span>{formatPhone(company.company_phone)}</span>
+                    </div>
                 </div>
-                <div className='payment-success-body-wrap'>
-                    <span>결제금액</span>
-                    <span>{formatPrice(totalPrice)}</span>
-                </div>
-            </div>
-
-            <div className='payment-success-body-container'>
-                <div className='payment-success-body-wrap'>
-                    <span>업체명</span>
-                    <span>{company.company_name}</span>
-                </div>
-                <div className='payment-success-body-wrap'>
-                    <span>업체 연락처</span>
-                    <span>{formatPhone(company.company_phone)}</span>
-                </div>
-            </div>
+            }
 
             <div className='payment-success-body-btn'>
                 <Button

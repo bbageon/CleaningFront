@@ -1,0 +1,87 @@
+.main-contents {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+
+    gap: 20px;
+
+    padding: 0 20px 0 20px;
+}
+
+
+.main-contents-explain {
+    width: 100%;
+    /* padding: 20px 0px 0px 0px; */
+
+    font-family: "nanum-gothic";
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.recently-requirement {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+    padding: 15px 20px 15px 20px;
+
+    /* filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.1)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1)); */
+    border: 1px solid #144B44;
+    border-radius: 5px;
+}
+
+.recent-requirement-header {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+    align-items: center;
+
+    color: #144B44;
+    font-weight: bold;
+    font-family: 'nanum-gothic';
+}
+
+.requirement-status {
+    background-color: #144B44;
+    border-radius: 6px;
+    padding: 4px 30px 4px 30px;
+
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 0.8rem;
+
+}
+
+.requirement-content {
+    display: flex;
+    flex-direction: column;
+
+    font-family: 'nanum-gothic';
+    font-weight: 400;
+    font-size: 0.8rem;
+
+    gap: 2px;
+}
+
+.requirement-content-title {
+    color: #144B44;
+}
+
+.requirement-image-container {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    height: 75px;
+
+    align-items: center;
+    gap: 10px;
+}
+
+
+.main-divider {
+    border: 0.5px solid #B5B5B5;
+}
