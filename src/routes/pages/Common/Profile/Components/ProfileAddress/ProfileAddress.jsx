@@ -16,6 +16,7 @@ const ProfileAddress = ({
             <Link
                 title={"주소 관리"}
                 link={'/addressregistration'}
+                fontSize={'1rem'}
             />
             <div className='profile-address-management'>
                 {

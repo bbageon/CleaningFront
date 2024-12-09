@@ -23,7 +23,7 @@ const AddressRegistrationContainer = () => {
 
     const isLoading = userAddressLoading;
 
-    /* ===== HOOKS ===== */
+    /* ===== EFFECT ===== */
     useEffect(() => {
         setIsSearch(searchValue.length > 0);
         if (!searchValue.length && !userAddress.user_addresses) {
@@ -49,7 +49,6 @@ const AddressRegistrationContainer = () => {
             addressList={addressList}
 
             setSearchValue={setSearchValue}
-
         />
     );
 };

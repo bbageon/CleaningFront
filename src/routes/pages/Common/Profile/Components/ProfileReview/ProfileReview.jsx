@@ -16,6 +16,7 @@ const ProfileReview = ({
             <Link
                 title={"리뷰 관리"}
                 link={'/reviewhistory'}
+                fontSize={'1rem'}
             />
             <div className='profile-review-management'>
                 {

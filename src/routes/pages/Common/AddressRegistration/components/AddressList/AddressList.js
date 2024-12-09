@@ -10,7 +10,7 @@ const AddressList = ({
     isSearch,
     addressList,
 }) => {
-    
+
     /* ===== VARIABLES ===== */
     const navigate = useNavigate();
 
@@ -65,7 +65,7 @@ const AddressList = ({
         });
     };
 
-    
+
 
     /* ===== RENDER ===== */
     return (
@@ -78,12 +78,14 @@ const AddressList = ({
                             onClick={() => handleSelectAddress(address)}
                         >
                             {
-                                isSearch ?
-                                    <div className='search-space'>
-
-                                    </div> :
+                                address?.is_favorite ?
                                     <div className='pin-icon'>
-                                        {address.isCurrent ? <Pin /> : <EmptyPin />}
+                                        <Pin />
+                                    </div> :
+                                    <div
+                                        className='pin-icon'
+                                    >
+                                        <EmptyPin />
                                     </div>
                             }
                             <div className='address-info'>

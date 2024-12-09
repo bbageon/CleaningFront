@@ -36,7 +36,8 @@ const ImageTestContainer = () => {
         try {
             const result = await API.postImageTest(formData);
 
-            
+            console.log(result);
+
             setImages(prev => {
                 return [...prev, result.data]
             });
@@ -64,6 +65,7 @@ const ImageTestContainer = () => {
         try {
             const result = await API.postImagesTest(formData);
 
+            
             
             result?.data?.map(r => {
                 setImages(prev => {

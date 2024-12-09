@@ -63,6 +63,9 @@ body {
 	/* padding-top: 54px; */
 	/* padding-bottom: calc(34px + 80px); */
 }
+body::-webkit-scrollbar {
+	display: none;
+}
 
 /* 폰트 초기화 */
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');

@@ -17,7 +17,6 @@ const ProfileUpdatePresenter = ({
             <Top
                 notShowIcon={true}
                 title={'프로필 수정'}
-                link={'/profile'}
             />
             <div className='profile-update-container'>
                 <Content

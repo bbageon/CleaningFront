@@ -4,6 +4,7 @@ import './Link.css';
 const Link = ({
     title,
     link,
+    fontSize,
 }) => {
     const navigate = useNavigate();
 
@@ -12,9 +13,17 @@ const Link = ({
             className='link-container'
             onClick={() => navigate(link)}
         >
-            <span>{title ? title : "error"}</span>
             <span
-                style={{color : '#D9D9D9', cursor : 'pointer'}}
+                style={{
+                    fontSize: fontSize,
+                }}
+            >{title ? title : "error"}</span>
+            <span
+                style={{
+                    color : '#D9D9D9',
+                    cursor : 'pointer',
+                    fontSize: fontSize,
+                }}
             > ⟩ </span>
         </div>
     )

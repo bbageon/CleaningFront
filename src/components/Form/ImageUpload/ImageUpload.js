@@ -43,6 +43,7 @@ const ImageUpload = ({
         })
     };
 
+    /* ===== RENDER ===== */
     return (
         <div className='image-upload-container'>
 
@@ -82,7 +83,12 @@ const ImageUpload = ({
                     }
                 </div>
                 <div className='end'>
-                    <span className='large gray1'>{uploadedImages.length} / {maxImages}</span>
+                    <span
+                        className='large gray1'
+                        style={{
+                            color: uploadedImages.length === maxImages ? 'var(--red-color)' : ''
+                        }}
+                    >{uploadedImages.length} / {maxImages}</span>
                 </div>
             </div>
         </div>
