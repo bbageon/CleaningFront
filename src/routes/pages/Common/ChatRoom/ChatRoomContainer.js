@@ -36,13 +36,7 @@ const ChatRoomContainer = ({
     const [clientId, setClientId] = useState('홍길동');
     const [chatMessage, setChatMessage] = useState('');
     const [chatTitle, setChatTitle] = useState('김재모의 카피바라 청소');
-    const [chatList, setChatList] = useState([
-        // {
-        //     sender: '안김재모',
-        //     receiver: '받는사람',
-        //     message: `안녕하세요 김재모 입니다. 무엇을 도와드릴까요 ?`,
-        // },
-    ])
+    const [chatList, setChatList] = useState([]);
 
     // Picture State
     const [isShowSelectPicture, setIsShowSelectPicture] = useState(false);
@@ -78,17 +72,6 @@ const ChatRoomContainer = ({
                         setChatTitle(data.chat_room_name);
                         setSender(data.user.name);
                         setReceiver(data.company.company_name);
-                        // const userType = cookie.getCookie('userType');
-                        // setReceiver(chatInfo.data.company.name);
-                        // if (userType === 'USER') {
-                        //     setSender(chatInfo.data.user.name);
-                        //     setReceiver('홍길동');
-                        //     // setReceiver(chatInfo.data.company.name);
-                        // } else {
-                        //     // setSender(chatInfo.data.company.name);
-                        //     setSender('홍길동');
-                        //     setReceiver(chatInfo.data.user.name);
-                        // }
 
                         const chatMessageInfo = await API.getOneChatMessage(room_id);
                         if (chatMessageInfo.status !== 200) throw new Error(`[ChatRoomContainer][getOneChatMessage] Error`);
@@ -140,8 +123,6 @@ const ChatRoomContainer = ({
     const sendChat = () => {
         if (chatMessage.length === 0) return;
 
-        // const chatText = inputChatRef.current.value;
-        // 
         socketRef.current.emit('chatMessage', {
             room_id,
             chat_room_id,
