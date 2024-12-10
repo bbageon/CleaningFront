@@ -150,6 +150,7 @@ const RegistrationAddress = ({
                     <RegistrationInput
                         title='평수'
                         placeholder='예) 숫자만 입력해 주세요. (1, 10, 20, ...)'
+                        required
                         // value={addressInfo?.meter}
                         onChange={e => {
                             setAddressInfo(prev => {
@@ -162,12 +163,6 @@ const RegistrationAddress = ({
                         }}
                     />
                 </div>
-            </div>
-            <div
-                className="registration-address-button"
-                onClick={() => registerAddress()}
-            >
-                주소 등록
             </div>
         </div>
     )

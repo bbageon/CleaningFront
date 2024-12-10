@@ -5,12 +5,13 @@ const RegistrationInput = ({
     placeholder,
     value,
     onChange,
+    required = false,
 }) => {
     return (
         <div className='registration-input'>
             {
                 title &&
-                <div className='input-title'>{title}</div>
+                <div className={`input-title ${required ? 'required' : '' }`}>{title}</div>
             }
             <input
                 placeholder={placeholder}

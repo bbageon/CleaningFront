@@ -1,5 +1,5 @@
 import './DetailAddress.css';
-import { MainLayout, Top } from '../../../../components';
+import { BottomButton, MainLayout, Top } from '../../../../components';
 import RegistrationAddress from './components/RegistrationAddress';
 
 const DetailAddressPresenter = ({
@@ -18,6 +18,11 @@ const DetailAddressPresenter = ({
                 setAddressInfo={setAddressInfo}
 
                 registerAddress={registerAddress}
+            />
+            <BottomButton
+                title={'주소 등록'}
+                onClick={() => registerAddress()}
+                disabled={addressInfo.meter === 0}
             />
         </MainLayout>
     );

@@ -53,14 +53,12 @@ const ShoppingCartContainer = () => {
     // 고객 주소 조회
     const { data: userAddressesRes, isLoading: userAddressesLoading, isError: userAddressesError } = useGetUserAddress(userId);
     const userAddresses = userAddressesRes?.data.user_addresses || [];
-    console.log(userAddressesRes)
+
     const filteredUserAddress = userAddresses.filter(address => address.is_favorite === 1);
 
     const isLoading = userCartServiceListLoading || serviceLoading || userCartLoading || userAddressesLoading;
 
     const totalPrice = userCartServiceList.reduce((sum, i) => sum + i.price, 0);
-
-    console.log(filteredUserAddress);
 
     /* ===== MUTATE ===== */
     // 청소 요청

@@ -31,8 +31,10 @@ const CartServiceCard = ({
 
     /* ===== FUNCTION ===== */
     const handleDeleteCartList = (cart_list_id) => {
-        setCartList((prev) => prev.filter((item) => item.cart_list_id !== cart_list_id));
-        deleteCartList(cart_list_id);
+        deleteCartList({
+            cart_list_id: cart_list_id,
+            cart_id: service?.cart_id,
+        });
     };
 
     return (
