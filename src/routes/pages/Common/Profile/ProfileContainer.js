@@ -7,6 +7,7 @@ import { useGetUser } from 'hooks/UserHooks';
 import { useNavigate } from 'react-router-dom';
 import { cookie } from 'util';
 import { Modal } from 'components';
+import dayjs from 'dayjs';
 
 const ProfileContainer = () => {
     /* ===== VARIABLES ===== */
@@ -44,9 +45,9 @@ const ProfileContainer = () => {
         }
 
         if (!isLoading && userReviews) {
-            const recentReview = [...userReviews].sort((a, b) => b.create_at - a.create_at)[0];
-            if (recentReview) {
-                setRecentReview(recentReview);
+            const latestReview = getMostRecentReview(userReviews);
+            if (latestReview) {
+                setRecentReview(latestReview);
             }
         }
     }, [isLoading, userReviews]);
@@ -65,6 +66,13 @@ const ProfileContainer = () => {
 
             navigate('/');
         }, 'double');
+    };
+
+    const getMostRecentReview = (reviews) => {
+        if (!Array.isArray(reviews) || reviews.length === 0) return null;
+
+        const sortedReviews = [...reviews].sort((a, b) => dayjs(b.created_at * 1000).valueOf() - dayjs(a.created_at * 1000).valueOf());
+        return sortedReviews[0];
     };
 
     if (isLoading) return null;

@@ -63,7 +63,8 @@ body {
 	/* padding-top: 54px; */
 	/* padding-bottom: calc(34px + 80px); */
 }
-body::-webkit-scrollbar {
+
+::-webkit-scrollbar {
 	display: none;
 }
 

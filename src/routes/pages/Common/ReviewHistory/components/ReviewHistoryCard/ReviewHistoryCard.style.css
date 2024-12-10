@@ -50,14 +50,26 @@
     margin-bottom: 1rem;
 }
 
+.review-card-user-wrap .review-card-img-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow-x: scroll;
+}
+
 .review-card-user-wrap .review-card-user-content-img {
-    width: 100%;
+    display: flex;
+    align-items: center;
+
+    max-width: 125px;
+    min-width: 125px;
+
+    object-fit: cover;
 }
 
 .review-card-user-wrap .review-card-user-content-img img {
-    width: 50%;
-    height: 33%;
-    border-radius: 10px;
+    width: 100%;
+    border-radius: 12px;
 }
 
 /* ===== 답변 ===== */

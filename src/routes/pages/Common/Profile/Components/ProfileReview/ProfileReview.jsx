@@ -1,12 +1,36 @@
-import Link from 'components/Link';
 import './ProfileReview.style.css';
+import { useEffect, useState } from 'react';
 import { Content, Rating } from 'components';
-import TestCompanyIcon from './TestCompanyIcon.svg';
-import TestImg from './TestImg.svg';
+import Link from 'components/Link';
+import { useGetReviewImageAboutReview } from 'hooks/ReviewImageHooks';
 
 const ProfileReview = ({
     recentReview,
 }) => {
+    /* ===== STATE ===== */
+    const [reviewId, setReviewId] = useState(null);
+    const [reviewImage, setReviewImage] = useState(null);
+
+    /* ===== QUERY ===== */
+    const { data: reviewImagesRes, isLoading: reviewImagesLoading, isError: reviewImagesError } = useGetReviewImageAboutReview(reviewId);
+    const reviewImages = reviewImagesRes?.data || [];
+
+    const isLoading = reviewImagesLoading;
+
+    /* ===== EFFECT ===== */
+    useEffect(() => {
+        if (recentReview && recentReview.review_id) {
+            setReviewId(recentReview.review_id);
+        }
+    }, [recentReview]);
+
+    useEffect(() => {
+        if (!isLoading && reviewImages && Array.isArray(reviewImages.review_images) && reviewImages.review_images.length > 0) {
+            setReviewImage(reviewImages.review_images[0].image_url);
+        } else {
+            setReviewImage(null);
+        }
+    }, [reviewImages, isLoading]);
 
     /* ===== RENDER ===== */
     return (
@@ -49,9 +73,11 @@ const ProfileReview = ({
                                     {recentReview?.review_message}
                                 </div>
                             </div>
-                            <div className='review-img-form'>
-                                <img src={TestImg}></img>
-                            </div>
+                            {reviewImage && (
+                                <div className='review-img-form'>
+                                    <img src={reviewImage} />
+                                </div>
+                            )}
                         </>
                     ) : (
                         <span>작성된 리뷰가 없습니다.</span>
