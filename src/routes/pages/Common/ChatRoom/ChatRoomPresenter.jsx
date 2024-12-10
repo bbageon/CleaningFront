@@ -17,6 +17,7 @@ const ChatRoomPresenter = ({
     isShowSelectPicture,
     toggleShowSelectPicture,
     sendSelectPicture,
+    selectMultiPictures,
 
     canSelectPictures,
     selectedPictures,
@@ -43,6 +44,7 @@ const ChatRoomPresenter = ({
                 chatMessage={chatMessage}
                 setChatMessage={setChatMessage}
                 toggleShowSelectPicture={toggleShowSelectPicture}
+                selectMultiPictures={selectMultiPictures}
                 sendChat={sendChat}
             />
             {

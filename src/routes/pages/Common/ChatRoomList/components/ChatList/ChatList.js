@@ -5,6 +5,7 @@ const ChatList = ({
     chatList
 }) => {
     const navigate = useNavigate();
+    const regex = /^<!.*!>$/;
 
     return (
         <div className='chat-list-container'>
@@ -14,7 +15,7 @@ const ChatList = ({
                         <div
                             className='chat-list'
                             onClick={() => {
-                                
+
                                 navigate(`/chatroom/${chat.room_id}`, {
                                     state: { chat_room_id: chat.chat_room_id }
                                 })
@@ -28,7 +29,13 @@ const ChatList = ({
                                     <span className='chat-time'>{chat.chat_time}</span>
                                 </div>
                                 <div className='chat-info-line'>
-                                    <span className='chat-subtitle'>{chat.last_chat_message}</span>
+                                    <span className='chat-subtitle'>
+                                        {
+                                            regex.test(chat.last_chat_message) ?
+                                                `사진을 보냈습니다` :
+                                                chat.last_chat_message
+                                        }
+                                    </span>
                                     <span className='chat-alert-count'>{chat.alert_count}</span>
                                 </div>
                                 <div className='chat-info-line'>

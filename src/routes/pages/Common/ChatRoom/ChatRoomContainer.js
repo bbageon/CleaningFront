@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useFetcher, useLocation, useParams } from "react-router-dom";
 import ChatRoomPresenter from "./ChatRoomPresenter";
 import Image01 from './components/Picture/Images/Image01.png';
 import Image02 from './components/Picture/Images/Image02.png';
@@ -134,6 +134,28 @@ const ChatRoomContainer = ({
         setChatMessage('');
     }
 
+    // 이미지 선택(input)
+    const MAX_IMAGE_SIZE = 5;
+    const selectMultiPictures = async (e) => {
+        try {
+            const files = Array.from(e.target.files);
+
+            files.map((file, idx) => {
+                if (idx >= MAX_IMAGE_SIZE) return;
+
+                setSelectedPictures(prev => {
+                    return [
+                        ...prev,
+                        file
+                    ];
+                });
+            })
+            toggleShowSelectPicture();
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
     const toggleShowSelectPicture = () => {
         if (isShowSelectPicture) {
             setSelectedPictures([]);
@@ -141,9 +163,38 @@ const ChatRoomContainer = ({
         setIsShowSelectPicture(!isShowSelectPicture);
     }
 
-    const sendSelectPicture = () => {
+    // 이미지 전송
+    const sendSelectPicture = async () => {
         toggleShowSelectPicture();
-        // 이미지 전송
+        console.log(selectedPictures)
+        
+        const formData = new FormData();
+        selectedPictures?.map(picture => {
+            formData.append('files', picture);
+        })
+
+        try {
+            const result = await API.postImagesTest(formData);
+
+            console.log(result);
+            if (result.status !== 200) {
+                throw new Error(`invalid upload images`);
+            }
+
+            // 이미지가 전달된 경우 ,로 이미지를 구분한 후 이미지를 뜻하는 <! !> 를 앞 뒤로 붙여준다
+            const imageUrl = "<!" + result.data.join(',') + "!>";
+
+            socketRef.current.emit('chatMessage', {
+                room_id,
+                chat_room_id,
+                message: imageUrl,
+                sender,
+                receiver,
+            });
+            setSelectedPictures([]);
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     const addSelectPicture = (picture) => {
@@ -175,6 +226,7 @@ const ChatRoomContainer = ({
             isShowSelectPicture={isShowSelectPicture}
             toggleShowSelectPicture={toggleShowSelectPicture}
             sendSelectPicture={sendSelectPicture}
+            selectMultiPictures={selectMultiPictures}
 
             canSelectPictures={canSelectPictures}
             selectedPictures={selectedPictures}
