@@ -6,6 +6,7 @@ import test from './test.jpg';
 import { useGetReviewOneReviewAnswer } from 'hooks/ReviewAnswerHooks';
 import { useDeleteReview } from 'hooks/ReviewHooks';
 import { useModalStore } from 'store';
+import { useGetReviewImageAboutReview } from 'hooks/ReviewImageHooks';
 
 /**
  * 답변 컴포넌트
@@ -44,7 +45,10 @@ const ReviewHistoryCard = ({
     const { data: answerRes, isLoading: answerLoading, isError: answerError } = useGetReviewOneReviewAnswer(review?.review_id);
     const answer = answerRes?.data.review_answers || [];
 
-    const isLoading = answerLoading;
+    const { data: reviewImagesRes, isLoading: reviewImagesLoading, isError: reviewImagesError } = useGetReviewImageAboutReview(review?.review_id);
+    const reviewImages = reviewImagesRes?.data.review_images || [];
+
+    const isLoading = answerLoading || reviewImagesLoading;
 
 
     /* ===== MUTATE ===== */
@@ -106,8 +110,12 @@ const ReviewHistoryCard = ({
                         <div className='review-card-user-content'>
                             <p>{review.review_message}</p>
                         </div>
-                        <div className='review-card-user-content-img'>
-                            <img src={test} alt='Review Image' />
+                        <div className='review-card-img-wrap'>
+                            {reviewImages.map((img, index) => (
+                                <div className='review-card-user-content-img'>
+                                    <img key={index} src={img.image_url} />
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>

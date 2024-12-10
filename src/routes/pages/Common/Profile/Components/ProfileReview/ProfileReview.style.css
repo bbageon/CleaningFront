@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 
     width: 100%;
     padding: 1rem;
@@ -25,13 +26,17 @@
 }
 
 .review-img-form {
-    display: flex;
+    width: 75px;
+    height: 75px;
+    border-radius: 12px;
+    object-fit: cover;
 }
 
 .review-img-form img {
     width: 100%;
     height: 100%;
-    object-fit: fill;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
 }
 
 .review-content-info {

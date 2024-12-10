@@ -50,7 +50,7 @@ const PaymentSuccessBody = ({
                         </div>
                         <div className='payment-success-body-wrap'>
                             <span>결제금액</span>
-                            <span>{formatPrice(totalPrice)}</span>
+                            <span>{formatPrice(totalPrice)} 원</span>
                         </div>
                     </div>
                 </>

@@ -76,7 +76,7 @@ export const useCreateReview = (onSuccess?: (data: any) => void, onError?: (erro
             return response.data;
         },
         onSuccess: (data) => {
-            // console.log('리뷰 생성 완료: ', data);
+            console.log('리뷰 생성 완료: ', data);
 
             queryClient.invalidateQueries(reviewQueryKeys.getReviews());
 
@@ -85,7 +85,7 @@ export const useCreateReview = (onSuccess?: (data: any) => void, onError?: (erro
             }
         },
         onError: (error) => {
-            // console.error('리뷰 생성 실패: ', error);
+            console.error('리뷰 생성 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -107,7 +107,7 @@ export const useUpdateReview = (onSuccess?: (data: any) => void, onError?: (erro
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('리뷰 수정 완료: ', data);
+            // console.log('리뷰 수정 완료: ', data);
 
             queryClient.invalidateQueries(reviewQueryKeys.getReviews());
 
@@ -116,7 +116,7 @@ export const useUpdateReview = (onSuccess?: (data: any) => void, onError?: (erro
             }
         },
         onError: (error) => {
-            console.error('리뷰 수정 실패: ', error);
+            // console.error('리뷰 수정 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -155,9 +155,8 @@ export const useDeleteReview = (onSuccess?: (data: any) => void, onError?: (erro
             return { previousData };
         },
         onSuccess: (data, { user_id }) => {
-            console.log('리뷰 삭제 완료: ', data);
+            // console.log('리뷰 삭제 완료: ', data);
 
-            queryClient.invalidateQueries(reviewQueryKeys.getReview(user_id));
             queryClient.invalidateQueries(reviewQueryKeys.getReview(user_id));
 
             if (onSuccess) {
@@ -165,7 +164,7 @@ export const useDeleteReview = (onSuccess?: (data: any) => void, onError?: (erro
             }
         },
         onError: (error, variables, context) => {
-            console.error('리뷰 삭제 실패: ', error);
+            // console.error('리뷰 삭제 실패: ', error);
 
             if (context?.previousData) {
                 queryClient.setQueryData(reviewQueryKeys.getReview(variables.user_id).queryKey, context.previousData);

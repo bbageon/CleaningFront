@@ -150,12 +150,31 @@ export const useDeleteCartList = (onSuccess?: (data: any) => void, onError?: (er
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: async (cart_list_id: number) => {
+        mutationFn: async ({ cart_list_id, cart_id }: { cart_list_id: number, cart_id: number }) => {
             const response = await API.deleteCartList(cart_list_id);
             return response.data;
         },
+        onMutate: async ({ cart_list_id, cart_id }: { cart_list_id: number, cart_id: number }) => {
+
+            const previousData = queryClient.getQueryData(cartListQueryKeys.getCartList(cart_id).queryKey);
+            console.log('previousData', previousData);
+
+            queryClient.setQueryData(cartListQueryKeys.getCartList(cart_id).queryKey, (oldData: any) => {
+                console.log('oldData', oldData.data);
+                if (!oldData?.data?.cart_lists) return oldData;
+                return {
+                    ...oldData,
+                    data: {
+                        ...oldData.data,
+                        cart_lists: oldData.data.cart_lists.filter((item: any) => item.cart_list_id !== cart_list_id),
+                    }
+                };
+            });
+
+            return { previousData };
+        },
         onSuccess: (data) => {
-            // console.log('장바구니 목록 삭제 완료: ', data);
+            console.log('장바구니 목록 삭제 완료: ', data);
 
             queryClient.invalidateQueries(cartListQueryKeys.getCartLists());
 
@@ -163,12 +182,19 @@ export const useDeleteCartList = (onSuccess?: (data: any) => void, onError?: (er
                 onSuccess(data);
             }
         },
-        onError: (error) => {
+        onError: (error, variables, context) => {
             // console.error('장바구니 목록 삭제 실패: ', error);
+
+            if (context?.previousData) {
+                queryClient.setQueryData(cartListQueryKeys.getCartLists().queryKey, context.previousData);
+            }
 
             if (onError) {
                 onError(error);
             }
         },
+        onSettled: () => {
+            queryClient.invalidateQueries(cartListQueryKeys.getCartLists());
+        }
     });
 };
