@@ -1,3 +1,4 @@
+import EmployeeImageUpload from './components/EmployeeImageUpload/EmployeeImageUpload';
 import './RequestImage.css';
 import { EmployeeMainLayout, Top } from 'components/Layouts';
 
@@ -10,10 +11,10 @@ const RequestImagePresenter = ({
             footer={true}
 
             isShowTop={true}
-            title={'청소요청 목록'}
+            title={'청소완료 화면'}
             notShowIcon={true}
         >
-
+            <EmployeeImageUpload/>
         </EmployeeMainLayout>
     );
 };

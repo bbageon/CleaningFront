@@ -3,12 +3,17 @@ import './RequestInfo.css';
 import { EmployeeMainLayout } from 'components/Layouts';
 // 테스트용 이미지
 import Test from './Test.svg';
+import Check from './check.svg';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const RequestInfoPresenter = ({
 
 }) => {
     const days = ["월", "화", "수", "목", "금", "토", "일"];
     const comment = "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest"
+    const price = "15,000"
+
+    const navigate = useNavigate();
 
     // 요청 요일
     const [RequestDays, setRequestDays] = useState(["월", "목"]);
@@ -22,10 +27,10 @@ const RequestInfoPresenter = ({
             notShowIcon={true}
         >
             <div className='request-info-container'>
-                <span style={{ fontSize: '1.4rem' }}>
+                <span style={{ fontSize: '1.5rem' }}>
                     김건우
                     <span style={{ margin: '0 2px' }}>{/* 공백 */}</span>
-                    <span style={{ fontSize: '1.1rem' }}>고객님</span>
+                    <span style={{ fontSize: '1.2rem' }}>고객님</span>
                 </span>
                 <div className='request-info-form'>
                     <span className='request-info-title'>요청 시간</span>
@@ -73,40 +78,88 @@ const RequestInfoPresenter = ({
                     <div className='request-time-container'>
                         <span>오전</span>
                         <span style={{ margin: '0 2px' }}>{/* 공백 */}</span>
-                        <span style={{fontSize : '1.4rem'}}>11:00</span>
+                        <span style={{ fontSize: '1.4rem' }}>11:00</span>
                     </div>
                 </div>
 
                 {/* 주소 */}
                 <div className='request-info-form'>
                     <span className='request-info-title'>주소</span>
-                    <span className='request-info-content' style={{fontSize : '1.1rem', fontWeight : '400'}}>부산광역시 사상구 주례로 47(동서대학교), 글로벌 빌리지 서관 1219호</span>
+                    <span className='request-info-content' style={{ fontSize: '1.1rem', fontWeight: '400' }}>부산광역시 사상구 주례로 47(동서대학교), 글로벌 빌리지 서관 1219호</span>
                 </div>
 
                 {/* 서비스 유형 */}
                 <div className='request-info-form'>
                     <span className='request-info-title'>서비스 유형</span>
-                    <span className='request-info-content' style={{fontSize : '1.1rem', fontWeight : '400'}}>화장실 청소</span>
+                    <span className='request-info-content' style={{ fontSize: '1.1rem', fontWeight: '400' }}>화장실 청소</span>
                 </div>
 
                 {/* 요청 사항 */}
                 <div className='request-info-form'>
                     <span className='request-info-title'>요청 사항</span>
-                    <span className='request-info-content' style={{fontSize : '1.1rem', fontWeight : '400'}}>{`${comment.length > 0 ? comment : "없음"}`}</span>
+                    <span className='request-info-content' style={{ fontSize: '1.1rem', fontWeight: '400' }}>{`${comment.length > 0 ? comment : "없음"}`}</span>
                 </div>
 
+                {/* 이미지 */}
                 <div className='request-image-container'>
-                    <img src={Test} className='image-wrap'/>
-                    <img src={Test} className='image-wrap'/>
-                    <img src={Test} className='image-wrap'/>
-                    <img src={Test} className='image-wrap'/>
-                    <img src={Test} className='image-wrap'/>
+                    <img src={Test} className='image-wrap' />
+                    <img src={Test} className='image-wrap' />
+                    <img src={Test} className='image-wrap' />
+                    <img src={Test} className='image-wrap' />
+                    <img src={Test} className='image-wrap' />
+                    <img src={Test} className='image-wrap' />
                 </div>
 
                 {/* 구분선 */}
                 <div className="main-divider"></div>
 
-                
+                {/* 추가옵션 */}
+                <span className='request-info-title' style={{ fontSize: '1.3rem' }}>추가 옵션</span>
+
+                <div className='request-optional-container'>
+
+                    <div className='request-optional-form'>
+                        <div className='request-optional-checkbox'>
+                            <img src={Check} />
+                        </div>
+                        <span>asd</span>
+                        <span>(+{price})</span>
+                    </div>
+
+                    <div className='request-optional-form'>
+                        <div className='request-optional-checkbox'>
+                            <img src={Check} />
+                        </div>
+                        <span>asd</span>
+                        <span>(+{price})</span>
+                    </div>
+
+                    <div className='request-optional-form'>
+                        <div className='request-optional-checkbox'>
+                            <img src={Check} />
+                        </div>
+                        <span>asd</span>
+                        <span>(+{price})</span>
+                    </div>
+
+                </div>
+
+                {/* 구분선 */}
+                <div className="main-divider"></div>
+
+                {/* 요청 버튼 */}
+                <div className='request-info-form'>
+                    <div className='request-total-price'>
+                        <span>Total :  30,000원</span>
+                    </div>
+                    <div className='request-complete-button'
+                        onClick={() => navigate('/employee')}
+                    >
+                        <span>청소 완료</span>
+                    </div>
+                </div>
+
+
             </div>
 
 
