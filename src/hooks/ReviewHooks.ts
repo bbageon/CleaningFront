@@ -70,6 +70,16 @@ export const useGetCompanyReview = (company_id: number) => {
     return useQuery({
         queryKey: reviewQueryKeys.getReview(company_id).queryKey,
         queryFn: () => API.getCompanyReview(company_id),
+        select: (data) => {
+            const sortedReviews = [...data.data.reviews].sort((a: any, b: any) => dayjs(b.created_at).valueOf() - dayjs(a.created_at).valueOf());
+            return {
+                ...data,
+                data: {
+                    ...data.data,
+                    reviews: sortedReviews,
+                },
+            };
+        },
         enabled: !!company_id,
     });
 };
