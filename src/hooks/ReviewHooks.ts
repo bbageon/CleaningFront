@@ -1,6 +1,7 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { API } from "api";
+import dayjs from 'dayjs';
 
 /**
  * [Review] Query Keys 생성
@@ -48,6 +49,16 @@ export const useGetUserReview = (user_id: number) => {
         queryKey: reviewQueryKeys.getReview(user_id).queryKey,
         queryFn: () => API.getUserReview(user_id),
         enabled: !!user_id,
+        select: (data) => {
+            const sortedReviews = [...data.data.reviews].sort((a: any, b: any) => dayjs(b.created_at).valueOf() - dayjs(a.created_at).valueOf());
+            return {
+                ...data,
+                data: {
+                    ...data.data,
+                    reviews: sortedReviews,
+                },
+            };
+        },
     });
 };
 
@@ -76,7 +87,7 @@ export const useCreateReview = (onSuccess?: (data: any) => void, onError?: (erro
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('리뷰 생성 완료: ', data);
+            // console.log('리뷰 생성 완료: ', data);
 
             queryClient.invalidateQueries(reviewQueryKeys.getReviews());
 
@@ -85,7 +96,7 @@ export const useCreateReview = (onSuccess?: (data: any) => void, onError?: (erro
             }
         },
         onError: (error) => {
-            console.error('리뷰 생성 실패: ', error);
+            // console.error('리뷰 생성 실패: ', error);
 
             if (onError) {
                 onError(error);

@@ -6,6 +6,7 @@ export {
     Rating,
     Modal,
     Toast,
+    ImageModal,
 } from './Common';
 
 /**

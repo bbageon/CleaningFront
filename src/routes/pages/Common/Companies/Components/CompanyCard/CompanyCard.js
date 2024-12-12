@@ -1,55 +1,59 @@
-import { Content } from '../../../../../../components';
 import './CompanyCard.css';
+import { useNavigate } from 'react-router-dom';
+import { Content } from '../../../../../../components';
+import { useGetCompanyServiceImages } from 'hooks/CompanyHooks';
 import { ReactComponent as Star } from '../../../../../../assets/icons/star.svg';
 import { ReactComponent as Clock } from '../../../../../../assets/icons/clock.svg';
-import test1 from './test1.jpg';
-import test2 from './test2.png';
-import formatTime from 'utils/timeUtils';
-import { useNavigate } from 'react-router-dom';
 
-const dummy = [
-    {
-        src: test1,
-    },
-    {
-        src: test2,
-    },
-    {
-        src: test2,
-    },
-    {
-        src: test2,
-    }
-]
-
-/* ===== COMPONENT ===== */
+/**
+ * 청소업체 카드 이미지 컴포넌트
+ * --
+ */
 const CompanyCardImage = ({
-
+    images,
+    maxImages,
 }) => {
     return (
         <div className='company-card-image-container'>
-            {
-                dummy.map((data, index) => {
-                    return (
-                        <div className='company-card-image-box' key={index}>
-                            <img src={data.src} />
-                        </div>
-                    )
-                })
-            }
+            {images.slice(0, maxImages).map((image, index) => {
+                return (
+                    <div className='company-card-image-box' key={index}>
+                        <img src={image.service_image} />
+                    </div>
+                );
+            })}
         </div>
     );
 };
 
+
+
+/**
+ * 청소업체 카드 컴포넌트
+ * --
+ */
 const CompanyCard = ({
     company,
     designatedCategories,
 }) => {
 
+    /* ===== ROUTE ===== */
     const navigate = useNavigate();
 
+
+
+    /* ===== QUERY ===== */
+    const { data: companyServicesImages, isLoading: companyServicesImagesLoading, isError: companyServicesImagesError } = useGetCompanyServiceImages(company.company_id);
+
+    const isLoading = companyServicesImagesLoading;
+
+
+
+    /* ===== RENDER ===== */
+    if (isLoading) return null;
+
     return (
-        <div className='company-card-wrap' onClick={() => {navigate(`/companydetail/${company?.company_id}`)}}>
+        <div className='company-card-wrap' onClick={() => { navigate(`/companydetail/${company?.company_id}`) }}>
             <Content
                 border={'7px solid var(--divider-color)'}
             >
@@ -74,13 +78,18 @@ const CompanyCard = ({
                     </div>
                     <div className='company-card-time'>
                         <Clock fill='var(--gray3-color)' width={15} height={15} />
-                        <span>{company.open_time}~{company.close_time}</span>
+                        {company.open_time && company.close_time ? (
+                            <span>{company.open_time}~{company.close_time}</span>
+                        ) : (
+                            <span className='gray1'>X</span>
+                        )}
                         <span className='flagship-service'></span>
                         <span className='flagship-service none'>공휴일 {company?.is_holidays === 0 ? 'X' : 'O'}</span>
                     </div>
                 </div>
                 <CompanyCardImage
-                    
+                    images={companyServicesImages}
+                    maxImages={5}
                 />
             </Content>
         </div>

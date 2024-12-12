@@ -1,23 +1,27 @@
 import CompaniesPresenter from "./CompaniesPresenter"
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useGetCompanies } from "hooks/CompanyHooks";
 import { useGetCompanyCategories } from "hooks/CompanyCategoryHooks";
-import { useGetCategoryDesignateCompanyCategory, useGetDesignateCompanyCategories } from "hooks/DesignateCompanyCategoryHooks";
-import { useCallback, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { useGetServices } from "hooks/ServiceHooks";
+import { useGetDesignateCompanyCategories } from "hooks/DesignateCompanyCategoryHooks";
 
 const CompaniesContainer = ({
 
 }) => {
 
-    /* ===== VARIABLES ===== */
+    /* ===== ROUTE ===== */
+
     const location = useLocation();
     const { tabKey } = location.state || { tabKey: 'all' };
+
+
 
     /* ===== STATE ===== */
     // 선택된 탭
     const [tabCategory, setTabCategory] = useState(tabKey);
     const [filteredCompanies, setFilteredCompanies] = useState([]);
+
+
 
     /* ===== QUERY ===== */
     // 청소업체 전체 조회
@@ -32,15 +36,11 @@ const CompaniesContainer = ({
     const { data: designateCompanyCategoryRes, isLoading: designateCompanyCategoryLoading } = useGetDesignateCompanyCategories();
     const designateCompanyCategory = designateCompanyCategoryRes?.data || [];
 
-    // 서비스 전체 조회
-    const { data: servicesRes, isLoading: servicesLoading } = useGetServices();
-    const services = servicesRes?.data || [];
-
     const isLoading = companiesLoading || categoriesLoading || designateCompanyCategoryLoading;
 
-    /* ===== FUNCTION ===== */
 
-    /* ===== EFFECTS ===== */
+
+    /* ===== EFFECT ===== */
     useEffect(() => {
         if (!isLoading && designateCompanyCategory) {
             if (tabCategory === 'all') {
@@ -52,6 +52,8 @@ const CompaniesContainer = ({
         }
 
     }, [tabCategory, designateCompanyCategory, isLoading]);
+
+
 
     /* ===== RENDER ===== */
     return (

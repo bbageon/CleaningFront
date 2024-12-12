@@ -1,12 +1,12 @@
-import { Content, Rating } from 'components';
 import './ReviewHistoryCard.style.css';
+import { useState } from 'react';
+import { Content, ImageModal, Rating } from 'components';
+import { useDeleteReview } from 'hooks/ReviewHooks';
+import { useGetReviewOneReviewAnswer } from 'hooks/ReviewAnswerHooks';
+import { useGetReviewImageAboutReview } from 'hooks/ReviewImageHooks';
+import { useModalStore } from 'store';
 import formatDate from 'utils/dateUtils';
 import test_logo from './test_logo.png';
-import test from './test.jpg';
-import { useGetReviewOneReviewAnswer } from 'hooks/ReviewAnswerHooks';
-import { useDeleteReview } from 'hooks/ReviewHooks';
-import { useModalStore } from 'store';
-import { useGetReviewImageAboutReview } from 'hooks/ReviewImageHooks';
 
 /**
  * 답변 컴포넌트
@@ -33,13 +33,27 @@ const CompanyReplyCard = ({
     );
 };
 
+
+
+/**
+ * 리뷰 카드 컴포넌트
+ * --
+ */
 const ReviewHistoryCard = ({
     review,
     user,
 }) => {
 
+    /* ===== STATE ===== */
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
+
+
+
     /* ===== STORE ===== */
     const openModal = useModalStore(state => state.openModal);
+
+
 
     /* ===== QUERY ===== */
     const { data: answerRes, isLoading: answerLoading, isError: answerError } = useGetReviewOneReviewAnswer(review?.review_id);
@@ -51,12 +65,15 @@ const ReviewHistoryCard = ({
     const isLoading = answerLoading || reviewImagesLoading;
 
 
+
     /* ===== MUTATE ===== */
     const { mutate: deleteReview } = useDeleteReview(
         (data) => {
             openModal('리뷰 삭제', '리뷰 삭제에 성공하였습니다', null, 'single');
         },
     );
+
+
 
     /* ===== FUNCTION ===== */
     const handleDeleteReview = (review_id) => {
@@ -68,9 +85,21 @@ const ReviewHistoryCard = ({
             }, 'double');
     };
 
-    if (isLoading) return null;
+    const handleOpenImageModal = (image) => {
+        setSelectedImage(image);
+        setIsModalOpen(true);
+    };
+
+    const handleCloseImageModal = () => {
+        setSelectedImage(null);
+        setIsModalOpen(false);
+    };
+
+
 
     /* ===== RENDER ===== */
+    if (isLoading) return null;
+
     return (
         <div className='review-card-wrap'>
             <Content
@@ -113,7 +142,12 @@ const ReviewHistoryCard = ({
                         <div className='review-card-img-wrap'>
                             {reviewImages.map((img, index) => (
                                 <div className='review-card-user-content-img'>
-                                    <img key={index} src={img.image_url} />
+                                    <img
+                                        key={index}
+                                        src={img.image_url}
+                                        onClick={() => handleOpenImageModal(img.image_url)}
+                                        alt={`Review Image ${index + 1}`}
+                                    />
                                 </div>
                             ))}
                         </div>
@@ -129,6 +163,11 @@ const ReviewHistoryCard = ({
                         <></>
                     )
                 }
+                <ImageModal
+                    isOpen={isModalOpen}
+                    onClose={handleCloseImageModal}
+                    imageUrl={selectedImage}
+                />
             </Content>
         </div>
     );

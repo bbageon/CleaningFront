@@ -1,5 +1,5 @@
-import { MainLayout, Tab, Top } from '../../../../components';
 import './Companies.css';
+import { MainLayout, Tab, Top } from '../../../../components';
 import CompanyList from './Components/CompanyList/CompanyList';
 
 const CompaniesPresenter = ({

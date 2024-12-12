@@ -5,10 +5,12 @@ import reportWebVitals from './reportWebVitals';
 
 // React Query
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 // Context
 import { CustomProvider } from 'context/CustomContext';
+
+// React Modal
+import Modal from 'react-modal';
 
 // Styles
 import './index.css';
@@ -18,17 +20,18 @@ import './styles/font.css';
 // React-Query
 const queryClient = new QueryClient();
 
+Modal.setAppElement('#root');
+
 const rootElement = document.getElementById('root');
 
 if (rootElement) {
+
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <QueryClientProvider client={queryClient}>
       <Router>
         <CustomProvider>
           <App />
-          {/* React Query Devtools: 추후 삭제 */}
-          <ReactQueryDevtools />
         </CustomProvider>
       </Router>
     </QueryClientProvider>

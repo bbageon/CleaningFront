@@ -23,19 +23,17 @@ const ReviewHistoryList = ({
                     borderBottom: '1px solid var(--divider-color)'
                 }}
             >내가 쓴 리뷰 {userReviews?.length}개</span>
-            {
-                userReviews?.length ? (
-                    userReviews.map((review, index) => (
-                        <ReviewHistoryCard
-                            key={review?.review_id}
-                            review={review}
-                            user={userData}
-                        />
-                    ))
-                ) : (
-                    <Content><span className='gray1 medium'>등록된 리뷰가 없습니다.</span></Content>
-                )
-            }
+            {userReviews?.length ? (
+                userReviews.map((review, index) => (
+                    <ReviewHistoryCard
+                        key={index}
+                        review={review}
+                        user={userData}
+                    />
+                ))
+            ) : (
+                <Content><span className='gray1 medium'>등록된 리뷰가 없습니다.</span></Content>
+            )}
         </Content>
     );
 };

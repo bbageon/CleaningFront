@@ -40,6 +40,37 @@ export const useGetCompany = (company_id: number) => {
 };
 
 /**
+ * [Company] 청소업체 서비스 이미지 조회
+ * --
+ */
+export const useGetCompanyServiceImages = (company_id: number) => {
+    return useQuery({
+        queryKey: ['companyServiceImages', company_id], // 고유 캐시 키 새로 생성
+        queryFn: async () => {
+            // 필요한 두 개의 API 호출을 병렬로 실행 (Promise.all)
+            const [companyServicesRes, servicesRes] = await Promise.all([
+                API.getCompanyService(company_id),
+                API.getService(),
+            ]);
+
+            const companyServices = companyServicesRes?.data?.services || [];
+            const services = servicesRes?.data || [];
+
+            const mappedData = companyServices.map((companyService: any) => {
+                const matchedService = services.find((service: any) => service.service_id === companyService.service_id);
+                return {
+                    ...companyService,
+                    service_image: matchedService ? matchedService.service_image : null,
+                };
+            });
+
+            return mappedData;
+        },
+        enabled: !!company_id,
+    });
+};
+
+/**
  * [Company] 청소업체 생성
  * --
  */
@@ -76,7 +107,7 @@ export const useCreateCompany = (onSuccess?: (data: any) => void, onError?: (err
  */
 export const useUpdateCompany = (onSuccess?: (data: any) => void, onError?: (error: any) => void) => {
     const queryClient = useQueryClient();
-    
+
     return useMutation({
         mutationFn: async ({ company_id, body }: { company_id: number, body: any }) => {
             const response = await API.putCompany(company_id, body);
@@ -105,7 +136,7 @@ export const useUpdateCompany = (onSuccess?: (data: any) => void, onError?: (err
  * [Company] 청소업체 삭제
  * --
  */
-export const useDeleteCompany = (onSuccess?: (data: any) => void, onError?: (error:any) => void) => {
+export const useDeleteCompany = (onSuccess?: (data: any) => void, onError?: (error: any) => void) => {
     const queryClient = useQueryClient();
 
     return useMutation({
