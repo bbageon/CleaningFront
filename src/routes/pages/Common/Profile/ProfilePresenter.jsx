@@ -1,8 +1,8 @@
 import './Profile.css';
 import { Content, MainLayout, Top } from "components";
-import ProfileAddress from './components/ProfileAddress/ProfileAddress';
-import ProfileHeader from './components/ProfileHeader';
-import ProfileReview from './components/ProfileReview/ProfileReview';
+import ProfileAddress from './Components/ProfileAddress/ProfileAddress';
+import ProfileHeader from './Components/ProfileHeader';
+import ProfileReview from './Components/ProfileReview/ProfileReview';
 
     /* ===== RENDER ===== */
 const ProfilePresenter = ({

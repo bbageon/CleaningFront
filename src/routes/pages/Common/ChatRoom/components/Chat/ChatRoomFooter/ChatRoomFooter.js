@@ -10,6 +10,7 @@ const ChatRoomFooter = ({
     chatMessage,
     setChatMessage,
     toggleShowSelectPicture,
+    selectMultiPictures,
 }) => {
 
     return (
@@ -27,9 +28,20 @@ const ChatRoomFooter = ({
                     value={chatMessage}
                     onChange={(e) => setChatMessage(e.target.value)}
                 />
+                <input
+                    id='chat-image-upload'
+                    type='file'
+                    accept='image/*'
+                    multiple
+                    style={{ display: 'none' }}
+                    onChange={e => selectMultiPictures(e)}
+                />
                 <Camera
                     className='chat-input-camera'
-                    onClick={() => { toggleShowSelectPicture() }}
+                    // onClick={() => { toggleShowSelectPicture() }}
+                    onClick={() => {
+                        document.getElementById('chat-image-upload').click();
+                    }}
                 />
             </div>
             <button
