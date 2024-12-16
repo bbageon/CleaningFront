@@ -24,8 +24,6 @@ const WriteReviewContainer = () => {
     const [rating, setRating] = useState(0);
     const [uploadedImages, setUploadedImages] = useState([]);
 
-    console.log(uploadedImages);
-
 
     /* ===== STORE ===== */
     const { isModalOpen, content, openModal, closeModal } = useModalStore();

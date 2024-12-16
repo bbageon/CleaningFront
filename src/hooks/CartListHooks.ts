@@ -157,10 +157,10 @@ export const useDeleteCartList = (onSuccess?: (data: any) => void, onError?: (er
         onMutate: async ({ cart_list_id, cart_id }: { cart_list_id: number, cart_id: number }) => {
 
             const previousData = queryClient.getQueryData(cartListQueryKeys.getCartList(cart_id).queryKey);
-            console.log('previousData', previousData);
+            // console.log('previousData', previousData);
 
             queryClient.setQueryData(cartListQueryKeys.getCartList(cart_id).queryKey, (oldData: any) => {
-                console.log('oldData', oldData.data);
+                // console.log('oldData', oldData.data);
                 if (!oldData?.data?.cart_lists) return oldData;
                 return {
                     ...oldData,
@@ -174,7 +174,7 @@ export const useDeleteCartList = (onSuccess?: (data: any) => void, onError?: (er
             return { previousData };
         },
         onSuccess: (data) => {
-            console.log('장바구니 목록 삭제 완료: ', data);
+            // console.log('장바구니 목록 삭제 완료: ', data);
 
             queryClient.invalidateQueries(cartListQueryKeys.getCartLists());
 

@@ -42,7 +42,6 @@
     width: 175px;
     height: 125px;
     border-radius: 10px;
-    border: 1px solid var(--border-color);
     object-fit: cover;
 }
 

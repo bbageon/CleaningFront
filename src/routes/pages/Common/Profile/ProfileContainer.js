@@ -50,7 +50,7 @@ const ProfileContainer = () => {
                 setRecentReview(latestReview);
             }
         }
-    }, [isLoading, userReviews]);
+    }, [isLoading, userAddresses, userReviews]);
 
     /* ===== FUNCTION ===== */
     const handleLogout = () => {

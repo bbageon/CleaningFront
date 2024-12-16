@@ -1,9 +1,10 @@
-import { useNavigate } from "react-router-dom";
 import MainPresenter from "./MainPresenter"
+import { useNavigate } from "react-router-dom";
 import { useGetUserAddress } from "hooks/UserAddressHooks";
 import { useAuthStore } from "store";
 import { useEffect, useState } from "react";
 import { useGetReviewImages } from 'hooks/ReviewImageHooks';
+import dayjs from 'dayjs';
 
 
 const MainContainer = () => {
@@ -44,7 +45,10 @@ const MainContainer = () => {
                 }
             });
             const filteredReviews = Array.from(reviewMap.values());
-            setReviews(filteredReviews);
+
+            const sortedReviews = filteredReviews.sort((a, b) => dayjs(b.created_at).valueOf() - dayjs(a.created_at).valueOf());
+
+            setReviews(sortedReviews);
         }
     }, [reviewImages, reviewImagesLoading]);
 
@@ -53,7 +57,6 @@ const MainContainer = () => {
         <MainPresenter
             isLoading={isLoading}
 
-            // MainHeader
             navigate={navigate}
             userAddress={userAddress}
 
