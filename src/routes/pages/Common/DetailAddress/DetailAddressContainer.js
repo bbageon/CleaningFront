@@ -26,7 +26,11 @@ const DetailAddressContainer = () => {
     })
 
     /* ===== MUTATE ===== */
-    const { mutate: addToAddress } = useCreateUserAddress();
+    const { mutate: addToAddress } = useCreateUserAddress(
+        (data) => {
+            navigate(-2);
+        }
+    );
 
     useEffect(() => {
         if (!location.state) return;
@@ -44,7 +48,6 @@ const DetailAddressContainer = () => {
     /* ===== FUNCTION ===== */
     const registerAddress = () => {
         addToAddress(addressInfo);
-        navigate(-2);
     };
 
     /* ===== RENDER ===== */
