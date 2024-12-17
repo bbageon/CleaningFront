@@ -3,7 +3,8 @@ import './RequestList.css';
 import { EmployeeMainLayout, Top } from 'components/Layouts';
 
 const RequestListPresenter = ({
-
+    Date,
+    List,
 }) => {
 
     return (
@@ -16,9 +17,10 @@ const RequestListPresenter = ({
                 footer={true}
             >
                 <Requestform
-                    months={["2024년 11월", "2024년 12월"]}
+                    months={Date}
                     date={"24"}
                     day={"Sun"}
+                    List={List}
                 />
 
             </EmployeeMainLayout>

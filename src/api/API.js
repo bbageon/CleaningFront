@@ -607,6 +607,11 @@ const API = {
    */
   deleteEmployee: (employee_id) => $http.delete(parameterToPath('/employee/:employee_id', { employee_id })),
 
+  /**
+   *  직원 청소요청 조회
+   */
+  getEmployeeRequestClean : (employee_id) => $http.get(parameterToPath('/employee/:employee_id', { employee_id})),
+
 
   /**
    * =======================

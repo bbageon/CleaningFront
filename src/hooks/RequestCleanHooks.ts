@@ -155,3 +155,14 @@ export const useDeleteRequestClean = (onSuccess?: (data: any) => void, onError?:
         }
     });
 };
+
+/**
+ * [RequestClean] 직원 청소요청 조회
+ */
+export const useEmployeeRequestClean = (employee_id: number) => {
+    return useQuery({
+        queryKey: requestCleanQueryKeys.getRequestClean(employee_id).queryKey,
+        queryFn: () => API.getEmployeeRequestClean(employee_id),
+        enabled: !!employee_id,
+    });
+};

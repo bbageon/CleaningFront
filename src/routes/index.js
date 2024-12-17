@@ -47,6 +47,10 @@ const Router = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
+    /**
+     * 고객 로그인
+     * @param {*} data 
+     */
     const setCookies = (data) => {
         try {
             if (!data) {
@@ -74,6 +78,41 @@ const Router = () => {
             });
 
             cookie.setCookie('user_id', data?.user_id, {
+                path: '/',
+            });
+
+        } catch (e) {
+            console.error(e.message);
+        }
+    }
+
+    const EmployeesetCookies = (data) => {
+        try {
+            if (!data) {
+                throw new Error(`no has save cookie data`);
+            }
+
+            cookie.setCookie('id', data?.employee_id, {
+                path: '/',
+            });
+
+            cookie.setCookie('token', data?.token, {
+                path: '/',
+            });
+
+            cookie.setCookie('name', data?.name, {
+                path: '/',
+            });
+
+            cookie.setCookie('email', data?.email, {
+                path: '/',
+            });
+
+            cookie.setCookie('userType', data?.type, {
+                path: '/',
+            });
+
+            cookie.setCookie('user_id', data?.employee_id, {
                 path: '/',
             });
 
@@ -235,7 +274,9 @@ const Router = () => {
                 {/* 로그인 화면 */}
                 <Route
                     path="employee/login"
-                    element={<EmployeeLogin />}
+                    element={<EmployeeLogin
+                        EmployeesetCookies={EmployeesetCookies}
+                        />}
                 />
                 {/* 청소요청 목록 화면 */}
                 <Route

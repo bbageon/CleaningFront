@@ -31,6 +31,7 @@ const MainContainer = () => {
     }, [userAddresses, userAddressesLoading]);
 
     /* ===== RENDER ===== */
+
     return (
         <MainPresenter
             isLoading={isLoading}
