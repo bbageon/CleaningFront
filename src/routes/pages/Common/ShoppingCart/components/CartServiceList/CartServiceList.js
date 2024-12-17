@@ -1,4 +1,4 @@
-import { Content } from 'components';
+import { Content, ImageUpload } from 'components';
 import CartServiceCard from '../CartServiceCard/CartServiceCard';
 import './CartServiceList.css';
 
@@ -20,6 +20,9 @@ const CartServiceList = ({
     totalPrice,
 
     filteredUserAddress,
+
+    uploadedImages,
+    setUploadedImages,
 }) => {
 
     return (
@@ -28,6 +31,7 @@ const CartServiceList = ({
             paddingLeft={0}
             paddingRight={0}
             paddingTop={0}
+            gap={20}
         >
             <div className='cart-service-list-container'>
                 {
@@ -78,6 +82,11 @@ const CartServiceList = ({
                     onClick={company ? handleNavigateCompany : () => navigate('/companies')}
                 >+ 서비스 더 담기</button>
             </div>
+            <ImageUpload
+                uploadedImages={uploadedImages}
+                setUploadedImages={setUploadedImages}
+                isTitle={false}
+            />
         </Content>
     );
 };

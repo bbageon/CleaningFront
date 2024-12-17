@@ -64,7 +64,7 @@ export const useCreateRequestCleanImage = (onSuccess?: (data: any) => void, onEr
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('청소요청 이미지 생성 완료: ', data);
+            // console.log('청소요청 이미지 생성 완료: ', data);
 
             queryClient.invalidateQueries(requestCleanImageQueryKeys.getRequestCleanImages());
 
@@ -73,7 +73,7 @@ export const useCreateRequestCleanImage = (onSuccess?: (data: any) => void, onEr
             }
         },
         onError: (error) => {
-            console.error('청소요청 이미지 생성 실패: ', error);
+            // console.error('청소요청 이미지 생성 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -95,7 +95,7 @@ export const useUpdateRequestCleanImage = (onSuccess?: (data: any) => void, onEr
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('청소요청 이미지 정보 수정 완료: ', data);
+            // console.log('청소요청 이미지 정보 수정 완료: ', data);
 
             queryClient.invalidateQueries(requestCleanImageQueryKeys.getRequestCleanImages());
 
@@ -104,7 +104,7 @@ export const useUpdateRequestCleanImage = (onSuccess?: (data: any) => void, onEr
             }
         },
         onError: (error) => {
-            console.error('청소요청 이미지 정보 수정 실패: ', error);
+            // console.error('청소요청 이미지 정보 수정 실패: ', error);
 
             if (onError) {
                 onError(error);
@@ -126,7 +126,7 @@ export const useDeleteRequestCleanImage = (onSuccess?: (data: any) => void, onEr
             return response.data;
         },
         onSuccess: (data) => {
-            console.log('청소요청 이미지 삭제 완료: ', data)
+            // console.log('청소요청 이미지 삭제 완료: ', data)
 
             queryClient.invalidateQueries(requestCleanImageQueryKeys.getRequestCleanImages());
 
@@ -135,7 +135,7 @@ export const useDeleteRequestCleanImage = (onSuccess?: (data: any) => void, onEr
             }
         },
         onError: (error) => {
-            console.error('청소요청 이미지 삭제 실패: ', error);
+            // console.error('청소요청 이미지 삭제 실패: ', error);
 
             if (onError) {
                 onError(error);

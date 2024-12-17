@@ -4,6 +4,7 @@ import './ImageUpload.css';
 const ImageUpload = ({
     uploadedImages,
     setUploadedImages,
+    isTitle = true,
 
     maxImages = 5,
 }) => {
@@ -46,11 +47,12 @@ const ImageUpload = ({
     /* ===== RENDER ===== */
     return (
         <div className='image-upload-container'>
-
-            <div className='image-upload-title'>
-                <span className='large bold required'>사진 첨부</span>
-                <span className='small gray3'>사진은 최대 {maxImages}장까지 첨부할 수 있습니다.</span>
-            </div>
+            {isTitle && (
+                <div className='image-upload-title'>
+                    <span className='large bold required'>사진 첨부</span>
+                    <span className='small gray3'>사진은 최대 {maxImages}장까지 첨부할 수 있습니다.</span>
+                </div>
+            )}
 
             <div className='image-upload-wrap'>
                 <div className='image-upload-button-wrap'>

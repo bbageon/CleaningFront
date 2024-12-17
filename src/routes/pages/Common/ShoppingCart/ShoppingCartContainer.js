@@ -11,6 +11,7 @@ import { useGetUserAddress } from "hooks/UserAddressHooks";
 import { Modal } from "components";
 import { API } from "api";
 import dayjs from "dayjs";
+import { useCreateRequestCleanImage } from 'hooks/RequestCleanImageHooks';
 
 const ShoppingCartContainer = () => {
 
@@ -27,6 +28,8 @@ const ShoppingCartContainer = () => {
 
     const [selectedDays, setSelectedDays] = useState([]);
     const [isDaySelectorOpen, setIsDaySelectorOpen] = useState(false);
+
+    const [uploadedImages, setUploadedImages] = useState([]);
 
 
 
@@ -64,14 +67,15 @@ const ShoppingCartContainer = () => {
     // 청소 요청
     const { mutate: requestClean } = useCreateRequestClean(
         async (data) => {
+
             const requestCleanId = data.request.request_clean_id;
-    
+
             const serviceDetails = await Promise.all(
                 userCartServiceList.map(service =>
                     API.getOneService(service.service_id).then(response => response.data)
                 )
             );
-    
+
             serviceDetails.forEach((serviceDetail, index) => {
                 const cartService = userCartServiceList[index];
                 requestCleanServiceList({
@@ -88,7 +92,15 @@ const ShoppingCartContainer = () => {
                     unit: cartService.service_unit,
                 });
             });
-    
+
+            uploadedImages.forEach(async (image) => {
+                createRequestImage({
+                    request_clean_id: data.request.request_clean_id,
+                    request_clean_image: await handleImageUpload(image?.file),
+                });
+            });
+
+
             openModal('청소 요청', '청소 요청 중입니다...', null, 'loading');
             setTimeout(() => {
                 navigate('/paymentsuccess', {
@@ -124,6 +136,16 @@ const ShoppingCartContainer = () => {
         (error) => {
 
         },
+    );
+
+    // 청소요청 이미지
+    const { mutate: createRequestImage } = useCreateRequestCleanImage(
+        (data) => {
+
+        },
+        (error) => {
+
+        }
     );
 
 
@@ -190,6 +212,19 @@ const ShoppingCartContainer = () => {
         }, 'double');
     };
 
+    // 이미지 업로드
+    const handleImageUpload = async (image) => {
+        const formData = new FormData();
+        formData.append('file', image);
+
+        try {
+            const result = await API.postImageTest(formData);
+
+            return result.data;
+        } catch (e) {
+            console.error(e);
+        }
+    };
 
 
     /* ===== RENDER ===== */
@@ -214,6 +249,9 @@ const ShoppingCartContainer = () => {
                 handleRequestClean={handleRequestClean}
                 handleToggleDaySelector={handleToggleDaySelector}
                 navigate={navigate}
+
+                uploadedImages={uploadedImages}
+                setUploadedImages={setUploadedImages}
             />
             {
                 isModalOpen && (

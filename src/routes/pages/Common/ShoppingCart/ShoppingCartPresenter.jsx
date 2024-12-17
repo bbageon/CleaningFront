@@ -1,7 +1,6 @@
 import "./ShoppingCart.css";
 import { BottomButton, DaySelector, MainLayout, Top } from "../../../../components";
 import CompanyTitle from "./components/CompanyTitle";
-import TotalPriceCheck from "./components/TotalPriceCheck";
 import CartServiceList from "./components/CartServiceList/CartServiceList";
 
 const ShoppingCartPresenter = ({
@@ -28,6 +27,9 @@ const ShoppingCartPresenter = ({
 
     setCartList,
     filteredUserAddress,
+
+    uploadedImages,
+    setUploadedImages,
 
 }) => {
 
@@ -73,10 +75,10 @@ const ShoppingCartPresenter = ({
 
                     totalPrice={totalPrice}
                     filteredUserAddress={filteredUserAddress}
+
+                    uploadedImages={uploadedImages}
+                    setUploadedImages={setUploadedImages}
                 />
-                {/* <TotalPriceCheck
-                totalPrice={totalPrice}
-            /> */}
                 <BottomButton
                     title={'결제하기'}
                     onClick={handleRequestClean}
