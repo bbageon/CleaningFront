@@ -3,10 +3,12 @@ import RequestListPresenter from "./RequestListPresenter";
 import { useEffect, useState } from "react";
 import { useEmployeeRequestClean } from "hooks/RequestCleanHooks";
 import { useAuthStore } from "store";
+import { isLogin } from "util";
 
 
 const RequestListContainer = () => {
     const [EmployeeRequestList, setEmployeeRequestList] = useState(null);
+    const navigate = useNavigate();
 
     /* ===== STORE ===== */
     const employee_id = useAuthStore(state => state.user_id);
@@ -39,25 +41,16 @@ const RequestListContainer = () => {
     
         return groupedData;
     };
-
+    
     useEffect (() => {
-        setEmployeeRequestList(groupDataByYearMonth(EmployeeRequestLists))
-    }, [])
+        if (isLogin()) {
+            setEmployeeRequestList(groupDataByYearMonth(EmployeeRequestLists));
+        } else {
+            alert('로그인이 필요한 서비스입니다.');
+            navigate('/employee/login');
+        }
+    }, [employee_id, EmployeeRequestLists])
 
-    // /** 날짜 추출 (중복 제거) */
-    // const employeeRequestDate = [
-    //     ...new Set(
-    //         EmployeeRequestLists?.map(request => {
-    //             if (request.request_clean.start_clean_date) {
-    //                 const date = new Date(request.request_clean.start_clean_date * 1000);
-    //                 const year = date.getFullYear();
-    //                 const month = date.getMonth() + 1; // getMonth는 0부터 시작하므로 +1 필요
-    //                 return `${year}년 ${month}월`;
-    //             }
-    //             return null; // date가 없는 경우
-    //         }).filter(dateStr => dateStr !== null) // null 제거
-    //     )
-    // ];
     const isLoading = EmployeeRequestListLoading
 
     /* ===== RENDER ===== */
