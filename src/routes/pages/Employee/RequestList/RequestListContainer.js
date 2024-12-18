@@ -10,15 +10,12 @@ const RequestListContainer = () => {
 
     /* ===== STORE ===== */
     const employee_id = useAuthStore(state => state.user_id);
-    console.log(employee_id)
 
     const { data: EmployeeRequestListRes, isLoading: EmployeeRequestListLoading, isError: EmployeeRequestError } = useEmployeeRequestClean(employee_id);
     const EmployeeRequestLists = EmployeeRequestListRes?.data;
-    console.log(EmployeeRequestLists, "123")
 
     const groupDataByYearMonth = (data) => {
         const groupedData = {};
-    
         // 데이터가 없으면 빈 객체 반환
         if (!data) return groupedData;
     
@@ -35,7 +32,6 @@ const RequestListContainer = () => {
                 if (!groupedData[key]) {
                     groupedData[key] = [];
                 }
-    
                 // 해당 키에 데이터 추가
                 groupedData[key].push(item);
             }
@@ -43,10 +39,10 @@ const RequestListContainer = () => {
     
         return groupedData;
     };
-    
-    // === 사용 예시 ===
-    const groupedResult = groupDataByYearMonth(EmployeeRequestLists);
-    console.log(groupedResult);
+
+    useEffect (() => {
+        setEmployeeRequestList(groupDataByYearMonth(EmployeeRequestLists))
+    }, [])
 
     // /** 날짜 추출 (중복 제거) */
     // const employeeRequestDate = [
@@ -62,13 +58,12 @@ const RequestListContainer = () => {
     //         }).filter(dateStr => dateStr !== null) // null 제거
     //     )
     // ];
-
     const isLoading = EmployeeRequestListLoading
+
     /* ===== RENDER ===== */
     return (
         <RequestListPresenter
-            Date={[]}
-            List={EmployeeRequestLists}
+            Lists={EmployeeRequestList}
         />
     );
 };

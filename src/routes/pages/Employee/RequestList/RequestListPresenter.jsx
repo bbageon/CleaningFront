@@ -3,9 +3,9 @@ import './RequestList.css';
 import { EmployeeMainLayout, Top } from 'components/Layouts';
 
 const RequestListPresenter = ({
-    Date,
-    List,
-}) => {
+    Lists,
+}) => { 
+    
 
     return (
         <>
@@ -17,10 +17,10 @@ const RequestListPresenter = ({
                 footer={true}
             >
                 <Requestform
-                    months={Date}
+                    months={[]}
                     date={"24"}
                     day={"Sun"}
-                    List={List}
+                    Lists={Lists}
                 />
 
             </EmployeeMainLayout>
