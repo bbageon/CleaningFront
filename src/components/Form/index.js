@@ -5,4 +5,3 @@ export { default as Textarea } from './Textarea';
 export { default as InputStar } from './InputStar';
 export { default as ImageUpload } from './ImageUpload';
 export { default as BottomButton } from './BottomButton';
-export { default as DaySelector } from './DaySelector';

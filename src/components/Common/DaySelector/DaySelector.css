@@ -1,57 +1,99 @@
-@charset "UTF-8";
+.day-selector-modal-container {
+    width: 100%;
+    height: 100%;
 
-.date-modal-container {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
 
-    width: 100%;
-    height: 100%;
-
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
-.date-modal-container .date-modal-background {
+.day-selector-container {
     width: 100%;
-    height: 100%;
-
-    background-color: #0000007f;
-}
-
-.date-modal-container .date-modal {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
+    height: 50%;
 
     position: fixed;
     bottom: 0;
+    left: 0;
 
-    width: 100%;
-    height: 50%;
-    /* max-height: 100%; */
-    background-color: white;
-    padding: 25px 25px 34px 25px;
+    border-radius: 10px 10px 0 0;
+    background-color: #FFFFFF;
 
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-
-    animation: slideOn 0.5s ease-in-out;
+    animation: up 0.5s;
 }
 
-@keyframes slideOn {
+@keyframes up {
     0% {
         transform: translateY(100%);
     }
 
     100% {
-        transform: translateY(0);
+        transform: translateY(0%);
     }
 }
 
-.date-modal-container .date-modal .modal-title {
+.day-selector-container .day-selector-wrap {
     width: 100%;
+    height: 100%;
 
-    font-size: 16pt;
-    font-weight: bold;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+
+    padding: 30px;
+    padding-bottom: 80px;
+}
+
+.day-selector-wrap .day-selector-cancel {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    color: var(--gray1-color);
+}
+
+.day-selector-wrap .day-button-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.day-selector-wrap .day-button-container button {
+    flex: 1 auto;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: transparent;
+    font-size: 1rem;
+    border: 1px solid var(--gray4-color);
+}
+
+.day-button-container .day-button.selected {
+    color: #FFFFFF;
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.disabled-date {
+    color: #b0b0b0; /* 회색 텍스트 */
+    pointer-events: none; /* 클릭 방지 */
+    opacity: 0.6; /* 투명도 */
+    background-color: #f0f0f0 !important; /* 배경색 변경 */
+}
+
+/* 선택한 날짜 스타일 */
+.selected-date {
+    background-color: var(--primary-color);
+    height: 2px;
 }
 
 /* react big calendar */
@@ -143,7 +185,7 @@ button.rbc-input::-moz-focus-inner {
     background: transparent;
 }
 
-.rbc-header {
+.day-selector-modal-container .rbc-header {
     overflow: hidden;
     -webkit-box-flex: 1;
     -ms-flex: 1 0 0%;
@@ -156,7 +198,7 @@ button.rbc-input::-moz-focus-inner {
     font-weight: bold;
     font-size: 90%;
     min-height: 0;
-    /* border-bottom: 1px solid #ddd; */
+    
 }
 
 .rbc-header+.rbc-header {
@@ -231,10 +273,10 @@ button.rbc-input::-moz-focus-inner {
     display: none;
 }
 
-.date-modal-container .rbc-today {
-    background-color: #1E90FF;
-    border-radius: 50%;
-    margin: 5px 15px 5px 5px;
+.day-selector-container .rbc-today {
+    /* background-color: #1E90FF; */
+    /* border-radius: 50% !important; */
+    margin: 0 !important;
 }
 
 .rbc-toolbar {
@@ -306,8 +348,9 @@ button.rbc-input::-moz-focus-inner {
     border-color: #adadad;
 }
 
-.rbc-btn-group {
-    display: inline-block;
+.day-selector-modal-container .rbc-btn-group {
+    /* display: inline-block; */
+    display: none; 
     white-space: nowrap;
 }
 
@@ -490,7 +533,7 @@ button.rbc-input::-moz-focus-inner {
     flex-direction: row;
 }
 
-.date-modal-container .rbc-month-row {
+.day-selector-modal-container .rbc-month-row {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -504,7 +547,6 @@ button.rbc-input::-moz-focus-inner {
     flex: 1 0 0;
     -ms-flex-preferred-size: 0px;
     flex-basis: 0px;
-    overflow: hidden;
     height: 100%;
 }
 
@@ -512,7 +554,7 @@ button.rbc-input::-moz-focus-inner {
     /* border-top: 1px solid #ddd; */
 }
 
-.rbc-date-cell {
+.day-selector-modal-container .rbc-date-cell {
     -webkit-box-flex: 1;
     -ms-flex: 1 1 0px;
     flex: 1 1 0;
@@ -521,7 +563,9 @@ button.rbc-input::-moz-focus-inner {
     text-align: center;
 }
 
-.date-modal-container .rbc-date-cell.rbc-now {
+.day-selector-container .rbc-date-cell.rbc-now {
+    background-color: var(--primary-color);
+    border-radius: 8px;
     font-weight: bold;
     color: white;
 }
