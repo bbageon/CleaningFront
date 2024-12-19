@@ -2,30 +2,49 @@ import RequestCard from './RequestCard';
 import './Requestform.css';
 
 const Requestform = ({
-    months,
-    date,
-    day,
+    Lists,
 }) => {
-    const categories = ['살균 청소', '방역 청소', '화장실 청소', '변기', '빠른 방문', '허관']
+    const ColorCategories = [
+        'rgba(0, 123, 255, 0.2)',
+        'rgba(98, 0, 255, 0.2)',
+        'rgba(111, 255, 0, 0.2)',
+        'rgba(255, 0, 0, 0.2)',
+        'rgba(0, 255, 115, 0.2)',
+    ];
 
-    return (
-        <div className='request-form-container'>
-            {/* 각 년의 월 마다 map */}
-            {months.map((month, idx) => (
-                <>
-                    <div className='request-month'>
-                        <span>{month}</span>
-                    </div>
+    if (!Lists) {
+        return (
+            <div>데이터가 없습니다.</div> // 데이터가 없을 때의 처리
+        )
+    } else {
+        return (
+            <div className='request-form-container'>
+                {/* 각 년의 월 마다 map */}
+                {Object.keys(Lists).map((key, idx) => {
+                    const monthData = Lists[key];
 
-                    <RequestCard
-                        category={categories}
-                        date={date}
-                        day={day}
-                    />
-                </>
-            ))}
-        </div>
-    )
+                    return (
+                        <>
+                            <div className='request-month'>
+                                <span>{key}</span>
+                            </div>
+                            {Array.isArray(monthData) &&
+                                monthData.map((data, idx) => (
+                                    <RequestCard
+                                        List={data}
+                                        Color={ColorCategories[idx % 5]}
+                                    />
+                                ))
+                            }
+                        </>
+                    )
+                })}
+            </div>
+        )
+    }
 }
 
 export default Requestform;
+
+
+

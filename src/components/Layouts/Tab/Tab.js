@@ -7,9 +7,18 @@ const Tab = ({
     defaultActiveKey,
     activeKey,
     isLoading,
+    display,
+    justifyContent,
+    gap,
 }) => {
     return (
-        <div className='tab-container'>
+        <div className='tab-container'
+            // style={{
+            //     display : display,
+            //     justifyContent : justifyContent,
+            //     gap : gap
+            // }}
+        >
             {
                 isLoading ? (
                     <></>
@@ -20,6 +29,7 @@ const Tab = ({
                         tabPosition='top'
                         items={items}
                         onChange={onChange}
+
                     />
                 )
             }

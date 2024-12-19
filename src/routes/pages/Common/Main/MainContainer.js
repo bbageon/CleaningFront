@@ -53,6 +53,7 @@ const MainContainer = () => {
     }, [reviewImages, reviewImagesLoading]);
 
     /* ===== RENDER ===== */
+
     return (
         <MainPresenter
             isLoading={isLoading}

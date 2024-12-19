@@ -1,10 +1,11 @@
-import Requestform from './components/Requestform';
+import Requestform from './Components/Requestform';
 import './RequestList.css';
 import { EmployeeMainLayout, Top } from 'components/Layouts';
 
 const RequestListPresenter = ({
-
-}) => {
+    Lists,
+}) => { 
+    
 
     return (
         <>
@@ -16,9 +17,10 @@ const RequestListPresenter = ({
                 footer={true}
             >
                 <Requestform
-                    months={["2024년 11월", "2024년 12월"]}
+                    months={[]}
                     date={"24"}
                     day={"Sun"}
+                    Lists={Lists}
                 />
             </EmployeeMainLayout>
         </>

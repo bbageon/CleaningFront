@@ -1,22 +1,36 @@
 import { Button, Content, MainLayout } from '../../../../components';
+import { LoginBox } from './components/LoginBox';
+import { RegisterBox } from './components/RegisterBox';
 import './Login.css';
 
 const LoginPresenter = ({
+    isShowRegister,
+    setIsShowRegister,
 
+    login,
+
+    signinUserInfo,
+    setSigninUserInfo,
 }) => {
     return (
-        <MainLayout
-            footer={false}
-            backgroundColor={'var(--employee-primary-color)'}
-            full={true}
-        >
-            <Content
-                gap={20}
-            >
+        <div className='login-container'>
+            <div className="login-wrap">
+                {
+                    isShowRegister ?
+                        <RegisterBox
+                            setIsShowRegister={setIsShowRegister}
+                        /> :
+                        <LoginBox
+                            setIsShowRegister={setIsShowRegister}
 
+                            login={login}
 
-            </Content>
-        </MainLayout>
+                            signinUserInfo={signinUserInfo}
+                            setSigninUserInfo={setSigninUserInfo}
+                        />
+                }
+            </div>
+        </div>
     );
 };
 

@@ -1,5 +1,4 @@
 import './ChatRoom.css';
-import { MainLayout } from '../../../../components';
 import ChatRoomTop from './components/Chat/ChatRoomTop/ChatRoomTop';
 import ChatRoomBody from './components/Chat/ChatRoomBody';
 import ChatRoomFooter from './components/Chat/ChatRoomFooter/ChatRoomFooter';

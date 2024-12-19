@@ -14,32 +14,3 @@
     font-weight: bold;
     color: #144B44;
 }
-
-.request-card-container {
-    display: flex;
-    flex-direction: row;
-
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 15px;
-
-    /* padding: 0px 10px 0px 10px; */
-
-    min-height: 10vh;
-    margin-left: 10px;
-}
-
-.request-date {
-    display: flex;
-    flex-direction: column;
-
-    padding-bottom: 20px;
-    min-width: fit-content;
-
-    align-items: center;
-    /* justify-content: center; */
-
-    font-family: 'nanum-gothic';
-    gap: 8px;
-}
