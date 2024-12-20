@@ -4,26 +4,18 @@ import CompanyTitle from "./components/CompanyTitle";
 import CartServiceList from "./components/CartServiceList/CartServiceList";
 
 const ShoppingCartPresenter = ({
-    userCartServiceList,
+    isLoading,
 
+    navigate,
+
+    userCartServiceList,
     totalPrice,
 
     company,
     handleNavigateCompany,
 
-    handleToggleDaySelector,
-    isDaySelectorOpen,
-    setIsDaySelectorOpen,
-
-    selectedDays,
-    setSelectedDays,
-
     handleDeleteCartList,
     handleRequestClean,
-
-    isLoading,
-
-    navigate,
 
     setCartList,
     filteredUserAddress,
@@ -31,12 +23,19 @@ const ShoppingCartPresenter = ({
     uploadedImages,
     setUploadedImages,
 
+    isOpen,
+    setIsOpen,
+
+    selectedDay,
+    setSelectedDay,
+
 }) => {
 
     if (isLoading) {
         return null;
     };
 
+    /* ===== RENDER ===== */
     return (
         <>
             <Top
@@ -47,16 +46,16 @@ const ShoppingCartPresenter = ({
             <MainLayout
                 padding={30}
             >
-                {
-                    company ? (
-                        <CompanyTitle
-                            company={company}
-                            handleNavigateCompany={handleNavigateCompany}
-                        />
-                    ) : (
-                        <></>
-                    )
-                }
+                {company ? (
+                    <CompanyTitle
+                        company={company}
+                        handleNavigateCompany={handleNavigateCompany}
+                        
+                        setIsOpen={setIsOpen}
+                    />
+                ) : (
+                    <></>
+                )}
                 <CartServiceList
                     company={company}
                     navigate={navigate}
@@ -64,10 +63,6 @@ const ShoppingCartPresenter = ({
                     userCartServiceList={userCartServiceList}
 
                     handleNavigateCompany={handleNavigateCompany}
-
-                    handleToggleDaySelector={handleToggleDaySelector}
-                    selectedDays={selectedDays}
-                    setSelectedDays={setSelectedDays}
 
                     handleDeleteCartList={handleDeleteCartList}
 
@@ -83,15 +78,13 @@ const ShoppingCartPresenter = ({
                     title={'결제하기'}
                     onClick={handleRequestClean}
                 />
-                {
-                    isDaySelectorOpen &&
+                {isOpen && (
                     <DaySelector
-                        isOpen={isDaySelectorOpen}
-                        setIsOpen={setIsDaySelectorOpen}
-                        selectedDays={selectedDays}
-                        setSelectedDays={setSelectedDays}
+                        selectedDay={selectedDay}
+                        setSelectedDay={setSelectedDay}
+                        setIsOpen={setIsOpen}
                     />
-                }
+                )}
             </MainLayout>
         </>
     );

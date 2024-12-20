@@ -8,6 +8,8 @@ import { useAuthStore } from 'store';
 const CompanyTitle = ({
     company,
     handleNavigateCompany,
+
+    setIsOpen,
 }) => {
     /* ===== STATE ===== */
     const [userFavoriteAddress, setUserFavoriteAddress] = useState({
@@ -17,7 +19,7 @@ const CompanyTitle = ({
 
 
 
-    /* ===== VARIABLES ===== */
+    /* ===== ROUTE ===== */
     const navigate = useNavigate();
 
 
@@ -71,22 +73,30 @@ const CompanyTitle = ({
                     <div className="company-title">
                         청소 요청 주소
                     </div>
-                    {
-                        userFavoriteAddress?.address && userFavoriteAddress?.address_detail ? (
-                            <div style={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                gap: '8px',
-                            }}>
-                                <span className='company-text'>{userFavoriteAddress.address}</span>
-                                <span className='gray1 company-text'>({userFavoriteAddress.address_detail})</span>
-                            </div>
-                        ) : (
-                            <span className='company-text'>등록된 주소가 없습니다.</span>
-                        )
-                    }
+                    {userFavoriteAddress?.address && userFavoriteAddress?.address_detail ? (
+                        <div style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '8px',
+                        }}>
+                            <span className='company-text'>{userFavoriteAddress.address}</span>
+                            <span className='gray1 company-text'>({userFavoriteAddress.address_detail})</span>
+                        </div>
+                    ) : (
+                        <span className='company-text'>등록된 주소가 없습니다.</span>
+                    )}
                 </div>
                 <span className='right-bracket'></span>
+            </div>
+            <div className='request-date-container'>
+                <button
+                    onClick={() => setIsOpen(true)}
+                >
+                    날짜 선택
+                </button>
+                <button>
+                    시간 선택
+                </button>
             </div>
         </Content>
     );

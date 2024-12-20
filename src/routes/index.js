@@ -41,7 +41,6 @@ import {
     EmployeeProfile,
     EmployeeRequestImage,
 } from "./pages";
-import { useAuthStore } from "store";
 
 const Router = () => {
     const socketRef = useState(null);

@@ -1,21 +1,21 @@
 import ShoppingCartPresenter from "./ShoppingCartPresenter";
+import { Modal } from "components";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API } from "api";
 import { useDeleteCartList, useGetCompanyCartList } from "hooks/CartListHooks";
 import { useGetOneService } from "hooks/ServiceHooks";
 import { useCreateRequestClean } from "hooks/RequestCleanHooks";
 import { useCreateRequestCleanServiceList } from "hooks/RequestCleanServiceListHooks";
 import { useGetUserCart } from "hooks/CartHooks";
-import { useAuthStore, useCartStore, useModalStore } from "store";
 import { useGetUserAddress } from "hooks/UserAddressHooks";
-import { Modal } from "components";
-import { API } from "api";
-import dayjs from "dayjs";
 import { useCreateRequestCleanImage } from 'hooks/RequestCleanImageHooks';
+import { useAuthStore, useCartStore, useModalStore } from "store";
+import dayjs from "dayjs";
 
 const ShoppingCartContainer = () => {
 
-    /* ===== VARIABLES ===== */
+    /* ===== ROUTE ===== */
     const navigate = useNavigate();
 
 
@@ -26,12 +26,12 @@ const ShoppingCartContainer = () => {
     const [company, setCompany] = useState(null);
     const [cartList, setCartList] = useState([]);
 
-    const [selectedDays, setSelectedDays] = useState([]);
-    const [isDaySelectorOpen, setIsDaySelectorOpen] = useState(false);
-
     const [uploadedImages, setUploadedImages] = useState([]);
 
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedDay, setSelectedDay] = useState(new Date());
 
+    console.log(dayjs(selectedDay).unix());
 
     /* ===== STORE ===== */
     const userId = useAuthStore(state => state.user_id);
@@ -62,6 +62,8 @@ const ShoppingCartContainer = () => {
     const isLoading = userCartServiceListLoading || serviceLoading || userCartLoading || userAddressesLoading;
 
     const totalPrice = userCartServiceList.reduce((sum, i) => sum + i.price, 0);
+
+
 
     /* ===== MUTATE ===== */
     // 청소 요청
@@ -99,7 +101,6 @@ const ShoppingCartContainer = () => {
                     request_clean_image: await handleImageUpload(image?.file),
                 });
             });
-
 
             openModal('청소 요청', '청소 요청 중입니다...', null, 'loading');
             setTimeout(() => {
@@ -175,10 +176,6 @@ const ShoppingCartContainer = () => {
 
 
     /* ===== FUNCTION ===== */
-    const handleToggleDaySelector = () => {
-        setIsDaySelectorOpen(!isDaySelectorOpen);
-    };
-
     const handleNavigateCompany = () => {
         navigate(`/companydetail/${service.company.company_id}`);
     };
@@ -207,7 +204,7 @@ const ShoppingCartContainer = () => {
                 total_price: totalPrice,
                 quantity: filteredUserAddress[0].meter,
                 category: userCartServiceList[0].service.service_category,
-                start_clean_date: dayjs().unix(),
+                start_clean_date: dayjs(selectedDay).unix(),
             });
         }, 'double');
     };
@@ -227,31 +224,33 @@ const ShoppingCartContainer = () => {
     };
 
 
+
     /* ===== RENDER ===== */
     return (
         <>
             <ShoppingCartPresenter
+                isLoading={isLoading}
+
                 userCartServiceList={userCartServiceList}
                 totalPrice={totalPrice}
                 company={company}
-                selectedDays={selectedDays}
                 filteredUserAddress={filteredUserAddress}
 
-                isLoading={isLoading}
-                isDaySelectorOpen={isDaySelectorOpen}
-
-                setIsDaySelectorOpen={setIsDaySelectorOpen}
-                setSelectedDays={setSelectedDays}
                 setCartList={setCartList}
 
                 handleNavigateCompany={handleNavigateCompany}
                 handleDeleteCartList={handleDeleteCartList}
                 handleRequestClean={handleRequestClean}
-                handleToggleDaySelector={handleToggleDaySelector}
                 navigate={navigate}
 
                 uploadedImages={uploadedImages}
                 setUploadedImages={setUploadedImages}
+
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+
+                selectedDay={selectedDay}
+                setSelectedDay={setSelectedDay}
             />
             {
                 isModalOpen && (

@@ -28,3 +28,26 @@
     border-right: 2px solid #9ca3af;
     transform: rotate(45deg);
 }
+
+.request-date-container {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
+    margin-bottom: 10px;
+}
+
+.request-date-container button {
+    border: 1px solid var(--gray3-color);
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    padding: 10px 20px;
+}
+
+.request-date-container button:hover {
+    border: 1px solid var(--primary-color);
+    background-color: var(--primary-color);
+    color: white;
+}

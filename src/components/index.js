@@ -7,6 +7,7 @@ export {
     Modal,
     Toast,
     ImageModal,
+    DaySelector,
 } from './Common';
 
 /**
@@ -39,7 +40,6 @@ export {
     InputStar,
     ImageUpload,
     BottomButton,
-    DaySelector,
 } from './Form';
 
 /**
