@@ -20,6 +20,8 @@ import Image16 from './components/Picture/Images/Image16.png';
 import API from '../../../../api/API';
 import { cookie } from "util";
 import { io } from "socket.io-client";
+import { messaging } from "fcm/firebase-messaging";
+
 
 const ChatRoomContainer = ({
     socketRef,
@@ -84,11 +86,38 @@ const ChatRoomContainer = ({
             )()
 
 
+            // websocket 설정
             if (!socketRef.current) {
                 socketRef.current = io(`${process.env.REACT_APP_CHAT_SERVER}/cleaning_chat`, {
                     transports: ['websocket'],
                     reconnectionAttempts: 3,
                 });
+
+                const fcm_token = cookie.getCookie('fcm-token');
+                console.log('fcm-token', fcm_token)
+
+                socketRef.current.on('connect', () => {
+                    console.log('채팅방 연결됨');
+                    console.log(chat_room_id);
+                    console.log(clientId);
+                    socketRef.current.emit('enterChatroom', {
+                        chat_room_id,
+                        clientId,
+                        type: 'USER',
+                        token: fcm_token,
+                    });
+                })
+
+                socketRef.current.on('disconnect', () => {
+                    console.log('채팅방 연결 끊김');
+                    console.log(chat_room_id);
+                    console.log(clientId);
+                    socketRef.current.emit('leaveChatroom', {
+                        chat_room_id,
+                        clientId,
+                        type: 'USER',
+                    });
+                })
             }
 
             socketRef.current?.on('chatMessage', (messageInfo) => {
@@ -106,6 +135,13 @@ const ChatRoomContainer = ({
                     ]
                 });
             });
+
+            // FCM 설정
+            setFCM();
+
+            return () => {
+                socketRef.current.close();
+            }
         } catch (e) {
 
         }
@@ -167,7 +203,7 @@ const ChatRoomContainer = ({
     const sendSelectPicture = async () => {
         toggleShowSelectPicture();
         console.log(selectedPictures)
-        
+
         const formData = new FormData();
         selectedPictures?.map(picture => {
             formData.append('files', picture);
@@ -212,6 +248,30 @@ const ChatRoomContainer = ({
             return [...prev, picture];
         })
     }
+
+    // FCM 설정
+    const setFCM = () => {
+        messaging.onMessage(payload => {
+            console.log(`Message Received`);
+            console.log(payload)
+
+            const messageInfo = payload.data;
+            if (messageInfo.chat_room_id !== chat_room_id) return;
+
+            // 채팅방으로 전송
+            setChatList(prev => {
+                return [
+                    ...prev,
+                    {
+                        sender: messageInfo.sender,
+                        receiver: messageInfo.receiver,
+                        message: messageInfo.message,
+                    }
+                ]
+            });
+        })
+    }
+
 
     return (
         <ChatRoomPresenter

@@ -21,7 +21,7 @@ const MainContainer = () => {
 
     /* ===== QUERY ===== */
     const { data: userAddressesRes, isLoading: userAddressesLoading, isError: userAddressesError } = useGetUserAddress(userId);
-    const userAddresses = userAddressesRes?.data.user_addresses;
+    const userAddresses = userAddressesRes?.data?.user_addresses;
 
     const { data: reviewImagesRes, isLoading: reviewImagesLoading, isError: reviewImagesError } = useGetReviewImages();
     const reviewImages = reviewImagesRes?.data || [];
