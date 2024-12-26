@@ -7,8 +7,6 @@ const RequestCard = ({
     List,
     Color,
 }) => {
-    console.log(Color, "색 상");
-    console.log(List)
     const ServiceCategory = ['이사/입주 청소', '생활/거주 청소', '가전/가구 청소', '전문/특수 청소', '사업장 청소', '건물 관리'];
     const daysofWeek = ['Sun', 'Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat'];
 
