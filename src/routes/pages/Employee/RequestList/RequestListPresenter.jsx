@@ -4,8 +4,11 @@ import { EmployeeMainLayout, Top } from 'components/Layouts';
 
 const RequestListPresenter = ({
     Lists,
+    isLoading,
 }) => { 
-    
+    if (isLoading) {
+        return null
+    }
 
     return (
         <>
@@ -17,9 +20,6 @@ const RequestListPresenter = ({
                 footer={true}
             >
                 <Requestform
-                    months={[]}
-                    date={"24"}
-                    day={"Sun"}
                     Lists={Lists}
                 />
 

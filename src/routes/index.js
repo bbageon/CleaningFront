@@ -162,7 +162,7 @@ const Router = () => {
         }
 
     }, [location]);
-    
+
     return (
         <div className="app">
             <ScrollToTop />
@@ -286,7 +286,7 @@ const Router = () => {
                 />
                 {/* 청소요청 정보 화면 */}
                 <Route
-                    path="employee/requestinfo"
+                    path="employee/requestinfo/:request_id"
                     element={<EmployeeRequestInfo />}
                 />
                 {/* 청소완료 이미지 등록 화면 */}

@@ -4,7 +4,7 @@ import { useAuthStore } from 'store'
 
 const PrivateRoute = () => {
     const navigate = useNavigate();
-    
+
     /* ===== 직원 고객페이지 접근 거부 ======*/
     const IsEmployee = useAuthStore(state => state.isEmployee);
     const currentPath = window.location.pathname;

@@ -1,23 +1,77 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './RequestInfo.css';
 import { EmployeeMainLayout } from 'components/Layouts';
 // 테스트용 이미지
 import Test from './Test.svg';
 import Check from './check.svg';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { createStringLiteral } from 'typescript';
 
 const RequestInfoPresenter = ({
-
+    isLoading,
+    data,
 }) => {
-    const days = ["월", "화", "수", "목", "금", "토", "일"];
-    const comment = "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest"
-    const price = "15,000"
 
+    /* ===== VARIABLES ===== */
     const navigate = useNavigate();
+    
+    const List = data?.request_clean;
 
-    // 요청 요일
-    const [RequestDays, setRequestDays] = useState(["월", "목"]);
+    const TotalPrice = List?.total_price.toLocaleString();
+    const ServiceCategory = ['이사/입주 청소', '생활/거주 청소', '가전/가구 청소', '전문/특수 청소', '사업장 청소', '건물 관리'];
 
+    const RequestDates = new Date(List?.request_date * 1000);
+    const StartDates = new Date(List?.start_clean_date * 1000);
+    const endDate = new Date(List?.expect_end_clean_date * 1000);
+
+    const formatDate = (date) => {
+        return date.toLocaleDateString("ko-KR", {
+            year: "numeric", // 연도 (4자리)
+            month: "2-digit", // 월 (2자리)
+            day: "2-digit", // 일 (2자리)
+        })
+        .replace(/. /g, '.') // 구분자 수정
+        .replace(/\.$/, ""); 
+    };
+
+    const formatTime = (Times) => {
+        const Hours = Times.getHours();
+        const Minutues = Times.getMinutes();
+        const period = Hours >= 12 ? "오후" : "오전";
+        const Time =  `${Hours.toString().padStart(2, '0')}:${Minutues.toString().padStart(2, '0')}`;
+        return {Time, period};
+    }
+
+    const formatDateTime = (date) => {
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+    
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+    
+        return `${year}년 ${month}월 ${day}일 ${hours}:${minutes}`;
+    };
+    
+    
+    const days = ["월", "화", "수", "목", "금", "토", "일"];
+    const [RequestDays, setRequestDays] = useState([]);
+
+    /* ===== RENDER ===== */
+    useEffect(() => {
+        const result = days.filter((day, index) => List?.request_clean_period_day[index] === '1');
+        setRequestDays(result);
+    }, [data]);
+
+    // if (List == null) {
+    //     alert("비정상적인 접근입니다");
+    //     navigate('/employee');
+    //     return ;
+    // }
+
+    if (isLoading) {
+        return null;
+    }
     return (
         <EmployeeMainLayout
             footer={true}
@@ -34,7 +88,7 @@ const RequestInfoPresenter = ({
                 </span>
                 <div className='request-info-form'>
                     <span className='request-info-title'>요청 시간</span>
-                    <span className='request-info-content'>2023.11.29 14:25</span>
+                    <span className='request-info-content'>{formatDateTime(RequestDates)}</span>
                 </div>
 
                 {/* 구분선 */}
@@ -47,13 +101,13 @@ const RequestInfoPresenter = ({
                         <div className='request-date-container'>
                             <span style={{ fontSize: '1.1rem' }}>시작</span>
                             <div className='request-date-form'>
-                                <span>2023.11.30</span>
+                                <span>{formatDate(StartDates)}</span>
                             </div>
                         </div>
                         <div className='request-date-container'>
                             <span style={{ fontSize: '1.1rem' }}>종료</span>
                             <div className='request-date-form'>
-                                2023.11.30
+                                {formatDate(endDate)}
                             </div>
                         </div>
                     </div>
@@ -76,28 +130,28 @@ const RequestInfoPresenter = ({
                 <div className='request-info-form'>
                     <span className='request-info-title'>시간</span>
                     <div className='request-time-container'>
-                        <span>오전</span>
+                        <span>{formatTime(StartDates).period}</span>
                         <span style={{ margin: '0 2px' }}>{/* 공백 */}</span>
-                        <span style={{ fontSize: '1.4rem' }}>11:00</span>
+                        <span style={{ fontSize: '1.4rem' }}>{formatTime(StartDates).Time}</span>
                     </div>
                 </div>
 
                 {/* 주소 */}
                 <div className='request-info-form'>
                     <span className='request-info-title'>주소</span>
-                    <span className='request-info-content' style={{ fontSize: '1.1rem', fontWeight: '400' }}>부산광역시 사상구 주례로 47(동서대학교), 글로벌 빌리지 서관 1219호</span>
+                    <span className='request-info-content' style={{ fontSize: '1.1rem', fontWeight: '400' }}>{List?.clean_address}, {List?.clean_address_detail}</span>
                 </div>
 
                 {/* 서비스 유형 */}
                 <div className='request-info-form'>
                     <span className='request-info-title'>서비스 유형</span>
-                    <span className='request-info-content' style={{ fontSize: '1.1rem', fontWeight: '400' }}>화장실 청소</span>
+                    <span className='request-info-content' style={{ fontSize: '1.1rem', fontWeight: '400' }}>{ServiceCategory[List?.category]}</span>
                 </div>
 
                 {/* 요청 사항 */}
                 <div className='request-info-form'>
                     <span className='request-info-title'>요청 사항</span>
-                    <span className='request-info-content' style={{ fontSize: '1.1rem', fontWeight: '400' }}>{`${comment.length > 0 ? comment : "없음"}`}</span>
+                    <span className='request-info-content' style={{ fontSize: '1.1rem', fontWeight: '400' }}>{`${List?.requirements.length > 0 ? List?.requirements : "없음"}`}</span>
                 </div>
 
                 {/* 이미지 */}
@@ -123,7 +177,7 @@ const RequestInfoPresenter = ({
                             <img src={Check} />
                         </div>
                         <span>asd</span>
-                        <span>(+{price})</span>
+                        <span>(+{TotalPrice})</span>
                     </div>
 
                     <div className='request-optional-form'>
@@ -131,7 +185,7 @@ const RequestInfoPresenter = ({
                             <img src={Check} />
                         </div>
                         <span>asd</span>
-                        <span>(+{price})</span>
+                        <span>(+{TotalPrice})</span>
                     </div>
 
                     <div className='request-optional-form'>
@@ -139,7 +193,7 @@ const RequestInfoPresenter = ({
                             <img src={Check} />
                         </div>
                         <span>asd</span>
-                        <span>(+{price})</span>
+                        <span>(+{TotalPrice})</span>
                     </div>
 
                 </div>
@@ -150,7 +204,7 @@ const RequestInfoPresenter = ({
                 {/* 요청 버튼 */}
                 <div className='request-info-form'>
                     <div className='request-total-price'>
-                        <span>Total :  30,000원</span>
+                        <span>Total : {TotalPrice}원</span>
                     </div>
                     <div className='request-complete-button'
                         onClick={() => navigate('/employee')}

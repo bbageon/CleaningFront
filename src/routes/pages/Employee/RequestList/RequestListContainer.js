@@ -13,13 +13,17 @@ const RequestListContainer = () => {
     /* ===== STORE ===== */
     const employee_id = useAuthStore(state => state.user_id);
 
+    /* ===== QUERY ===== */
     const { data: EmployeeRequestListRes, isLoading: EmployeeRequestListLoading, isError: EmployeeRequestError } = useEmployeeRequestClean(employee_id);
     const EmployeeRequestLists = EmployeeRequestListRes?.data;
+
+
+    const isLoading = EmployeeRequestListLoading
 
     const groupDataByYearMonth = (data) => {
         const groupedData = {};
         // 데이터가 없으면 빈 객체 반환
-        if (!data) return groupedData;
+        if (!Array.isArray(data)) return groupedData;
     
         data.forEach((item) => {
             const startDate = item?.request_clean?.start_clean_date;
@@ -49,14 +53,13 @@ const RequestListContainer = () => {
             alert('로그인이 필요한 서비스입니다.');
             navigate('/employee/login');
         }
-    }, [employee_id, EmployeeRequestLists])
-
-    const isLoading = EmployeeRequestListLoading
+    }, [EmployeeRequestListLoading, EmployeeRequestLists])
 
     /* ===== RENDER ===== */
     return (
         <RequestListPresenter
             Lists={EmployeeRequestList}
+            isLoading={isLoading}
         />
     );
 };
