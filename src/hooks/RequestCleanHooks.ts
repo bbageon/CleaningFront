@@ -166,3 +166,25 @@ export const useEmployeeRequestClean = (employee_id: number) => {
         enabled: !!employee_id,
     });
 };
+
+/**
+ * [RequestClean] 직원 최근 청소요청 조회
+ */
+export const useEmployeeRecentlyRequestClean = (employee_id : number) => {
+    return useQuery({
+        queryKey: requestCleanQueryKeys.getRequestClean(employee_id).queryKey,
+        queryFn: () => API.getEmployeeRecentlyRequestClean(employee_id),
+        enabled: !!employee_id,
+    });
+};
+
+/**
+ * [RequestClean] 직원 단일 청소요청 조회
+ */
+export const useEmployeeSingleRequestClean = (employee_id : number, request_clean_id : number) => {
+    return useQuery({
+        queryKey : requestCleanQueryKeys.getRequestClean(employee_id).queryKey,
+        queryFn : () => API.getEmployeeSingleRequestClean(employee_id, request_clean_id),
+        enabled : !!employee_id || !!request_clean_id,
+    })
+}

@@ -7,19 +7,28 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 
 const EmployeeMainContents = ({
+    EmployeeRequestList,
     ClientName,
 }) => {
+    const RecentlyRequestId = EmployeeRequestList?.request_clean_id;
+    const ServiceCategory = ['이사/입주 청소', '생활/거주 청소', '가전/가구 청소', '전문/특수 청소', '사업장 청소', '건물 관리'];
     /**
-     * 최근 청소 요청 정보
+     * 시간 계산
      */
-
+    const dates = new Date(EmployeeRequestList?.request_date * 1000);
+    const date = {
+        year : dates.getFullYear(),
+        month : dates.getMonth(),
+        hour : dates.getHours(),
+        minutes : dates.getMinutes(),
+    }
 
     const navigate = useNavigate();
 
     return (
         <div className="main-contents">
             <div className="main-contents-explain">최근 청소 요청</div>
-            <div className="recently-requirement" onClick={ () => navigate('/employee/requestinfo')}>
+            <div className="recently-requirement" onClick={ () => navigate(`/employee/requestinfo/${RecentlyRequestId}`)}>
                 <div className="recent-requirement-header">
                     <a style={{ fontSize: "1.4rem" }}>
                         {ClientName}
@@ -32,16 +41,13 @@ const EmployeeMainContents = ({
 
                 <div className="requirement-content">
                     <div>
-                        <a className="requirement-content-title">요청시간 : </a>
-                        ㅁㄴㅇㅁㄴㅇㄴ
+                        <a className="requirement-content-title">{date.year}년 {date.month}월 {date.hour}시 {date.minutes}분</a>
                     </div>
                     <div>
-                        <a className="requirement-content-title">서비스 유형 : </a>
-                        ㄴㅁㅇㅁㄴㅇ'
+                        <a className="requirement-content-title">{ServiceCategory[EmployeeRequestList?.category]}</a>
                     </div>
                     <div>
-                        <a className="requirement-content-title">주소 : </a>
-                        ㅁㄴㅇㄴㅁㅇ
+                        <a className="requirement-content-title">{EmployeeRequestList?.clean_address} {EmployeeRequestList?.clean_address_detail}</a>
                     </div>
                 </div>
                 {/* 구분선 */}

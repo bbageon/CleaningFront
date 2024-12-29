@@ -610,7 +610,17 @@ const API = {
   /**
    *  직원 청소요청 조회
    */
-  getEmployeeRequestClean : (employee_id) => $http.get(parameterToPath('/employee/:employee_id', { employee_id})),
+  getEmployeeRequestClean : (employee_id) => $http.get(parameterToPath('/request_clean/employee/:employee_id', { employee_id})),
+
+  /**
+   *  직원 최근 청소요청 조회
+   */
+  getEmployeeRecentlyRequestClean : (employee_id) => $http.get(parameterToPath('/request_clean/employee/recently/:employee_id', {employee_id})),
+
+    /**
+   *  직원 단일 청소요청 조회
+   */
+    getEmployeeSingleRequestClean : (employee_id, request_clean_id) => $http.get(parameterToPath('/request_clean/employee/single/:employee_id/:request_clean_id', {employee_id}, {request_clean_id})),
 
 
   /**
@@ -779,10 +789,10 @@ const API = {
    */
   getDateRequestClean: (date) => $http.get(parameterToPath('/request_clean/date/:date', { date })),
 
-  /**
-   * 직원 청소요청 조회
-   */
-  getEmployeeRequestClean: (employee_id) => $http.get(parameterToPath('/request_clean/employee/:employee_id', { employee_id })),
+  // /**
+  //  * 직원 청소요청 조회
+  //  */
+  // getEmployeeRequestClean: (employee_id) => $http.get(parameterToPath('/request_clean/employee/:employee_id', { employee_id })),
 
   /**
    * 청소요청 수정
