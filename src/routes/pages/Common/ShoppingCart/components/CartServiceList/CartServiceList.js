@@ -23,7 +23,7 @@ const CartServiceList = ({
 
     return (
         <Content
-            paddingBottom={0}
+            paddingBottom={75}
             paddingLeft={0}
             paddingRight={0}
             paddingTop={0}

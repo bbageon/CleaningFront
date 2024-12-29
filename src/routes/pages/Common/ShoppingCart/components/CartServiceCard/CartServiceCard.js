@@ -30,6 +30,7 @@ const CartServiceCard = ({
         });
     };
 
+    const servicePrice = service.service_unit === 'AREA' ? service.service.price_per_meter || 0 : service.service.price_per_time || 0;
 
     /* ===== RENDER ===== */
     return (
@@ -45,11 +46,11 @@ const CartServiceCard = ({
             </div>
             <div className="cart-service-card-line">
                 <span className='light grey'>서비스 기본 가격</span>
-                <span>{serviceData?.service_default_price?.toLocaleString()}원</span>
+                <span>{servicePrice?.toLocaleString()}원</span>
             </div>
             <div className="cart-service-card-line">
                 <span className='light grey'>평당 추가 요금</span>
-                <span>{serviceData?.service_default_price?.toLocaleString()}원 x {filteredUserAddress[0]?.meter}평</span>
+                <span>{servicePrice?.toLocaleString()}원 x {filteredUserAddress[0]?.meter}평</span>
             </div>
         </div>
     );

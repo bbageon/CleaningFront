@@ -31,8 +31,6 @@ const ShoppingCartContainer = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedDay, setSelectedDay] = useState(new Date());
 
-    console.log(dayjs(selectedDay).unix());
-
     /* ===== STORE ===== */
     const userId = useAuthStore(state => state.user_id);
     const clearCartStore = useCartStore(state => state.clearCartStore);
@@ -61,9 +59,13 @@ const ShoppingCartContainer = () => {
 
     const isLoading = userCartServiceListLoading || serviceLoading || userCartLoading || userAddressesLoading;
 
-    const totalPrice = userCartServiceList.reduce((sum, i) => sum + i.price, 0);
-
-
+    const totalPrice = userCartServiceList?.reduce((sum, i) => {
+        if (i.service_unit === 'AREA') {
+            return sum + (i.service.price_per_meter || 0) * filteredUserAddress[0].meter;
+        } else {
+            return sum + (i.service.price_per_time || 0);
+        }
+    }, 0);
 
     /* ===== MUTATE ===== */
     // 청소 요청
