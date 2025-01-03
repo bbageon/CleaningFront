@@ -5,20 +5,24 @@ import test from './test.svg';
 /**
 * 직원 업무 요약
 */
-const TaskSummary = () => {
+const TaskSummary = ({
+    total,
+    finish,
+    inProgress,
+}) => {
     return (
         <div className='task-container summary'>
             <div className='task-summary bluebar'>
                 <span>총 수행 업무</span>
-                <span>200</span>
+                <span>{total?.length}</span>
             </div>
             <div className='task-summary yellowbar'>
                 <span>진행 업무</span>
-                <span>186</span>
+                <span>{inProgress?.length}</span>
             </div>
             <div className='task-summary greenbar'>
                 <span>완료 업무</span>
-                <span>186</span>
+                <span>{finish?.length}</span>
             </div>
         </div>
     )
@@ -42,7 +46,10 @@ const EmployeeInfo = () => {
  */
 
 const ProfilePresenter = ({
-
+    total,
+    finish,
+    inProgress,
+    isLoading,
 }) => {
     const Tabitems = [
         {
@@ -54,6 +61,10 @@ const ProfilePresenter = ({
             key : 1,
         },
     ]
+    
+    if (isLoading) {
+        return null;
+    }
 
     return (
         <EmployeeMainLayout
@@ -65,9 +76,15 @@ const ProfilePresenter = ({
         >
             <div className='employee-profile-container'>
                 <EmployeeInfo/>
-                <TaskSummary />
+                <TaskSummary
+                    total={total}
+                    finish={finish}
+                    inProgress={inProgress}
+                />
                 <TabCenter
                     items={Tabitems}
+                    finish={finish}
+                    inProgress={inProgress}
                 />
             </div>
 
