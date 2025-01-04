@@ -6,11 +6,18 @@ import { Modal } from "components";
 import { useCreateRequestEstimate } from "hooks/RequestEstimateHooks";
 import { API } from "api";
 import { useNavigate } from "react-router-dom";
+import { useGetOneUserAddress } from 'hooks/UserAddressHooks';
 
 const ChatBotContainer = () => {
 
-    /* ===== VARIABLES ===== */
+    /* ===== ROUTER ===== */
     const navigate = useNavigate();
+
+
+
+    /* ===== STORE =====  */
+    const userId = useAuthStore(state => state.user_id);
+    const { isModalOpen, content, openModal, closeModal } = useModalStore(state => state);
 
 
 
@@ -68,9 +75,10 @@ const ChatBotContainer = () => {
 
 
 
-    /* ===== STORE =====  */
-    const userId = useAuthStore(state => state.user_id);
-    const { isModalOpen, content, openModal, closeModal } = useModalStore(state => state);
+    /* ===== QUERY ===== */
+    const { data: userAddressRes, isLoading: userAddressLoading, isError: userAddressError } = useGetOneUserAddress(userId);
+    const userAddress = userAddressRes?.data.user_addresses || [];
+    const userFavoriteAddress = userAddress?.find((address) => address.is_favorite === 1);
 
 
 
@@ -105,6 +113,10 @@ const ChatBotContainer = () => {
                     request_date: Math.floor(new Date(selectedDate) / 1000),
                     category: decide[0].value,
                     requirements: decide[1].value,
+                    clean_address: userFavoriteAddress.address,
+                    clean_address_detail: userFavoriteAddress.address_detail,
+                    quantity: userFavoriteAddress.meter,
+                    unit: 'AREA',
                 })
             }, 'double');
             return;
