@@ -14,7 +14,7 @@ const RequestInfoPresenter = ({
 
     /* ===== VARIABLES ===== */
     const navigate = useNavigate();
-    
+
     const List = data?.request_clean;
 
     const TotalPrice = List?.total_price.toLocaleString();
@@ -82,7 +82,7 @@ const RequestInfoPresenter = ({
         >
             <div className='request-info-container'>
                 <span style={{ fontSize: '1.5rem' }}>
-                    김건우
+                    {List?.user_name}
                     <span style={{ margin: '0 2px' }}>{/* 공백 */}</span>
                     <span style={{ fontSize: '1.2rem' }}>고객님</span>
                 </span>
@@ -168,7 +168,7 @@ const RequestInfoPresenter = ({
                 <div className="main-divider"></div>
 
                 {/* 추가옵션 */}
-                <span className='request-info-title' style={{ fontSize: '1.3rem' }}>추가 옵션</span>
+                {/* <span className='request-info-title' style={{ fontSize: '1.3rem' }}>추가 옵션</span>
 
                 <div className='request-optional-container'>
 
@@ -196,10 +196,10 @@ const RequestInfoPresenter = ({
                         <span>(+{TotalPrice})</span>
                     </div>
 
-                </div>
+                </div> */}
 
                 {/* 구분선 */}
-                <div className="main-divider"></div>
+                {/* <div className="main-divider"></div> */}
 
                 {/* 요청 버튼 */}
                 <div className='request-info-form'>

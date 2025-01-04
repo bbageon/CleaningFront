@@ -18,7 +18,7 @@ const RequestInfoContainer = () => {
 
 
     const isLoading = EmployeeSingleRequestCleanLoading;
-    
+     
     /* ===== EFFECT ===== */
     useEffect (() => {
         if (EmployeeSingleRequestCleanLists && !EmployeeSingleRequestCleanLoading) {
@@ -26,6 +26,7 @@ const RequestInfoContainer = () => {
             setEmployeeSingleRequestCleanList(result);
         }
     }, [EmployeeSingleRequestCleanLoading, EmployeeSingleRequestCleanLists])
+    console.log(EmployeeSingleRequestCleanList, "List")
 
     /* ===== RENDER ===== */
     return (

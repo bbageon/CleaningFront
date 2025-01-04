@@ -32,7 +32,7 @@ const EmployeeMainContents = ({
                 <div className="recent-requirement-header">
                     <a style={{ fontSize: "1.4rem" }}>
                         {ClientName}
-                        <a style={{ fontSize: "1.1rem" }}> 고객님 </a>
+                        <a style={{ fontSize: "1.1rem" }}> {EmployeeRequestList?.user_name} 고객님 </a>
                     </a>
                     <div className="requirement-status">
                         청소 전
