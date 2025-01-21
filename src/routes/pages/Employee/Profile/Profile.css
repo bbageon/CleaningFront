@@ -83,3 +83,40 @@
     font-size: 0.75rem;
     color: #A9A9A9;
 }
+
+/* 직원 요청 기록 */
+.profile-request-form-wrap {
+    width: 100%;
+    height: auto;
+
+    /* padding: 0rem 0rem; */
+
+    overflow: scroll;
+}
+
+.profile-request-form-list {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+    /* gap: 0.5rem; */
+}
+
+.profile-request-form {
+    display: flex;
+    flex-direction: column;
+
+    padding: 1rem;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    font-family: "Nanum-gothic";
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.profile-request-name {
+    color: #144B44;
+    font-size: 1.1rem;
+}
