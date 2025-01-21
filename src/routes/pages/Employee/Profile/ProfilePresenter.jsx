@@ -1,7 +1,7 @@
-    import './Profile.css';
-    import { EmployeeMainLayout, Tab, TabCenter } from 'components/Layouts';
-    import test from './test.svg';
-    import { Children } from 'react';
+import './Profile.css';
+import { EmployeeMainLayout, Tab, TabCenter } from 'components/Layouts';
+import test from './test.svg';
+import { Children } from 'react';
 import { ColumnHeightOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
@@ -52,65 +52,66 @@ const EmployeeInfo = ({
     )
 };
 
-    /**
-     * 청소 내역 필터링
-     */
+/**
+ * 청소 내역 필터링
+ */
 
-    const ProfilePresenter = ({
-        total,
-        finish,
-        inProgress,
-        isLoading,
-    }) => {
-        const navigate = useNavigate();
-        
-        const ProfileRequestForm = ({data}) => {
-            return (
-                <div className='profile-request-form-wrap'>
-                    {data?.length > 0 ? (
-                        <div className='profile-request-form-list'>
-                            {data.map((item, idx) => (
-                                
-                                <div className='profile-request-form'
-                                    onClick={()=>{navigate(`/employee/requestinfo/${item?.request_clean.request_clean_id}`)}}
-                                >
-                                    <p className='profile-request-name'>{item?.request_clean.user_name ? item?.request_clean.user_name : "이름 없음"} 님</p>
-                                    <p>
-                                        {item?.request_clean.clean_address ? item?.request_clean.clean_address : "주소없음"}
-                                        {" "} 
-                                        {item?.request_clean.clean_address_detail ? item?.request_clean.clean_address_detail : "상세 주소없음"} 
-                                    </p>
+const ProfilePresenter = ({
+    total,
+    finish,
+    inProgress,
+    isLoading,
+    employeeData,
+}) => {
+    const navigate = useNavigate();
 
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-                        <div>요청 기록이 없습니다.</div>
-                    )}
-                    
-                </div>
-            )
-        }
-        const Tabitems = [
-            {
-                label: "진행중",
-                key: 0,
-                children: <ProfileRequestForm
-                    data={inProgress}
-                />,
-            },
-            {
-                label: "청소 완료",
-                key: 1,
-                children: <ProfileRequestForm
-                    data={finish}
-                />,
-            },
-        ]
+    const ProfileRequestForm = ({ data }) => {
+        return (
+            <div className='profile-request-form-wrap'>
+                {data?.length > 0 ? (
+                    <div className='profile-request-form-list'>
+                        {data.map((item, idx) => (
 
-        if (isLoading) {
-            return null;
-        }
+                            <div className='profile-request-form'
+                                onClick={() => { navigate(`/employee/requestinfo/${item?.request_clean.request_clean_id}`) }}
+                            >
+                                <p className='profile-request-name'>{item?.request_clean.user_name ? item?.request_clean.user_name : "이름 없음"} 님</p>
+                                <p>
+                                    {item?.request_clean.clean_address ? item?.request_clean.clean_address : "주소없음"}
+                                    {" "}
+                                    {item?.request_clean.clean_address_detail ? item?.request_clean.clean_address_detail : "상세 주소없음"}
+                                </p>
+
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div>요청 기록이 없습니다.</div>
+                )}
+
+            </div>
+        )
+    }
+    const Tabitems = [
+        {
+            label: "진행중",
+            key: 0,
+            children: <ProfileRequestForm
+                data={inProgress}
+            />,
+        },
+        {
+            label: "청소 완료",
+            key: 1,
+            children: <ProfileRequestForm
+                data={finish}
+            />,
+        },
+    ]
+
+    if (isLoading) {
+        return null;
+    }
 
     /* ===== RENDER ===== */
     return (
@@ -140,4 +141,4 @@ const EmployeeInfo = ({
     );
 };
 
-    export default ProfilePresenter;
+export default ProfilePresenter;
