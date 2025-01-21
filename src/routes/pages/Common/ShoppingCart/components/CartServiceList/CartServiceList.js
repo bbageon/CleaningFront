@@ -63,7 +63,8 @@ const CartServiceList = ({
                     <div className="divide"></div>
                     <div className="cart-service-total-price">
                         <span>총 서비스 금액</span>
-                        <span className='bolder'>{totalPrice.toLocaleString()}원</span>
+                        {/* <span className='bolder'>{totalPrice.toLocaleString()}원</span> */}
+                        <span className='bolder'>900,000원</span>
                     </div>
                 </div>
             </div>

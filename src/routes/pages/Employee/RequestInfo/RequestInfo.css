@@ -136,8 +136,8 @@
 }
 
 .image-wrap {
-    min-width: 80px;
-    min-height: 80px;
+    width: 80px;
+    height: 80px;
 
     border-radius: 5px;
     flex: none;

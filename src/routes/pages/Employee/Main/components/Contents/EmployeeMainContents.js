@@ -1,34 +1,39 @@
-import React, { useState } from "react"
 import './EmployeeMainContents.css';
+import { useNavigate } from "react-router-dom";
 import { Button } from "components";
 import ChatList from './ChatList.svg';
 import RequireList from './RequireList.svg';
-import { Navigate, useNavigate } from "react-router-dom";
 
 
 const EmployeeMainContents = ({
     EmployeeRequestList,
     ClientName,
+    requestCleanImages,
 }) => {
+
+    /* ===== ROUTER ===== */
+    const navigate = useNavigate();
+
+    /* ===== VARIABLES ===== */
     const RecentlyRequestId = EmployeeRequestList?.request_clean_id;
     const ServiceCategory = ['이사/입주 청소', '생활/거주 청소', '가전/가구 청소', '전문/특수 청소', '사업장 청소', '건물 관리'];
+
     /**
      * 시간 계산
      */
     const dates = new Date(EmployeeRequestList?.request_date * 1000);
     const date = {
-        year : dates.getFullYear(),
-        month : dates.getMonth(),
-        hour : dates.getHours(),
-        minutes : dates.getMinutes(),
+        year: dates.getFullYear(),
+        month: dates.getMonth(),
+        hour: dates.getHours(),
+        minutes: dates.getMinutes(),
     }
 
-    const navigate = useNavigate();
-
+    /* ===== RENDER ===== */
     return (
         <div className="main-contents">
             <div className="main-contents-explain">최근 청소 요청</div>
-            <div className="recently-requirement" onClick={ () => navigate(`/employee/requestinfo/${RecentlyRequestId}`)}>
+            <div className="recently-requirement" onClick={() => navigate(`/employee/requestinfo/${RecentlyRequestId}`)}>
                 <div className="recent-requirement-header">
                     <a style={{ fontSize: "1.4rem" }}>
                         {ClientName}
@@ -54,12 +59,18 @@ const EmployeeMainContents = ({
                 <div className="main-divider"></div>
 
                 <div className="requirement-image-container">
-                    이미지
+                    <div className='requirement-image-wrap'>
+                        {requestCleanImages.map((image, index) => (
+                            <div className='requirement-image-box'>
+                                <img key={index} src={image.request_clean_image} alt='청소 요청 이미지' />
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
             </div>
             <div className="main-divider"></div>
-            
+
             <Button
                 padding={'22px'}
                 backgroundColor={"#FFFFFF"}
@@ -72,7 +83,7 @@ const EmployeeMainContents = ({
                 image={RequireList}
 
                 employee={true}
-                onClick={ () => {navigate('/employee/requestlist')}}
+                onClick={() => { navigate('/employee/requestlist') }}
             />
             <Button
                 padding={'22px'}
@@ -86,11 +97,10 @@ const EmployeeMainContents = ({
                 image={ChatList}
 
                 employee={true}
-                onClick={ () => {navigate('/employee/chatlist')}}
+                onClick={() => { navigate('/employee/chatlist') }}
             />
         </div>
-    )
-}
-
+    );
+};
 
 export default EmployeeMainContents;

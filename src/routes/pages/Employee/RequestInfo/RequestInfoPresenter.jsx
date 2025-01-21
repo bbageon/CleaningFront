@@ -1,67 +1,71 @@
-import { useEffect, useState } from 'react';
 import './RequestInfo.css';
+import { useEffect, useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { EmployeeMainLayout } from 'components/Layouts';
 // 테스트용 이미지
 import Test from './Test.svg';
 import Check from './check.svg';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { createStringLiteral } from 'typescript';
 
 const RequestInfoPresenter = ({
     isLoading,
     data,
+    images,
+
+    RequestDays,
+    setRequestDays,
 }) => {
 
-    /* ===== VARIABLES ===== */
+    /* ===== ROUTER ===== */
     const navigate = useNavigate();
 
+    /* ===== VARIABLES ===== */
     const List = data?.request_clean;
 
     const TotalPrice = List?.total_price.toLocaleString();
-    const ServiceCategory = ['이사/입주 청소', '생활/거주 청소', '가전/가구 청소', '전문/특수 청소', '사업장 청소', '건물 관리'];
+    // const ServiceCategory = ['이사/입주 청소', '생활/거주 청소', '가전/가구 청소', '전문/특수 청소', '사업장 청소', '건물 관리'];
+    const ServiceCategory = ['이사/입주 청소', '가전/가구 청소', '생활/거주 청소', '전문/특수 청소', '사업장 청소', '건물 관리'];
+
+    const days = ["월", "화", "수", "목", "금", "토", "일"];
 
     const RequestDates = new Date(List?.request_date * 1000);
     const StartDates = new Date(List?.start_clean_date * 1000);
     const endDate = new Date(List?.expect_end_clean_date * 1000);
 
+    /* ===== FUNCTION ===== */
     const formatDate = (date) => {
         return date.toLocaleDateString("ko-KR", {
             year: "numeric", // 연도 (4자리)
             month: "2-digit", // 월 (2자리)
             day: "2-digit", // 일 (2자리)
         })
-        .replace(/. /g, '.') // 구분자 수정
-        .replace(/\.$/, ""); 
+            .replace(/. /g, '.') // 구분자 수정
+            .replace(/\.$/, "");
     };
 
     const formatTime = (Times) => {
         const Hours = Times.getHours();
         const Minutues = Times.getMinutes();
         const period = Hours >= 12 ? "오후" : "오전";
-        const Time =  `${Hours.toString().padStart(2, '0')}:${Minutues.toString().padStart(2, '0')}`;
-        return {Time, period};
+        const Time = `${Hours.toString().padStart(2, '0')}:${Minutues.toString().padStart(2, '0')}`;
+        return { Time, period };
     }
 
     const formatDateTime = (date) => {
         const year = date.getFullYear();
         const month = (date.getMonth() + 1).toString().padStart(2, '0');
         const day = date.getDate().toString().padStart(2, '0');
-    
+
         const hours = date.getHours().toString().padStart(2, '0');
         const minutes = date.getMinutes().toString().padStart(2, '0');
-    
+
         return `${year}년 ${month}월 ${day}일 ${hours}:${minutes}`;
     };
-    
-    
-    const days = ["월", "화", "수", "목", "금", "토", "일"];
-    const [RequestDays, setRequestDays] = useState([]);
 
-    /* ===== RENDER ===== */
-    useEffect(() => {
-        const result = days.filter((day, index) => List?.request_clean_period_day[index] === '1');
-        setRequestDays(result);
-    }, [data]);
+    /* ===== EFFECT ===== */
+    // useEffect(() => {
+    //     const result = days.filter((day, index) => List?.request_clean_period_day[index] === '1');
+    //     setRequestDays(result);
+    // }, [data]);
 
     // if (List == null) {
     //     alert("비정상적인 접근입니다");
@@ -72,6 +76,8 @@ const RequestInfoPresenter = ({
     if (isLoading) {
         return null;
     }
+
+    /* ===== RENDER ===== */
     return (
         <EmployeeMainLayout
             footer={true}
@@ -107,7 +113,8 @@ const RequestInfoPresenter = ({
                         <div className='request-date-container'>
                             <span style={{ fontSize: '1.1rem' }}>종료</span>
                             <div className='request-date-form'>
-                                {formatDate(endDate)}
+                                {/* {formatDate(endDate)} */}
+                                2024.12.31
                             </div>
                         </div>
                     </div>
@@ -130,9 +137,11 @@ const RequestInfoPresenter = ({
                 <div className='request-info-form'>
                     <span className='request-info-title'>시간</span>
                     <div className='request-time-container'>
-                        <span>{formatTime(StartDates).period}</span>
+                        {/* <span>{formatTime(StartDates).period}</span> */}
+                        오후
                         <span style={{ margin: '0 2px' }}>{/* 공백 */}</span>
-                        <span style={{ fontSize: '1.4rem' }}>{formatTime(StartDates).Time}</span>
+                        {/* <span style={{ fontSize: '1.4rem' }}>{formatTime(StartDates).Time}</span> */}
+                        12:00
                     </div>
                 </div>
 
@@ -151,17 +160,21 @@ const RequestInfoPresenter = ({
                 {/* 요청 사항 */}
                 <div className='request-info-form'>
                     <span className='request-info-title'>요청 사항</span>
-                    <span className='request-info-content' style={{ fontSize: '1.1rem', fontWeight: '400' }}>{`${List?.requirements.length > 0 ? List?.requirements : "없음"}`}</span>
+                    {/* <span className='request-info-content' style={{ fontSize: '1.1rem', fontWeight: '400' }}>{`${List?.requirements.length ? List?.requirements : "없음"}`}</span> */}
+                    <span className='request-info-content' style={{ fontSize: '1.1rem', fontWeight: '400' }}>깨끗하게 잘 부탁드려요</span>
                 </div>
 
                 {/* 이미지 */}
                 <div className='request-image-container'>
+                    {/* <img src={Test} className='image-wrap' />
                     <img src={Test} className='image-wrap' />
                     <img src={Test} className='image-wrap' />
                     <img src={Test} className='image-wrap' />
                     <img src={Test} className='image-wrap' />
-                    <img src={Test} className='image-wrap' />
-                    <img src={Test} className='image-wrap' />
+                    <img src={Test} className='image-wrap' /> */}
+                    {images.map(image => (
+                        <img src={image.src} className='image-wrap' />
+                    ))}
                 </div>
 
                 {/* 구분선 */}
