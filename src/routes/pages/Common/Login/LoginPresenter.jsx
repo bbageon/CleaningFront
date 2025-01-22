@@ -7,8 +7,10 @@ const LoginPresenter = ({
     NaverLogin,
     naverRef,
 
-    goMain,
+    navigate,
 }) => {
+
+    /* ===== RENDER ===== */
     return (
         <MainLayout
             footer={false}
@@ -17,6 +19,7 @@ const LoginPresenter = ({
         >
             <Content
                 gap={20}
+                position={'relative'}
             >
                 <div className="login-info">
                     <span className='title' style={{ color: '#FFFFFF' }}>
@@ -46,7 +49,16 @@ const LoginPresenter = ({
                     backgroundColor={'#F7E600'}
                     onClick={() => KakaoLogin()}
                 />
-                {/* <span onClick={goMain} style={{ color: 'white' }}><u>메인으로 이동</u></span> */}
+                <span
+                    style={{
+                        position: 'absolute',
+                        bottom: -25,
+                        color: '#FFFFFF',
+                        borderBottom: '1px solid #FFFFFF',
+                        paddingBottom: '3px',
+                    }}
+                    onClick={() => navigate('employee/login')}
+                >직원이신가요?</span>
                 <div id='naverIdLogin' ref={naverRef} style={{ display: 'none' }} />
             </Content>
         </MainLayout>

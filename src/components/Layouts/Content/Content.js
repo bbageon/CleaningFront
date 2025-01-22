@@ -9,6 +9,7 @@ const Content = ({
     gap,
     border,
     flexDirection,
+    position,
 }) => {
     return (
         <div
@@ -21,6 +22,7 @@ const Content = ({
                 paddingBottom: `${paddingBottom}px`,
                 gap: `${gap}px`,
                 borderBottom: border ? border : 'none',
+                position: position ? position : 'static',
             }}
         >
             {children}

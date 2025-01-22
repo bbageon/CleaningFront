@@ -202,6 +202,8 @@ const LoginContainer = ({
 
             NaverLogin={NaverLogin}
             naverRef={naverRef}
+
+            navigate={navigate}
         />
     );
 };
