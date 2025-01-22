@@ -10,6 +10,7 @@ import { useGetCompanyCartList } from "hooks/CartListHooks";
 import { useAuthStore, useCartStore } from "store";
 import { useGetUserCart } from "hooks/CartHooks";
 import formatPrice from "utils/priceUtils";
+import { useCreateChatRoom, useGetUserChatRoom } from 'hooks/ChatRoomHooks';
 
 const CompanyDetailContainer = () => {
 
@@ -21,6 +22,7 @@ const CompanyDetailContainer = () => {
 
     /* ===== STATE =====*/
     const [cartId, setCartId] = useState(null);
+    const [filteredChatRoom, setFilteredChatRoom] = useState(null);
 
 
 
@@ -57,7 +59,31 @@ const CompanyDetailContainer = () => {
     const { data: userCartRes, isLoading: userCartLoading, isError: userCartError } = useGetUserCart(userId);
     const userCart = userCartRes?.data || [];
 
-    const isLoading = companyLoading || designateCompanyCategoryLoading || companyReviewLoading || companyAnswerLoading || companyServiceLoading || userCartServiceListLoading || userCartLoading;
+    const { data: chatRoomRes, isLoading: chatRoomLoading, isError: chatRoomError } = useGetUserChatRoom(userId);
+    const chatRoom = chatRoomRes?.data.chat_rooms || [];
+
+    const isLoading =
+        companyLoading ||
+        designateCompanyCategoryLoading ||
+        companyReviewLoading ||
+        companyAnswerLoading ||
+        companyServiceLoading ||
+        userCartServiceListLoading ||
+        userCartLoading ||
+        chatRoomLoading;
+
+
+
+    /* ===== MUTATE ==== */
+    const { mutate: createChatRoom } = useCreateChatRoom(
+        (data) => {
+            console.log(data);
+            const roomId = data.room_id;
+            navigate(`/chatroom/${roomId}`, {
+                state: { chat_room_id: data.chat_room_id }
+            });
+        },
+    );
 
 
 
@@ -76,13 +102,42 @@ const CompanyDetailContainer = () => {
         }
     }, [userId, userCart]);
 
+    useEffect(() => {
+        if (!isLoading && chatRoom.length > 0) {
+            const filteredChatRoom = chatRoom.filter((room) => room.company_id == company_id);
+            setFilteredChatRoom(filteredChatRoom[0]);
+        } else {
+            setFilteredChatRoom(null);
+        }
+    }, [isLoading, chatRoom]);
+
+
+
+    /* ===== FUNCTION ===== */
+    const handleCreateChatRoom = () => {
+
+        if (!isLoading && filteredChatRoom) {
+            navigate(`/chatroom/${filteredChatRoom.room_id}`, {
+                state: { chat_room_id: filteredChatRoom?.chat_room_id },
+            }); 
+
+            return;
+        } else {
+            createChatRoom({
+                user_id: userId,
+                company_id: Number(company_id),
+                chat_room_name: company.company_name,
+            });
+        }
+    };
+
 
 
     /* ===== RENDER ===== */
     return (
         <CompanyDetailPresenter
             navigate={navigate}
-            
+
             totalPrice={totalPrice}
             formatPrice={formatPrice}
 
@@ -91,6 +146,8 @@ const CompanyDetailContainer = () => {
             companyReview={companyReview}
             companyAnswer={companyAnswer}
             companyService={companyService}
+
+            onCreateChatRoom={handleCreateChatRoom}
 
             isLoading={isLoading}
         />

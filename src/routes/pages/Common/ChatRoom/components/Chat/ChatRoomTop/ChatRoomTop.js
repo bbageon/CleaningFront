@@ -24,8 +24,7 @@ const ChatRoomTop = ({
             </div>
             <div className='top-title-wrap'>
                 <div className="top-title">
-                    {/* {chatTitle} */}
-                    청년아이앤에스
+                    {chatTitle}
                 </div>
             </div>
             <div

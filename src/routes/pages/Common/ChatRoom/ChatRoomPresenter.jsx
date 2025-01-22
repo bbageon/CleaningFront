@@ -27,6 +27,9 @@ const ChatRoomPresenter = ({
 
     inputChatRef,
 }) => {
+
+    console.log(chatTitle);
+    
     return (
         <div className='chat-room-container'>
             <ChatRoomTop

@@ -56,9 +56,9 @@ const ChatRoomContainer = ({
             (
                 async () => {
                     try {
-                        console.log(process.env.REACT_APP_CHAT_SERVER)
+                        // console.log(process.env.REACT_APP_CHAT_SERVER)
                         const userName = cookie.getCookie('name');
-                        console.log(userName)
+                        // console.log(userName)
                         if (!userName) setClientId('홍길동');
                         else setClientId(userName);
                         // setClientId('홍길동')
@@ -67,10 +67,10 @@ const ChatRoomContainer = ({
                         if (chatInfo.status !== 200) throw new Error(`[ChatRoomContainer][getOneChatRoom] Error`);
 
                         // chatInfo.
-                        console.log(chatInfo);
+                        // console.log(chatInfo);
                         const { data } = chatInfo;
-                        console.log(data.user.name);
-                        console.log(data.company.company_name);
+                        // console.log(data.user.name);
+                        // console.log(data.company.company_name);
                         setChatTitle(data.chat_room_name);
                         setSender(data.user.name);
                         setReceiver(data.company.company_name);
@@ -94,12 +94,12 @@ const ChatRoomContainer = ({
                 });
 
                 const fcm_token = cookie.getCookie('fcm-token');
-                console.log('fcm-token', fcm_token)
+                // console.log('fcm-token', fcm_token)
 
                 socketRef.current.on('connect', () => {
-                    console.log('채팅방 연결됨');
-                    console.log(chat_room_id);
-                    console.log(clientId);
+                    // console.log('채팅방 연결됨');
+                    // console.log(chat_room_id);
+                    // console.log(clientId);
                     socketRef.current.emit('enterChatroom', {
                         chat_room_id,
                         clientId,
@@ -109,9 +109,9 @@ const ChatRoomContainer = ({
                 })
 
                 socketRef.current.on('disconnect', () => {
-                    console.log('채팅방 연결 끊김');
-                    console.log(chat_room_id);
-                    console.log(clientId);
+                    // console.log('채팅방 연결 끊김');
+                    // console.log(chat_room_id);
+                    // console.log(clientId);
                     socketRef.current.emit('leaveChatroom', {
                         chat_room_id,
                         clientId,
@@ -188,7 +188,7 @@ const ChatRoomContainer = ({
             })
             toggleShowSelectPicture();
         } catch (e) {
-            console.error(e);
+            // console.error(e);
         }
     }
 
@@ -202,7 +202,7 @@ const ChatRoomContainer = ({
     // 이미지 전송
     const sendSelectPicture = async () => {
         toggleShowSelectPicture();
-        console.log(selectedPictures)
+        // console.log(selectedPictures)
 
         const formData = new FormData();
         selectedPictures?.map(picture => {
@@ -212,7 +212,7 @@ const ChatRoomContainer = ({
         try {
             const result = await API.postImagesTest(formData);
 
-            console.log(result);
+            // console.log(result);
             if (result.status !== 200) {
                 throw new Error(`invalid upload images`);
             }
@@ -229,7 +229,7 @@ const ChatRoomContainer = ({
             });
             setSelectedPictures([]);
         } catch (e) {
-            console.error(e);
+            // console.error(e);
         }
     }
 
@@ -252,8 +252,8 @@ const ChatRoomContainer = ({
     // FCM 설정
     const setFCM = () => {
         messaging.onMessage(payload => {
-            console.log(`Message Received`);
-            console.log(payload)
+            // console.log(`Message Received`);
+            // console.log(payload)
 
             const messageInfo = payload.data;
             if (messageInfo.chat_room_id !== chat_room_id) return;

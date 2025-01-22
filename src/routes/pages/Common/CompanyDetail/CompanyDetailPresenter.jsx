@@ -16,6 +16,8 @@ const CompanyDetailPresenter = ({
     companyAnswer,
     companyService,
 
+    onCreateChatRoom,
+
     isLoading,
 }) => {
 
@@ -46,6 +48,7 @@ const CompanyDetailPresenter = ({
 
             <button
                 className='company-detail-chat'
+                onClick={onCreateChatRoom}
             >
                 <ChatIcon />
             </button>
