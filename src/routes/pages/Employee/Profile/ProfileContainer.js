@@ -46,12 +46,13 @@ const ProfileContainer = () => {
             setRequestInProgress(inProgress);
         }
     }, [EmployeeRequestListRes, EmployeeRequestListLoading])
+
     console.log(EmployeeRequestList, requestFinished, requestInProgress);
 
     /* ===== RENDER ===== */
     return (
         <ProfilePresenter
-            total={EmployeeRequestList}
+            total={EmployeeRequestList} 
             finish={requestFinished}
             inProgress={requestInProgress}
             isLoading={isLoading}
