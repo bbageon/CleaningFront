@@ -1,4 +1,4 @@
-import EmployeeImageUpload from './components/EmployeeImageUpload/EmployeeImageUpload';
+import EmployeeImageUpload from './Components/EmployeeImageUpload/EmployeeImageUpload';
 import './RequestImage.css';
 import { EmployeeMainLayout, Top } from 'components/Layouts';
 
