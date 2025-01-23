@@ -49,8 +49,17 @@ const CartServiceCard = ({
                 <span>{servicePrice?.toLocaleString()}원</span>
             </div>
             <div className="cart-service-card-line">
-                <span className='light grey'>평당 추가 요금</span>
-                <span>{servicePrice?.toLocaleString()}원 x {filteredUserAddress[0]?.meter}평</span>
+                {service.service_unit === 'TIME' ? (
+                    <>
+                        <span className='light grey'>평당 추가 요금</span>
+                        <span>{servicePrice?.toLocaleString()}원 x 1시간(기본)</span>
+                    </>
+                ) : (
+                    <>
+                        <span className='light grey'>시간당 추가 요금</span>
+                        <span>{servicePrice?.toLocaleString()}원 x {filteredUserAddress[0]?.meter}평</span>
+                    </>
+                )}
             </div>
         </div>
     );

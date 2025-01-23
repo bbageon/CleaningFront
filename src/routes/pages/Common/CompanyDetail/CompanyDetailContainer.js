@@ -11,6 +11,7 @@ import { useAuthStore, useCartStore } from "store";
 import { useGetUserCart } from "hooks/CartHooks";
 import formatPrice from "utils/priceUtils";
 import { useCreateChatRoom, useGetUserChatRoom } from 'hooks/ChatRoomHooks';
+import { useGetUserAddress } from 'hooks/UserAddressHooks';
 
 const CompanyDetailContainer = () => {
 
@@ -27,7 +28,6 @@ const CompanyDetailContainer = () => {
 
 
     /* ===== STORE ===== */
-    const totalPrice = useCartStore((state) => state.totalPrice ?? 0);
     const clearCartStore = useCartStore(state => state.clearCartStore);
     const syncCartWithDB = useCartStore(state => state.syncCartWithDB);
     const userId = useAuthStore(state => state.user_id);
@@ -62,6 +62,11 @@ const CompanyDetailContainer = () => {
     const { data: chatRoomRes, isLoading: chatRoomLoading, isError: chatRoomError } = useGetUserChatRoom(userId);
     const chatRoom = chatRoomRes?.data.chat_rooms || [];
 
+    const { data: userAddressesRes, isLoading: userAddressesLoading, isError: userAddressesError } = useGetUserAddress(userId);
+    const userAddresses = userAddressesRes?.data.user_addresses || [];
+
+    const filteredUserAddress = userAddresses.filter(address => address.is_favorite === 1);
+
     const isLoading =
         companyLoading ||
         designateCompanyCategoryLoading ||
@@ -71,6 +76,15 @@ const CompanyDetailContainer = () => {
         userCartServiceListLoading ||
         userCartLoading ||
         chatRoomLoading;
+
+
+    const totalPrice = userCartServiceList?.reduce((sum, i) => {
+        if (i.service_unit === 'AREA') {
+            return sum + (i.service.price_per_meter || 0) * filteredUserAddress[0].meter;
+        } else {
+            return sum + (i.service.price_per_time || 0);
+        }
+    }, 0);
 
 
 
@@ -119,7 +133,7 @@ const CompanyDetailContainer = () => {
         if (!isLoading && filteredChatRoom) {
             navigate(`/chatroom/${filteredChatRoom.room_id}`, {
                 state: { chat_room_id: filteredChatRoom?.chat_room_id },
-            }); 
+            });
 
             return;
         } else {
