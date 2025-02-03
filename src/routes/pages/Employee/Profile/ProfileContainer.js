@@ -17,7 +17,7 @@ const ProfileContainer = () => {
     const employee_id = useAuthStore(state => state.user_id);
 
     /* ===== QUERY ===== */
-    const { data : EmployeeRequestListRes, isLoading : EmployeeRequestListLoading, isError : EmployeeRequestError } = useEmployeeRequestClean(employee_id);
+    const { data: EmployeeRequestListRes, isLoading: EmployeeRequestListLoading, isError: EmployeeRequestError } = useEmployeeRequestClean(employee_id);
 
     const isLoading = EmployeeRequestListLoading;
 
@@ -32,12 +32,12 @@ const ProfileContainer = () => {
             setEmployeeRequestList(result);
 
 
-            const finished = result?.filter(item => 
+            const finished = result?.filter(item =>
                 item.request_clean.request_status === 'DONE' ||
                 item.request_clean.request_status === 'PAY_WAITING'
             );
 
-            const inProgress = result?.filter(item => 
+            const inProgress = result?.filter(item =>
                 item.request_clean.request_status === 'CLEANING' ||
                 item.request_clean.request_status === 'WAITING'
             );
@@ -46,7 +46,6 @@ const ProfileContainer = () => {
             setRequestInProgress(inProgress);
         }
     }, [EmployeeRequestListRes, EmployeeRequestListLoading])
-    console.log(EmployeeRequestList, requestFinished, requestInProgress);
 
     /* ===== RENDER ===== */
     return (

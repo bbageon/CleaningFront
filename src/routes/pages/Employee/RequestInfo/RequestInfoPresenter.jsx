@@ -61,7 +61,7 @@ const RequestInfoPresenter = ({
     useEffect(() => {
         const result = days.filter((day, index) => List?.request_clean_period_day[index] === '1');
         setRequestDays(result);
-    }, [data]);
+    }, []);
 
     // if (List == null) {
     //     alert("비정상적인 접근입니다");

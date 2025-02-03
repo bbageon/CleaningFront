@@ -18,15 +18,14 @@ const RequestInfoContainer = () => {
 
 
     const isLoading = EmployeeSingleRequestCleanLoading;
-     
+
     /* ===== EFFECT ===== */
-    useEffect (() => {
+    useEffect(() => {
         if (EmployeeSingleRequestCleanLists && !EmployeeSingleRequestCleanLoading) {
             const result = EmployeeSingleRequestCleanLists;
             setEmployeeSingleRequestCleanList(result);
         }
     }, []);
-    console.log(EmployeeSingleRequestCleanList, "List")
 
     /* ===== RENDER ===== */
     return (
