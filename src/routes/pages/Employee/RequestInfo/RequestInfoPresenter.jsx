@@ -30,38 +30,49 @@ const RequestInfoPresenter = ({
             month: "2-digit", // 월 (2자리)
             day: "2-digit", // 일 (2자리)
         })
-        .replace(/. /g, '.') // 구분자 수정
-        .replace(/\.$/, ""); 
+            .replace(/. /g, '.') // 구분자 수정
+            .replace(/\.$/, "");
     };
 
     const formatTime = (Times) => {
         const Hours = Times.getHours();
         const Minutues = Times.getMinutes();
         const period = Hours >= 12 ? "오후" : "오전";
-        const Time =  `${Hours.toString().padStart(2, '0')}:${Minutues.toString().padStart(2, '0')}`;
-        return {Time, period};
+        const Time = `${Hours.toString().padStart(2, '0')}:${Minutues.toString().padStart(2, '0')}`;
+        return { Time, period };
     }
 
     const formatDateTime = (date) => {
         const year = date.getFullYear();
         const month = (date.getMonth() + 1).toString().padStart(2, '0');
         const day = date.getDate().toString().padStart(2, '0');
-    
+
         const hours = date.getHours().toString().padStart(2, '0');
         const minutes = date.getMinutes().toString().padStart(2, '0');
-    
+
         return `${year}년 ${month}월 ${day}일 ${hours}:${minutes}`;
     };
-    
-    
+
+
     const days = ["월", "화", "수", "목", "금", "토", "일"];
     const [RequestDays, setRequestDays] = useState([]);
 
     /* ===== RENDER ===== */
+    // useEffect(() => {
+    //     const result = days.filter((day, index) => List?.request_clean_period_day[index] === '1');
+    //     setRequestDays(result);
+    // }, []);
+
     useEffect(() => {
-        const result = days.filter((day, index) => List?.request_clean_period_day[index] === '1');
-        setRequestDays(result);
-    }, [data]);
+        if (List && Array.isArray(List.request_clean_period_day)) {
+            const result = days.filter((day, index) =>
+                List.request_clean_period_day[index] === '1'
+            );
+            setRequestDays(result);
+        } else {
+            setRequestDays([]);
+        }
+    }, [List, days]);
 
     // if (List == null) {
     //     alert("비정상적인 접근입니다");

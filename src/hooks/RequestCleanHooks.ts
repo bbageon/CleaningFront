@@ -100,7 +100,7 @@ export const useCreateRequestClean = (onSuccess?: (data: any) => void, onError?:
  */
 export const useUpdateRequestClean = (onSuccess?: (data: any) => void, onError?: (error: any) => void) => {
     const queryClient = useQueryClient();
-    
+
     return useMutation({
         mutationFn: async ({ request_clean_id, body }: { request_clean_id: number, body: any }) => {
             const response = await API.putRequestClean(request_clean_id, body);
@@ -129,7 +129,7 @@ export const useUpdateRequestClean = (onSuccess?: (data: any) => void, onError?:
  * [RequestClean] 청소요청 삭제
  * --
  */
-export const useDeleteRequestClean = (onSuccess?: (data: any) => void, onError?: (error:any) => void) => {
+export const useDeleteRequestClean = (onSuccess?: (data: any) => void, onError?: (error: any) => void) => {
     const queryClient = useQueryClient();
 
     return useMutation({
@@ -170,7 +170,7 @@ export const useEmployeeRequestClean = (employee_id: number) => {
 /**
  * [RequestClean] 직원 최근 청소요청 조회
  */
-export const useEmployeeRecentlyRequestClean = (employee_id : number) => {
+export const useEmployeeRecentlyRequestClean = (employee_id: number) => {
     return useQuery({
         queryKey: requestCleanQueryKeys.getRequestClean(employee_id).queryKey,
         queryFn: () => API.getEmployeeRecentlyRequestClean(employee_id),
@@ -181,10 +181,10 @@ export const useEmployeeRecentlyRequestClean = (employee_id : number) => {
 /**
  * [RequestClean] 직원 단일 청소요청 조회
  */
-export const useEmployeeSingleRequestClean = (employee_id : number, request_clean_id : number) => {
+export const useEmployeeSingleRequestClean = (employee_id: number, request_clean_id: number) => {
     return useQuery({
-        queryKey : requestCleanQueryKeys.getRequestClean(employee_id).queryKey,
-        queryFn : () => API.getEmployeeSingleRequestClean(employee_id, request_clean_id),
-        enabled : !!employee_id || !!request_clean_id,
+        queryKey: requestCleanQueryKeys.getRequestClean(employee_id).queryKey,
+        queryFn: () => API.getEmployeeSingleRequestClean(employee_id, request_clean_id),
+        enabled: !!employee_id || !!request_clean_id,
     })
 }

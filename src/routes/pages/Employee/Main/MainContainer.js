@@ -24,8 +24,8 @@ const MainContainer = () => {
     const { data: employeeDataRes, isLoading: employeeDataLoading, isError: employeeError } = useGetOneEmployee(employee_id);
     const employeeData = employeeDataRes?.data || [];
 
-
     const isLoading = EmployeeRecentlyRequestListLoading || requestCleanImagesLoading || employeeDataLoading;
+    
 
     /* ===== EFFECT ===== */
     useEffect(() => {
