@@ -7,6 +7,8 @@ const LoginPresenter = ({
     NaverLogin,
     naverRef,
 
+    requestAlert,
+
     navigate,
 }) => {
 
@@ -37,7 +39,12 @@ const LoginPresenter = ({
                     padding={20}
                     borderRadius={40}
                     backgroundColor={'#2DB400'}
-                    onClick={() => NaverLogin()}
+                    onClick={
+                        () => {
+                            NaverLogin();
+                            requestAlert();
+                        }
+                    }
                 />
                 <Button
                     title={'카카오톡으로 로그인'}
@@ -47,7 +54,12 @@ const LoginPresenter = ({
                     borderRadius={40}
                     color={'#000000'}
                     backgroundColor={'#F7E600'}
-                    onClick={() => KakaoLogin()}
+                    onClick={
+                        () => {
+                            KakaoLogin();
+                            requestAlert();
+                        }
+                    }
                 />
                 <span
                     style={{

@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { useFetcher, useLocation, useParams } from "react-router-dom";
+import { useFetcher, useLocation, useParams, useSearchParams } from "react-router-dom";
 import ChatRoomPresenter from "./ChatRoomPresenter";
 import Image01 from './components/Picture/Images/Image01.png';
 import Image02 from './components/Picture/Images/Image02.png';
@@ -28,8 +28,11 @@ const ChatRoomContainer = ({
 }) => {
     const inputChatRef = useRef(null);
     const chatRef = useRef(null);
-    const { state } = useLocation();
-    const { chat_room_id } = state;
+    // const { state } = useLocation();
+    // const { chat_room_id } = state;
+    const [search, setSearch] = useSearchParams();
+    // const { chat_room_id } = useSearchParams();
+    const[chat_room_id, setChatRoomId] = useState(null);
     const { room_id } = useParams();
 
     // Chat State
@@ -39,6 +42,7 @@ const ChatRoomContainer = ({
     const [chatMessage, setChatMessage] = useState('');
     const [chatTitle, setChatTitle] = useState('김재모의 카피바라 청소');
     const [chatList, setChatList] = useState([]);
+    const [currentChatRoomId, setCurrentChatRoomId] = useState(-1);
 
     // Picture State
     const [isShowSelectPicture, setIsShowSelectPicture] = useState(false);
@@ -51,101 +55,187 @@ const ChatRoomContainer = ({
     ])
 
 
+    // useEffect(() => {
+    //     try {
+    //         (
+    //             async () => {
+    //                 try {
+    //                     // console.log(process.env.REACT_APP_CHAT_SERVER)
+    //                     const userName = cookie.getCookie('name');
+    //                     // console.log(userName)
+    //                     if (!userName) setClientId('홍길동');
+    //                     else setClientId(userName);
+    //                     // setClientId('홍길동')
+
+    //                     const chatInfo = await API.getOneChatRoom(room_id);
+    //                     if (chatInfo.status !== 200) throw new Error(`[ChatRoomContainer][getOneChatRoom] Error`);
+
+    //                     // chatInfo.
+    //                     // console.log(chatInfo);
+    //                     const { data } = chatInfo;
+    //                     // console.log(data.user.name);
+    //                     // console.log(data.company.company_name);
+    //                     setChatTitle(data.chat_room_name);
+    //                     setSender(data.user.name);
+    //                     setReceiver(data.company.company_name);
+
+    //                     const chatMessageInfo = await API.getOneChatMessage(room_id);
+    //                     if (chatMessageInfo.status !== 200) throw new Error(`[ChatRoomContainer][getOneChatMessage] Error`);
+    //                     setChatList(chatMessageInfo.data.room_messages);
+
+    //                 } catch (e) {
+
+    //                 }
+    //             }
+    //         )()
+
+
+    //         // websocket 설정
+    //         if (!socketRef.current) {
+    //             socketRef.current = io(`${process.env.REACT_APP_CHAT_SERVER}/cleaning_chat`, {
+    //                 transports: ['websocket'],
+    //                 reconnectionAttempts: 3,
+    //             });
+
+    //             const fcm_token = cookie.getCookie('fcm-token');
+    //             // console.log('fcm-token', fcm_token)
+
+    //             socketRef.current.on('connect', () => {
+    //                 // console.log('채팅방 연결됨');
+    //                 // console.log(chat_room_id);
+    //                 // console.log(clientId);
+    //                 socketRef.current.emit('enterChatroom', {
+    //                     chat_room_id,
+    //                     clientId,
+    //                     type: 'USER',
+    //                     token: fcm_token,
+    //                 });
+    //             })
+
+    //             socketRef.current.on('disconnect', () => {
+    //                 // console.log('채팅방 연결 끊김');
+    //                 // console.log(chat_room_id);
+    //                 // console.log(clientId);
+    //                 socketRef.current.emit('leaveChatroom', {
+    //                     chat_room_id,
+    //                     clientId,
+    //                     type: 'USER',
+    //                 });
+    //             })
+    //         }
+
+    //         socketRef.current?.on('chatMessage', (messageInfo) => {
+    //             // 현재 채팅방이 아닌 다른 채팅방에서 수신한 메시지는 거른다
+    //             if (messageInfo.chat_room_id !== chat_room_id) return;
+
+    //             setChatList(prev => {
+    //                 return [
+    //                     ...prev,
+    //                     {
+    //                         sender: messageInfo.sender,
+    //                         receiver: messageInfo.receiver,
+    //                         message: messageInfo.message,
+    //                     }
+    //                 ]
+    //             });
+    //         });
+
+    //         // FCM 설정
+    //         setFCM();
+
+    //         return () => {
+    //             socketRef.current.close();
+    //         }
+    //     } catch (e) {
+
+    //     }
+    // }, []);
     useEffect(() => {
         try {
-            (
-                async () => {
-                    try {
-                        // console.log(process.env.REACT_APP_CHAT_SERVER)
-                        const userName = cookie.getCookie('name');
-                        // console.log(userName)
-                        if (!userName) setClientId('홍길동');
-                        else setClientId(userName);
-                        // setClientId('홍길동')
+            (async () => {
+                try {
+                    console.log('asdf')
+                    console.log(search.get('chat_room_id'))
+                    // search params 가져오기
+                    setChatRoomId(search.get('chat_room_id'));
 
-                        const chatInfo = await API.getOneChatRoom(room_id);
-                        if (chatInfo.status !== 200) throw new Error(`[ChatRoomContainer][getOneChatRoom] Error`);
+                    // 사용자 정보 가져오기
+                    const userName = cookie.getCookie('name');
+                    setClientId(userName || '홍길동');
 
-                        // chatInfo.
-                        // console.log(chatInfo);
-                        const { data } = chatInfo;
-                        // console.log(data.user.name);
-                        // console.log(data.company.company_name);
-                        setChatTitle(data.chat_room_name);
-                        setSender(data.user.name);
-                        setReceiver(data.company.company_name);
+                    // 채팅방 정보 불러오기
+                    const chatInfo = await API.getOneChatRoom(room_id);
+                    if (chatInfo.status !== 200) throw new Error(`[ChatRoomContainer][getOneChatRoom] Error`);
 
-                        const chatMessageInfo = await API.getOneChatMessage(room_id);
-                        if (chatMessageInfo.status !== 200) throw new Error(`[ChatRoomContainer][getOneChatMessage] Error`);
-                        setChatList(chatMessageInfo.data.room_messages);
+                    const { data } = chatInfo;
+                    setChatTitle(data.chat_room_name);
+                    setSender(data.user.name);
+                    setReceiver(data.company.company_name);
 
-                    } catch (e) {
-
-                    }
+                    const chatMessageInfo = await API.getOneChatMessage(room_id);
+                    if (chatMessageInfo.status !== 200) throw new Error(`[ChatRoomContainer][getOneChatMessage] Error`);
+                    setChatList(chatMessageInfo.data.room_messages);
+                } catch (e) {
+                    console.error(e);
                 }
-            )()
+            })();
 
-
-            // websocket 설정
+            // WebSocket 설정
             if (!socketRef.current) {
                 socketRef.current = io(`${process.env.REACT_APP_CHAT_SERVER}/cleaning_chat`, {
                     transports: ['websocket'],
                     reconnectionAttempts: 3,
+                    reconnectionDelay: 3000, // 연결이 끊어질 경우 3초 후 재연결
                 });
 
                 const fcm_token = cookie.getCookie('fcm-token');
-                // console.log('fcm-token', fcm_token)
 
                 socketRef.current.on('connect', () => {
-                    // console.log('채팅방 연결됨');
-                    // console.log(chat_room_id);
-                    // console.log(clientId);
+                    console.log('✅ 채팅방 연결됨');
                     socketRef.current.emit('enterChatroom', {
                         chat_room_id,
                         clientId,
                         type: 'USER',
                         token: fcm_token,
                     });
-                })
+                });
 
                 socketRef.current.on('disconnect', () => {
-                    // console.log('채팅방 연결 끊김');
-                    // console.log(chat_room_id);
-                    // console.log(clientId);
-                    socketRef.current.emit('leaveChatroom', {
-                        chat_room_id,
-                        clientId,
-                        type: 'USER',
-                    });
-                })
-            }
+                    console.warn('❌ 채팅방 연결 끊김, 재연결 시도...');
+                    setTimeout(() => {
+                        socketRef.current.connect();
+                    }, 3000);
+                });
 
-            socketRef.current?.on('chatMessage', (messageInfo) => {
-                // 현재 채팅방이 아닌 다른 채팅방에서 수신한 메시지는 거른다
-                if (messageInfo.chat_room_id !== chat_room_id) return;
+                // 채팅 메시지 수신 이벤트
+                socketRef.current.on('chatMessage', (messageInfo) => {
+                    if (messageInfo.chat_room_id !== chat_room_id) return;
 
-                setChatList(prev => {
-                    return [
+                    setChatList(prev => [
                         ...prev,
                         {
                             sender: messageInfo.sender,
                             receiver: messageInfo.receiver,
                             message: messageInfo.message,
                         }
-                    ]
+                    ]);
                 });
-            });
+            }
 
-            // FCM 설정
+            // FCM 설정 실행
             setFCM();
 
             return () => {
-                socketRef.current.close();
-            }
+                if (socketRef.current) {
+                    socketRef.current.close();
+                    console.log("🔌 WebSocket 연결 해제");
+                }
+            };
         } catch (e) {
-
+            console.error(e);
         }
     }, []);
+
 
     useEffect(() => {
         chatRef.current.scrollTop = chatRef.current.scrollHeight;
@@ -250,27 +340,68 @@ const ChatRoomContainer = ({
     }
 
     // FCM 설정
+    // const setFCM = () => {
+    //     messaging.onMessage(payload => {
+    //         // console.log(`Message Received`);
+    //         // console.log(payload)
+
+    //         const messageInfo = payload.data;
+    //         if (messageInfo.chat_room_id !== chat_room_id) return;
+
+    //         // 채팅방으로 전송
+    //         setChatList(prev => {
+    //             return [
+    //                 ...prev,
+    //                 {
+    //                     sender: messageInfo.sender,
+    //                     receiver: messageInfo.receiver,
+    //                     message: messageInfo.message,
+    //                 }
+    //             ]
+    //         });
+    //     })
+    // }
     const setFCM = () => {
+        if (!messaging) {
+            console.warn("Firebase Messaging 객체가 없습니다.");
+            return;
+        }
+
         messaging.onMessage(payload => {
-            // console.log(`Message Received`);
-            // console.log(payload)
+            console.log(`🔔 FCM 메시지 수신!`, payload);
+
+            if (!payload?.data) {
+                console.warn("잘못된 FCM 메시지 데이터");
+                return;
+            }
 
             const messageInfo = payload.data;
+            console.log(messageInfo)
+            console.log(chat_room_id)
+            
+            // 현재 채팅방이 아닌 경우 무시
             if (messageInfo.chat_room_id !== chat_room_id) return;
 
-            // 채팅방으로 전송
-            setChatList(prev => {
-                return [
-                    ...prev,
-                    {
-                        sender: messageInfo.sender,
-                        receiver: messageInfo.receiver,
-                        message: messageInfo.message,
-                    }
-                ]
-            });
-        })
-    }
+            // 채팅 목록 업데이트
+            setChatList(prev => [
+                ...prev,
+                {
+                    sender: messageInfo.sender,
+                    receiver: messageInfo.receiver,
+                    message: messageInfo.message,
+                }
+            ]);
+        });
+    };
+
+    // // useEffect 내부에서 FCM 설정 실행
+    useEffect(() => {
+        setFCM();
+    }, []); // `[]`로 설정하여 최초 실행될 때만 설정
+
+    useEffect(() => {
+        setFCM();
+    }, [chat_room_id]); // `[]`로 설정하여 최초 실행될 때만 설정
 
 
     return (

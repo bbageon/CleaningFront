@@ -61,6 +61,9 @@ const ProfileContainer = () => {
             cookie.remove('email', { path: '/' });
             cookie.remove('userType', { path: '/' });
             cookie.remove('user_id', { path: '/' });
+            cookie.remove('is-allow', { path: '/' }, 1000);
+            cookie.remove('id', { path: '/' }, 1000);
+            cookie.remove('fcm-token', { path: '/' }, 1000);
 
             removeAuth();
 

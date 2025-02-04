@@ -123,9 +123,11 @@ const Router = () => {
 
     const logOut = () => {
         cookie.remove('token', { path: '/' }, 1000);
+        cookie.remove('id', { path: '/' }, 1000);
         cookie.remove('name', { path: '/' }, 1000);
         cookie.remove('email', { path: '/' }, 1000);
         cookie.remove('userType', { path: '/' }, 1000);
+        cookie.remove('is-allow', { path: '/' }, 1000);
     }
 
     // useEffect(() => {

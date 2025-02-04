@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useCreateCart, useGetUserCart } from "hooks/CartHooks";
 import { useCreateUser } from "hooks/UserHooks";
 import { useAuthStore, useCartStore } from "store";
+import { requestPermission } from "fcm/firebase-messaging";
 
 
 const LoginContainer = ({
@@ -195,6 +196,13 @@ const LoginContainer = ({
 
 
 
+    /* ===== REQUEST ===== */
+    const requestAlert = () => {
+        // requestPermission();
+    }
+
+
+
     /* ===== RENDER ===== */
     return (
         <LoginPresenter
@@ -202,6 +210,8 @@ const LoginContainer = ({
 
             NaverLogin={NaverLogin}
             naverRef={naverRef}
+
+            requestAlert={requestAlert}
 
             navigate={navigate}
         />

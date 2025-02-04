@@ -11,3 +11,9 @@ export const getCookie = (name, options = null) => {
 export const isLogin = () => {
     return getCookie('token');
 }
+
+
+// FCM 여부 확인
+export const isAllowNotification = () => {
+    return getCookie('fcm-token');
+}

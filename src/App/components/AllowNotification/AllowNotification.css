@@ -1,0 +1,72 @@
+.allow-popup {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: #00000099;
+}
+
+
+/* 알림 박스 CSS */
+.allow-popup .allow-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    gap: 1rem;
+
+    background-color: white;
+
+    padding: 3rem 1rem 1rem 1rem;
+}
+
+.allow-popup .allow-box div {
+    width: 100%;
+
+    text-align: center;
+}
+
+/* 알림 박스 타이틀 CSS */
+.allow-popup .allow-box .allow-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+
+/* 알림 내용 CSS*/
+.allow-popup .allow-box .allow-content {
+    padding: 1rem;
+    word-break: keep-all;
+    line-height: 2;
+}
+
+
+/* 알림 박스 버튼 CSS */
+.allow-popup .allow-box .allow-buttons {
+    display: flex;
+}
+
+.allow-popup .allow-box .allow-buttons button {
+    flex: 1;
+
+    padding: 1rem;
+    border: none;
+
+    font-size: 1rem;
+}
+
+/* 허용 안함 버튼 CSS */
+.allow-popup .allow-box .allow-buttons .allow-deny-button {
+    color: grey;
+}
+
+/* 허용 버튼 CSS */
+.allow-popup .allow-box .allow-buttons .allow-button {
+    width: 100%;
+
+    color: white;
+    background-color: #4dacf9;
+}

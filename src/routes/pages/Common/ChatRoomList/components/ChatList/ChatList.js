@@ -16,7 +16,7 @@ const ChatList = ({
                             className='chat-list'
                             onClick={() => {
 
-                                navigate(`/chatroom/${chat.room_id}`, {
+                                navigate(`/chatroom/${chat.room_id}?chat_room_id=${chat.chat_room_id}`, {
                                     state: { chat_room_id: chat.chat_room_id }
                                 })
                             }
